@@ -27,7 +27,8 @@ namespace cinemax
             dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {   
+          
         }
 
         #region Metodos del formulario
@@ -189,7 +190,7 @@ namespace cinemax
             {
                 if (conexion.AbrirConexion())
                 {
-                    clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
+                    //clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
                     string txtCmd = "delete from Persona.Empleado where clave_emp = " + clave_emp;
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
                     try
@@ -215,7 +216,6 @@ namespace cinemax
 
         private string RenglonSeleccionado()
         {
-
             string renglon;
             try { renglon = dgEmpleados.SelectedCells[0].Value.ToString(); }
             catch { renglon = string.Empty; }
@@ -248,7 +248,66 @@ namespace cinemax
 
         }
 
+        private void ActualizarEmpleado() {
+
+            string clave_emp;
+
+            if ((clave_emp = RenglonSeleccionado()) != "")
+            {
+                if (conexion.AbrirConexion())
+                {//(nombres,app,apm,fecha_nac,colonia,calle,numero)
+                    string txtCmd = "update Persona.Empleado set nombres='" +
+                        tbNombreEmp.Text + "', app='" + tbAppEmp.Text +
+                        "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
+                        dpFechaEmp.Value.Year +  "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
+                        "', colonia='" + tbColoniaEmp.Text + "', calle='" + tbCalleEmp.Text +
+                        "', numero='" + tbNumeroEmp.Text + "' where clave_emp=" + clave_emp;
+
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosEmpleado();
+                        MessageBox.Show("Se actualizo correctamente!!");
+                        LimpiaCamposEmpleado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+            }
+        }
+
+
+        private void btActualizaEmpleado_Click(object sender, EventArgs e)
+        {
+            ActualizarEmpleado();
+        }
+
+        private void tbNumeroEmp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidaNumero(e);
+        }
+
+        private void tbTelEmp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidaNumero(e);
+        }
+
+        private void tbCelEmp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidaNumero(e);
+        }
+
         #endregion
+
+        #region Metodos Comunes
         private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tcPrincipal.SelectedTab.Text)
@@ -260,11 +319,26 @@ namespace cinemax
 
         }
 
-
-
-
-
-
+        private void ValidaNumero(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
 
 
     }
