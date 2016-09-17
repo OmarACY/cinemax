@@ -14,10 +14,13 @@ namespace cinemax
 {
     public partial class Form1 : Form
     {
+        #region Atributos
         private Point formPosition;
         private bool mouseAction;
         private Conexion conexion;
+        #endregion
 
+        #region Metodos Constructor y Load
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +33,8 @@ namespace cinemax
         {   
           
         }
+
+        #endregion
 
         #region Metodos del formulario
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -107,7 +112,7 @@ namespace cinemax
             lbFechaEmp.Text = "Fecha de nacimiento";
             lbColoniaEmp.Text = "Colonia";
             lbCalleEmp.Text = "Calle";
-            lbNumeroEmp.Text = "Numero";
+            lbNumeroEmp.Text = "Numero";            
             lbMensaje.Visible = false;
             //Cambia color
             lbNombreEmp.ForeColor = Color.LightGray;
@@ -154,7 +159,7 @@ namespace cinemax
 
             if (conexion.AbrirConexion())
             {
-                string txtCmd = "select * from Persona.Empleado";
+                string txtCmd = "select * from Persona.empleado";
                 SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
                 try
@@ -188,29 +193,32 @@ namespace cinemax
 
             if ((clave_emp = RenglonSeleccionado()) != "")
             {
-                if (conexion.AbrirConexion())
+                if (MessageBox.Show("¿Esta seguro de querer eliminar este Empleado?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    //clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
-                    string txtCmd = "delete from Persona.Empleado where clave_emp = " + clave_emp;
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosEmpleado();
-                        MessageBox.Show("Se elimino correctamente!!");
-                        LimpiaCamposEmpleado();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    conexion.CerrarConexion();
-                }
-                else
-                {
-                    MessageBox.Show("Error al llamar al servidor");
-                }
 
+                    if (conexion.AbrirConexion())
+                    {
+                        //clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
+                        string txtCmd = "delete from Persona.empleado where clave_emp = " + clave_emp;
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            ObtenerRegistrosEmpleado();
+                            MessageBox.Show("Se elimino correctamente!!");
+                            LimpiaCamposEmpleado();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
+                }
             }
         }
 
@@ -256,7 +264,7 @@ namespace cinemax
             {
                 if (conexion.AbrirConexion())
                 {//(nombres,app,apm,fecha_nac,colonia,calle,numero)
-                    string txtCmd = "update Persona.Empleado set nombres='" +
+                    string txtCmd = "update Persona.empleado set nombres='" +
                         tbNombreEmp.Text + "', app='" + tbAppEmp.Text +
                         "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
                         dpFechaEmp.Value.Year +  "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
@@ -315,6 +323,9 @@ namespace cinemax
                 case "Empleado":
                     ObtenerRegistrosEmpleado();
                     break;
+                case "Membresias":
+                    ObtenerRegistrosMembresia();
+                    break;
             }
 
         }
@@ -341,5 +352,133 @@ namespace cinemax
         #endregion
 
 
+
+        #region Metodos Pestaña Membresia
+
+        private void btInsertaMem_Click(object sender, EventArgs e)
+        {
+            InsertaMembresia();            
+        }
+
+        private void InsertaMembresia()
+        {
+            LimpiaFormularioMembresia();
+            if (ValidaFormularioMembresia())
+            {
+                if (conexion.AbrirConexion())
+                {
+
+                    string txtCmd = "INSERT INTO Persona.membresia(nombre,app,apm,fecha_nac,colonia,calle,numero,tipo,puntos)" +
+                        "VALUES('" + tbNombreMem.Text + "','" + tbAppMem.Text + "','" + tbApmMem.Text + "','" +
+                        dpFechaMem.Value.Year + "/" + dpFechaMem.Value.Month + "/" + dpFechaMem.Value.Day + "','" + tbColoniaMem.Text + "','" +
+                        tbCalleMem.Text + "'," + tbNumeroMem.Text + ",'" + cbTipoMem.Text + "'," + nuPuntosMem.Value + ")";
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosMembresia();
+                        MessageBox.Show("El empleado se agrego correctamente!!");
+                        LimpiaCamposMembresia();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    conexion.CerrarConexion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al serividor");
+                }
+            }
+
+        }
+        private void LimpiaFormularioMembresia()
+        {
+
+            //Cambia texto
+            lbNombreMem.Text = "Nombre (s)";
+            lbAppMem.Text = "Apellido paterno";
+            lbApmMem.Text = "Apellido materno";
+            lbFechaMem.Text = "Fecha de nacimiento";
+            lbColoniaMem.Text = "Colonia";
+            lbCalleMem.Text = "Calle";
+            lbNumeroMem.Text = "Numero";
+            lbTipoMem.Text = "Tipo";
+            lbMensajeMem.Visible = false;
+            //Cambia color
+            lbNombreMem.ForeColor = Color.LightGray;
+            lbAppMem.ForeColor = Color.LightGray;
+            lbApmMem.ForeColor = Color.LightGray;
+            lbFechaMem.ForeColor = Color.LightGray;
+            lbColoniaMem.ForeColor = Color.LightGray;
+            lbCalleMem.ForeColor = Color.LightGray;
+            lbNumeroMem.ForeColor = Color.LightGray;
+            lbTipoMem.ForeColor = Color.LightGray;
+        }
+
+        private bool ValidaFormularioMembresia()
+        {
+            bool valido = true;
+            int error = 0;
+
+            if (tbNombreMem.Text.Trim() == string.Empty) { lbNombreMem.Text = "Nombre (s) *"; lbNombreMem.ForeColor = Color.Red; error++; }
+            if (tbAppMem.Text.Trim() == string.Empty) { lbAppMem.Text = "Apellido paterno *"; lbAppMem.ForeColor = Color.Red; error++; }
+            if (tbApmMem.Text.Trim() == string.Empty) { lbApmMem.Text = "Apellido materno *"; lbApmMem.ForeColor = Color.Red; error++; }
+            if (dpFechaMem.Text.Trim() == string.Empty) { lbFechaMem.Text = "Fecha de nacimiento *"; lbFechaMem.ForeColor = Color.Red; error++; }
+            if (tbColoniaMem.Text.Trim() == string.Empty) { lbColoniaMem.Text = "Colonia *"; lbColoniaMem.ForeColor = Color.Red; error++; }
+            if (tbCalleMem.Text.Trim() == string.Empty) { lbCalleMem.Text = "Calle *"; lbCalleMem.ForeColor = Color.Red; error++; }
+            if (tbNumeroMem.Text.Trim() == string.Empty) { lbNumeroMem.Text = "Numero *"; lbNumeroMem.ForeColor = Color.Red; error++; }
+            if (cbTipoMem.Text == string.Empty) { lbTipoMem.Text = "Tipo *"; lbTipoMem.ForeColor = Color.Red; error++; }
+
+            if (error > 0) { lbMensajeMem.Visible = true; valido = false; }
+
+            return valido;
+        }
+
+        private void LimpiaCamposMembresia()
+        {
+            tbNombreMem.Clear();
+            tbAppMem.Clear();
+            tbApmMem.Clear();
+            tbColoniaMem.Clear();
+            tbCalleMem.Clear();
+            tbNumeroMem.Clear();
+        }
+
+        private void ObtenerRegistrosMembresia()
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Persona.membresia";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(ds);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    dgMembresias.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        #endregion
     }
 }
