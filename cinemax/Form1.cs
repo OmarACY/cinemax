@@ -23,10 +23,11 @@ namespace cinemax
             InitializeComponent();
             conexion = new Conexion();
             this.BackgroundImage = cinemax.Properties.Resources.fondo2;
+            dgEmpleados.MultiSelect = false;
+            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
         private void Form1_Load(object sender, EventArgs e)
-        {
-            LimpiaFormularioEmpleado();
+        {            
         }
 
         #region Metodos del formulario
@@ -65,24 +66,32 @@ namespace cinemax
             LimpiaFormularioEmpleado();
             if (ValidaFormularioEmpleado())
             {
-                conexion.AbrirConexion();
+                if (conexion.AbrirConexion())
+                {
 
-                string txtCmd = "INSERT INTO Persona.empleado(nombres,app,apm,fecha_nac,colonia,calle,numero)" +
-                    "VALUES('" + tbNombreEmp.Text + "','" + tbAppEmp.Text + "','" + tbApmEmp.Text + "','" +
-                    dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day + "','" + tbColoniaEmp.Text + "','" + 
-                    tbCalleEmp.Text + "'," + tbNumeroEmp.Text + ")";
+                    string txtCmd = "INSERT INTO Persona.empleado(nombres,app,apm,fecha_nac,colonia,calle,numero)" +
+                        "VALUES('" + tbNombreEmp.Text + "','" + tbAppEmp.Text + "','" + tbApmEmp.Text + "','" +
+                        dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day + "','" + tbColoniaEmp.Text + "','" +
+                        tbCalleEmp.Text + "'," + tbNumeroEmp.Text + ")";
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("El empleado se agrego correctamente!!");
-                        //LimpiaCamposEmpleado();
+                        ObtenerRegistrosEmpleado();
+                        MessageBox.Show("El empleado se agrego correctamente!!");                        
+                        LimpiaCamposEmpleado();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
+
+                    conexion.CerrarConexion();
+                }
+                else {
+                    MessageBox.Show("Error al llamar al serividor");
+                }
             }
 
         }
@@ -98,7 +107,7 @@ namespace cinemax
             lbColoniaEmp.Text = "Colonia";
             lbCalleEmp.Text = "Calle";
             lbNumeroEmp.Text = "Numero";
-            lbMensaje.Text = string.Empty;
+            lbMensaje.Visible = false;
             //Cambia color
             lbNombreEmp.ForeColor = Color.LightGray;
             lbAppEmp.ForeColor = Color.LightGray;
@@ -122,13 +131,141 @@ namespace cinemax
             if (tbCalleEmp.Text.Trim() == string.Empty) { lbCalleEmp.Text = "Calle *"; lbCalleEmp.ForeColor = Color.Red; error++; }
             if (tbNumeroEmp.Text.Trim() == string.Empty) { lbNumeroEmp.Text = "Numero *"; lbNumeroEmp.ForeColor = Color.Red; error++; }
        
-            if (error > 0) { lbMensaje.Text = "*  Campos requieridos"; valido = false; }
+            if (error > 0) { lbMensaje.Visible = true; valido = false; }
 
             return valido;
         }
-        #endregion
 
-   
-        
+        private void LimpiaCamposEmpleado() {             
+            tbNombreEmp.Clear();
+            tbAppEmp.Clear();
+            tbApmEmp.Clear();
+            tbColoniaEmp.Clear();
+            tbCalleEmp.Clear();
+            tbNumeroEmp.Clear();
+            tbTelEmp.Clear();
+            tbCelEmp.Clear();
+        }
+
+        private void ObtenerRegistrosEmpleado() {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            DataSet ds = new DataSet();           
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Persona.Empleado";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(ds);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    dgEmpleados.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        private void btEliminaEmpleado_Click(object sender, EventArgs e)
+        {
+            EliminarEmpleado();
+        }
+
+        private void EliminarEmpleado()
+        {
+            string clave_emp;
+
+            if ((clave_emp = RenglonSeleccionado()) != "")
+            {
+                if (conexion.AbrirConexion())
+                {
+                    clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
+                    string txtCmd = "delete from Persona.Empleado where clave_emp = " + clave_emp;
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosEmpleado();
+                        MessageBox.Show("Se elimino correctamente!!");
+                        LimpiaCamposEmpleado();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    conexion.CerrarConexion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+
+            }
+        }
+
+        private string RenglonSeleccionado()
+        {
+
+            string renglon;
+            try { renglon = dgEmpleados.SelectedCells[0].Value.ToString(); }
+            catch { renglon = string.Empty; }
+            return renglon;
+        }
+        private void dgEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SeleccionaRegistro();
+        }
+
+        private void dgEmpleados_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SeleccionaRegistro();
+        }
+
+        private void SeleccionaRegistro()
+        {
+            if (dgEmpleados.SelectedCells.Count > 1)
+            {
+                tbNombreEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["nombres"].Index].Value.ToString();
+                tbAppEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["app"].Index].Value.ToString();
+                tbApmEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["apm"].Index].Value.ToString();
+                string fecha = dgEmpleados.SelectedCells[dgEmpleados.Columns["fecha_nac"].Index].Value.ToString();
+                string[] f = fecha.Split('/');
+                dpFechaEmp.Text = f[0] + '/' + f[1] + '/' + f[2];
+                tbColoniaEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["colonia"].Index].Value.ToString();
+                tbCalleEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["calle"].Index].Value.ToString();
+                tbNumeroEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["numero"].Index].Value.ToString();
+            }
+
+        }
+
+        #endregion
+        private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tcPrincipal.SelectedTab.Text)
+            {
+                case "Empleado":
+                    ObtenerRegistrosEmpleado();
+                    break;
+            }
+
+        }
+
+
+
+
+
+
+
+
     }
 }

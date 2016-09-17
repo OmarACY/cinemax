@@ -31,16 +31,16 @@
             this.tcPrincipal = new System.Windows.Forms.TabControl();
             this.tpVenta = new System.Windows.Forms.TabPage();
             this.tpEmpleado = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEmpleados = new System.Windows.Forms.DataGridView();
             this.gbEmpleado = new System.Windows.Forms.GroupBox();
             this.lbMensaje = new System.Windows.Forms.Label();
-            this.btActualizaEmpeado = new System.Windows.Forms.Button();
-            this.btEliminaEmpeado = new System.Windows.Forms.Button();
-            this.btInsertaEmpeado = new System.Windows.Forms.Button();
+            this.btActualizaEmpleado = new System.Windows.Forms.Button();
+            this.btEliminaEmpleado = new System.Windows.Forms.Button();
+            this.btInsertaEmpleado = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbCelEmp = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbTelEmp = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lbNumeroEmp = new System.Windows.Forms.Label();
             this.tbNumeroEmp = new System.Windows.Forms.TextBox();
@@ -60,7 +60,7 @@
             this.pbCerrar = new System.Windows.Forms.PictureBox();
             this.tcPrincipal.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
             this.gbEmpleado.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,26 +69,27 @@
             // 
             // tcPrincipal
             // 
+            this.tcPrincipal.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tcPrincipal.Controls.Add(this.tpVenta);
             this.tcPrincipal.Controls.Add(this.tpEmpleado);
             this.tcPrincipal.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tcPrincipal.HotTrack = true;
-            this.tcPrincipal.Location = new System.Drawing.Point(12, 25);
+            this.tcPrincipal.Location = new System.Drawing.Point(12, 27);
             this.tcPrincipal.Multiline = true;
             this.tcPrincipal.Name = "tcPrincipal";
             this.tcPrincipal.SelectedIndex = 0;
-            this.tcPrincipal.Size = new System.Drawing.Size(976, 563);
+            this.tcPrincipal.Size = new System.Drawing.Size(977, 563);
             this.tcPrincipal.TabIndex = 1;
+            this.tcPrincipal.SelectedIndexChanged += new System.EventHandler(this.tcPrincipal_SelectedIndexChanged);
             // 
             // tpVenta
             // 
             this.tpVenta.BackColor = System.Drawing.Color.Black;
             this.tpVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tpVenta.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tpVenta.Location = new System.Drawing.Point(4, 22);
+            this.tpVenta.Location = new System.Drawing.Point(4, 25);
             this.tpVenta.Name = "tpVenta";
             this.tpVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tpVenta.Size = new System.Drawing.Size(968, 537);
+            this.tpVenta.Size = new System.Drawing.Size(969, 534);
             this.tpVenta.TabIndex = 0;
             this.tpVenta.Text = "Venta";
             // 
@@ -96,34 +97,37 @@
             // 
             this.tpEmpleado.BackColor = System.Drawing.Color.Black;
             this.tpEmpleado.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tpEmpleado.Controls.Add(this.dataGridView1);
+            this.tpEmpleado.Controls.Add(this.dgEmpleados);
             this.tpEmpleado.Controls.Add(this.gbEmpleado);
             this.tpEmpleado.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tpEmpleado.Location = new System.Drawing.Point(4, 22);
+            this.tpEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tpEmpleado.Location = new System.Drawing.Point(4, 25);
             this.tpEmpleado.Name = "tpEmpleado";
             this.tpEmpleado.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEmpleado.Size = new System.Drawing.Size(968, 537);
+            this.tpEmpleado.Size = new System.Drawing.Size(969, 534);
             this.tpEmpleado.TabIndex = 1;
             this.tpEmpleado.Text = "Empleado";
             // 
-            // dataGridView1
+            // dgEmpleados
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 198);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(956, 304);
-            this.dataGridView1.TabIndex = 1;
+            this.dgEmpleados.AllowUserToAddRows = false;
+            this.dgEmpleados.AllowUserToDeleteRows = false;
+            this.dgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEmpleados.Location = new System.Drawing.Point(6, 198);
+            this.dgEmpleados.Name = "dgEmpleados";
+            this.dgEmpleados.ReadOnly = true;
+            this.dgEmpleados.Size = new System.Drawing.Size(956, 330);
+            this.dgEmpleados.TabIndex = 1;
+            this.dgEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellContentClick);
+            this.dgEmpleados.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEmpleados_RowHeaderMouseClick);
             // 
             // gbEmpleado
             // 
             this.gbEmpleado.BackColor = System.Drawing.Color.Transparent;
             this.gbEmpleado.Controls.Add(this.lbMensaje);
-            this.gbEmpleado.Controls.Add(this.btActualizaEmpeado);
-            this.gbEmpleado.Controls.Add(this.btEliminaEmpeado);
-            this.gbEmpleado.Controls.Add(this.btInsertaEmpeado);
+            this.gbEmpleado.Controls.Add(this.btActualizaEmpleado);
+            this.gbEmpleado.Controls.Add(this.btEliminaEmpleado);
+            this.gbEmpleado.Controls.Add(this.btInsertaEmpleado);
             this.gbEmpleado.Controls.Add(this.groupBox2);
             this.gbEmpleado.Controls.Add(this.groupBox1);
             this.gbEmpleado.ForeColor = System.Drawing.Color.LightGray;
@@ -139,48 +143,50 @@
             this.lbMensaje.AutoSize = true;
             this.lbMensaje.BackColor = System.Drawing.Color.Transparent;
             this.lbMensaje.ForeColor = System.Drawing.Color.Red;
-            this.lbMensaje.Location = new System.Drawing.Point(583, 164);
+            this.lbMensaje.Location = new System.Drawing.Point(601, 162);
             this.lbMensaje.Name = "lbMensaje";
             this.lbMensaje.Size = new System.Drawing.Size(106, 13);
             this.lbMensaje.TabIndex = 9;
             this.lbMensaje.Text = "* Campos requieridos";
+            this.lbMensaje.Visible = false;
             // 
-            // btActualizaEmpeado
+            // btActualizaEmpleado
             // 
-            this.btActualizaEmpeado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btActualizaEmpeado.Location = new System.Drawing.Point(695, 159);
-            this.btActualizaEmpeado.Name = "btActualizaEmpeado";
-            this.btActualizaEmpeado.Size = new System.Drawing.Size(75, 23);
-            this.btActualizaEmpeado.TabIndex = 4;
-            this.btActualizaEmpeado.Text = "Actualizar";
-            this.btActualizaEmpeado.UseVisualStyleBackColor = true;
+            this.btActualizaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btActualizaEmpleado.Location = new System.Drawing.Point(713, 159);
+            this.btActualizaEmpleado.Name = "btActualizaEmpleado";
+            this.btActualizaEmpleado.Size = new System.Drawing.Size(75, 23);
+            this.btActualizaEmpleado.TabIndex = 4;
+            this.btActualizaEmpleado.Text = "Actualizar";
+            this.btActualizaEmpleado.UseVisualStyleBackColor = true;
             // 
-            // btEliminaEmpeado
+            // btEliminaEmpleado
             // 
-            this.btEliminaEmpeado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btEliminaEmpeado.Location = new System.Drawing.Point(776, 159);
-            this.btEliminaEmpeado.Name = "btEliminaEmpeado";
-            this.btEliminaEmpeado.Size = new System.Drawing.Size(75, 23);
-            this.btEliminaEmpeado.TabIndex = 3;
-            this.btEliminaEmpeado.Text = "Eliminar";
-            this.btEliminaEmpeado.UseVisualStyleBackColor = true;
+            this.btEliminaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btEliminaEmpleado.Location = new System.Drawing.Point(794, 159);
+            this.btEliminaEmpleado.Name = "btEliminaEmpleado";
+            this.btEliminaEmpleado.Size = new System.Drawing.Size(75, 23);
+            this.btEliminaEmpleado.TabIndex = 3;
+            this.btEliminaEmpleado.Text = "Eliminar";
+            this.btEliminaEmpleado.UseVisualStyleBackColor = true;
+            this.btEliminaEmpleado.Click += new System.EventHandler(this.btEliminaEmpleado_Click);
             // 
-            // btInsertaEmpeado
+            // btInsertaEmpleado
             // 
-            this.btInsertaEmpeado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btInsertaEmpeado.Location = new System.Drawing.Point(857, 159);
-            this.btInsertaEmpeado.Name = "btInsertaEmpeado";
-            this.btInsertaEmpeado.Size = new System.Drawing.Size(75, 23);
-            this.btInsertaEmpeado.TabIndex = 2;
-            this.btInsertaEmpeado.Text = "Agregar";
-            this.btInsertaEmpeado.UseVisualStyleBackColor = true;
-            this.btInsertaEmpeado.Click += new System.EventHandler(this.btInsertaEmpeado_Click);
+            this.btInsertaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btInsertaEmpleado.Location = new System.Drawing.Point(875, 159);
+            this.btInsertaEmpleado.Name = "btInsertaEmpleado";
+            this.btInsertaEmpleado.Size = new System.Drawing.Size(75, 23);
+            this.btInsertaEmpleado.TabIndex = 2;
+            this.btInsertaEmpleado.Text = "Agregar";
+            this.btInsertaEmpleado.UseVisualStyleBackColor = true;
+            this.btInsertaEmpleado.Click += new System.EventHandler(this.btInsertaEmpeado_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.tbCelEmp);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.tbTelEmp);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.lbNumeroEmp);
             this.groupBox2.Controls.Add(this.tbNumeroEmp);
@@ -196,12 +202,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de contacto";
             // 
-            // textBox6
+            // tbCelEmp
             // 
-            this.textBox6.Location = new System.Drawing.Point(367, 49);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(154, 20);
-            this.textBox6.TabIndex = 16;
+            this.tbCelEmp.Location = new System.Drawing.Point(367, 49);
+            this.tbCelEmp.Name = "tbCelEmp";
+            this.tbCelEmp.Size = new System.Drawing.Size(154, 20);
+            this.tbCelEmp.TabIndex = 16;
             // 
             // label7
             // 
@@ -213,12 +219,12 @@
             this.label7.Text = "Celular";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox5
+            // tbTelEmp
             // 
-            this.textBox5.Location = new System.Drawing.Point(367, 23);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(154, 20);
-            this.textBox5.TabIndex = 14;
+            this.tbTelEmp.Location = new System.Drawing.Point(367, 23);
+            this.tbTelEmp.Name = "tbTelEmp";
+            this.tbTelEmp.Size = new System.Drawing.Size(154, 20);
+            this.tbTelEmp.TabIndex = 14;
             // 
             // label6
             // 
@@ -414,7 +420,7 @@
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.tcPrincipal.ResumeLayout(false);
             this.tpEmpleado.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).EndInit();
             this.gbEmpleado.ResumeLayout(false);
             this.gbEmpleado.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -432,7 +438,7 @@
         private System.Windows.Forms.TabPage tpVenta;
         private System.Windows.Forms.TabPage tpEmpleado;
         private System.Windows.Forms.GroupBox gbEmpleado;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgEmpleados;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbApmEmp;
@@ -449,12 +455,12 @@
         private System.Windows.Forms.TextBox tbCalleEmp;
         private System.Windows.Forms.Label lbColoniaEmp;
         private System.Windows.Forms.Label lbMensaje;
-        private System.Windows.Forms.Button btActualizaEmpeado;
-        private System.Windows.Forms.Button btEliminaEmpeado;
-        private System.Windows.Forms.Button btInsertaEmpeado;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button btActualizaEmpleado;
+        private System.Windows.Forms.Button btEliminaEmpleado;
+        private System.Windows.Forms.Button btInsertaEmpleado;
+        private System.Windows.Forms.TextBox tbCelEmp;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbTelEmp;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dpFechaEmp;
         private System.Windows.Forms.PictureBox pbCerrar;
