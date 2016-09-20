@@ -14,10 +14,13 @@ namespace cinemax
 {
     public partial class Form1 : Form
     {
+
+
         #region Atributos
         private Point formPosition;
         private bool mouseAction;
         private Conexion conexion;
+        private int opEmp = -1;
         #endregion
 
         #region Metodos Constructor y Load
@@ -26,12 +29,12 @@ namespace cinemax
             InitializeComponent();
             conexion = new Conexion();
             this.BackgroundImage = cinemax.Properties.Resources.fondo2;
-            dgEmpleados.MultiSelect = false;
-            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgEmpleados.MultiSelect = false;            
+            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;           
         }
         private void Form1_Load(object sender, EventArgs e)
-        {   
-          
+        {
+            
         }
 
         #endregion
@@ -66,7 +69,10 @@ namespace cinemax
         #region Metodos Pestaña Empleado
         private void btInsertaEmpeado_Click(object sender, EventArgs e)
         {
-            InsertaEmpleado();
+            opEmp = 0;
+            LimpiaCamposEmpleado();
+            BotonesAccionEmp(true);
+            tbNombreEmp.Focus();
         }
         private void InsertaEmpleado() {
             LimpiaFormularioEmpleado();
@@ -169,6 +175,7 @@ namespace cinemax
                     adaptador.Dispose();
                     cmd.Dispose();
                     dgEmpleados.DataSource = ds.Tables[0];
+                    dgEmpleados.ClearSelection();
                 }
                 catch (Exception ex)
                 {
@@ -207,6 +214,7 @@ namespace cinemax
                             ObtenerRegistrosEmpleado();
                             MessageBox.Show("Se elimino correctamente!!");
                             LimpiaCamposEmpleado();
+                            BotonesAccionEmp(false);
                         }
                         catch (Exception ex)
                         {
@@ -219,7 +227,7 @@ namespace cinemax
                         MessageBox.Show("Error al llamar al servidor");
                     }
                 }
-            }
+            }else MessageBox.Show("Primero selecciona al <Empleado> que se desea eliminar","Atención");
         }
 
         private string RenglonSeleccionado()
@@ -259,7 +267,6 @@ namespace cinemax
         private void ActualizarEmpleado() {
 
             string clave_emp;
-
             if ((clave_emp = RenglonSeleccionado()) != "")
             {
                 if (conexion.AbrirConexion())
@@ -279,6 +286,7 @@ namespace cinemax
                         ObtenerRegistrosEmpleado();
                         MessageBox.Show("Se actualizo correctamente!!");
                         LimpiaCamposEmpleado();
+                        BotonesAccionEmp(false);
                     }
                     catch (Exception ex)
                     {
@@ -294,8 +302,16 @@ namespace cinemax
 
 
         private void btActualizaEmpleado_Click(object sender, EventArgs e)
-        {
-            ActualizarEmpleado();
+        {            
+            if (RenglonSeleccionado() != "")
+            {
+                opEmp = 1;
+                BotonesAccionEmp(true);
+                tbNombreEmp.Focus();
+            }
+            else {
+                MessageBox.Show("Primero selecciona al <Empleado> que se desea Actualizar", "Atención");
+            }
         }
 
         private void tbNumeroEmp_KeyPress(object sender, KeyPressEventArgs e)
@@ -312,7 +328,53 @@ namespace cinemax
         {
             ValidaNumero(e);
         }
+        private void btAceptarEmp_Click(object sender, EventArgs e)
+        {
+            RealizaAccionEmp();
+        }
 
+        private void RealizaAccionEmp() {
+            switch (opEmp)
+            {
+                case 0: //Agregar
+                    InsertaEmpleado();                    
+                    break;
+                case 1://Actualizar
+                    ActualizarEmpleado();
+                    break;
+                default:
+                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
+                    break;
+            } 
+        }
+
+        private void BotonesAccionEmp(bool activo) {
+            btAceptarEmp.Visible = activo;
+            btCancelarEmp.Visible = activo;
+            gbDPEmp.Enabled = activo;
+            gbDCEmp.Enabled = activo;
+            dgEmpleados.Enabled = !activo;
+
+            switch(opEmp){
+                case 0: //Para la insercion
+                    btEliminaEmpleado.Enabled = !activo;
+                    btActualizaEmpleado.Enabled = !activo;
+                    break;
+                case 1: //Para la Actualizacion
+                    btInsertaEmpleado.Enabled = !activo;
+                    btEliminaEmpleado.Enabled = !activo;
+                    
+                    break;
+            }
+        }
+
+        private void btCancelarEmp_Click(object sender, EventArgs e)
+        {
+            LimpiaFormularioEmpleado();
+            //LimpiaCamposEmpleado();
+            BotonesAccionEmp(false);
+        }
+        
         #endregion
 
         #region Metodos Comunes
@@ -480,5 +542,12 @@ namespace cinemax
         }
 
         #endregion
+
+      
+
+ 
+
+
+
     }
 }
