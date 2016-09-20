@@ -62,6 +62,12 @@ namespace cinemax
         private void pbCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
 #endregion
@@ -310,7 +316,7 @@ namespace cinemax
                 tbNombreEmp.Focus();
             }
             else {
-                MessageBox.Show("Primero selecciona al <Empleado> que se desea Actualizar", "Atención");
+                MessageBox.Show("Primero selecciona al <Empleado> que se desea actualizar", "Atención");
             }
         }
 
@@ -354,25 +360,17 @@ namespace cinemax
             gbDPEmp.Enabled = activo;
             gbDCEmp.Enabled = activo;
             dgEmpleados.Enabled = !activo;
-
-            switch(opEmp){
-                case 0: //Para la insercion
-                    btEliminaEmpleado.Enabled = !activo;
-                    btActualizaEmpleado.Enabled = !activo;
-                    break;
-                case 1: //Para la Actualizacion
-                    btInsertaEmpleado.Enabled = !activo;
-                    btEliminaEmpleado.Enabled = !activo;
-                    
-                    break;
-            }
+            btInsertaEmpleado.Enabled = !activo;
+            btEliminaEmpleado.Enabled = !activo;
+            btActualizaEmpleado.Enabled = !activo;
         }
 
         private void btCancelarEmp_Click(object sender, EventArgs e)
         {
             LimpiaFormularioEmpleado();
-            //LimpiaCamposEmpleado();
+            LimpiaCamposEmpleado();
             BotonesAccionEmp(false);
+            dgEmpleados.ClearSelection();
         }
         
         #endregion
@@ -380,7 +378,7 @@ namespace cinemax
         #region Metodos Comunes
         private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tcPrincipal.SelectedTab.Text)
+            switch (tcAdministracion.SelectedTab.Text)
             {
                 case "Empleado":
                     ObtenerRegistrosEmpleado();
@@ -542,6 +540,8 @@ namespace cinemax
         }
 
         #endregion
+
+
 
       
 

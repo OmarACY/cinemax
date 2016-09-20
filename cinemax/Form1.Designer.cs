@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tcPrincipal = new System.Windows.Forms.TabControl();
-            this.tpVenta = new System.Windows.Forms.TabPage();
+            this.tcAdministracion = new System.Windows.Forms.TabControl();
             this.tpEmpleado = new System.Windows.Forms.TabPage();
             this.dgEmpleados = new System.Windows.Forms.DataGridView();
             this.gbEmpleado = new System.Windows.Forms.GroupBox();
+            this.btCancelarEmp = new System.Windows.Forms.Button();
             this.lbMensaje = new System.Windows.Forms.Label();
             this.btActualizaEmpleado = new System.Windows.Forms.Button();
+            this.btAceptarEmp = new System.Windows.Forms.Button();
             this.btEliminaEmpleado = new System.Windows.Forms.Button();
             this.btInsertaEmpleado = new System.Windows.Forms.Button();
             this.gbDCEmp = new System.Windows.Forms.GroupBox();
@@ -85,11 +86,13 @@
             this.tbAppMem = new System.Windows.Forms.TextBox();
             this.lbNombreMem = new System.Windows.Forms.Label();
             this.tbNombreMem = new System.Windows.Forms.TextBox();
-            this.pbCerrar = new System.Windows.Forms.PictureBox();
             this.lbCinemax = new System.Windows.Forms.Label();
-            this.btCancelarEmp = new System.Windows.Forms.Button();
-            this.btAceptarEmp = new System.Windows.Forms.Button();
-            this.tcPrincipal.SuspendLayout();
+            this.tcPrincipal = new System.Windows.Forms.TabControl();
+            this.tpAdministracion = new System.Windows.Forms.TabPage();
+            this.tbVenta = new System.Windows.Forms.TabPage();
+            this.btMinimizar = new System.Windows.Forms.PictureBox();
+            this.pbCerrar = new System.Windows.Forms.PictureBox();
+            this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
             this.gbEmpleado.SuspendLayout();
@@ -102,36 +105,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.nuPuntosMem)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tcPrincipal.SuspendLayout();
+            this.tpAdministracion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
             this.SuspendLayout();
             // 
-            // tcPrincipal
+            // tcAdministracion
             // 
-            this.tcPrincipal.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tcPrincipal.Controls.Add(this.tpVenta);
-            this.tcPrincipal.Controls.Add(this.tpEmpleado);
-            this.tcPrincipal.Controls.Add(this.tpMembresia);
-            this.tcPrincipal.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tcPrincipal.Location = new System.Drawing.Point(4, 27);
-            this.tcPrincipal.Multiline = true;
-            this.tcPrincipal.Name = "tcPrincipal";
-            this.tcPrincipal.SelectedIndex = 0;
-            this.tcPrincipal.Size = new System.Drawing.Size(992, 570);
-            this.tcPrincipal.TabIndex = 1;
-            this.tcPrincipal.Tag = "Mensaje";
-            this.tcPrincipal.SelectedIndexChanged += new System.EventHandler(this.tcPrincipal_SelectedIndexChanged);
-            // 
-            // tpVenta
-            // 
-            this.tpVenta.BackColor = System.Drawing.Color.Black;
-            this.tpVenta.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tpVenta.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tpVenta.Location = new System.Drawing.Point(4, 25);
-            this.tpVenta.Name = "tpVenta";
-            this.tpVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tpVenta.Size = new System.Drawing.Size(984, 541);
-            this.tpVenta.TabIndex = 0;
-            this.tpVenta.Text = "Venta";
+            this.tcAdministracion.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tcAdministracion.Controls.Add(this.tpEmpleado);
+            this.tcAdministracion.Controls.Add(this.tpMembresia);
+            this.tcAdministracion.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tcAdministracion.Location = new System.Drawing.Point(3, 3);
+            this.tcAdministracion.Multiline = true;
+            this.tcAdministracion.Name = "tcAdministracion";
+            this.tcAdministracion.SelectedIndex = 0;
+            this.tcAdministracion.Size = new System.Drawing.Size(978, 530);
+            this.tcAdministracion.TabIndex = 1;
+            this.tcAdministracion.Tag = "Mensaje";
+            this.tcAdministracion.SelectedIndexChanged += new System.EventHandler(this.tcPrincipal_SelectedIndexChanged);
             // 
             // tpEmpleado
             // 
@@ -144,7 +137,7 @@
             this.tpEmpleado.Location = new System.Drawing.Point(4, 25);
             this.tpEmpleado.Name = "tpEmpleado";
             this.tpEmpleado.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEmpleado.Size = new System.Drawing.Size(984, 541);
+            this.tpEmpleado.Size = new System.Drawing.Size(970, 501);
             this.tpEmpleado.TabIndex = 1;
             this.tpEmpleado.Text = "Empleado";
             // 
@@ -153,10 +146,10 @@
             this.dgEmpleados.AllowUserToAddRows = false;
             this.dgEmpleados.AllowUserToDeleteRows = false;
             this.dgEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEmpleados.Location = new System.Drawing.Point(6, 198);
+            this.dgEmpleados.Location = new System.Drawing.Point(3, 198);
             this.dgEmpleados.Name = "dgEmpleados";
             this.dgEmpleados.ReadOnly = true;
-            this.dgEmpleados.Size = new System.Drawing.Size(972, 337);
+            this.dgEmpleados.Size = new System.Drawing.Size(963, 300);
             this.dgEmpleados.TabIndex = 1;
             this.dgEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellContentClick);
             this.dgEmpleados.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEmpleados_RowHeaderMouseClick);
@@ -173,12 +166,24 @@
             this.gbEmpleado.Controls.Add(this.gbDCEmp);
             this.gbEmpleado.Controls.Add(this.gbDPEmp);
             this.gbEmpleado.ForeColor = System.Drawing.Color.LightGray;
-            this.gbEmpleado.Location = new System.Drawing.Point(6, 6);
+            this.gbEmpleado.Location = new System.Drawing.Point(3, 6);
             this.gbEmpleado.Name = "gbEmpleado";
-            this.gbEmpleado.Size = new System.Drawing.Size(972, 186);
+            this.gbEmpleado.Size = new System.Drawing.Size(963, 186);
             this.gbEmpleado.TabIndex = 0;
             this.gbEmpleado.TabStop = false;
             this.gbEmpleado.Text = "Informacion";
+            // 
+            // btCancelarEmp
+            // 
+            this.btCancelarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelarEmp.Location = new System.Drawing.Point(558, 159);
+            this.btCancelarEmp.Name = "btCancelarEmp";
+            this.btCancelarEmp.Size = new System.Drawing.Size(75, 23);
+            this.btCancelarEmp.TabIndex = 11;
+            this.btCancelarEmp.Text = "Cancelar";
+            this.btCancelarEmp.UseVisualStyleBackColor = true;
+            this.btCancelarEmp.Visible = false;
+            this.btCancelarEmp.Click += new System.EventHandler(this.btCancelarEmp_Click);
             // 
             // lbMensaje
             // 
@@ -195,7 +200,7 @@
             // btActualizaEmpleado
             // 
             this.btActualizaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btActualizaEmpleado.Location = new System.Drawing.Point(729, 159);
+            this.btActualizaEmpleado.Location = new System.Drawing.Point(720, 159);
             this.btActualizaEmpleado.Name = "btActualizaEmpleado";
             this.btActualizaEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btActualizaEmpleado.TabIndex = 2;
@@ -203,10 +208,22 @@
             this.btActualizaEmpleado.UseVisualStyleBackColor = true;
             this.btActualizaEmpleado.Click += new System.EventHandler(this.btActualizaEmpleado_Click);
             // 
+            // btAceptarEmp
+            // 
+            this.btAceptarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btAceptarEmp.Location = new System.Drawing.Point(639, 159);
+            this.btAceptarEmp.Name = "btAceptarEmp";
+            this.btAceptarEmp.Size = new System.Drawing.Size(75, 23);
+            this.btAceptarEmp.TabIndex = 10;
+            this.btAceptarEmp.Text = "Aceptar";
+            this.btAceptarEmp.UseVisualStyleBackColor = true;
+            this.btAceptarEmp.Visible = false;
+            this.btAceptarEmp.Click += new System.EventHandler(this.btAceptarEmp_Click);
+            // 
             // btEliminaEmpleado
             // 
             this.btEliminaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btEliminaEmpleado.Location = new System.Drawing.Point(810, 159);
+            this.btEliminaEmpleado.Location = new System.Drawing.Point(801, 159);
             this.btEliminaEmpleado.Name = "btEliminaEmpleado";
             this.btEliminaEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btEliminaEmpleado.TabIndex = 1;
@@ -217,7 +234,7 @@
             // btInsertaEmpleado
             // 
             this.btInsertaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btInsertaEmpleado.Location = new System.Drawing.Point(891, 159);
+            this.btInsertaEmpleado.Location = new System.Drawing.Point(882, 159);
             this.btInsertaEmpleado.Name = "btInsertaEmpleado";
             this.btInsertaEmpleado.Size = new System.Drawing.Size(75, 23);
             this.btInsertaEmpleado.TabIndex = 0;
@@ -241,7 +258,7 @@
             this.gbDCEmp.ForeColor = System.Drawing.Color.Silver;
             this.gbDCEmp.Location = new System.Drawing.Point(423, 19);
             this.gbDCEmp.Name = "gbDCEmp";
-            this.gbDCEmp.Size = new System.Drawing.Size(543, 138);
+            this.gbDCEmp.Size = new System.Drawing.Size(534, 138);
             this.gbDCEmp.TabIndex = 1;
             this.gbDCEmp.TabStop = false;
             this.gbDCEmp.Text = "Datos de contacto";
@@ -250,7 +267,7 @@
             // 
             this.tbCelEmp.Location = new System.Drawing.Point(377, 49);
             this.tbCelEmp.Name = "tbCelEmp";
-            this.tbCelEmp.Size = new System.Drawing.Size(160, 20);
+            this.tbCelEmp.Size = new System.Drawing.Size(144, 20);
             this.tbCelEmp.TabIndex = 8;
             this.tbCelEmp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCelEmp_KeyPress);
             // 
@@ -268,7 +285,7 @@
             // 
             this.tbTelEmp.Location = new System.Drawing.Point(377, 23);
             this.tbTelEmp.Name = "tbTelEmp";
-            this.tbTelEmp.Size = new System.Drawing.Size(160, 20);
+            this.tbTelEmp.Size = new System.Drawing.Size(144, 20);
             this.tbTelEmp.TabIndex = 7;
             this.tbTelEmp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTelEmp_KeyPress);
             // 
@@ -447,7 +464,7 @@
             this.tpMembresia.Location = new System.Drawing.Point(4, 25);
             this.tpMembresia.Name = "tpMembresia";
             this.tpMembresia.Padding = new System.Windows.Forms.Padding(3);
-            this.tpMembresia.Size = new System.Drawing.Size(984, 541);
+            this.tpMembresia.Size = new System.Drawing.Size(970, 501);
             this.tpMembresia.TabIndex = 2;
             this.tpMembresia.Text = "Membresía";
             // 
@@ -456,10 +473,10 @@
             this.dgMembresias.AllowUserToAddRows = false;
             this.dgMembresias.AllowUserToDeleteRows = false;
             this.dgMembresias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgMembresias.Location = new System.Drawing.Point(6, 198);
+            this.dgMembresias.Location = new System.Drawing.Point(3, 198);
             this.dgMembresias.Name = "dgMembresias";
             this.dgMembresias.ReadOnly = true;
-            this.dgMembresias.Size = new System.Drawing.Size(972, 337);
+            this.dgMembresias.Size = new System.Drawing.Size(963, 300);
             this.dgMembresias.TabIndex = 2;
             // 
             // groupBox3
@@ -473,9 +490,9 @@
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.ForeColor = System.Drawing.Color.LightGray;
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
+            this.groupBox3.Location = new System.Drawing.Point(3, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(972, 186);
+            this.groupBox3.Size = new System.Drawing.Size(963, 186);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informacion";
@@ -489,7 +506,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.Silver;
             this.groupBox6.Location = new System.Drawing.Point(753, 19);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(213, 138);
+            this.groupBox6.Size = new System.Drawing.Size(204, 138);
             this.groupBox6.TabIndex = 12;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Datos de membresia";
@@ -548,7 +565,7 @@
             this.lbMensajeMem.AutoSize = true;
             this.lbMensajeMem.BackColor = System.Drawing.Color.Transparent;
             this.lbMensajeMem.ForeColor = System.Drawing.Color.Red;
-            this.lbMensajeMem.Location = new System.Drawing.Point(617, 164);
+            this.lbMensajeMem.Location = new System.Drawing.Point(599, 164);
             this.lbMensajeMem.Name = "lbMensajeMem";
             this.lbMensajeMem.Size = new System.Drawing.Size(106, 13);
             this.lbMensajeMem.TabIndex = 9;
@@ -559,7 +576,7 @@
             // btActualizaMem
             // 
             this.btActualizaMem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btActualizaMem.Location = new System.Drawing.Point(729, 159);
+            this.btActualizaMem.Location = new System.Drawing.Point(720, 159);
             this.btActualizaMem.Name = "btActualizaMem";
             this.btActualizaMem.Size = new System.Drawing.Size(75, 23);
             this.btActualizaMem.TabIndex = 2;
@@ -569,7 +586,7 @@
             // btEliminaMem
             // 
             this.btEliminaMem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btEliminaMem.Location = new System.Drawing.Point(810, 159);
+            this.btEliminaMem.Location = new System.Drawing.Point(801, 159);
             this.btEliminaMem.Name = "btEliminaMem";
             this.btEliminaMem.Size = new System.Drawing.Size(75, 23);
             this.btEliminaMem.TabIndex = 1;
@@ -579,7 +596,7 @@
             // btInsertaMem
             // 
             this.btInsertaMem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btInsertaMem.Location = new System.Drawing.Point(891, 159);
+            this.btInsertaMem.Location = new System.Drawing.Point(882, 159);
             this.btInsertaMem.Name = "btInsertaMem";
             this.btInsertaMem.Size = new System.Drawing.Size(75, 23);
             this.btInsertaMem.TabIndex = 0;
@@ -757,18 +774,6 @@
             this.tbNombreMem.Size = new System.Drawing.Size(274, 20);
             this.tbNombreMem.TabIndex = 0;
             // 
-            // pbCerrar
-            // 
-            this.pbCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbCerrar.Image = global::cinemax.Properties.Resources.cerrar2;
-            this.pbCerrar.Location = new System.Drawing.Point(976, 4);
-            this.pbCerrar.Name = "pbCerrar";
-            this.pbCerrar.Size = new System.Drawing.Size(20, 20);
-            this.pbCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCerrar.TabIndex = 2;
-            this.pbCerrar.TabStop = false;
-            this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
-            // 
             // lbCinemax
             // 
             this.lbCinemax.AutoSize = true;
@@ -780,29 +785,61 @@
             this.lbCinemax.TabIndex = 3;
             this.lbCinemax.Text = "Cinemax";
             // 
-            // btCancelarEmp
+            // tcPrincipal
             // 
-            this.btCancelarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btCancelarEmp.Location = new System.Drawing.Point(567, 159);
-            this.btCancelarEmp.Name = "btCancelarEmp";
-            this.btCancelarEmp.Size = new System.Drawing.Size(75, 23);
-            this.btCancelarEmp.TabIndex = 11;
-            this.btCancelarEmp.Text = "Cancelar";
-            this.btCancelarEmp.UseVisualStyleBackColor = true;
-            this.btCancelarEmp.Visible = false;
-            this.btCancelarEmp.Click += new System.EventHandler(this.btCancelarEmp_Click);
+            this.tcPrincipal.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tcPrincipal.Controls.Add(this.tpAdministracion);
+            this.tcPrincipal.Controls.Add(this.tbVenta);
+            this.tcPrincipal.Location = new System.Drawing.Point(4, 30);
+            this.tcPrincipal.Name = "tcPrincipal";
+            this.tcPrincipal.SelectedIndex = 0;
+            this.tcPrincipal.Size = new System.Drawing.Size(992, 565);
+            this.tcPrincipal.TabIndex = 0;
             // 
-            // btAceptarEmp
+            // tpAdministracion
             // 
-            this.btAceptarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btAceptarEmp.Location = new System.Drawing.Point(648, 159);
-            this.btAceptarEmp.Name = "btAceptarEmp";
-            this.btAceptarEmp.Size = new System.Drawing.Size(75, 23);
-            this.btAceptarEmp.TabIndex = 10;
-            this.btAceptarEmp.Text = "Aceptar";
-            this.btAceptarEmp.UseVisualStyleBackColor = true;
-            this.btAceptarEmp.Visible = false;
-            this.btAceptarEmp.Click += new System.EventHandler(this.btAceptarEmp_Click);
+            this.tpAdministracion.BackColor = System.Drawing.Color.Black;
+            this.tpAdministracion.Controls.Add(this.tcAdministracion);
+            this.tpAdministracion.Location = new System.Drawing.Point(4, 25);
+            this.tpAdministracion.Name = "tpAdministracion";
+            this.tpAdministracion.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAdministracion.Size = new System.Drawing.Size(984, 536);
+            this.tpAdministracion.TabIndex = 0;
+            this.tpAdministracion.Text = "Administración";
+            // 
+            // tbVenta
+            // 
+            this.tbVenta.BackColor = System.Drawing.Color.Black;
+            this.tbVenta.Location = new System.Drawing.Point(4, 25);
+            this.tbVenta.Name = "tbVenta";
+            this.tbVenta.Padding = new System.Windows.Forms.Padding(3);
+            this.tbVenta.Size = new System.Drawing.Size(984, 536);
+            this.tbVenta.TabIndex = 1;
+            this.tbVenta.Text = "Venta";
+            // 
+            // btMinimizar
+            // 
+            this.btMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMinimizar.Image = global::cinemax.Properties.Resources.minimizar;
+            this.btMinimizar.Location = new System.Drawing.Point(952, 3);
+            this.btMinimizar.Name = "btMinimizar";
+            this.btMinimizar.Size = new System.Drawing.Size(20, 20);
+            this.btMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btMinimizar.TabIndex = 4;
+            this.btMinimizar.TabStop = false;
+            this.btMinimizar.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pbCerrar
+            // 
+            this.pbCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbCerrar.Image = global::cinemax.Properties.Resources.cerrar2;
+            this.pbCerrar.Location = new System.Drawing.Point(977, 3);
+            this.pbCerrar.Name = "pbCerrar";
+            this.pbCerrar.Size = new System.Drawing.Size(20, 20);
+            this.pbCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCerrar.TabIndex = 2;
+            this.pbCerrar.TabStop = false;
+            this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
             // Form1
             // 
@@ -812,9 +849,10 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.btMinimizar);
+            this.Controls.Add(this.tcPrincipal);
             this.Controls.Add(this.lbCinemax);
             this.Controls.Add(this.pbCerrar);
-            this.Controls.Add(this.tcPrincipal);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.LightGray;
@@ -826,7 +864,7 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
-            this.tcPrincipal.ResumeLayout(false);
+            this.tcAdministracion.ResumeLayout(false);
             this.tpEmpleado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).EndInit();
             this.gbEmpleado.ResumeLayout(false);
@@ -846,6 +884,9 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tcPrincipal.ResumeLayout(false);
+            this.tpAdministracion.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -854,8 +895,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tcPrincipal;
-        private System.Windows.Forms.TabPage tpVenta;
+        private System.Windows.Forms.TabControl tcAdministracion;
         private System.Windows.Forms.TabPage tpEmpleado;
         private System.Windows.Forms.GroupBox gbEmpleado;
         private System.Windows.Forms.DataGridView dgEmpleados;
@@ -915,6 +955,10 @@
         private System.Windows.Forms.NumericUpDown nuPuntosMem;
         private System.Windows.Forms.Button btCancelarEmp;
         private System.Windows.Forms.Button btAceptarEmp;
+        private System.Windows.Forms.TabControl tcPrincipal;
+        private System.Windows.Forms.TabPage tpAdministracion;
+        private System.Windows.Forms.TabPage tbVenta;
+        private System.Windows.Forms.PictureBox btMinimizar;
     }
 }
 
