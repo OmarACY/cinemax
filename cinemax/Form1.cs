@@ -100,7 +100,8 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosEmpleado();
-                        MessageBox.Show("Se agrego correctamente!","Información");                        
+                        CambiaTextoMensajeEmp("Se agrego correctamente!",Color.Blue);
+                        lbMensaje.Visible = true;                     
                         LimpiaCamposEmpleado();
                         BotonesAccionMem(false);
                     }
@@ -116,6 +117,16 @@ namespace cinemax
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Cambiar el color y el mensaje del modulo empleados empleados que se mostrara al usuario    
+        /// </summary>
+        /// <param name="mensaje">Mensaje que se mostrara al usuario</param>
+        /// <param name="color">Color del texto del mensaje que se le mostrara al usuario</param>
+        private void CambiaTextoMensajeEmp(String mensaje,Color color) {
+            lbMensaje.ForeColor = color;
+            lbMensaje.Text = mensaje;
         }
 
         private void LimpiaFormularioEmpleado()
@@ -152,8 +163,8 @@ namespace cinemax
             if (tbColoniaEmp.Text.Trim() == string.Empty) { lbColoniaEmp.Text = "Colonia *"; lbColoniaEmp.ForeColor = Color.Red; error++; }
             if (tbCalleEmp.Text.Trim() == string.Empty) { lbCalleEmp.Text = "Calle *"; lbCalleEmp.ForeColor = Color.Red; error++; }
             if (tbNumeroEmp.Text.Trim() == string.Empty) { lbNumeroEmp.Text = "Numero *"; lbNumeroEmp.ForeColor = Color.Red; error++; }
-       
-            if (error > 0) { lbMensaje.Visible = true; valido = false; }
+
+            if (error > 0) { CambiaTextoMensajeEmp("* Campos requeridos!", Color.Red) ; lbMensaje.Visible = true; valido = false; }
 
             return valido;
         }
@@ -294,7 +305,8 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosEmpleado();
-                        MessageBox.Show("Se actualizo correctamente!","Información");
+                        CambiaTextoMensajeEmp("Se actualizo correctamente!", Color.Blue);
+                        lbMensaje.Visible = true;
                         LimpiaCamposEmpleado();
                         BotonesAccionEmp(false);
                     }
@@ -445,7 +457,8 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosMembresia();
-                        MessageBox.Show("Se agrego correctamente!", "Información"); 
+                        CambiaTextoMensajeMem("Se actualizo correctamente!", Color.Blue);
+                        lbMensajeMem.Visible = true;
                         LimpiaCamposMembresia();
                         BotonesAccionMem(false);
                     }
@@ -463,6 +476,18 @@ namespace cinemax
             }
 
         }
+
+        /// <summary>
+        /// Cambiar el color y el mensaje del modulo membresia que se mostrara al usuario    
+        /// </summary>
+        /// <param name="mensaje">Mensaje que se mostrara al usuario</param>
+        /// <param name="color">Color del texto del mensaje que se le mostrara al usuario</param>
+        private void CambiaTextoMensajeMem(String mensaje, Color color)
+        {
+            lbMensajeMem.ForeColor = color;
+            lbMensajeMem.Text = mensaje;
+        }
+
         private void LimpiaFormularioMembresia()
         {
 
@@ -501,7 +526,7 @@ namespace cinemax
             if (tbNumeroMem.Text.Trim() == string.Empty) { lbNumeroMem.Text = "Numero *"; lbNumeroMem.ForeColor = Color.Red; error++; }
             if (cbTipoMem.Text == string.Empty) { lbTipoMem.Text = "Tipo *"; lbTipoMem.ForeColor = Color.Red; error++; }
 
-            if (error > 0) { lbMensajeMem.Visible = true; valido = false; }
+            if (error > 0) { CambiaTextoMensajeMem("* Campos requeridos", Color.Red); lbMensajeMem.Visible = true; valido = false; }
 
             return valido;
         }
@@ -584,7 +609,8 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosMembresia();
-                        MessageBox.Show("Se actualizo correctamente!", "Información");
+                        CambiaTextoMensajeMem("Se actualizo correctamente!", Color.Blue);
+                        lbMensajeMem.Visible = true;
                         LimpiaCamposMembresia();
                         BotonesAccionMem(false);
                     }
