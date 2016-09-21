@@ -10,10 +10,15 @@ namespace cinemax
 {
     public class Conexion
     {
-        public string datosCon = @"Data Source = OMARACY-MAC\SQLEXPRESS;" +
+        /* Cadena de Conexión Omar */
+         public string datosCon = @"Data Source = OMARACY-MAC\SQLEXPRESS;" +
              "Initial Catalog = cinemax; Integrated Security = true;";
-        public SqlConnection con;
 
+        /* Cadena de Conexión Milán */
+        /*
+        public string datosCon = @"Data Source=BECARIOS-PC\;Initial Catalog=cinemax;Integrated Security=True;";
+         */
+        public SqlConnection con;
 
         /// <summary>
         /// Me abre una conexion con la base de datos

@@ -427,8 +427,6 @@ namespace cinemax
         }
         #endregion
 
-
-
         #region Metodos Pestaña Membresia
 
         private void btInsertaMem_Click(object sender, EventArgs e)
@@ -747,13 +745,49 @@ namespace cinemax
 
         #endregion
 
+        #region Metodos Pestaña Sucursal
+        private void btnAgregarSuc_Click(object sender, EventArgs e)
+        {
+            gbInfoSucursal.Enabled = true;
+            gbUbicacionSucursal.Enabled = true;
+            btnAceptarSuc.Visible = true;
+            btnCancelarSuc.Visible = true;
+            btnActualizarSuc.Enabled = false;
+            btnEliminarSuc.Enabled = false;
+            btnAgregarSuc.Enabled = false;
+        }
 
+        private void btnEliminarSuc_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void btnActualizarSuc_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void btnAceptarSuc_Click(object sender, EventArgs e)
+        {
+            gbInfoSucursal.Enabled = false;
+            gbUbicacionSucursal.Enabled = false;
+            btnAceptarSuc.Visible = false;
+            btnCancelarSuc.Visible = false;
+            btnActualizarSuc.Enabled = true;
+            btnEliminarSuc.Enabled = true;
+            btnAgregarSuc.Enabled = true;
+        }
 
-
-        
+        private void btnCancelarSuc_Click(object sender, EventArgs e)
+        {
+            gbInfoSucursal.Enabled = false;
+            gbUbicacionSucursal.Enabled = false;
+            btnAceptarSuc.Visible = false;
+            btnCancelarSuc.Visible = false;
+            btnActualizarSuc.Enabled = true;
+            btnEliminarSuc.Enabled = true;
+            btnAgregarSuc.Enabled = true;
+        }
+        #endregion
     }
 }

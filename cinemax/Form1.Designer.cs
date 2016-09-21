@@ -88,34 +88,54 @@
             this.tbAppMem = new System.Windows.Forms.TextBox();
             this.lbNombreMem = new System.Windows.Forms.Label();
             this.tbNombreMem = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.rbCPel = new System.Windows.Forms.RadioButton();
+            this.rbBPel = new System.Windows.Forms.RadioButton();
+            this.rbAPel = new System.Windows.Forms.RadioButton();
+            this.lbSinopsisPel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbGeneroPel = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lbClasificacionPel = new System.Windows.Forms.Label();
+            this.lbDirectorPel = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.lbNombrePel = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tpSucursales = new System.Windows.Forms.TabPage();
             this.lbCinemax = new System.Windows.Forms.Label();
             this.tcPrincipal = new System.Windows.Forms.TabControl();
             this.tpAdministracion = new System.Windows.Forms.TabPage();
             this.tbVenta = new System.Windows.Forms.TabPage();
             this.btMinimizar = new System.Windows.Forms.PictureBox();
             this.pbCerrar = new System.Windows.Forms.PictureBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.lbGeneroPel = new System.Windows.Forms.Label();
-            this.lbClasificacionPel = new System.Windows.Forms.Label();
-            this.lbDirectorPel = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.lbNombrePel = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lbSinopsisPel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.rbAPel = new System.Windows.Forms.RadioButton();
-            this.rbBPel = new System.Windows.Forms.RadioButton();
-            this.rbCPel = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.gbSucursal = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCancelarSuc = new System.Windows.Forms.Button();
+            this.btnAceptarSuc = new System.Windows.Forms.Button();
+            this.btnActualizarSuc = new System.Windows.Forms.Button();
+            this.btnEliminarSuc = new System.Windows.Forms.Button();
+            this.btnAgregarSuc = new System.Windows.Forms.Button();
+            this.gbInfoSucursal = new System.Windows.Forms.GroupBox();
+            this.labelSalasCine = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbNombreCine = new System.Windows.Forms.TextBox();
+            this.nudSalasCine = new System.Windows.Forms.NumericUpDown();
+            this.gbUbicacionSucursal = new System.Windows.Forms.GroupBox();
+            this.labelColoniaSucursal = new System.Windows.Forms.Label();
+            this.labelNumeroSucursal = new System.Windows.Forms.Label();
+            this.tbColoniaSuc = new System.Windows.Forms.TextBox();
+            this.tbNumeroSucursal = new System.Windows.Forms.TextBox();
+            this.tbCalleSucursal = new System.Windows.Forms.TextBox();
+            this.labelCalleSucursal = new System.Windows.Forms.Label();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -129,14 +149,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.nuPuntosMem)).BeginInit();
             this.gbDCMem.SuspendLayout();
             this.gbDPMem.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tpSucursales.SuspendLayout();
             this.tcPrincipal.SuspendLayout();
             this.tpAdministracion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.gbSucursal.SuspendLayout();
+            this.gbInfoSucursal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).BeginInit();
+            this.gbUbicacionSucursal.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAdministracion
@@ -145,6 +170,7 @@
             this.tcAdministracion.Controls.Add(this.tpEmpleado);
             this.tcAdministracion.Controls.Add(this.tpMembresia);
             this.tcAdministracion.Controls.Add(this.tabPage1);
+            this.tcAdministracion.Controls.Add(this.tpSucursales);
             this.tcAdministracion.Cursor = System.Windows.Forms.Cursors.Default;
             this.tcAdministracion.Location = new System.Drawing.Point(3, 3);
             this.tcAdministracion.Multiline = true;
@@ -836,6 +862,275 @@
             this.tbNombreMem.Size = new System.Drawing.Size(274, 20);
             this.tbNombreMem.TabIndex = 0;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(970, 501);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Pelicula";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(4, 198);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(963, 300);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.groupBox5);
+            this.groupBox1.ForeColor = System.Drawing.Color.LightGray;
+            this.groupBox1.Location = new System.Drawing.Point(3, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(963, 186);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Informacion";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.LightGray;
+            this.label1.Location = new System.Drawing.Point(415, 164);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Tag = "Mensaje";
+            this.label1.Text = "Mensaje";
+            this.label1.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(558, 159);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(639, 159);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Aceptar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Location = new System.Drawing.Point(720, 159);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Actualizar";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button4.Location = new System.Drawing.Point(801, 159);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Eliminar";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button5.Location = new System.Drawing.Point(882, 159);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Agregar";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.rbCPel);
+            this.groupBox5.Controls.Add(this.rbBPel);
+            this.groupBox5.Controls.Add(this.rbAPel);
+            this.groupBox5.Controls.Add(this.lbSinopsisPel);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.lbGeneroPel);
+            this.groupBox5.Controls.Add(this.comboBox1);
+            this.groupBox5.Controls.Add(this.lbClasificacionPel);
+            this.groupBox5.Controls.Add(this.lbDirectorPel);
+            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.lbNombrePel);
+            this.groupBox5.Controls.Add(this.textBox6);
+            this.groupBox5.Enabled = false;
+            this.groupBox5.ForeColor = System.Drawing.Color.LightGray;
+            this.groupBox5.Location = new System.Drawing.Point(6, 19);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(948, 138);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Datos generales";
+            // 
+            // rbCPel
+            // 
+            this.rbCPel.AutoSize = true;
+            this.rbCPel.Location = new System.Drawing.Point(325, 76);
+            this.rbCPel.Name = "rbCPel";
+            this.rbCPel.Size = new System.Drawing.Size(76, 17);
+            this.rbCPel.TabIndex = 17;
+            this.rbCPel.TabStop = true;
+            this.rbCPel.Text = "C (Adultos)";
+            this.rbCPel.UseVisualStyleBackColor = true;
+            // 
+            // rbBPel
+            // 
+            this.rbBPel.AutoSize = true;
+            this.rbBPel.Location = new System.Drawing.Point(229, 76);
+            this.rbBPel.Name = "rbBPel";
+            this.rbBPel.Size = new System.Drawing.Size(76, 17);
+            this.rbBPel.TabIndex = 16;
+            this.rbBPel.TabStop = true;
+            this.rbBPel.Text = "B (Adultos)";
+            this.rbBPel.UseVisualStyleBackColor = true;
+            // 
+            // rbAPel
+            // 
+            this.rbAPel.AutoSize = true;
+            this.rbAPel.Location = new System.Drawing.Point(127, 76);
+            this.rbAPel.Name = "rbAPel";
+            this.rbAPel.Size = new System.Drawing.Size(78, 17);
+            this.rbAPel.TabIndex = 15;
+            this.rbAPel.TabStop = true;
+            this.rbAPel.Text = "A (General)";
+            this.rbAPel.UseVisualStyleBackColor = true;
+            // 
+            // lbSinopsisPel
+            // 
+            this.lbSinopsisPel.AutoSize = true;
+            this.lbSinopsisPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbSinopsisPel.Location = new System.Drawing.Point(419, 22);
+            this.lbSinopsisPel.Name = "lbSinopsisPel";
+            this.lbSinopsisPel.Size = new System.Drawing.Size(46, 13);
+            this.lbSinopsisPel.TabIndex = 13;
+            this.lbSinopsisPel.Text = "Sinopsis";
+            this.lbSinopsisPel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Location = new System.Drawing.Point(466, 20);
+            this.textBox1.MaxLength = 30;
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(471, 103);
+            this.textBox1.TabIndex = 12;
+            // 
+            // lbGeneroPel
+            // 
+            this.lbGeneroPel.AutoSize = true;
+            this.lbGeneroPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbGeneroPel.Location = new System.Drawing.Point(77, 105);
+            this.lbGeneroPel.Name = "lbGeneroPel";
+            this.lbGeneroPel.Size = new System.Drawing.Size(42, 13);
+            this.lbGeneroPel.TabIndex = 7;
+            this.lbGeneroPel.Text = "Genero";
+            this.lbGeneroPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DisplayMember = "10";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Standar",
+            "Premium",
+            "Vip"});
+            this.comboBox1.Location = new System.Drawing.Point(127, 102);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(286, 21);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.ValueMember = "10";
+            // 
+            // lbClasificacionPel
+            // 
+            this.lbClasificacionPel.AutoSize = true;
+            this.lbClasificacionPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbClasificacionPel.Location = new System.Drawing.Point(55, 78);
+            this.lbClasificacionPel.Name = "lbClasificacionPel";
+            this.lbClasificacionPel.Size = new System.Drawing.Size(66, 13);
+            this.lbClasificacionPel.TabIndex = 5;
+            this.lbClasificacionPel.Text = "Clasificacion";
+            this.lbClasificacionPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbDirectorPel
+            // 
+            this.lbDirectorPel.AutoSize = true;
+            this.lbDirectorPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbDirectorPel.Location = new System.Drawing.Point(77, 49);
+            this.lbDirectorPel.Name = "lbDirectorPel";
+            this.lbDirectorPel.Size = new System.Drawing.Size(44, 13);
+            this.lbDirectorPel.TabIndex = 4;
+            this.lbDirectorPel.Text = "Director";
+            this.lbDirectorPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(127, 46);
+            this.textBox5.MaxLength = 30;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(286, 20);
+            this.textBox5.TabIndex = 1;
+            // 
+            // lbNombrePel
+            // 
+            this.lbNombrePel.AutoSize = true;
+            this.lbNombrePel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbNombrePel.Location = new System.Drawing.Point(77, 27);
+            this.lbNombrePel.Name = "lbNombrePel";
+            this.lbNombrePel.Size = new System.Drawing.Size(44, 13);
+            this.lbNombrePel.TabIndex = 1;
+            this.lbNombrePel.Text = "Nombre";
+            this.lbNombrePel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox6.Location = new System.Drawing.Point(127, 20);
+            this.textBox6.MaxLength = 30;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(286, 20);
+            this.textBox6.TabIndex = 0;
+            // 
+            // tpSucursales
+            // 
+            this.tpSucursales.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tpSucursales.Controls.Add(this.gbSucursal);
+            this.tpSucursales.Location = new System.Drawing.Point(4, 25);
+            this.tpSucursales.Name = "tpSucursales";
+            this.tpSucursales.Size = new System.Drawing.Size(970, 501);
+            this.tpSucursales.TabIndex = 4;
+            this.tpSucursales.Text = "Sucursales";
+            // 
             // lbCinemax
             // 
             this.lbCinemax.AutoSize = true;
@@ -903,264 +1198,226 @@
             this.pbCerrar.TabStop = false;
             this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
-            // tabPage1
+            // gbSucursal
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(970, 501);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Pelicula";
+            this.gbSucursal.BackColor = System.Drawing.Color.Black;
+            this.gbSucursal.Controls.Add(this.gbUbicacionSucursal);
+            this.gbSucursal.Controls.Add(this.label2);
+            this.gbSucursal.Controls.Add(this.btnCancelarSuc);
+            this.gbSucursal.Controls.Add(this.btnAceptarSuc);
+            this.gbSucursal.Controls.Add(this.btnActualizarSuc);
+            this.gbSucursal.Controls.Add(this.btnEliminarSuc);
+            this.gbSucursal.Controls.Add(this.btnAgregarSuc);
+            this.gbSucursal.Controls.Add(this.gbInfoSucursal);
+            this.gbSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbSucursal.Location = new System.Drawing.Point(3, 3);
+            this.gbSucursal.Name = "gbSucursal";
+            this.gbSucursal.Size = new System.Drawing.Size(963, 186);
+            this.gbSucursal.TabIndex = 3;
+            this.gbSucursal.TabStop = false;
+            this.gbSucursal.Text = "Informacion";
             // 
-            // groupBox1
+            // label2
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.ForeColor = System.Drawing.Color.LightGray;
-            this.groupBox1.Location = new System.Drawing.Point(3, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(963, 186);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Informacion";
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.LightGray;
+            this.label2.Location = new System.Drawing.Point(415, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Tag = "Mensaje";
+            this.label2.Text = "Mensaje";
+            this.label2.Visible = false;
             // 
-            // button1
+            // btnCancelarSuc
             // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(558, 159);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.btnCancelarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancelarSuc.Location = new System.Drawing.Point(558, 159);
+            this.btnCancelarSuc.Name = "btnCancelarSuc";
+            this.btnCancelarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarSuc.TabIndex = 14;
+            this.btnCancelarSuc.Text = "Cancelar";
+            this.btnCancelarSuc.UseVisualStyleBackColor = true;
+            this.btnCancelarSuc.Visible = false;
+            this.btnCancelarSuc.Click += new System.EventHandler(this.btnCancelarSuc_Click);
             // 
-            // button2
+            // btnAceptarSuc
             // 
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(639, 159);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Aceptar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
+            this.btnAceptarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAceptarSuc.Location = new System.Drawing.Point(639, 159);
+            this.btnAceptarSuc.Name = "btnAceptarSuc";
+            this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarSuc.TabIndex = 13;
+            this.btnAceptarSuc.Text = "Aceptar";
+            this.btnAceptarSuc.UseVisualStyleBackColor = true;
+            this.btnAceptarSuc.Visible = false;
+            this.btnAceptarSuc.Click += new System.EventHandler(this.btnAceptarSuc_Click);
             // 
-            // comboBox1
+            // btnActualizarSuc
             // 
-            this.comboBox1.DisplayMember = "10";
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Standar",
-            "Premium",
-            "Vip"});
-            this.comboBox1.Location = new System.Drawing.Point(127, 102);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(286, 21);
-            this.comboBox1.TabIndex = 10;
-            this.comboBox1.ValueMember = "10";
+            this.btnActualizarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnActualizarSuc.Location = new System.Drawing.Point(720, 159);
+            this.btnActualizarSuc.Name = "btnActualizarSuc";
+            this.btnActualizarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarSuc.TabIndex = 2;
+            this.btnActualizarSuc.Text = "Actualizar";
+            this.btnActualizarSuc.UseVisualStyleBackColor = true;
+            this.btnActualizarSuc.Click += new System.EventHandler(this.btnActualizarSuc_Click);
             // 
-            // button3
+            // btnEliminarSuc
             // 
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(720, 159);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Actualizar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEliminarSuc.Location = new System.Drawing.Point(801, 159);
+            this.btnEliminarSuc.Name = "btnEliminarSuc";
+            this.btnEliminarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarSuc.TabIndex = 1;
+            this.btnEliminarSuc.Text = "Eliminar";
+            this.btnEliminarSuc.UseVisualStyleBackColor = true;
+            this.btnEliminarSuc.Click += new System.EventHandler(this.btnEliminarSuc_Click);
             // 
-            // button4
+            // btnAgregarSuc
             // 
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Location = new System.Drawing.Point(801, 159);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Eliminar";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnAgregarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAgregarSuc.Location = new System.Drawing.Point(882, 159);
+            this.btnAgregarSuc.Name = "btnAgregarSuc";
+            this.btnAgregarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarSuc.TabIndex = 0;
+            this.btnAgregarSuc.Text = "Agregar";
+            this.btnAgregarSuc.UseVisualStyleBackColor = true;
+            this.btnAgregarSuc.Click += new System.EventHandler(this.btnAgregarSuc_Click);
             // 
-            // button5
+            // gbInfoSucursal
             // 
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(882, 159);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Agregar";
-            this.button5.UseVisualStyleBackColor = true;
+            this.gbInfoSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.gbInfoSucursal.Controls.Add(this.nudSalasCine);
+            this.gbInfoSucursal.Controls.Add(this.label9);
+            this.gbInfoSucursal.Controls.Add(this.labelSalasCine);
+            this.gbInfoSucursal.Controls.Add(this.tbNombreCine);
+            this.gbInfoSucursal.Enabled = false;
+            this.gbInfoSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbInfoSucursal.Location = new System.Drawing.Point(7, 19);
+            this.gbInfoSucursal.Name = "gbInfoSucursal";
+            this.gbInfoSucursal.Size = new System.Drawing.Size(471, 138);
+            this.gbInfoSucursal.TabIndex = 0;
+            this.gbInfoSucursal.TabStop = false;
+            this.gbInfoSucursal.Text = "Datos generales";
             // 
-            // groupBox5
+            // labelSalasCine
             // 
-            this.groupBox5.Controls.Add(this.rbCPel);
-            this.groupBox5.Controls.Add(this.rbBPel);
-            this.groupBox5.Controls.Add(this.rbAPel);
-            this.groupBox5.Controls.Add(this.lbSinopsisPel);
-            this.groupBox5.Controls.Add(this.textBox1);
-            this.groupBox5.Controls.Add(this.lbGeneroPel);
-            this.groupBox5.Controls.Add(this.comboBox1);
-            this.groupBox5.Controls.Add(this.lbClasificacionPel);
-            this.groupBox5.Controls.Add(this.lbDirectorPel);
-            this.groupBox5.Controls.Add(this.textBox5);
-            this.groupBox5.Controls.Add(this.lbNombrePel);
-            this.groupBox5.Controls.Add(this.textBox6);
-            this.groupBox5.Enabled = false;
-            this.groupBox5.ForeColor = System.Drawing.Color.LightGray;
-            this.groupBox5.Location = new System.Drawing.Point(6, 19);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(948, 138);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Datos generales";
+            this.labelSalasCine.AutoSize = true;
+            this.labelSalasCine.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSalasCine.Location = new System.Drawing.Point(35, 56);
+            this.labelSalasCine.Name = "labelSalasCine";
+            this.labelSalasCine.Size = new System.Drawing.Size(86, 13);
+            this.labelSalasCine.TabIndex = 4;
+            this.labelSalasCine.Text = "Número de salas";
+            this.labelSalasCine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbGeneroPel
+            // label9
             // 
-            this.lbGeneroPel.AutoSize = true;
-            this.lbGeneroPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbGeneroPel.Location = new System.Drawing.Point(77, 105);
-            this.lbGeneroPel.Name = "lbGeneroPel";
-            this.lbGeneroPel.Size = new System.Drawing.Size(42, 13);
-            this.lbGeneroPel.TabIndex = 7;
-            this.lbGeneroPel.Text = "Genero";
-            this.lbGeneroPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.AutoSize = true;
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Location = new System.Drawing.Point(77, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Nombre";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lbClasificacionPel
+            // tbNombreCine
             // 
-            this.lbClasificacionPel.AutoSize = true;
-            this.lbClasificacionPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbClasificacionPel.Location = new System.Drawing.Point(55, 78);
-            this.lbClasificacionPel.Name = "lbClasificacionPel";
-            this.lbClasificacionPel.Size = new System.Drawing.Size(66, 13);
-            this.lbClasificacionPel.TabIndex = 5;
-            this.lbClasificacionPel.Text = "Clasificacion";
-            this.lbClasificacionPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbNombreCine.BackColor = System.Drawing.SystemColors.Window;
+            this.tbNombreCine.Location = new System.Drawing.Point(127, 20);
+            this.tbNombreCine.MaxLength = 30;
+            this.tbNombreCine.Name = "tbNombreCine";
+            this.tbNombreCine.Size = new System.Drawing.Size(286, 20);
+            this.tbNombreCine.TabIndex = 0;
             // 
-            // lbDirectorPel
+            // nudSalasCine
             // 
-            this.lbDirectorPel.AutoSize = true;
-            this.lbDirectorPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbDirectorPel.Location = new System.Drawing.Point(77, 49);
-            this.lbDirectorPel.Name = "lbDirectorPel";
-            this.lbDirectorPel.Size = new System.Drawing.Size(44, 13);
-            this.lbDirectorPel.TabIndex = 4;
-            this.lbDirectorPel.Text = "Director";
-            this.lbDirectorPel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.nudSalasCine.Location = new System.Drawing.Point(127, 49);
+            this.nudSalasCine.Name = "nudSalasCine";
+            this.nudSalasCine.Size = new System.Drawing.Size(286, 20);
+            this.nudSalasCine.TabIndex = 5;
             // 
-            // textBox5
+            // gbUbicacionSucursal
             // 
-            this.textBox5.Location = new System.Drawing.Point(127, 46);
-            this.textBox5.MaxLength = 30;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(286, 20);
-            this.textBox5.TabIndex = 1;
+            this.gbUbicacionSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.gbUbicacionSucursal.Controls.Add(this.tbCalleSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelCalleSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.tbNumeroSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelColoniaSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelNumeroSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.tbColoniaSuc);
+            this.gbUbicacionSucursal.Enabled = false;
+            this.gbUbicacionSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbUbicacionSucursal.Location = new System.Drawing.Point(484, 19);
+            this.gbUbicacionSucursal.Name = "gbUbicacionSucursal";
+            this.gbUbicacionSucursal.Size = new System.Drawing.Size(471, 138);
+            this.gbUbicacionSucursal.TabIndex = 6;
+            this.gbUbicacionSucursal.TabStop = false;
+            this.gbUbicacionSucursal.Text = "Ubicación";
             // 
-            // lbNombrePel
+            // labelColoniaSucursal
             // 
-            this.lbNombrePel.AutoSize = true;
-            this.lbNombrePel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbNombrePel.Location = new System.Drawing.Point(77, 27);
-            this.lbNombrePel.Name = "lbNombrePel";
-            this.lbNombrePel.Size = new System.Drawing.Size(44, 13);
-            this.lbNombrePel.TabIndex = 1;
-            this.lbNombrePel.Text = "Nombre";
-            this.lbNombrePel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelColoniaSucursal.AutoSize = true;
+            this.labelColoniaSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelColoniaSucursal.Location = new System.Drawing.Point(43, 27);
+            this.labelColoniaSucursal.Name = "labelColoniaSucursal";
+            this.labelColoniaSucursal.Size = new System.Drawing.Size(42, 13);
+            this.labelColoniaSucursal.TabIndex = 1;
+            this.labelColoniaSucursal.Text = "Colonia";
+            this.labelColoniaSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox6
+            // labelNumeroSucursal
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox6.Location = new System.Drawing.Point(127, 20);
-            this.textBox6.MaxLength = 30;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(286, 20);
-            this.textBox6.TabIndex = 0;
+            this.labelNumeroSucursal.AutoSize = true;
+            this.labelNumeroSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelNumeroSucursal.Location = new System.Drawing.Point(41, 82);
+            this.labelNumeroSucursal.Name = "labelNumeroSucursal";
+            this.labelNumeroSucursal.Size = new System.Drawing.Size(44, 13);
+            this.labelNumeroSucursal.TabIndex = 4;
+            this.labelNumeroSucursal.Text = "Número";
+            this.labelNumeroSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dataGridView1
+            // tbColoniaSuc
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 198);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(963, 300);
-            this.dataGridView1.TabIndex = 3;
+            this.tbColoniaSuc.BackColor = System.Drawing.SystemColors.Window;
+            this.tbColoniaSuc.Location = new System.Drawing.Point(101, 20);
+            this.tbColoniaSuc.MaxLength = 30;
+            this.tbColoniaSuc.Name = "tbColoniaSuc";
+            this.tbColoniaSuc.Size = new System.Drawing.Size(310, 20);
+            this.tbColoniaSuc.TabIndex = 0;
             // 
-            // lbSinopsisPel
+            // tbNumeroSucursal
             // 
-            this.lbSinopsisPel.AutoSize = true;
-            this.lbSinopsisPel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbSinopsisPel.Location = new System.Drawing.Point(419, 22);
-            this.lbSinopsisPel.Name = "lbSinopsisPel";
-            this.lbSinopsisPel.Size = new System.Drawing.Size(46, 13);
-            this.lbSinopsisPel.TabIndex = 13;
-            this.lbSinopsisPel.Text = "Sinopsis";
-            this.lbSinopsisPel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tbNumeroSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbNumeroSucursal.Location = new System.Drawing.Point(101, 75);
+            this.tbNumeroSucursal.MaxLength = 30;
+            this.tbNumeroSucursal.Name = "tbNumeroSucursal";
+            this.tbNumeroSucursal.Size = new System.Drawing.Size(310, 20);
+            this.tbNumeroSucursal.TabIndex = 5;
             // 
-            // textBox1
+            // tbCalleSucursal
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(466, 20);
-            this.textBox1.MaxLength = 30;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 103);
-            this.textBox1.TabIndex = 12;
+            this.tbCalleSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbCalleSucursal.Location = new System.Drawing.Point(101, 49);
+            this.tbCalleSucursal.MaxLength = 30;
+            this.tbCalleSucursal.Name = "tbCalleSucursal";
+            this.tbCalleSucursal.Size = new System.Drawing.Size(310, 20);
+            this.tbCalleSucursal.TabIndex = 7;
             // 
-            // rbAPel
+            // labelCalleSucursal
             // 
-            this.rbAPel.AutoSize = true;
-            this.rbAPel.Location = new System.Drawing.Point(127, 76);
-            this.rbAPel.Name = "rbAPel";
-            this.rbAPel.Size = new System.Drawing.Size(78, 17);
-            this.rbAPel.TabIndex = 15;
-            this.rbAPel.TabStop = true;
-            this.rbAPel.Text = "A (General)";
-            this.rbAPel.UseVisualStyleBackColor = true;
-            // 
-            // rbBPel
-            // 
-            this.rbBPel.AutoSize = true;
-            this.rbBPel.Location = new System.Drawing.Point(229, 76);
-            this.rbBPel.Name = "rbBPel";
-            this.rbBPel.Size = new System.Drawing.Size(76, 17);
-            this.rbBPel.TabIndex = 16;
-            this.rbBPel.TabStop = true;
-            this.rbBPel.Text = "B (Adultos)";
-            this.rbBPel.UseVisualStyleBackColor = true;
-            // 
-            // rbCPel
-            // 
-            this.rbCPel.AutoSize = true;
-            this.rbCPel.Location = new System.Drawing.Point(325, 76);
-            this.rbCPel.Name = "rbCPel";
-            this.rbCPel.Size = new System.Drawing.Size(76, 17);
-            this.rbCPel.TabIndex = 17;
-            this.rbCPel.TabStop = true;
-            this.rbCPel.Text = "C (Adultos)";
-            this.rbCPel.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.Color.LightGray;
-            this.label1.Location = new System.Drawing.Point(415, 164);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Tag = "Mensaje";
-            this.label1.Text = "Mensaje";
-            this.label1.Visible = false;
+            this.labelCalleSucursal.AutoSize = true;
+            this.labelCalleSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelCalleSucursal.Location = new System.Drawing.Point(53, 56);
+            this.labelCalleSucursal.Name = "labelCalleSucursal";
+            this.labelCalleSucursal.Size = new System.Drawing.Size(30, 13);
+            this.labelCalleSucursal.TabIndex = 6;
+            this.labelCalleSucursal.Text = "Calle";
+            this.labelCalleSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form1
             // 
@@ -1205,16 +1462,24 @@
             this.gbDCMem.PerformLayout();
             this.gbDPMem.ResumeLayout(false);
             this.gbDPMem.PerformLayout();
-            this.tcPrincipal.ResumeLayout(false);
-            this.tpAdministracion.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tpSucursales.ResumeLayout(false);
+            this.tcPrincipal.ResumeLayout(false);
+            this.tpAdministracion.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
+            this.gbSucursal.ResumeLayout(false);
+            this.gbSucursal.PerformLayout();
+            this.gbInfoSucursal.ResumeLayout(false);
+            this.gbInfoSucursal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).EndInit();
+            this.gbUbicacionSucursal.ResumeLayout(false);
+            this.gbUbicacionSucursal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1310,6 +1575,26 @@
         private System.Windows.Forms.Label lbSinopsisPel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tpSucursales;
+        private System.Windows.Forms.GroupBox gbSucursal;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancelarSuc;
+        private System.Windows.Forms.Button btnAceptarSuc;
+        private System.Windows.Forms.Button btnActualizarSuc;
+        private System.Windows.Forms.Button btnEliminarSuc;
+        private System.Windows.Forms.Button btnAgregarSuc;
+        private System.Windows.Forms.GroupBox gbInfoSucursal;
+        private System.Windows.Forms.Label labelSalasCine;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbNombreCine;
+        private System.Windows.Forms.NumericUpDown nudSalasCine;
+        private System.Windows.Forms.GroupBox gbUbicacionSucursal;
+        private System.Windows.Forms.TextBox tbCalleSucursal;
+        private System.Windows.Forms.Label labelCalleSucursal;
+        private System.Windows.Forms.TextBox tbNumeroSucursal;
+        private System.Windows.Forms.Label labelColoniaSucursal;
+        private System.Windows.Forms.Label labelNumeroSucursal;
+        private System.Windows.Forms.TextBox tbColoniaSuc;
     }
 }
 
