@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcAdministracion = new System.Windows.Forms.TabControl();
             this.tpEmpleado = new System.Windows.Forms.TabPage();
             this.dgEmpleados = new System.Windows.Forms.DataGridView();
@@ -111,31 +113,35 @@
             this.lbNombrePel = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.tpSucursales = new System.Windows.Forms.TabPage();
-            this.lbCinemax = new System.Windows.Forms.Label();
-            this.tcPrincipal = new System.Windows.Forms.TabControl();
-            this.tpAdministracion = new System.Windows.Forms.TabPage();
-            this.tbVenta = new System.Windows.Forms.TabPage();
-            this.btMinimizar = new System.Windows.Forms.PictureBox();
-            this.pbCerrar = new System.Windows.Forms.PictureBox();
             this.gbSucursal = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.gbUbicacionSucursal = new System.Windows.Forms.GroupBox();
+            this.tbCalleSucursal = new System.Windows.Forms.TextBox();
+            this.labelCalleSucursal = new System.Windows.Forms.Label();
+            this.tbNumeroSucursal = new System.Windows.Forms.TextBox();
+            this.labelColoniaSucursal = new System.Windows.Forms.Label();
+            this.labelNumeroSucursal = new System.Windows.Forms.Label();
+            this.tbColoniaSuc = new System.Windows.Forms.TextBox();
+            this.labelMensajeSucursal = new System.Windows.Forms.Label();
             this.btnCancelarSuc = new System.Windows.Forms.Button();
             this.btnAceptarSuc = new System.Windows.Forms.Button();
             this.btnActualizarSuc = new System.Windows.Forms.Button();
             this.btnEliminarSuc = new System.Windows.Forms.Button();
             this.btnAgregarSuc = new System.Windows.Forms.Button();
             this.gbInfoSucursal = new System.Windows.Forms.GroupBox();
-            this.labelSalasCine = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tbNombreCine = new System.Windows.Forms.TextBox();
             this.nudSalasCine = new System.Windows.Forms.NumericUpDown();
-            this.gbUbicacionSucursal = new System.Windows.Forms.GroupBox();
-            this.labelColoniaSucursal = new System.Windows.Forms.Label();
-            this.labelNumeroSucursal = new System.Windows.Forms.Label();
-            this.tbColoniaSuc = new System.Windows.Forms.TextBox();
-            this.tbNumeroSucursal = new System.Windows.Forms.TextBox();
-            this.tbCalleSucursal = new System.Windows.Forms.TextBox();
-            this.labelCalleSucursal = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.labelSalasCine = new System.Windows.Forms.Label();
+            this.tbNombreCine = new System.Windows.Forms.TextBox();
+            this.lbCinemax = new System.Windows.Forms.Label();
+            this.tcPrincipal = new System.Windows.Forms.TabControl();
+            this.tpAdministracion = new System.Windows.Forms.TabPage();
+            this.tbVenta = new System.Windows.Forms.TabPage();
+            this.btMinimizar = new System.Windows.Forms.PictureBox();
+            this.pbCerrar = new System.Windows.Forms.PictureBox();
+            this.tbTelefonoSucursal = new System.Windows.Forms.TextBox();
+            this.labelTelSucursal = new System.Windows.Forms.Label();
+            this.ResetTimer = new System.Windows.Forms.Timer(this.components);
+            this.dgSucursales = new System.Windows.Forms.DataGridView();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -154,14 +160,15 @@
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tpSucursales.SuspendLayout();
+            this.gbSucursal.SuspendLayout();
+            this.gbUbicacionSucursal.SuspendLayout();
+            this.gbInfoSucursal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).BeginInit();
             this.tcPrincipal.SuspendLayout();
             this.tpAdministracion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
-            this.gbSucursal.SuspendLayout();
-            this.gbInfoSucursal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).BeginInit();
-            this.gbUbicacionSucursal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdministracion
@@ -1123,13 +1130,240 @@
             // 
             // tpSucursales
             // 
-            this.tpSucursales.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tpSucursales.BackColor = System.Drawing.Color.Black;
+            this.tpSucursales.Controls.Add(this.dgSucursales);
             this.tpSucursales.Controls.Add(this.gbSucursal);
             this.tpSucursales.Location = new System.Drawing.Point(4, 25);
             this.tpSucursales.Name = "tpSucursales";
             this.tpSucursales.Size = new System.Drawing.Size(970, 501);
             this.tpSucursales.TabIndex = 4;
-            this.tpSucursales.Text = "Sucursales";
+            this.tpSucursales.Text = "Sucursal";
+            // 
+            // gbSucursal
+            // 
+            this.gbSucursal.BackColor = System.Drawing.Color.Black;
+            this.gbSucursal.Controls.Add(this.gbUbicacionSucursal);
+            this.gbSucursal.Controls.Add(this.labelMensajeSucursal);
+            this.gbSucursal.Controls.Add(this.btnCancelarSuc);
+            this.gbSucursal.Controls.Add(this.btnAceptarSuc);
+            this.gbSucursal.Controls.Add(this.btnActualizarSuc);
+            this.gbSucursal.Controls.Add(this.btnEliminarSuc);
+            this.gbSucursal.Controls.Add(this.btnAgregarSuc);
+            this.gbSucursal.Controls.Add(this.gbInfoSucursal);
+            this.gbSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbSucursal.Location = new System.Drawing.Point(3, 3);
+            this.gbSucursal.Name = "gbSucursal";
+            this.gbSucursal.Size = new System.Drawing.Size(963, 186);
+            this.gbSucursal.TabIndex = 3;
+            this.gbSucursal.TabStop = false;
+            this.gbSucursal.Text = "Informacion";
+            // 
+            // gbUbicacionSucursal
+            // 
+            this.gbUbicacionSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.gbUbicacionSucursal.Controls.Add(this.tbCalleSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelCalleSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.tbNumeroSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelColoniaSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.labelNumeroSucursal);
+            this.gbUbicacionSucursal.Controls.Add(this.tbColoniaSuc);
+            this.gbUbicacionSucursal.Enabled = false;
+            this.gbUbicacionSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbUbicacionSucursal.Location = new System.Drawing.Point(484, 19);
+            this.gbUbicacionSucursal.Name = "gbUbicacionSucursal";
+            this.gbUbicacionSucursal.Size = new System.Drawing.Size(471, 138);
+            this.gbUbicacionSucursal.TabIndex = 6;
+            this.gbUbicacionSucursal.TabStop = false;
+            this.gbUbicacionSucursal.Text = "Ubicación";
+            // 
+            // tbCalleSucursal
+            // 
+            this.tbCalleSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbCalleSucursal.Location = new System.Drawing.Point(125, 48);
+            this.tbCalleSucursal.MaxLength = 30;
+            this.tbCalleSucursal.Name = "tbCalleSucursal";
+            this.tbCalleSucursal.Size = new System.Drawing.Size(286, 20);
+            this.tbCalleSucursal.TabIndex = 4;
+            // 
+            // labelCalleSucursal
+            // 
+            this.labelCalleSucursal.AutoSize = true;
+            this.labelCalleSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelCalleSucursal.Location = new System.Drawing.Point(71, 55);
+            this.labelCalleSucursal.Name = "labelCalleSucursal";
+            this.labelCalleSucursal.Size = new System.Drawing.Size(30, 13);
+            this.labelCalleSucursal.TabIndex = 6;
+            this.labelCalleSucursal.Text = "Calle";
+            this.labelCalleSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNumeroSucursal
+            // 
+            this.tbNumeroSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbNumeroSucursal.Location = new System.Drawing.Point(125, 75);
+            this.tbNumeroSucursal.MaxLength = 30;
+            this.tbNumeroSucursal.Name = "tbNumeroSucursal";
+            this.tbNumeroSucursal.Size = new System.Drawing.Size(286, 20);
+            this.tbNumeroSucursal.TabIndex = 5;
+            // 
+            // labelColoniaSucursal
+            // 
+            this.labelColoniaSucursal.AutoSize = true;
+            this.labelColoniaSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelColoniaSucursal.Location = new System.Drawing.Point(59, 27);
+            this.labelColoniaSucursal.Name = "labelColoniaSucursal";
+            this.labelColoniaSucursal.Size = new System.Drawing.Size(42, 13);
+            this.labelColoniaSucursal.TabIndex = 1;
+            this.labelColoniaSucursal.Text = "Colonia";
+            this.labelColoniaSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelNumeroSucursal
+            // 
+            this.labelNumeroSucursal.AutoSize = true;
+            this.labelNumeroSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelNumeroSucursal.Location = new System.Drawing.Point(57, 82);
+            this.labelNumeroSucursal.Name = "labelNumeroSucursal";
+            this.labelNumeroSucursal.Size = new System.Drawing.Size(44, 13);
+            this.labelNumeroSucursal.TabIndex = 4;
+            this.labelNumeroSucursal.Text = "Número";
+            this.labelNumeroSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbColoniaSuc
+            // 
+            this.tbColoniaSuc.BackColor = System.Drawing.SystemColors.Window;
+            this.tbColoniaSuc.Location = new System.Drawing.Point(125, 20);
+            this.tbColoniaSuc.MaxLength = 30;
+            this.tbColoniaSuc.Name = "tbColoniaSuc";
+            this.tbColoniaSuc.Size = new System.Drawing.Size(286, 20);
+            this.tbColoniaSuc.TabIndex = 3;
+            // 
+            // labelMensajeSucursal
+            // 
+            this.labelMensajeSucursal.AccessibleName = "StatusLabel";
+            this.labelMensajeSucursal.AutoSize = true;
+            this.labelMensajeSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.labelMensajeSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMensajeSucursal.ForeColor = System.Drawing.Color.White;
+            this.labelMensajeSucursal.Location = new System.Drawing.Point(13, 159);
+            this.labelMensajeSucursal.Name = "labelMensajeSucursal";
+            this.labelMensajeSucursal.Size = new System.Drawing.Size(64, 18);
+            this.labelMensajeSucursal.TabIndex = 15;
+            this.labelMensajeSucursal.Tag = "Mensaje";
+            this.labelMensajeSucursal.Text = "Mensaje";
+            // 
+            // btnCancelarSuc
+            // 
+            this.btnCancelarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancelarSuc.Location = new System.Drawing.Point(558, 159);
+            this.btnCancelarSuc.Name = "btnCancelarSuc";
+            this.btnCancelarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarSuc.TabIndex = 6;
+            this.btnCancelarSuc.Text = "Cancelar";
+            this.btnCancelarSuc.UseVisualStyleBackColor = true;
+            this.btnCancelarSuc.Visible = false;
+            this.btnCancelarSuc.Click += new System.EventHandler(this.btnCancelarSuc_Click);
+            // 
+            // btnAceptarSuc
+            // 
+            this.btnAceptarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAceptarSuc.Location = new System.Drawing.Point(639, 159);
+            this.btnAceptarSuc.Name = "btnAceptarSuc";
+            this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarSuc.TabIndex = 7;
+            this.btnAceptarSuc.Text = "Aceptar";
+            this.btnAceptarSuc.UseVisualStyleBackColor = true;
+            this.btnAceptarSuc.Visible = false;
+            this.btnAceptarSuc.Click += new System.EventHandler(this.btnAceptarSuc_Click);
+            // 
+            // btnActualizarSuc
+            // 
+            this.btnActualizarSuc.Enabled = false;
+            this.btnActualizarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnActualizarSuc.Location = new System.Drawing.Point(720, 159);
+            this.btnActualizarSuc.Name = "btnActualizarSuc";
+            this.btnActualizarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarSuc.TabIndex = 8;
+            this.btnActualizarSuc.Text = "Actualizar";
+            this.btnActualizarSuc.UseVisualStyleBackColor = true;
+            this.btnActualizarSuc.Click += new System.EventHandler(this.btnActualizarSuc_Click);
+            // 
+            // btnEliminarSuc
+            // 
+            this.btnEliminarSuc.Enabled = false;
+            this.btnEliminarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEliminarSuc.Location = new System.Drawing.Point(801, 159);
+            this.btnEliminarSuc.Name = "btnEliminarSuc";
+            this.btnEliminarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarSuc.TabIndex = 9;
+            this.btnEliminarSuc.Text = "Eliminar";
+            this.btnEliminarSuc.UseVisualStyleBackColor = true;
+            this.btnEliminarSuc.Click += new System.EventHandler(this.btnEliminarSuc_Click);
+            // 
+            // btnAgregarSuc
+            // 
+            this.btnAgregarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAgregarSuc.Location = new System.Drawing.Point(882, 159);
+            this.btnAgregarSuc.Name = "btnAgregarSuc";
+            this.btnAgregarSuc.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarSuc.TabIndex = 10;
+            this.btnAgregarSuc.Text = "Agregar";
+            this.btnAgregarSuc.UseVisualStyleBackColor = true;
+            this.btnAgregarSuc.Click += new System.EventHandler(this.btnAgregarSuc_Click);
+            // 
+            // gbInfoSucursal
+            // 
+            this.gbInfoSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.gbInfoSucursal.Controls.Add(this.labelTelSucursal);
+            this.gbInfoSucursal.Controls.Add(this.nudSalasCine);
+            this.gbInfoSucursal.Controls.Add(this.label9);
+            this.gbInfoSucursal.Controls.Add(this.labelSalasCine);
+            this.gbInfoSucursal.Controls.Add(this.tbNombreCine);
+            this.gbInfoSucursal.Controls.Add(this.tbTelefonoSucursal);
+            this.gbInfoSucursal.Enabled = false;
+            this.gbInfoSucursal.ForeColor = System.Drawing.Color.LightGray;
+            this.gbInfoSucursal.Location = new System.Drawing.Point(7, 19);
+            this.gbInfoSucursal.Name = "gbInfoSucursal";
+            this.gbInfoSucursal.Size = new System.Drawing.Size(471, 138);
+            this.gbInfoSucursal.TabIndex = 0;
+            this.gbInfoSucursal.TabStop = false;
+            this.gbInfoSucursal.Text = "Datos generales";
+            // 
+            // nudSalasCine
+            // 
+            this.nudSalasCine.Location = new System.Drawing.Point(127, 48);
+            this.nudSalasCine.Name = "nudSalasCine";
+            this.nudSalasCine.Size = new System.Drawing.Size(286, 20);
+            this.nudSalasCine.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Location = new System.Drawing.Point(59, 27);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Nombre";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelSalasCine
+            // 
+            this.labelSalasCine.AutoSize = true;
+            this.labelSalasCine.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSalasCine.Location = new System.Drawing.Point(17, 55);
+            this.labelSalasCine.Name = "labelSalasCine";
+            this.labelSalasCine.Size = new System.Drawing.Size(86, 13);
+            this.labelSalasCine.TabIndex = 4;
+            this.labelSalasCine.Text = "Número de salas";
+            this.labelSalasCine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbNombreCine
+            // 
+            this.tbNombreCine.BackColor = System.Drawing.SystemColors.Window;
+            this.tbNombreCine.Location = new System.Drawing.Point(127, 20);
+            this.tbNombreCine.MaxLength = 30;
+            this.tbNombreCine.Name = "tbNombreCine";
+            this.tbNombreCine.Size = new System.Drawing.Size(286, 20);
+            this.tbNombreCine.TabIndex = 0;
             // 
             // lbCinemax
             // 
@@ -1198,226 +1432,43 @@
             this.pbCerrar.TabStop = false;
             this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
-            // gbSucursal
+            // tbTelefonoSucursal
             // 
-            this.gbSucursal.BackColor = System.Drawing.Color.Black;
-            this.gbSucursal.Controls.Add(this.gbUbicacionSucursal);
-            this.gbSucursal.Controls.Add(this.label2);
-            this.gbSucursal.Controls.Add(this.btnCancelarSuc);
-            this.gbSucursal.Controls.Add(this.btnAceptarSuc);
-            this.gbSucursal.Controls.Add(this.btnActualizarSuc);
-            this.gbSucursal.Controls.Add(this.btnEliminarSuc);
-            this.gbSucursal.Controls.Add(this.btnAgregarSuc);
-            this.gbSucursal.Controls.Add(this.gbInfoSucursal);
-            this.gbSucursal.ForeColor = System.Drawing.Color.LightGray;
-            this.gbSucursal.Location = new System.Drawing.Point(3, 3);
-            this.gbSucursal.Name = "gbSucursal";
-            this.gbSucursal.Size = new System.Drawing.Size(963, 186);
-            this.gbSucursal.TabIndex = 3;
-            this.gbSucursal.TabStop = false;
-            this.gbSucursal.Text = "Informacion";
+            this.tbTelefonoSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbTelefonoSucursal.Location = new System.Drawing.Point(127, 75);
+            this.tbTelefonoSucursal.MaxLength = 30;
+            this.tbTelefonoSucursal.Name = "tbTelefonoSucursal";
+            this.tbTelefonoSucursal.Size = new System.Drawing.Size(286, 20);
+            this.tbTelefonoSucursal.TabIndex = 2;
             // 
-            // label2
+            // labelTelSucursal
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.LightGray;
-            this.label2.Location = new System.Drawing.Point(415, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Tag = "Mensaje";
-            this.label2.Text = "Mensaje";
-            this.label2.Visible = false;
+            this.labelTelSucursal.AutoSize = true;
+            this.labelTelSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTelSucursal.Location = new System.Drawing.Point(54, 82);
+            this.labelTelSucursal.Name = "labelTelSucursal";
+            this.labelTelSucursal.Size = new System.Drawing.Size(49, 13);
+            this.labelTelSucursal.TabIndex = 8;
+            this.labelTelSucursal.Text = "Teléfono";
+            this.labelTelSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnCancelarSuc
+            // ResetTimer
             // 
-            this.btnCancelarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCancelarSuc.Location = new System.Drawing.Point(558, 159);
-            this.btnCancelarSuc.Name = "btnCancelarSuc";
-            this.btnCancelarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarSuc.TabIndex = 14;
-            this.btnCancelarSuc.Text = "Cancelar";
-            this.btnCancelarSuc.UseVisualStyleBackColor = true;
-            this.btnCancelarSuc.Visible = false;
-            this.btnCancelarSuc.Click += new System.EventHandler(this.btnCancelarSuc_Click);
+            this.ResetTimer.Interval = 1000;
+            this.ResetTimer.Tick += new System.EventHandler(this.ResetTimer_Tick);
             // 
-            // btnAceptarSuc
+            // dgSucursales
             // 
-            this.btnAceptarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAceptarSuc.Location = new System.Drawing.Point(639, 159);
-            this.btnAceptarSuc.Name = "btnAceptarSuc";
-            this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarSuc.TabIndex = 13;
-            this.btnAceptarSuc.Text = "Aceptar";
-            this.btnAceptarSuc.UseVisualStyleBackColor = true;
-            this.btnAceptarSuc.Visible = false;
-            this.btnAceptarSuc.Click += new System.EventHandler(this.btnAceptarSuc_Click);
-            // 
-            // btnActualizarSuc
-            // 
-            this.btnActualizarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnActualizarSuc.Location = new System.Drawing.Point(720, 159);
-            this.btnActualizarSuc.Name = "btnActualizarSuc";
-            this.btnActualizarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizarSuc.TabIndex = 2;
-            this.btnActualizarSuc.Text = "Actualizar";
-            this.btnActualizarSuc.UseVisualStyleBackColor = true;
-            this.btnActualizarSuc.Click += new System.EventHandler(this.btnActualizarSuc_Click);
-            // 
-            // btnEliminarSuc
-            // 
-            this.btnEliminarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEliminarSuc.Location = new System.Drawing.Point(801, 159);
-            this.btnEliminarSuc.Name = "btnEliminarSuc";
-            this.btnEliminarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminarSuc.TabIndex = 1;
-            this.btnEliminarSuc.Text = "Eliminar";
-            this.btnEliminarSuc.UseVisualStyleBackColor = true;
-            this.btnEliminarSuc.Click += new System.EventHandler(this.btnEliminarSuc_Click);
-            // 
-            // btnAgregarSuc
-            // 
-            this.btnAgregarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAgregarSuc.Location = new System.Drawing.Point(882, 159);
-            this.btnAgregarSuc.Name = "btnAgregarSuc";
-            this.btnAgregarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarSuc.TabIndex = 0;
-            this.btnAgregarSuc.Text = "Agregar";
-            this.btnAgregarSuc.UseVisualStyleBackColor = true;
-            this.btnAgregarSuc.Click += new System.EventHandler(this.btnAgregarSuc_Click);
-            // 
-            // gbInfoSucursal
-            // 
-            this.gbInfoSucursal.BackColor = System.Drawing.Color.Transparent;
-            this.gbInfoSucursal.Controls.Add(this.nudSalasCine);
-            this.gbInfoSucursal.Controls.Add(this.label9);
-            this.gbInfoSucursal.Controls.Add(this.labelSalasCine);
-            this.gbInfoSucursal.Controls.Add(this.tbNombreCine);
-            this.gbInfoSucursal.Enabled = false;
-            this.gbInfoSucursal.ForeColor = System.Drawing.Color.LightGray;
-            this.gbInfoSucursal.Location = new System.Drawing.Point(7, 19);
-            this.gbInfoSucursal.Name = "gbInfoSucursal";
-            this.gbInfoSucursal.Size = new System.Drawing.Size(471, 138);
-            this.gbInfoSucursal.TabIndex = 0;
-            this.gbInfoSucursal.TabStop = false;
-            this.gbInfoSucursal.Text = "Datos generales";
-            // 
-            // labelSalasCine
-            // 
-            this.labelSalasCine.AutoSize = true;
-            this.labelSalasCine.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelSalasCine.Location = new System.Drawing.Point(35, 56);
-            this.labelSalasCine.Name = "labelSalasCine";
-            this.labelSalasCine.Size = new System.Drawing.Size(86, 13);
-            this.labelSalasCine.TabIndex = 4;
-            this.labelSalasCine.Text = "Número de salas";
-            this.labelSalasCine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label9.Location = new System.Drawing.Point(77, 27);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Nombre";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tbNombreCine
-            // 
-            this.tbNombreCine.BackColor = System.Drawing.SystemColors.Window;
-            this.tbNombreCine.Location = new System.Drawing.Point(127, 20);
-            this.tbNombreCine.MaxLength = 30;
-            this.tbNombreCine.Name = "tbNombreCine";
-            this.tbNombreCine.Size = new System.Drawing.Size(286, 20);
-            this.tbNombreCine.TabIndex = 0;
-            // 
-            // nudSalasCine
-            // 
-            this.nudSalasCine.Location = new System.Drawing.Point(127, 49);
-            this.nudSalasCine.Name = "nudSalasCine";
-            this.nudSalasCine.Size = new System.Drawing.Size(286, 20);
-            this.nudSalasCine.TabIndex = 5;
-            // 
-            // gbUbicacionSucursal
-            // 
-            this.gbUbicacionSucursal.BackColor = System.Drawing.Color.Transparent;
-            this.gbUbicacionSucursal.Controls.Add(this.tbCalleSucursal);
-            this.gbUbicacionSucursal.Controls.Add(this.labelCalleSucursal);
-            this.gbUbicacionSucursal.Controls.Add(this.tbNumeroSucursal);
-            this.gbUbicacionSucursal.Controls.Add(this.labelColoniaSucursal);
-            this.gbUbicacionSucursal.Controls.Add(this.labelNumeroSucursal);
-            this.gbUbicacionSucursal.Controls.Add(this.tbColoniaSuc);
-            this.gbUbicacionSucursal.Enabled = false;
-            this.gbUbicacionSucursal.ForeColor = System.Drawing.Color.LightGray;
-            this.gbUbicacionSucursal.Location = new System.Drawing.Point(484, 19);
-            this.gbUbicacionSucursal.Name = "gbUbicacionSucursal";
-            this.gbUbicacionSucursal.Size = new System.Drawing.Size(471, 138);
-            this.gbUbicacionSucursal.TabIndex = 6;
-            this.gbUbicacionSucursal.TabStop = false;
-            this.gbUbicacionSucursal.Text = "Ubicación";
-            // 
-            // labelColoniaSucursal
-            // 
-            this.labelColoniaSucursal.AutoSize = true;
-            this.labelColoniaSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelColoniaSucursal.Location = new System.Drawing.Point(43, 27);
-            this.labelColoniaSucursal.Name = "labelColoniaSucursal";
-            this.labelColoniaSucursal.Size = new System.Drawing.Size(42, 13);
-            this.labelColoniaSucursal.TabIndex = 1;
-            this.labelColoniaSucursal.Text = "Colonia";
-            this.labelColoniaSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelNumeroSucursal
-            // 
-            this.labelNumeroSucursal.AutoSize = true;
-            this.labelNumeroSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelNumeroSucursal.Location = new System.Drawing.Point(41, 82);
-            this.labelNumeroSucursal.Name = "labelNumeroSucursal";
-            this.labelNumeroSucursal.Size = new System.Drawing.Size(44, 13);
-            this.labelNumeroSucursal.TabIndex = 4;
-            this.labelNumeroSucursal.Text = "Número";
-            this.labelNumeroSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tbColoniaSuc
-            // 
-            this.tbColoniaSuc.BackColor = System.Drawing.SystemColors.Window;
-            this.tbColoniaSuc.Location = new System.Drawing.Point(101, 20);
-            this.tbColoniaSuc.MaxLength = 30;
-            this.tbColoniaSuc.Name = "tbColoniaSuc";
-            this.tbColoniaSuc.Size = new System.Drawing.Size(310, 20);
-            this.tbColoniaSuc.TabIndex = 0;
-            // 
-            // tbNumeroSucursal
-            // 
-            this.tbNumeroSucursal.BackColor = System.Drawing.SystemColors.Window;
-            this.tbNumeroSucursal.Location = new System.Drawing.Point(101, 75);
-            this.tbNumeroSucursal.MaxLength = 30;
-            this.tbNumeroSucursal.Name = "tbNumeroSucursal";
-            this.tbNumeroSucursal.Size = new System.Drawing.Size(310, 20);
-            this.tbNumeroSucursal.TabIndex = 5;
-            // 
-            // tbCalleSucursal
-            // 
-            this.tbCalleSucursal.BackColor = System.Drawing.SystemColors.Window;
-            this.tbCalleSucursal.Location = new System.Drawing.Point(101, 49);
-            this.tbCalleSucursal.MaxLength = 30;
-            this.tbCalleSucursal.Name = "tbCalleSucursal";
-            this.tbCalleSucursal.Size = new System.Drawing.Size(310, 20);
-            this.tbCalleSucursal.TabIndex = 7;
-            // 
-            // labelCalleSucursal
-            // 
-            this.labelCalleSucursal.AutoSize = true;
-            this.labelCalleSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelCalleSucursal.Location = new System.Drawing.Point(53, 56);
-            this.labelCalleSucursal.Name = "labelCalleSucursal";
-            this.labelCalleSucursal.Size = new System.Drawing.Size(30, 13);
-            this.labelCalleSucursal.TabIndex = 6;
-            this.labelCalleSucursal.Text = "Calle";
-            this.labelCalleSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dgSucursales.AllowUserToAddRows = false;
+            this.dgSucursales.AllowUserToDeleteRows = false;
+            this.dgSucursales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgSucursales.Location = new System.Drawing.Point(3, 198);
+            this.dgSucursales.Name = "dgSucursales";
+            this.dgSucursales.ReadOnly = true;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgSucursales.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgSucursales.Size = new System.Drawing.Size(963, 300);
+            this.dgSucursales.TabIndex = 16;
             // 
             // Form1
             // 
@@ -1469,17 +1520,18 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tpSucursales.ResumeLayout(false);
+            this.gbSucursal.ResumeLayout(false);
+            this.gbSucursal.PerformLayout();
+            this.gbUbicacionSucursal.ResumeLayout(false);
+            this.gbUbicacionSucursal.PerformLayout();
+            this.gbInfoSucursal.ResumeLayout(false);
+            this.gbInfoSucursal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).EndInit();
             this.tcPrincipal.ResumeLayout(false);
             this.tpAdministracion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
-            this.gbSucursal.ResumeLayout(false);
-            this.gbSucursal.PerformLayout();
-            this.gbInfoSucursal.ResumeLayout(false);
-            this.gbInfoSucursal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).EndInit();
-            this.gbUbicacionSucursal.ResumeLayout(false);
-            this.gbUbicacionSucursal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1577,7 +1629,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tpSucursales;
         private System.Windows.Forms.GroupBox gbSucursal;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelMensajeSucursal;
         private System.Windows.Forms.Button btnCancelarSuc;
         private System.Windows.Forms.Button btnAceptarSuc;
         private System.Windows.Forms.Button btnActualizarSuc;
@@ -1595,6 +1647,10 @@
         private System.Windows.Forms.Label labelColoniaSucursal;
         private System.Windows.Forms.Label labelNumeroSucursal;
         private System.Windows.Forms.TextBox tbColoniaSuc;
+        private System.Windows.Forms.Label labelTelSucursal;
+        private System.Windows.Forms.TextBox tbTelefonoSucursal;
+        private System.Windows.Forms.Timer ResetTimer;
+        private System.Windows.Forms.DataGridView dgSucursales;
     }
 }
 

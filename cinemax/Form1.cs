@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace cinemax
 {
@@ -394,6 +395,7 @@ namespace cinemax
         #region Metodos Comunes
         private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Conexion con;
             switch (tcAdministracion.SelectedTab.Text)
             {
                 case "Empleado":
@@ -401,6 +403,11 @@ namespace cinemax
                     break;
                 case "Membresía":
                     ObtenerRegistrosMembresia();
+                    break;
+                case "Sucursal":
+                    con = new SucursalConexion();
+                    if(!(con as SucursalConexion).CargaDatosGrid(dgSucursales))
+                        MessageBox.Show("Error al llamar al servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
 
@@ -748,13 +755,7 @@ namespace cinemax
         #region Metodos Pestaña Sucursal
         private void btnAgregarSuc_Click(object sender, EventArgs e)
         {
-            gbInfoSucursal.Enabled = true;
-            gbUbicacionSucursal.Enabled = true;
-            btnAceptarSuc.Visible = true;
-            btnCancelarSuc.Visible = true;
-            btnActualizarSuc.Enabled = false;
-            btnEliminarSuc.Enabled = false;
-            btnAgregarSuc.Enabled = false;
+            SwitchCamposSucural(true);
         }
 
         private void btnEliminarSuc_Click(object sender, EventArgs e)
@@ -769,25 +770,102 @@ namespace cinemax
 
         private void btnAceptarSuc_Click(object sender, EventArgs e)
         {
-            gbInfoSucursal.Enabled = false;
-            gbUbicacionSucursal.Enabled = false;
-            btnAceptarSuc.Visible = false;
-            btnCancelarSuc.Visible = false;
-            btnActualizarSuc.Enabled = true;
-            btnEliminarSuc.Enabled = true;
-            btnAgregarSuc.Enabled = true;
+            SucursalConexion dbConexion = new SucursalConexion();
+            bool resultado;
+            List<string> errores;
+
+            /* Validación de datos */
+            errores = new List<string>();
+            if (tbNombreCine.Text == string.Empty || Regex.IsMatch(tbNombreCine.Text, @"^(\s)+$"))
+                errores.Add("Nomre de sucursal requerido");
+            if (tbColoniaSuc.Text == string.Empty || Regex.IsMatch(tbColoniaSuc.Text, @"^(\s)+$"))
+                errores.Add("Colonia requerida");
+            if (tbCalleSucursal.Text == string.Empty || Regex.IsMatch(tbCalleSucursal.Text, @"^(\s)+$"))
+                errores.Add("Calle requerida");
+            if (!Regex.IsMatch(tbNumeroSucursal.Text, "[0-9]+"))
+                errores.Add("Ingrese un número en la dirección de la sucursal");
+            if ((tbTelefonoSucursal.Text != string.Empty) && !Regex.IsMatch(tbTelefonoSucursal.Text, @"^([0-9\s])+$"))
+                errores.Add("Ingrese un número teléfonico válido");
+            if (Regex.IsMatch(tbTelefonoSucursal.Text, @"^(\s)+$"))
+                tbTelefonoSucursal.Text = string.Empty;
+
+            if (errores.Count == 0)
+            {
+                /* Insercción de datos */
+                resultado = dbConexion.InsertaSucursal(tbNombreCine.Text,
+                    nudSalasCine.Value.ToString(),
+                    tbColoniaSuc.Text,
+                    tbCalleSucursal.Text,
+                    tbNumeroSucursal.Text,
+                    tbTelefonoSucursal.Text);
+
+                if (!resultado)
+                    MessageBox.Show("La sucursal no fue agregada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    labelMensajeSucursal.Text = "Sucursal agregada";
+                    labelMensajeSucursal.Visible = true;
+                    ResetTimer.Enabled = true;
+                }
+
+                /* Deshabilitación de campos de captura */
+                SwitchCamposSucural(false);
+            }
+            else
+            {
+                string msgText = string.Empty;
+                foreach(string elem in errores)
+                {
+                    msgText += elem + "\n";
+                }
+                MessageBox.Show(msgText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnCancelarSuc_Click(object sender, EventArgs e)
         {
-            gbInfoSucursal.Enabled = false;
-            gbUbicacionSucursal.Enabled = false;
-            btnAceptarSuc.Visible = false;
-            btnCancelarSuc.Visible = false;
-            btnActualizarSuc.Enabled = true;
-            btnEliminarSuc.Enabled = true;
-            btnAgregarSuc.Enabled = true;
+            SwitchCamposSucural(false);
+        }
+
+        private void SwitchCamposSucural(bool habilitar)
+        {
+            if (habilitar)
+            {
+                gbInfoSucursal.Enabled = true;
+                gbUbicacionSucursal.Enabled = true;
+                btnAceptarSuc.Visible = true;
+                btnCancelarSuc.Visible = true;
+                btnActualizarSuc.Enabled = false;
+                btnEliminarSuc.Enabled = false;
+                btnAgregarSuc.Enabled = false;
+            }
+            else
+            {
+                gbInfoSucursal.Enabled = false;
+                gbUbicacionSucursal.Enabled = false;
+                btnAceptarSuc.Visible = false;
+                btnCancelarSuc.Visible = false;
+                btnActualizarSuc.Enabled = false;
+                btnEliminarSuc.Enabled = false;
+                btnAgregarSuc.Enabled = true;
+                tbNombreCine.Text = string.Empty;
+                nudSalasCine.Value = 0;
+                tbColoniaSuc.Text = string.Empty;
+                tbCalleSucursal.Text = string.Empty;
+                tbNumeroSucursal.Text = string.Empty;
+                tbTelefonoSucursal.Text = string.Empty;
+            }
         }
         #endregion
+
+        private void ResetTimer_Tick(object sender, EventArgs e)
+        {
+            foreach(Control ctrl in gbSucursal.Controls)
+            {
+                if (ctrl.AccessibleName == "StatusLabel")
+                    ctrl.Visible = false;
+            }
+            ResetTimer.Enabled = false;
+        }
     }
 }
