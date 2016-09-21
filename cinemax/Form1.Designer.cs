@@ -61,7 +61,9 @@
             this.tpMembresia = new System.Windows.Forms.TabPage();
             this.dgMembresias = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btCancelarMem = new System.Windows.Forms.Button();
+            this.btAceptarMem = new System.Windows.Forms.Button();
+            this.gbDMem = new System.Windows.Forms.GroupBox();
             this.nuPuntosMem = new System.Windows.Forms.NumericUpDown();
             this.cbTipoMem = new System.Windows.Forms.ComboBox();
             this.lbPuntosMem = new System.Windows.Forms.Label();
@@ -70,14 +72,14 @@
             this.btActualizaMem = new System.Windows.Forms.Button();
             this.btEliminaMem = new System.Windows.Forms.Button();
             this.btInsertaMem = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gbDCMem = new System.Windows.Forms.GroupBox();
             this.lbNumeroMem = new System.Windows.Forms.Label();
             this.tbNumeroMem = new System.Windows.Forms.TextBox();
             this.lbCalleMem = new System.Windows.Forms.Label();
             this.tbCalleMem = new System.Windows.Forms.TextBox();
             this.lbColoniaMem = new System.Windows.Forms.Label();
             this.tbColoniaMem = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gbDPMem = new System.Windows.Forms.GroupBox();
             this.dpFechaMem = new System.Windows.Forms.DateTimePicker();
             this.lbFechaMem = new System.Windows.Forms.Label();
             this.lbApmMem = new System.Windows.Forms.Label();
@@ -92,6 +94,7 @@
             this.tbVenta = new System.Windows.Forms.TabPage();
             this.btMinimizar = new System.Windows.Forms.PictureBox();
             this.pbCerrar = new System.Windows.Forms.PictureBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -101,10 +104,10 @@
             this.tpMembresia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembresias)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.gbDMem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPuntosMem)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.gbDCMem.SuspendLayout();
+            this.gbDPMem.SuspendLayout();
             this.tcPrincipal.SuspendLayout();
             this.tpAdministracion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
@@ -116,6 +119,7 @@
             this.tcAdministracion.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tcAdministracion.Controls.Add(this.tpEmpleado);
             this.tcAdministracion.Controls.Add(this.tpMembresia);
+            this.tcAdministracion.Controls.Add(this.tabPage1);
             this.tcAdministracion.Cursor = System.Windows.Forms.Cursors.Default;
             this.tcAdministracion.Location = new System.Drawing.Point(3, 3);
             this.tcAdministracion.Multiline = true;
@@ -478,17 +482,21 @@
             this.dgMembresias.ReadOnly = true;
             this.dgMembresias.Size = new System.Drawing.Size(963, 300);
             this.dgMembresias.TabIndex = 2;
+            this.dgMembresias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMembresias_CellContentClick);
+            this.dgMembresias.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembresias_RowHeaderMouseClick);
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.groupBox6);
+            this.groupBox3.Controls.Add(this.btCancelarMem);
+            this.groupBox3.Controls.Add(this.btAceptarMem);
+            this.groupBox3.Controls.Add(this.gbDMem);
             this.groupBox3.Controls.Add(this.lbMensajeMem);
             this.groupBox3.Controls.Add(this.btActualizaMem);
             this.groupBox3.Controls.Add(this.btEliminaMem);
             this.groupBox3.Controls.Add(this.btInsertaMem);
-            this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Controls.Add(this.groupBox5);
+            this.groupBox3.Controls.Add(this.gbDCMem);
+            this.groupBox3.Controls.Add(this.gbDPMem);
             this.groupBox3.ForeColor = System.Drawing.Color.LightGray;
             this.groupBox3.Location = new System.Drawing.Point(3, 6);
             this.groupBox3.Name = "groupBox3";
@@ -497,19 +505,44 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informacion";
             // 
-            // groupBox6
+            // btCancelarMem
             // 
-            this.groupBox6.Controls.Add(this.nuPuntosMem);
-            this.groupBox6.Controls.Add(this.cbTipoMem);
-            this.groupBox6.Controls.Add(this.lbPuntosMem);
-            this.groupBox6.Controls.Add(this.lbTipoMem);
-            this.groupBox6.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox6.Location = new System.Drawing.Point(753, 19);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(204, 138);
-            this.groupBox6.TabIndex = 12;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Datos de membresia";
+            this.btCancelarMem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelarMem.Location = new System.Drawing.Point(558, 159);
+            this.btCancelarMem.Name = "btCancelarMem";
+            this.btCancelarMem.Size = new System.Drawing.Size(75, 23);
+            this.btCancelarMem.TabIndex = 14;
+            this.btCancelarMem.Text = "Cancelar";
+            this.btCancelarMem.UseVisualStyleBackColor = true;
+            this.btCancelarMem.Visible = false;
+            this.btCancelarMem.Click += new System.EventHandler(this.btCancelarMem_Click);
+            // 
+            // btAceptarMem
+            // 
+            this.btAceptarMem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btAceptarMem.Location = new System.Drawing.Point(639, 159);
+            this.btAceptarMem.Name = "btAceptarMem";
+            this.btAceptarMem.Size = new System.Drawing.Size(75, 23);
+            this.btAceptarMem.TabIndex = 13;
+            this.btAceptarMem.Text = "Aceptar";
+            this.btAceptarMem.UseVisualStyleBackColor = true;
+            this.btAceptarMem.Visible = false;
+            this.btAceptarMem.Click += new System.EventHandler(this.btAceptarMem_Click);
+            // 
+            // gbDMem
+            // 
+            this.gbDMem.Controls.Add(this.nuPuntosMem);
+            this.gbDMem.Controls.Add(this.cbTipoMem);
+            this.gbDMem.Controls.Add(this.lbPuntosMem);
+            this.gbDMem.Controls.Add(this.lbTipoMem);
+            this.gbDMem.Enabled = false;
+            this.gbDMem.ForeColor = System.Drawing.Color.Silver;
+            this.gbDMem.Location = new System.Drawing.Point(753, 19);
+            this.gbDMem.Name = "gbDMem";
+            this.gbDMem.Size = new System.Drawing.Size(204, 138);
+            this.gbDMem.TabIndex = 12;
+            this.gbDMem.TabStop = false;
+            this.gbDMem.Text = "Datos de membresia";
             // 
             // nuPuntosMem
             // 
@@ -565,7 +598,7 @@
             this.lbMensajeMem.AutoSize = true;
             this.lbMensajeMem.BackColor = System.Drawing.Color.Transparent;
             this.lbMensajeMem.ForeColor = System.Drawing.Color.Red;
-            this.lbMensajeMem.Location = new System.Drawing.Point(599, 164);
+            this.lbMensajeMem.Location = new System.Drawing.Point(441, 164);
             this.lbMensajeMem.Name = "lbMensajeMem";
             this.lbMensajeMem.Size = new System.Drawing.Size(106, 13);
             this.lbMensajeMem.TabIndex = 9;
@@ -582,6 +615,7 @@
             this.btActualizaMem.TabIndex = 2;
             this.btActualizaMem.Text = "Actualizar";
             this.btActualizaMem.UseVisualStyleBackColor = true;
+            this.btActualizaMem.Click += new System.EventHandler(this.btActualizaMem_Click);
             // 
             // btEliminaMem
             // 
@@ -592,6 +626,7 @@
             this.btEliminaMem.TabIndex = 1;
             this.btEliminaMem.Text = "Eliminar";
             this.btEliminaMem.UseVisualStyleBackColor = true;
+            this.btEliminaMem.Click += new System.EventHandler(this.btEliminaMem_Click);
             // 
             // btInsertaMem
             // 
@@ -604,21 +639,22 @@
             this.btInsertaMem.UseVisualStyleBackColor = true;
             this.btInsertaMem.Click += new System.EventHandler(this.btInsertaMem_Click);
             // 
-            // groupBox4
+            // gbDCMem
             // 
-            this.groupBox4.Controls.Add(this.lbNumeroMem);
-            this.groupBox4.Controls.Add(this.tbNumeroMem);
-            this.groupBox4.Controls.Add(this.lbCalleMem);
-            this.groupBox4.Controls.Add(this.tbCalleMem);
-            this.groupBox4.Controls.Add(this.lbColoniaMem);
-            this.groupBox4.Controls.Add(this.tbColoniaMem);
-            this.groupBox4.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox4.Location = new System.Drawing.Point(423, 19);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(324, 138);
-            this.groupBox4.TabIndex = 1;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Datos de contacto";
+            this.gbDCMem.Controls.Add(this.lbNumeroMem);
+            this.gbDCMem.Controls.Add(this.tbNumeroMem);
+            this.gbDCMem.Controls.Add(this.lbCalleMem);
+            this.gbDCMem.Controls.Add(this.tbCalleMem);
+            this.gbDCMem.Controls.Add(this.lbColoniaMem);
+            this.gbDCMem.Controls.Add(this.tbColoniaMem);
+            this.gbDCMem.Enabled = false;
+            this.gbDCMem.ForeColor = System.Drawing.Color.Silver;
+            this.gbDCMem.Location = new System.Drawing.Point(423, 19);
+            this.gbDCMem.Name = "gbDCMem";
+            this.gbDCMem.Size = new System.Drawing.Size(324, 138);
+            this.gbDCMem.TabIndex = 1;
+            this.gbDCMem.TabStop = false;
+            this.gbDCMem.Text = "Datos de contacto";
             // 
             // lbNumeroMem
             // 
@@ -676,23 +712,24 @@
             this.tbColoniaMem.Size = new System.Drawing.Size(248, 20);
             this.tbColoniaMem.TabIndex = 4;
             // 
-            // groupBox5
+            // gbDPMem
             // 
-            this.groupBox5.Controls.Add(this.dpFechaMem);
-            this.groupBox5.Controls.Add(this.lbFechaMem);
-            this.groupBox5.Controls.Add(this.lbApmMem);
-            this.groupBox5.Controls.Add(this.lbAppMem);
-            this.groupBox5.Controls.Add(this.tbApmMem);
-            this.groupBox5.Controls.Add(this.tbAppMem);
-            this.groupBox5.Controls.Add(this.lbNombreMem);
-            this.groupBox5.Controls.Add(this.tbNombreMem);
-            this.groupBox5.ForeColor = System.Drawing.Color.LightGray;
-            this.groupBox5.Location = new System.Drawing.Point(6, 19);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(411, 138);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Datos personales";
+            this.gbDPMem.Controls.Add(this.dpFechaMem);
+            this.gbDPMem.Controls.Add(this.lbFechaMem);
+            this.gbDPMem.Controls.Add(this.lbApmMem);
+            this.gbDPMem.Controls.Add(this.lbAppMem);
+            this.gbDPMem.Controls.Add(this.tbApmMem);
+            this.gbDPMem.Controls.Add(this.tbAppMem);
+            this.gbDPMem.Controls.Add(this.lbNombreMem);
+            this.gbDPMem.Controls.Add(this.tbNombreMem);
+            this.gbDPMem.Enabled = false;
+            this.gbDPMem.ForeColor = System.Drawing.Color.LightGray;
+            this.gbDPMem.Location = new System.Drawing.Point(6, 19);
+            this.gbDPMem.Name = "gbDPMem";
+            this.gbDPMem.Size = new System.Drawing.Size(411, 138);
+            this.gbDPMem.TabIndex = 0;
+            this.gbDPMem.TabStop = false;
+            this.gbDPMem.Text = "Datos personales";
             // 
             // dpFechaMem
             // 
@@ -841,6 +878,16 @@
             this.pbCerrar.TabStop = false;
             this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(970, 501);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -877,13 +924,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembresias)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.gbDMem.ResumeLayout(false);
+            this.gbDMem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuPuntosMem)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.gbDCMem.ResumeLayout(false);
+            this.gbDCMem.PerformLayout();
+            this.gbDPMem.ResumeLayout(false);
+            this.gbDPMem.PerformLayout();
             this.tcPrincipal.ResumeLayout(false);
             this.tpAdministracion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
@@ -931,14 +978,14 @@
         private System.Windows.Forms.Button btActualizaMem;
         private System.Windows.Forms.Button btEliminaMem;
         private System.Windows.Forms.Button btInsertaMem;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gbDCMem;
         private System.Windows.Forms.Label lbNumeroMem;
         private System.Windows.Forms.TextBox tbNumeroMem;
         private System.Windows.Forms.Label lbCalleMem;
         private System.Windows.Forms.TextBox tbCalleMem;
         private System.Windows.Forms.Label lbColoniaMem;
         private System.Windows.Forms.TextBox tbColoniaMem;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gbDPMem;
         private System.Windows.Forms.DateTimePicker dpFechaMem;
         private System.Windows.Forms.Label lbFechaMem;
         private System.Windows.Forms.Label lbApmMem;
@@ -948,7 +995,7 @@
         private System.Windows.Forms.Label lbNombreMem;
         private System.Windows.Forms.TextBox tbNombreMem;
         private System.Windows.Forms.DataGridView dgMembresias;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gbDMem;
         private System.Windows.Forms.Label lbPuntosMem;
         private System.Windows.Forms.Label lbTipoMem;
         private System.Windows.Forms.ComboBox cbTipoMem;
@@ -959,6 +1006,9 @@
         private System.Windows.Forms.TabPage tpAdministracion;
         private System.Windows.Forms.TabPage tbVenta;
         private System.Windows.Forms.PictureBox btMinimizar;
+        private System.Windows.Forms.Button btCancelarMem;
+        private System.Windows.Forms.Button btAceptarMem;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

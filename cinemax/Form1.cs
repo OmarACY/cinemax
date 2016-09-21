@@ -21,6 +21,7 @@ namespace cinemax
         private bool mouseAction;
         private Conexion conexion;
         private int opEmp = -1;
+        private int opMem = -1;
         #endregion
 
         #region Metodos Constructor y Load
@@ -30,7 +31,9 @@ namespace cinemax
             conexion = new Conexion();
             this.BackgroundImage = cinemax.Properties.Resources.fondo2;
             dgEmpleados.MultiSelect = false;            
-            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;           
+            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgMembresias.MultiSelect = false;
+            dgMembresias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -97,8 +100,9 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosEmpleado();
-                        MessageBox.Show("El empleado se agrego correctamente!!");                        
+                        MessageBox.Show("Se agrego correctamente!","Información");                        
                         LimpiaCamposEmpleado();
+                        BotonesAccionMem(false);
                     }
                     catch (Exception ex)
                     {
@@ -196,7 +200,7 @@ namespace cinemax
         }
 
         private void btEliminaEmpleado_Click(object sender, EventArgs e)
-        {
+        {            
             EliminarEmpleado();
         }
 
@@ -204,7 +208,7 @@ namespace cinemax
         {
             string clave_emp;
 
-            if ((clave_emp = RenglonSeleccionado()) != "")
+            if ((clave_emp = RenglonSeleccionadoEmp()) != "")
             {
                 if (MessageBox.Show("¿Esta seguro de querer eliminar este Empleado?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -236,7 +240,7 @@ namespace cinemax
             }else MessageBox.Show("Primero selecciona al <Empleado> que se desea eliminar","Atención");
         }
 
-        private string RenglonSeleccionado()
+        private string RenglonSeleccionadoEmp()
         {
             string renglon;
             try { renglon = dgEmpleados.SelectedCells[0].Value.ToString(); }
@@ -245,15 +249,15 @@ namespace cinemax
         }
         private void dgEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SeleccionaRegistro();
+            SeleccionaRegistroEmp();
         }
 
         private void dgEmpleados_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            SeleccionaRegistro();
+            SeleccionaRegistroEmp();
         }
 
-        private void SeleccionaRegistro()
+        private void SeleccionaRegistroEmp()
         {
             if (dgEmpleados.SelectedCells.Count > 1)
             {
@@ -273,7 +277,7 @@ namespace cinemax
         private void ActualizarEmpleado() {
 
             string clave_emp;
-            if ((clave_emp = RenglonSeleccionado()) != "")
+            if ((clave_emp = RenglonSeleccionadoEmp()) != "")
             {
                 if (conexion.AbrirConexion())
                 {//(nombres,app,apm,fecha_nac,colonia,calle,numero)
@@ -290,7 +294,7 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosEmpleado();
-                        MessageBox.Show("Se actualizo correctamente!!");
+                        MessageBox.Show("Se actualizo correctamente!","Información");
                         LimpiaCamposEmpleado();
                         BotonesAccionEmp(false);
                     }
@@ -309,7 +313,7 @@ namespace cinemax
 
         private void btActualizaEmpleado_Click(object sender, EventArgs e)
         {            
-            if (RenglonSeleccionado() != "")
+            if (RenglonSeleccionadoEmp() != "")
             {
                 opEmp = 1;
                 BotonesAccionEmp(true);
@@ -383,7 +387,7 @@ namespace cinemax
                 case "Empleado":
                     ObtenerRegistrosEmpleado();
                     break;
-                case "Membresias":
+                case "Membresía":
                     ObtenerRegistrosMembresia();
                     break;
             }
@@ -417,7 +421,10 @@ namespace cinemax
 
         private void btInsertaMem_Click(object sender, EventArgs e)
         {
-            InsertaMembresia();            
+            opMem = 0;
+            LimpiaCamposMembresia();
+            BotonesAccionMem(true);
+            tbNombreMem.Focus();
         }
 
         private void InsertaMembresia()
@@ -438,8 +445,9 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosMembresia();
-                        MessageBox.Show("El empleado se agrego correctamente!!");
+                        MessageBox.Show("Se agrego correctamente!", "Información"); 
                         LimpiaCamposMembresia();
+                        BotonesAccionMem(false);
                     }
                     catch (Exception ex)
                     {
@@ -506,6 +514,8 @@ namespace cinemax
             tbColoniaMem.Clear();
             tbCalleMem.Clear();
             tbNumeroMem.Clear();
+            cbTipoMem.SelectedIndex = -1;
+            nuPuntosMem.Value = 0;
         }
 
         private void ObtenerRegistrosMembresia()
@@ -525,6 +535,7 @@ namespace cinemax
                     adaptador.Dispose();
                     cmd.Dispose();
                     dgMembresias.DataSource = ds.Tables[0];
+                    dgMembresias.ClearSelection();
                 }
                 catch (Exception ex)
                 {
@@ -538,16 +549,185 @@ namespace cinemax
                 MessageBox.Show("Error al llamar al servidor");
             }
         }
+        private void btActualizaMem_Click(object sender, EventArgs e)
+        {
+            if (RenglonSeleccionadoMem() != "")
+            {
+                opMem = 1;
+                BotonesAccionMem(true);
+                tbNombreMem.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona al <Membresia> que se desea actualizar", "Atención");
+            }
+        }
+
+        private void ActualizarMembresia()
+        {
+            string clave_mem;
+            if ((clave_mem = RenglonSeleccionadoMem()) != "")
+            {
+                if (conexion.AbrirConexion())
+                {
+                    string txtCmd = "update Persona.membresia set nombre='" +
+                        tbNombreMem.Text + "', app='" + tbAppMem.Text +
+                        "', apm='" + tbApmMem.Text + "', fecha_nac='" +
+                        dpFechaMem.Value.Year + "/" + dpFechaMem.Value.Month + "/" + dpFechaMem.Value.Day +
+                        "', colonia='" + tbColoniaMem.Text + "', calle='" + tbCalleMem.Text +
+                        "', numero=" + tbNumeroMem.Text + ", tipo='" + cbTipoMem.SelectedItem.ToString() + "', puntos=" + nuPuntosMem.Value.ToString() +
+                        " where clave_mem=" + clave_mem;
+                   
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosMembresia();
+                        MessageBox.Show("Se actualizo correctamente!", "Información");
+                        LimpiaCamposMembresia();
+                        BotonesAccionMem(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+            }
+        }
+
+        private string RenglonSeleccionadoMem()
+        {
+            string renglon;
+            try { renglon = dgMembresias.SelectedCells[0].Value.ToString(); }
+            catch { renglon = string.Empty; }
+            return renglon;
+        }
+
+        private void dgMembresias_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SeleccionaRegistroMem();
+        }
+
+        private void dgMembresias_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SeleccionaRegistroMem();
+        }
+
+        private void SeleccionaRegistroMem()
+        {
+            if (dgMembresias.SelectedCells.Count > 1)
+            {
+                tbNombreMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["nombre"].Index].Value.ToString();
+                tbAppMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["app"].Index].Value.ToString();
+                tbApmMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["apm"].Index].Value.ToString();
+                string fecha = dgMembresias.SelectedCells[dgMembresias.Columns["fecha_nac"].Index].Value.ToString();
+                string[] f = fecha.Split('/');
+                dpFechaMem.Text = f[0] + '/' + f[1] + '/' + f[2];
+                tbColoniaMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["colonia"].Index].Value.ToString();
+                tbCalleMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["calle"].Index].Value.ToString();
+                tbNumeroMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["numero"].Index].Value.ToString();
+                cbTipoMem.SelectedItem = dgMembresias.SelectedCells[dgMembresias.Columns["tipo"].Index].Value.ToString();
+                nuPuntosMem.Value =(int)dgMembresias.SelectedCells[dgMembresias.Columns["puntos"].Index].Value;
+            }
+        }
+
+        private void btEliminaMem_Click(object sender, EventArgs e)
+        {
+            EliminarMembresia();
+        }
+
+        private void EliminarMembresia()
+        {
+            string clave_mem;
+
+            if ((clave_mem = RenglonSeleccionadoMem()) != "")
+            {
+                if (MessageBox.Show("¿Esta seguro de querer eliminar esta Membresia?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (conexion.AbrirConexion())
+                    {
+                        //clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
+                        string txtCmd = "delete from Persona.membresia where clave_mem = " + clave_mem;
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            ObtenerRegistrosMembresia();
+                            MessageBox.Show("Se elimino correctamente!!");
+                            LimpiaCamposMembresia();
+                            BotonesAccionMem(false);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
+                }
+            }
+            else MessageBox.Show("Primero selecciona al <Membresia> que se desea eliminar", "Atención");
+        }
+
+        private void btAceptarMem_Click(object sender, EventArgs e)
+        {
+            RealizaAccionMem();
+        }
+
+        private void RealizaAccionMem()
+        {
+            switch (opMem)
+            {
+                case 0: //Agregar Membresia
+                    InsertaMembresia();                    
+                    break;
+                case 1://Actualizar Membresia
+                    ActualizarMembresia();
+                    break;
+                default:
+                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
+                    break;
+            }
+        }
+        private void BotonesAccionMem(bool activo)
+        {
+            btAceptarMem.Visible = activo;
+            btCancelarMem.Visible = activo;
+            gbDPMem.Enabled = activo;
+            gbDCMem.Enabled = activo;
+            gbDMem.Enabled = activo;
+            dgMembresias.Enabled = !activo;
+            btInsertaMem.Enabled = !activo;
+            btEliminaMem.Enabled = !activo;
+            btActualizaMem.Enabled = !activo;
+        }
+        private void btCancelarMem_Click(object sender, EventArgs e)
+        {
+            LimpiaFormularioMembresia();
+            LimpiaCamposMembresia();
+            BotonesAccionMem(false);
+            dgMembresias.ClearSelection();
+        }
 
         #endregion
 
 
 
-      
-
- 
 
 
 
+
+
+        
     }
 }
