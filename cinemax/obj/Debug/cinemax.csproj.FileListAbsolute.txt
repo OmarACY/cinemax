@@ -17,3 +17,12 @@ C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csprojResol
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Form1.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Resources.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe.config
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.exe
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.pdb
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.pdb
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csprojResolveAssemblyReference.cache
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Form1.resources
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Resources.resources
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache

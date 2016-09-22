@@ -12,15 +12,21 @@ namespace cinemax
     public class Conexion
     {
         /* Cadena de Conexión Omar */
-        /*
+        
          public string datosCon = @"Data Source = OMARACY-MAC\SQLEXPRESS;" +
              "Initial Catalog = cinemax; Integrated Security = true;";
-        */
+         
 
         /* Cadena de Conexión Milán */
-        
+        /*
         public string datosCon = @"Data Source=BECARIOS-PC\;Initial Catalog=cinemax;Integrated Security=True;";
-         
+         */
+
+        /* Cadena de Conexión Milán (Laptop) */
+        /*
+        public string datosCon = @"Data Source=MILAN-PC\;Initial Catalog=cinemax;Integrated Security=True;";
+         */
+
         public SqlConnection con;
 
         /// <summary>
@@ -43,7 +49,7 @@ namespace cinemax
             con.Close();
         }
 
-        protected bool Inserta(string query)
+        protected bool EjecutaSentencia(string query)
         {
             if (AbrirConexion())
             {
@@ -99,7 +105,6 @@ namespace cinemax
         protected int ObtenUltimoID(string tabla, string nombreId)
         {
             SqlDataAdapter adaptador = new SqlDataAdapter();
-            DataSet ds = new DataSet();
             int id;
 
             if (AbrirConexion())

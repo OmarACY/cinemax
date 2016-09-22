@@ -1471,7 +1471,7 @@
             // 
             // ResetTimer
             // 
-            this.ResetTimer.Interval = 1000;
+            this.ResetTimer.Interval = 1500;
             this.ResetTimer.Tick += new System.EventHandler(this.ResetTimer_Tick);
             // 
             // Form1

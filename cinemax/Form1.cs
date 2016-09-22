@@ -802,36 +802,65 @@ namespace cinemax
                 tcPrincipal_SelectedIndexChanged(this, null);
                 SwitchCamposSucural("Deshabilitar");
             }
-            else MessageBox.Show("Primero selecciona al <Cine> que se desea eliminar", "Atención");
+            else MessageBox.Show("Primero seleccione la <Sucursal> que se desea eliminar", "Atención");
         }
 
         private void btnActualizarSuc_Click(object sender, EventArgs e)
         {
+            string clave_cin;
 
+            #region Obtener clave de cine
+            try
+            {
+                clave_cin = dgSucursales.SelectedCells[0].Value.ToString();
+            }
+            catch (Exception)
+            {
+                clave_cin = string.Empty;
+            }
+            #endregion
+            if (clave_cin != "")
+            {
+                if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de esta sucursal?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    SucursalConexion dbConexion = new SucursalConexion();
+                    bool resultado;
+
+                    if (ValidaDatosSucursal())
+                    {
+                        /* Insercción de datos */
+                        resultado = dbConexion.ActualizaSucursal(clave_cin, tbNombreCine.Text,
+                            nudSalasCine.Value.ToString(),
+                            tbColoniaSuc.Text,
+                            tbCalleSucursal.Text,
+                            tbNumeroSucursal.Text,
+                            tbTelefonoSucursal.Text);
+
+                        if (!resultado)
+                            MessageBox.Show("La información de la sucursal \n no fue actualizada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                        {
+                            labelMensajeSucursal.Text = "Información de la sucursal actualizada";
+                            labelMensajeSucursal.Visible = true;
+                            ResetTimer.Enabled = true;
+                            /* Actualización del grid */
+                            tcPrincipal_SelectedIndexChanged(this, null);
+                            /* Deshabilitación de campos de captura */
+                            SwitchCamposSucural("Deshabilitar");
+                        }
+                    }
+                }
+            }
+            else MessageBox.Show("Primero seleccione la <Sucursal> que se desea actualizar", "Atención");
         }
 
         private void btnAceptarSuc_Click(object sender, EventArgs e)
         {
             SucursalConexion dbConexion = new SucursalConexion();
             bool resultado;
-            List<string> errores;
-
-            /* Validación de datos */
-            errores = new List<string>();
-            if (tbNombreCine.Text == string.Empty || Regex.IsMatch(tbNombreCine.Text, @"^(\s)+$"))
-                errores.Add("Nomre de sucursal requerido");
-            if (tbColoniaSuc.Text == string.Empty || Regex.IsMatch(tbColoniaSuc.Text, @"^(\s)+$"))
-                errores.Add("Colonia requerida");
-            if (tbCalleSucursal.Text == string.Empty || Regex.IsMatch(tbCalleSucursal.Text, @"^(\s)+$"))
-                errores.Add("Calle requerida");
-            if (!Regex.IsMatch(tbNumeroSucursal.Text, "[0-9]+"))
-                errores.Add("Ingrese un número en la dirección de la sucursal");
-            if ((tbTelefonoSucursal.Text != string.Empty) && !Regex.IsMatch(tbTelefonoSucursal.Text, @"^([0-9\s])+$"))
-                errores.Add("Ingrese un número teléfonico válido");
-            if (Regex.IsMatch(tbTelefonoSucursal.Text, @"^(\s)+$"))
-                tbTelefonoSucursal.Text = string.Empty;
-
-            if (errores.Count == 0)
+            
+            if (ValidaDatosSucursal())
             {
                 /* Insercción de datos */
                 resultado = dbConexion.InsertaSucursal(tbNombreCine.Text,
@@ -855,15 +884,6 @@ namespace cinemax
                 SwitchCamposSucural("Deshabilitar");
                 /* Actualización del grid */
                 tcPrincipal_SelectedIndexChanged(this, null);
-            }
-            else
-            {
-                string msgText = string.Empty;
-                foreach(string elem in errores)
-                {
-                    msgText += elem + "\n";
-                }
-                MessageBox.Show(msgText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -909,6 +929,38 @@ namespace cinemax
                     btnEliminarSuc.Enabled = true;
                     btnAceptarSuc.Visible = false;
                     break;
+            }
+        }
+
+        private bool ValidaDatosSucursal()
+        {
+
+            List<string> errores;
+
+            errores = new List<string>();
+            if (tbNombreCine.Text == string.Empty || Regex.IsMatch(tbNombreCine.Text, @"^(\s)+$"))
+                errores.Add("Nomre de sucursal requerido");
+            if (tbColoniaSuc.Text == string.Empty || Regex.IsMatch(tbColoniaSuc.Text, @"^(\s)+$"))
+                errores.Add("Colonia requerida");
+            if (tbCalleSucursal.Text == string.Empty || Regex.IsMatch(tbCalleSucursal.Text, @"^(\s)+$"))
+                errores.Add("Calle requerida");
+            if (!Regex.IsMatch(tbNumeroSucursal.Text, "[0-9]+"))
+                errores.Add("Ingrese un número en la dirección de la sucursal");
+            if ((tbTelefonoSucursal.Text != string.Empty) && !Regex.IsMatch(tbTelefonoSucursal.Text, @"^([0-9\s])+$"))
+                errores.Add("Ingrese un número teléfonico válido");
+            if (Regex.IsMatch(tbTelefonoSucursal.Text, @"^(\s)+$"))
+                tbTelefonoSucursal.Text = string.Empty;
+            if (errores.Count == 0)
+                return true;
+            else
+            {
+                string msgText = string.Empty;
+                foreach (string elem in errores)
+                {
+                    msgText += elem + "\n";
+                }
+                MessageBox.Show(msgText, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
         }
         #endregion
