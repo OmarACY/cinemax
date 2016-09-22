@@ -95,5 +95,33 @@ namespace cinemax
                 return null;
             }
         }
+
+        protected int ObtenUltimoID(string tabla, string nombreId)
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            int id;
+
+            if (AbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT top 1 " + nombreId + " from Cine." + tabla + " order by " + nombreId + " desc", con);
+
+                try
+                {
+                    id = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
+                CerrarConexion();
+                return id;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace cinemax
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            tcPrincipal_SelectedIndexChanged(this, null);
         }
 
         #endregion
@@ -755,12 +755,54 @@ namespace cinemax
         #region Metodos Pestaña Sucursal
         private void btnAgregarSuc_Click(object sender, EventArgs e)
         {
-            SwitchCamposSucural(true);
+            SwitchCamposSucural("Habilitar");
         }
 
         private void btnEliminarSuc_Click(object sender, EventArgs e)
         {
+            string clave_cin;
 
+            #region Obtener clave de cine
+            try 
+            {
+                clave_cin = dgSucursales.SelectedCells[0].Value.ToString(); 
+            }
+            catch(Exception)
+            { 
+                clave_cin = string.Empty;
+            }
+            #endregion
+            if (clave_cin != "")
+            {
+                if (MessageBox.Show("¿Esta seguro de querer eliminar esta sucursal?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (conexion.AbrirConexion())
+                    {
+                        string txtCmd = "delete from Cine.cine where clave_cin = " + clave_cin;
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
+                }
+                labelMensajeSucursal.Text = "Sucursal eliminada";
+                labelMensajeSucursal.Visible = true;
+                ResetTimer.Enabled = true;
+                tcPrincipal_SelectedIndexChanged(this, null);
+                SwitchCamposSucural("Deshabilitar");
+            }
+            else MessageBox.Show("Primero selecciona al <Cine> que se desea eliminar", "Atención");
         }
 
         private void btnActualizarSuc_Click(object sender, EventArgs e)
@@ -804,12 +846,15 @@ namespace cinemax
                 else
                 {
                     labelMensajeSucursal.Text = "Sucursal agregada";
+                    tcPrincipal_SelectedIndexChanged(this, null);
                     labelMensajeSucursal.Visible = true;
                     ResetTimer.Enabled = true;
                 }
 
                 /* Deshabilitación de campos de captura */
-                SwitchCamposSucural(false);
+                SwitchCamposSucural("Deshabilitar");
+                /* Actualización del grid */
+                tcPrincipal_SelectedIndexChanged(this, null);
             }
             else
             {
@@ -824,36 +869,46 @@ namespace cinemax
 
         private void btnCancelarSuc_Click(object sender, EventArgs e)
         {
-            SwitchCamposSucural(false);
+            SwitchCamposSucural("Deshabilitar");
         }
 
-        private void SwitchCamposSucural(bool habilitar)
+        private void SwitchCamposSucural(string caso)
         {
-            if (habilitar)
+            switch (caso)
             {
-                gbInfoSucursal.Enabled = true;
-                gbUbicacionSucursal.Enabled = true;
-                btnAceptarSuc.Visible = true;
-                btnCancelarSuc.Visible = true;
-                btnActualizarSuc.Enabled = false;
-                btnEliminarSuc.Enabled = false;
-                btnAgregarSuc.Enabled = false;
-            }
-            else
-            {
-                gbInfoSucursal.Enabled = false;
-                gbUbicacionSucursal.Enabled = false;
-                btnAceptarSuc.Visible = false;
-                btnCancelarSuc.Visible = false;
-                btnActualizarSuc.Enabled = false;
-                btnEliminarSuc.Enabled = false;
-                btnAgregarSuc.Enabled = true;
-                tbNombreCine.Text = string.Empty;
-                nudSalasCine.Value = 0;
-                tbColoniaSuc.Text = string.Empty;
-                tbCalleSucursal.Text = string.Empty;
-                tbNumeroSucursal.Text = string.Empty;
-                tbTelefonoSucursal.Text = string.Empty;
+                case "Habilitar":
+                    gbInfoSucursal.Enabled = true;
+                    gbUbicacionSucursal.Enabled = true;
+                    btnAceptarSuc.Visible = true;
+                    btnCancelarSuc.Visible = true;
+                    btnActualizarSuc.Enabled = false;
+                    btnEliminarSuc.Enabled = false;
+                    btnAgregarSuc.Enabled = false;
+                    break;
+                case "Deshabilitar":
+                    gbInfoSucursal.Enabled = false;
+                    gbUbicacionSucursal.Enabled = false;
+                    btnAceptarSuc.Visible = false;
+                    btnCancelarSuc.Visible = false;
+                    btnActualizarSuc.Enabled = false;
+                    btnEliminarSuc.Enabled = false;
+                    btnAgregarSuc.Enabled = true;
+                    tbNombreCine.Text = string.Empty;
+                    nudSalasCine.Value = 0;
+                    tbColoniaSuc.Text = string.Empty;
+                    tbCalleSucursal.Text = string.Empty;
+                    tbNumeroSucursal.Text = string.Empty;
+                    tbTelefonoSucursal.Text = string.Empty;
+                    break;
+                case "Actualizar":
+                    gbInfoSucursal.Enabled = true;
+                    gbUbicacionSucursal.Enabled = true;
+                    btnCancelarSuc.Visible = true;
+                    btnAgregarSuc.Enabled = false;
+                    btnActualizarSuc.Enabled = true;
+                    btnEliminarSuc.Enabled = true;
+                    btnAceptarSuc.Visible = false;
+                    break;
             }
         }
         #endregion
@@ -866,6 +921,34 @@ namespace cinemax
                     ctrl.Visible = false;
             }
             ResetTimer.Enabled = false;
+        }
+
+        private void dgSucursales_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgSucursales.SelectedCells.Count > 1)
+            {
+                tbNombreCine.Text = dgSucursales.SelectedCells[dgSucursales.Columns["nombre"].Index].Value.ToString();
+                nudSalasCine.Value = decimal.Parse(dgSucursales.SelectedCells[dgSucursales.Columns["num_salas"].Index].Value.ToString());
+                tbColoniaSuc.Text = dgSucursales.SelectedCells[dgSucursales.Columns["colonia"].Index].Value.ToString();
+                tbCalleSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["calle"].Index].Value.ToString();
+                tbNumeroSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["numero"].Index].Value.ToString();
+                tbTelefonoSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["telefono"].Index].Value.ToString();
+                SwitchCamposSucural("Actualizar");
+            }
+        }
+
+        private void dgSucursales_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgSucursales.SelectedCells.Count > 1)
+            {
+                tbNombreCine.Text = dgSucursales.SelectedCells[dgSucursales.Columns["nombre"].Index].Value.ToString();
+                nudSalasCine.Value = decimal.Parse(dgSucursales.SelectedCells[dgSucursales.Columns["num_salas"].Index].Value.ToString());
+                tbColoniaSuc.Text = dgSucursales.SelectedCells[dgSucursales.Columns["colonia"].Index].Value.ToString();
+                tbCalleSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["calle"].Index].Value.ToString();
+                tbNumeroSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["numero"].Index].Value.ToString();
+                tbTelefonoSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["telefono"].Index].Value.ToString();
+                SwitchCamposSucural("Actualizar");
+            }
         }
     }
 }

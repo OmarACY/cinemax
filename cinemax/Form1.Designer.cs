@@ -113,6 +113,7 @@
             this.lbNombrePel = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.tpSucursales = new System.Windows.Forms.TabPage();
+            this.dgSucursales = new System.Windows.Forms.DataGridView();
             this.gbSucursal = new System.Windows.Forms.GroupBox();
             this.gbUbicacionSucursal = new System.Windows.Forms.GroupBox();
             this.tbCalleSucursal = new System.Windows.Forms.TextBox();
@@ -128,20 +129,19 @@
             this.btnEliminarSuc = new System.Windows.Forms.Button();
             this.btnAgregarSuc = new System.Windows.Forms.Button();
             this.gbInfoSucursal = new System.Windows.Forms.GroupBox();
+            this.labelTelSucursal = new System.Windows.Forms.Label();
             this.nudSalasCine = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.labelSalasCine = new System.Windows.Forms.Label();
             this.tbNombreCine = new System.Windows.Forms.TextBox();
+            this.tbTelefonoSucursal = new System.Windows.Forms.TextBox();
             this.lbCinemax = new System.Windows.Forms.Label();
             this.tcPrincipal = new System.Windows.Forms.TabControl();
             this.tpAdministracion = new System.Windows.Forms.TabPage();
             this.tbVenta = new System.Windows.Forms.TabPage();
             this.btMinimizar = new System.Windows.Forms.PictureBox();
             this.pbCerrar = new System.Windows.Forms.PictureBox();
-            this.tbTelefonoSucursal = new System.Windows.Forms.TextBox();
-            this.labelTelSucursal = new System.Windows.Forms.Label();
             this.ResetTimer = new System.Windows.Forms.Timer(this.components);
-            this.dgSucursales = new System.Windows.Forms.DataGridView();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -160,6 +160,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tpSucursales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).BeginInit();
             this.gbSucursal.SuspendLayout();
             this.gbUbicacionSucursal.SuspendLayout();
             this.gbInfoSucursal.SuspendLayout();
@@ -168,7 +169,6 @@
             this.tpAdministracion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdministracion
@@ -1139,6 +1139,23 @@
             this.tpSucursales.TabIndex = 4;
             this.tpSucursales.Text = "Sucursal";
             // 
+            // dgSucursales
+            // 
+            this.dgSucursales.AllowUserToAddRows = false;
+            this.dgSucursales.AllowUserToDeleteRows = false;
+            this.dgSucursales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgSucursales.Location = new System.Drawing.Point(3, 198);
+            this.dgSucursales.MultiSelect = false;
+            this.dgSucursales.Name = "dgSucursales";
+            this.dgSucursales.ReadOnly = true;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgSucursales.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgSucursales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgSucursales.Size = new System.Drawing.Size(963, 300);
+            this.dgSucursales.TabIndex = 16;
+            this.dgSucursales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSucursales_CellContentClick);
+            this.dgSucursales.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSucursales_RowHeaderMouseClick);
+            // 
             // gbSucursal
             // 
             this.gbSucursal.BackColor = System.Drawing.Color.Black;
@@ -1253,10 +1270,10 @@
             // btnCancelarSuc
             // 
             this.btnCancelarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCancelarSuc.Location = new System.Drawing.Point(558, 159);
+            this.btnCancelarSuc.Location = new System.Drawing.Point(639, 159);
             this.btnCancelarSuc.Name = "btnCancelarSuc";
             this.btnCancelarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarSuc.TabIndex = 6;
+            this.btnCancelarSuc.TabIndex = 7;
             this.btnCancelarSuc.Text = "Cancelar";
             this.btnCancelarSuc.UseVisualStyleBackColor = true;
             this.btnCancelarSuc.Visible = false;
@@ -1265,10 +1282,10 @@
             // btnAceptarSuc
             // 
             this.btnAceptarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAceptarSuc.Location = new System.Drawing.Point(639, 159);
+            this.btnAceptarSuc.Location = new System.Drawing.Point(558, 159);
             this.btnAceptarSuc.Name = "btnAceptarSuc";
             this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarSuc.TabIndex = 7;
+            this.btnAceptarSuc.TabIndex = 6;
             this.btnAceptarSuc.Text = "Aceptar";
             this.btnAceptarSuc.UseVisualStyleBackColor = true;
             this.btnAceptarSuc.Visible = false;
@@ -1327,6 +1344,17 @@
             this.gbInfoSucursal.TabStop = false;
             this.gbInfoSucursal.Text = "Datos generales";
             // 
+            // labelTelSucursal
+            // 
+            this.labelTelSucursal.AutoSize = true;
+            this.labelTelSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTelSucursal.Location = new System.Drawing.Point(54, 82);
+            this.labelTelSucursal.Name = "labelTelSucursal";
+            this.labelTelSucursal.Size = new System.Drawing.Size(49, 13);
+            this.labelTelSucursal.TabIndex = 8;
+            this.labelTelSucursal.Text = "Teléfono";
+            this.labelTelSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // nudSalasCine
             // 
             this.nudSalasCine.Location = new System.Drawing.Point(127, 48);
@@ -1364,6 +1392,15 @@
             this.tbNombreCine.Name = "tbNombreCine";
             this.tbNombreCine.Size = new System.Drawing.Size(286, 20);
             this.tbNombreCine.TabIndex = 0;
+            // 
+            // tbTelefonoSucursal
+            // 
+            this.tbTelefonoSucursal.BackColor = System.Drawing.SystemColors.Window;
+            this.tbTelefonoSucursal.Location = new System.Drawing.Point(127, 75);
+            this.tbTelefonoSucursal.MaxLength = 30;
+            this.tbTelefonoSucursal.Name = "tbTelefonoSucursal";
+            this.tbTelefonoSucursal.Size = new System.Drawing.Size(286, 20);
+            this.tbTelefonoSucursal.TabIndex = 2;
             // 
             // lbCinemax
             // 
@@ -1432,43 +1469,10 @@
             this.pbCerrar.TabStop = false;
             this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
-            // tbTelefonoSucursal
-            // 
-            this.tbTelefonoSucursal.BackColor = System.Drawing.SystemColors.Window;
-            this.tbTelefonoSucursal.Location = new System.Drawing.Point(127, 75);
-            this.tbTelefonoSucursal.MaxLength = 30;
-            this.tbTelefonoSucursal.Name = "tbTelefonoSucursal";
-            this.tbTelefonoSucursal.Size = new System.Drawing.Size(286, 20);
-            this.tbTelefonoSucursal.TabIndex = 2;
-            // 
-            // labelTelSucursal
-            // 
-            this.labelTelSucursal.AutoSize = true;
-            this.labelTelSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelTelSucursal.Location = new System.Drawing.Point(54, 82);
-            this.labelTelSucursal.Name = "labelTelSucursal";
-            this.labelTelSucursal.Size = new System.Drawing.Size(49, 13);
-            this.labelTelSucursal.TabIndex = 8;
-            this.labelTelSucursal.Text = "Teléfono";
-            this.labelTelSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // ResetTimer
             // 
             this.ResetTimer.Interval = 1000;
             this.ResetTimer.Tick += new System.EventHandler(this.ResetTimer_Tick);
-            // 
-            // dgSucursales
-            // 
-            this.dgSucursales.AllowUserToAddRows = false;
-            this.dgSucursales.AllowUserToDeleteRows = false;
-            this.dgSucursales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgSucursales.Location = new System.Drawing.Point(3, 198);
-            this.dgSucursales.Name = "dgSucursales";
-            this.dgSucursales.ReadOnly = true;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgSucursales.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgSucursales.Size = new System.Drawing.Size(963, 300);
-            this.dgSucursales.TabIndex = 16;
             // 
             // Form1
             // 
@@ -1520,6 +1524,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tpSucursales.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).EndInit();
             this.gbSucursal.ResumeLayout(false);
             this.gbSucursal.PerformLayout();
             this.gbUbicacionSucursal.ResumeLayout(false);
@@ -1531,7 +1536,6 @@
             this.tpAdministracion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgSucursales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
