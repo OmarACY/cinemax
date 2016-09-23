@@ -67,6 +67,24 @@ namespace cinemax
                 return false;
         }
 
+        public bool EliminaSucursal(string claveCine)
+        {
+            string query2, query1;
+
+            query1 = "delete from Cine.sala where clave_cin = " + claveCine;
+            query2 = "delete from Cine.tel_cin where clave_cin = " + claveCine;
+            if (EjecutaSentencia(query1) && EjecutaSentencia(query2))
+            {
+                query1 = "delete from Cine.cine where clave_cin = " + claveCine;
+                if (EjecutaSentencia(query1))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         public bool CargaDatosGrid(DataGridView dataGrid)
         {
             string query = "select cine.*, tel.telefono from Cine.cine as cine left join Cine.tel_cin as tel on tel.clave_cin = cine.clave_cin";

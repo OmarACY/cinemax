@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcAdministracion = new System.Windows.Forms.TabControl();
             this.tpEmpleado = new System.Windows.Forms.TabPage();
             this.dgEmpleados = new System.Windows.Forms.DataGridView();
@@ -129,6 +129,8 @@
             this.btnEliminarSuc = new System.Windows.Forms.Button();
             this.btnAgregarSuc = new System.Windows.Forms.Button();
             this.gbInfoSucursal = new System.Windows.Forms.GroupBox();
+            this.btnEditarSalas = new System.Windows.Forms.Button();
+            this.labelSalasSucursal = new System.Windows.Forms.Label();
             this.labelTelSucursal = new System.Windows.Forms.Label();
             this.nudSalasCine = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
@@ -1148,11 +1150,11 @@
             this.dgSucursales.MultiSelect = false;
             this.dgSucursales.Name = "dgSucursales";
             this.dgSucursales.ReadOnly = true;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgSucursales.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgSucursales.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgSucursales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSucursales.Size = new System.Drawing.Size(963, 300);
-            this.dgSucursales.TabIndex = 16;
+            this.dgSucursales.TabIndex = 12;
             this.dgSucursales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSucursales_CellContentClick);
             this.dgSucursales.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSucursales_RowHeaderMouseClick);
             // 
@@ -1200,7 +1202,7 @@
             this.tbCalleSucursal.MaxLength = 30;
             this.tbCalleSucursal.Name = "tbCalleSucursal";
             this.tbCalleSucursal.Size = new System.Drawing.Size(286, 20);
-            this.tbCalleSucursal.TabIndex = 4;
+            this.tbCalleSucursal.TabIndex = 5;
             // 
             // labelCalleSucursal
             // 
@@ -1220,7 +1222,7 @@
             this.tbNumeroSucursal.MaxLength = 30;
             this.tbNumeroSucursal.Name = "tbNumeroSucursal";
             this.tbNumeroSucursal.Size = new System.Drawing.Size(286, 20);
-            this.tbNumeroSucursal.TabIndex = 5;
+            this.tbNumeroSucursal.TabIndex = 6;
             // 
             // labelColoniaSucursal
             // 
@@ -1251,7 +1253,7 @@
             this.tbColoniaSuc.MaxLength = 30;
             this.tbColoniaSuc.Name = "tbColoniaSuc";
             this.tbColoniaSuc.Size = new System.Drawing.Size(286, 20);
-            this.tbColoniaSuc.TabIndex = 3;
+            this.tbColoniaSuc.TabIndex = 4;
             // 
             // labelMensajeSucursal
             // 
@@ -1273,7 +1275,7 @@
             this.btnCancelarSuc.Location = new System.Drawing.Point(639, 159);
             this.btnCancelarSuc.Name = "btnCancelarSuc";
             this.btnCancelarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarSuc.TabIndex = 7;
+            this.btnCancelarSuc.TabIndex = 8;
             this.btnCancelarSuc.Text = "Cancelar";
             this.btnCancelarSuc.UseVisualStyleBackColor = true;
             this.btnCancelarSuc.Visible = false;
@@ -1285,7 +1287,7 @@
             this.btnAceptarSuc.Location = new System.Drawing.Point(558, 159);
             this.btnAceptarSuc.Name = "btnAceptarSuc";
             this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarSuc.TabIndex = 6;
+            this.btnAceptarSuc.TabIndex = 7;
             this.btnAceptarSuc.Text = "Aceptar";
             this.btnAceptarSuc.UseVisualStyleBackColor = true;
             this.btnAceptarSuc.Visible = false;
@@ -1298,7 +1300,7 @@
             this.btnActualizarSuc.Location = new System.Drawing.Point(720, 159);
             this.btnActualizarSuc.Name = "btnActualizarSuc";
             this.btnActualizarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizarSuc.TabIndex = 8;
+            this.btnActualizarSuc.TabIndex = 9;
             this.btnActualizarSuc.Text = "Actualizar";
             this.btnActualizarSuc.UseVisualStyleBackColor = true;
             this.btnActualizarSuc.Click += new System.EventHandler(this.btnActualizarSuc_Click);
@@ -1310,7 +1312,7 @@
             this.btnEliminarSuc.Location = new System.Drawing.Point(801, 159);
             this.btnEliminarSuc.Name = "btnEliminarSuc";
             this.btnEliminarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminarSuc.TabIndex = 9;
+            this.btnEliminarSuc.TabIndex = 10;
             this.btnEliminarSuc.Text = "Eliminar";
             this.btnEliminarSuc.UseVisualStyleBackColor = true;
             this.btnEliminarSuc.Click += new System.EventHandler(this.btnEliminarSuc_Click);
@@ -1321,7 +1323,7 @@
             this.btnAgregarSuc.Location = new System.Drawing.Point(882, 159);
             this.btnAgregarSuc.Name = "btnAgregarSuc";
             this.btnAgregarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarSuc.TabIndex = 10;
+            this.btnAgregarSuc.TabIndex = 11;
             this.btnAgregarSuc.Text = "Agregar";
             this.btnAgregarSuc.UseVisualStyleBackColor = true;
             this.btnAgregarSuc.Click += new System.EventHandler(this.btnAgregarSuc_Click);
@@ -1329,6 +1331,8 @@
             // gbInfoSucursal
             // 
             this.gbInfoSucursal.BackColor = System.Drawing.Color.Transparent;
+            this.gbInfoSucursal.Controls.Add(this.btnEditarSalas);
+            this.gbInfoSucursal.Controls.Add(this.labelSalasSucursal);
             this.gbInfoSucursal.Controls.Add(this.labelTelSucursal);
             this.gbInfoSucursal.Controls.Add(this.nudSalasCine);
             this.gbInfoSucursal.Controls.Add(this.label9);
@@ -1344,11 +1348,35 @@
             this.gbInfoSucursal.TabStop = false;
             this.gbInfoSucursal.Text = "Datos generales";
             // 
+            // btnEditarSalas
+            // 
+            this.btnEditarSalas.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEditarSalas.Location = new System.Drawing.Point(127, 100);
+            this.btnEditarSalas.Name = "btnEditarSalas";
+            this.btnEditarSalas.Size = new System.Drawing.Size(75, 23);
+            this.btnEditarSalas.TabIndex = 3;
+            this.btnEditarSalas.Text = "Editar";
+            this.btnEditarSalas.UseVisualStyleBackColor = true;
+            this.btnEditarSalas.Visible = false;
+            this.btnEditarSalas.Click += new System.EventHandler(this.btnEditarSalas_Click);
+            // 
+            // labelSalasSucursal
+            // 
+            this.labelSalasSucursal.AutoSize = true;
+            this.labelSalasSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSalasSucursal.Location = new System.Drawing.Point(70, 105);
+            this.labelSalasSucursal.Name = "labelSalasSucursal";
+            this.labelSalasSucursal.Size = new System.Drawing.Size(33, 13);
+            this.labelSalasSucursal.TabIndex = 9;
+            this.labelSalasSucursal.Text = "Salas";
+            this.labelSalasSucursal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelSalasSucursal.Visible = false;
+            // 
             // labelTelSucursal
             // 
             this.labelTelSucursal.AutoSize = true;
             this.labelTelSucursal.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelTelSucursal.Location = new System.Drawing.Point(54, 82);
+            this.labelTelSucursal.Location = new System.Drawing.Point(54, 54);
             this.labelTelSucursal.Name = "labelTelSucursal";
             this.labelTelSucursal.Size = new System.Drawing.Size(49, 13);
             this.labelTelSucursal.TabIndex = 8;
@@ -1357,10 +1385,10 @@
             // 
             // nudSalasCine
             // 
-            this.nudSalasCine.Location = new System.Drawing.Point(127, 48);
+            this.nudSalasCine.Location = new System.Drawing.Point(127, 74);
             this.nudSalasCine.Name = "nudSalasCine";
             this.nudSalasCine.Size = new System.Drawing.Size(286, 20);
-            this.nudSalasCine.TabIndex = 1;
+            this.nudSalasCine.TabIndex = 2;
             // 
             // label9
             // 
@@ -1377,7 +1405,7 @@
             // 
             this.labelSalasCine.AutoSize = true;
             this.labelSalasCine.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelSalasCine.Location = new System.Drawing.Point(17, 55);
+            this.labelSalasCine.Location = new System.Drawing.Point(17, 81);
             this.labelSalasCine.Name = "labelSalasCine";
             this.labelSalasCine.Size = new System.Drawing.Size(86, 13);
             this.labelSalasCine.TabIndex = 4;
@@ -1396,11 +1424,11 @@
             // tbTelefonoSucursal
             // 
             this.tbTelefonoSucursal.BackColor = System.Drawing.SystemColors.Window;
-            this.tbTelefonoSucursal.Location = new System.Drawing.Point(127, 75);
+            this.tbTelefonoSucursal.Location = new System.Drawing.Point(127, 47);
             this.tbTelefonoSucursal.MaxLength = 30;
             this.tbTelefonoSucursal.Name = "tbTelefonoSucursal";
             this.tbTelefonoSucursal.Size = new System.Drawing.Size(286, 20);
-            this.tbTelefonoSucursal.TabIndex = 2;
+            this.tbTelefonoSucursal.TabIndex = 1;
             // 
             // lbCinemax
             // 
@@ -1655,6 +1683,8 @@
         private System.Windows.Forms.TextBox tbTelefonoSucursal;
         private System.Windows.Forms.Timer ResetTimer;
         private System.Windows.Forms.DataGridView dgSucursales;
+        private System.Windows.Forms.Button btnEditarSalas;
+        private System.Windows.Forms.Label labelSalasSucursal;
     }
 }
 

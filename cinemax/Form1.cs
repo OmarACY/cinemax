@@ -761,6 +761,8 @@ namespace cinemax
         private void btnEliminarSuc_Click(object sender, EventArgs e)
         {
             string clave_cin;
+            SucursalConexion dbConexion = new SucursalConexion();
+            bool resultado;
 
             #region Obtener clave de cine
             try 
@@ -776,31 +778,22 @@ namespace cinemax
             {
                 if (MessageBox.Show("¿Esta seguro de querer eliminar esta sucursal?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    /* Insercción de datos */
+                    resultado = dbConexion.EliminaSucursal(clave_cin);
 
-                    if (conexion.AbrirConexion())
-                    {
-                        string txtCmd = "delete from Cine.cine where clave_cin = " + clave_cin;
-                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-                        try
-                        {
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                        conexion.CerrarConexion();
-                    }
+                    if (!resultado)
+                        MessageBox.Show("La sucursal \n no fue eliminada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else
                     {
-                        MessageBox.Show("Error al llamar al servidor");
+                        labelMensajeSucursal.Text = "Sucursal eliminada";
+                        labelMensajeSucursal.Visible = true;
+                        ResetTimer.Enabled = true;
+                        /* Actualización del grid */
+                        tcPrincipal_SelectedIndexChanged(this, null);
+                        /* Deshabilitación de campos de captura */
+                        SwitchCamposSucural("Deshabilitar");
                     }
                 }
-                labelMensajeSucursal.Text = "Sucursal eliminada";
-                labelMensajeSucursal.Visible = true;
-                ResetTimer.Enabled = true;
-                tcPrincipal_SelectedIndexChanged(this, null);
-                SwitchCamposSucural("Deshabilitar");
             }
             else MessageBox.Show("Primero seleccione la <Sucursal> que se desea eliminar", "Atención");
         }
@@ -808,6 +801,8 @@ namespace cinemax
         private void btnActualizarSuc_Click(object sender, EventArgs e)
         {
             string clave_cin;
+            SucursalConexion dbConexion = new SucursalConexion();
+            bool resultado;
 
             #region Obtener clave de cine
             try
@@ -823,10 +818,6 @@ namespace cinemax
             {
                 if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de esta sucursal?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-
-                    SucursalConexion dbConexion = new SucursalConexion();
-                    bool resultado;
-
                     if (ValidaDatosSucursal())
                     {
                         /* Insercción de datos */
@@ -904,6 +895,9 @@ namespace cinemax
                     btnActualizarSuc.Enabled = false;
                     btnEliminarSuc.Enabled = false;
                     btnAgregarSuc.Enabled = false;
+                    nudSalasCine.Enabled = true;
+                    btnEditarSalas.Visible = false;
+                    labelSalasSucursal.Visible = false;
                     break;
                 case "Deshabilitar":
                     gbInfoSucursal.Enabled = false;
@@ -919,6 +913,8 @@ namespace cinemax
                     tbCalleSucursal.Text = string.Empty;
                     tbNumeroSucursal.Text = string.Empty;
                     tbTelefonoSucursal.Text = string.Empty;
+                    btnEditarSalas.Visible = false;
+                    labelSalasSucursal.Visible = false;
                     break;
                 case "Actualizar":
                     gbInfoSucursal.Enabled = true;
@@ -928,6 +924,9 @@ namespace cinemax
                     btnActualizarSuc.Enabled = true;
                     btnEliminarSuc.Enabled = true;
                     btnAceptarSuc.Visible = false;
+                    nudSalasCine.Enabled = false;
+                    btnEditarSalas.Visible = true;
+                    labelSalasSucursal.Visible = true;
                     break;
             }
         }
@@ -963,17 +962,6 @@ namespace cinemax
                 return false;
             }
         }
-        #endregion
-
-        private void ResetTimer_Tick(object sender, EventArgs e)
-        {
-            foreach(Control ctrl in gbSucursal.Controls)
-            {
-                if (ctrl.AccessibleName == "StatusLabel")
-                    ctrl.Visible = false;
-            }
-            ResetTimer.Enabled = false;
-        }
 
         private void dgSucursales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1001,6 +989,22 @@ namespace cinemax
                 tbTelefonoSucursal.Text = dgSucursales.SelectedCells[dgSucursales.Columns["telefono"].Index].Value.ToString();
                 SwitchCamposSucural("Actualizar");
             }
+        }
+
+        private void btnEditarSalas_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        private void ResetTimer_Tick(object sender, EventArgs e)
+        {
+            foreach(Control ctrl in gbSucursal.Controls)
+            {
+                if (ctrl.AccessibleName == "StatusLabel")
+                    ctrl.Visible = false;
+            }
+            ResetTimer.Enabled = false;
         }
     }
 }
