@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cinemax.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -126,6 +127,40 @@ namespace cinemax
             {
                 return string.Empty;
             }
+        }
+
+        public List<Sala> ObtenSalas(string claveSucursal)
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            List<Sala> listaSalas = new List<Sala>();
+
+            if (AbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * from Cine.sala where clave_cin = " + claveSucursal, con);
+
+                try
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            listaSalas.Add(new Sala()
+                            {
+                                clave_sal = int.Parse(reader.GetValue(0).ToString()),
+                                cupo = int.Parse(reader.GetValue(2).ToString())
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    
+                }
+
+                CerrarConexion();
+                
+            }
+            return listaSalas;
         }
     }
 }

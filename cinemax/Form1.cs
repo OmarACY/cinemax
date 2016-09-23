@@ -993,7 +993,12 @@ namespace cinemax
 
         private void btnEditarSalas_Click(object sender, EventArgs e)
         {
+            ControlSalas dlg = new ControlSalas(dgSucursales.SelectedCells[dgSucursales.Columns["clave_cin"].Index].Value.ToString());
 
+            if(dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
         }
         #endregion
 
