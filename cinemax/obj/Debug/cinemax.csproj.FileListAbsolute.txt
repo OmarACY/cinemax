@@ -1,5 +1,4 @@
 c:\users\omaracy\documents\visual studio 2013\Projects\cinemax\cinemax\bin\Debug\cinemax.exe.config
-C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Form1.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Resources.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe.config
@@ -27,3 +26,5 @@ C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.exe
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.pdb
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.pdb
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csprojResolveAssemblyReference.cache
+C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources

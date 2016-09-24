@@ -13,9 +13,8 @@ using System.Text.RegularExpressions;
 
 namespace cinemax
 {
-    public partial class Form1 : Form
+    public partial class Cinemax : Form
     {
-
 
         #region Atributos
         private Point formPosition;
@@ -23,18 +22,15 @@ namespace cinemax
         private Conexion conexion;
         private int opEmp = -1;
         private int opMem = -1;
+        private int opPel = -1;
         #endregion
 
         #region Metodos Constructor y Load
-        public Form1()
+        public Cinemax()
         {
             InitializeComponent();
             conexion = new Conexion();
-            this.BackgroundImage = cinemax.Properties.Resources.fondo2;
-            dgEmpleados.MultiSelect = false;            
-            dgEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgMembresias.MultiSelect = false;
-            dgMembresias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //this.BackgroundImage = cinemax.Properties.Resources.fondo2;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -86,7 +82,7 @@ namespace cinemax
         }
         private void InsertaEmpleado() {
             LimpiaFormularioEmpleado();
-            if (ValidaFormularioEmpleado())
+            if (ValidaDatosEmpleado())
             {
                 if (conexion.AbrirConexion())
                 {
@@ -114,7 +110,7 @@ namespace cinemax
                     conexion.CerrarConexion();
                 }
                 else {
-                    MessageBox.Show("Error al llamar al serividor");
+                    MessageBox.Show("Error al llamar al servidor");
                 }
             }
 
@@ -152,7 +148,7 @@ namespace cinemax
             lbNumeroEmp.ForeColor = Color.LightGray;
         }
 
-        private bool ValidaFormularioEmpleado()
+        private bool ValidaDatosEmpleado()
         {
             bool valido = true;
             int error = 0;
@@ -234,7 +230,7 @@ namespace cinemax
                         {
                             cmd.ExecuteNonQuery();
                             ObtenerRegistrosEmpleado();
-                            MessageBox.Show("Se elimino correctamente!!");
+                            CambiaTextoMensajeEmp("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposEmpleado();
                             BotonesAccionEmp(false);
                         }
@@ -249,7 +245,7 @@ namespace cinemax
                         MessageBox.Show("Error al llamar al servidor");
                     }
                 }
-            }else MessageBox.Show("Primero selecciona al <Empleado> que se desea eliminar","Atención");
+            }else MessageBox.Show("Primero selecciona el <Empleado> que se desea eliminar","Atención");
         }
 
         private string RenglonSeleccionadoEmp()
@@ -259,7 +255,7 @@ namespace cinemax
             catch { renglon = string.Empty; }
             return renglon;
         }
-        private void dgEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroEmp();
         }
@@ -288,15 +284,15 @@ namespace cinemax
 
         private void ActualizarEmpleado() {
 
-            string clave_emp;
-            if ((clave_emp = RenglonSeleccionadoEmp()) != "")
+            string clave_emp = RenglonSeleccionadoEmp();
+            if (ValidaDatosEmpleado())
             {
                 if (conexion.AbrirConexion())
-                {//(nombres,app,apm,fecha_nac,colonia,calle,numero)
+                {
                     string txtCmd = "update Persona.empleado set nombres='" +
                         tbNombreEmp.Text + "', app='" + tbAppEmp.Text +
                         "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
-                        dpFechaEmp.Value.Year +  "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
+                        dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
                         "', colonia='" + tbColoniaEmp.Text + "', calle='" + tbCalleEmp.Text +
                         "', numero='" + tbNumeroEmp.Text + "' where clave_emp=" + clave_emp;
 
@@ -317,10 +313,12 @@ namespace cinemax
                     }
 
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Error al llamar al servidor");
                 }
             }
+            
         }
 
 
@@ -330,7 +328,6 @@ namespace cinemax
             {
                 opEmp = 1;
                 BotonesAccionEmp(true);
-                tbNombreEmp.Focus();
             }
             else {
                 MessageBox.Show("Primero selecciona al <Empleado> que se desea actualizar", "Atención");
@@ -392,48 +389,6 @@ namespace cinemax
         
         #endregion
 
-        #region Metodos Comunes
-        private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Conexion con;
-            switch (tcAdministracion.SelectedTab.Text)
-            {
-                case "Empleado":
-                    ObtenerRegistrosEmpleado();
-                    break;
-                case "Membresía":
-                    ObtenerRegistrosMembresia();
-                    break;
-                case "Sucursal":
-                    con = new SucursalConexion();
-                    if(!(con as SucursalConexion).CargaDatosGrid(dgSucursales))
-                        MessageBox.Show("Error al llamar al servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-            }
-
-        }
-
-        private void ValidaNumero(KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-        }
-        #endregion
-
         #region Metodos Pestaña Membresia
 
         private void btInsertaMem_Click(object sender, EventArgs e)
@@ -447,7 +402,7 @@ namespace cinemax
         private void InsertaMembresia()
         {
             LimpiaFormularioMembresia();
-            if (ValidaFormularioMembresia())
+            if (ValidaDatosMembresia())
             {
                 if (conexion.AbrirConexion())
                 {
@@ -517,7 +472,7 @@ namespace cinemax
             lbTipoMem.ForeColor = Color.LightGray;
         }
 
-        private bool ValidaFormularioMembresia()
+        private bool ValidaDatosMembresia()
         {
             bool valido = true;
             int error = 0;
@@ -585,7 +540,6 @@ namespace cinemax
             {
                 opMem = 1;
                 BotonesAccionMem(true);
-                tbNombreMem.Focus();
             }
             else
             {
@@ -595,8 +549,8 @@ namespace cinemax
 
         private void ActualizarMembresia()
         {
-            string clave_mem;
-            if ((clave_mem = RenglonSeleccionadoMem()) != "")
+            string clave_mem = RenglonSeleccionadoMem();
+            if (ValidaDatosMembresia())
             {
                 if (conexion.AbrirConexion())
                 {
@@ -605,9 +559,9 @@ namespace cinemax
                         "', apm='" + tbApmMem.Text + "', fecha_nac='" +
                         dpFechaMem.Value.Year + "/" + dpFechaMem.Value.Month + "/" + dpFechaMem.Value.Day +
                         "', colonia='" + tbColoniaMem.Text + "', calle='" + tbCalleMem.Text +
-                        "', numero=" + tbNumeroMem.Text + ", tipo='" + cbTipoMem.SelectedItem.ToString() + "', puntos=" + nuPuntosMem.Value.ToString() +
+                        "', numero=" + tbNumeroMem.Text + ", tipo='" + cbTipoMem.Text + "', puntos=" + nuPuntosMem.Value.ToString() +
                         " where clave_mem=" + clave_mem;
-                   
+
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
                     try
@@ -630,6 +584,7 @@ namespace cinemax
                     MessageBox.Show("Error al llamar al servidor");
                 }
             }
+            
         }
 
         private string RenglonSeleccionadoMem()
@@ -640,7 +595,7 @@ namespace cinemax
             return renglon;
         }
 
-        private void dgMembresias_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgMembresias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroMem();
         }
@@ -691,7 +646,7 @@ namespace cinemax
                         {
                             cmd.ExecuteNonQuery();
                             ObtenerRegistrosMembresia();
-                            MessageBox.Show("Se elimino correctamente!!");
+                            CambiaTextoMensajeMem("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposMembresia();
                             BotonesAccionMem(false);
                         }
@@ -707,7 +662,7 @@ namespace cinemax
                     }
                 }
             }
-            else MessageBox.Show("Primero selecciona al <Membresia> que se desea eliminar", "Atención");
+            else MessageBox.Show("Primero selecciona la <Membresia> que se desea eliminar", "Atención");
         }
 
         private void btAceptarMem_Click(object sender, EventArgs e)
@@ -748,6 +703,333 @@ namespace cinemax
             LimpiaCamposMembresia();
             BotonesAccionMem(false);
             dgMembresias.ClearSelection();
+        }
+
+        #endregion
+
+        #region Metodos pestaña peliculas
+        private void btAgregarPel_Click(object sender, EventArgs e)
+        {
+            opPel = 0;
+            LimpiaCamposPelicula();
+            BotonesAccionPel(true);
+            tbNombrePel.Focus();
+        }
+
+        private void InsertaPelicula()
+        {
+            LimpiaFormularioPelicula();
+            if (ValidaDatosPelicula())
+            {
+                if (conexion.AbrirConexion())
+                {
+
+                    string txtCmd = "INSERT INTO Cine.pelicula(nombre,director,sinopsis,clasificacion,genero)" +
+                        "VALUES('" + tbNombrePel.Text + "','" + tbDirectorPel.Text + "','" + tbSinopsisPel.Text + "','" +
+                        ClasificacionPelicula() + "','" + cbGeneroPel.Text + "')";
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosPelicula();
+                        CambiaTextoMensajePel("Se actualizo correctamente!", Color.Blue);
+                        lbMensajePel.Visible = true;
+                        LimpiaCamposPelicula();
+                        BotonesAccionPel(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    conexion.CerrarConexion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al serividor");
+                }
+            }
+
+        }
+
+        private bool ValidaDatosPelicula()
+        {
+            bool valido = true;
+            int error = 0;
+
+            if (tbNombrePel.Text.Trim() == string.Empty) { lbNombrePel.Text = "Nombre *"; lbNombrePel.ForeColor = Color.Red; error++; }
+            if (tbDirectorPel.Text.Trim() == string.Empty) { lbDirectorPel.Text = "Director *"; lbDirectorPel.ForeColor = Color.Red; error++; }
+            if (ClasificacionPelicula() == '0') { lbClasificacionPel.Text = "Clasificación *"; lbClasificacionPel.ForeColor = Color.Red; error++; }
+            if (cbGeneroPel.Text == string.Empty) { lbGeneroPel.Text = "Genero *"; lbGeneroPel.ForeColor = Color.Red; error++; }
+            if (tbSinopsisPel.Text.Trim() == string.Empty) { lbSinopsisPel.Text = "Sinopsis *"; lbSinopsisPel.ForeColor = Color.Red; error++; }
+
+            if (error > 0) { CambiaTextoMensajePel("* Campos requeridos", Color.Red); lbMensajePel.Visible = true; valido = false; }
+
+            return valido;
+        }
+
+        /// <summary>
+        /// Cambiar el color y el mensaje del modulo pelicula que se mostrara al usuario    
+        /// </summary>
+        /// <param name="mensaje">Mensaje que se mostrara al usuario</param>
+        /// <param name="color">Color del texto del mensaje que se le mostrara al usuario</param>
+        private void CambiaTextoMensajePel(String mensaje, Color color)
+        {
+            lbMensajePel.ForeColor = color;
+            lbMensajePel.Text = mensaje;
+        }
+
+        private char ClasificacionPelicula() {
+            char clas = '0';
+
+            if (rbAPel.Checked)
+                clas = 'A';
+            else
+                if (rbBPel.Checked)
+                    clas = 'B';
+                else
+                    if (rbCPel.Checked)
+                        clas = 'C';
+
+            return clas;
+        }
+
+        private void ClasificacionPelicula(char clas)
+        {
+            switch (clas) { 
+                case 'A':
+                    rbAPel.Checked = true;
+                    break;
+                case 'B':
+                    rbBPel.Checked = true;
+                    break;
+                case 'C':
+                    rbCPel.Checked = true;
+                    break;
+            
+            }
+
+        }
+
+        private void LimpiaFormularioPelicula()
+        {
+
+            //Cambia texto
+            lbNombreMem.Text = "Nombre";
+            lbDirectorPel.Text = "Direcctor";
+            lbClasificacionPel.Text = "Clasificación";
+            lbGeneroPel.Text = "Genero";
+            lbSinopsisPel.Text = "Sinopsis";
+            lbMensajePel.Visible = false;
+            //Cambia color
+            lbNombreMem.ForeColor = Color.LightGray;
+            lbDirectorPel.ForeColor = Color.LightGray;
+            lbClasificacionPel.ForeColor = Color.LightGray;
+            lbGeneroPel.ForeColor = Color.LightGray;
+            lbSinopsisPel.ForeColor = Color.LightGray;
+        }
+
+        private void LimpiaCamposPelicula()
+        {
+            tbNombrePel.Clear();
+            tbDirectorPel.Clear();
+            rbAPel.Checked = false;
+            rbBPel.Checked = false;
+            rbCPel.Checked = false;
+            cbGeneroPel.SelectedIndex = -1;
+            tbSinopsisPel.Clear();
+        }
+
+        private void BotonesAccionPel(bool activo)
+        {
+            btAceptarPel.Visible = activo;
+            btCancelarPel.Visible = activo;
+            gbDGPel.Enabled = activo;
+            dgPeliculas.Enabled = !activo;
+            btInsertaPel.Enabled = !activo;
+            btEliminaPel.Enabled = !activo;
+            btActualizaPel.Enabled = !activo;
+        }
+
+        private void ObtenerRegistrosPelicula()
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Cine.pelicula";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(ds);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    dgPeliculas.DataSource = ds.Tables[0];
+                    dgPeliculas.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        private void btCancelarPel_Click(object sender, EventArgs e)
+        {
+            LimpiaFormularioPelicula();
+            LimpiaCamposPelicula();
+            BotonesAccionPel(false);
+            dgPeliculas.ClearSelection();
+        }
+
+        private void dgPeliculas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SeleccionaRegistroPel();
+        }
+
+        private void dgPeliculas_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SeleccionaRegistroPel();
+        }
+        private void SeleccionaRegistroPel()
+        {
+            if (dgPeliculas.SelectedCells.Count > 1)
+            {
+                tbNombrePel.Text = dgPeliculas.SelectedCells[dgPeliculas.Columns["nombre"].Index].Value.ToString();
+                tbDirectorPel.Text = dgPeliculas.SelectedCells[dgPeliculas.Columns["director"].Index].Value.ToString();
+                tbSinopsisPel.Text = dgPeliculas.SelectedCells[dgPeliculas.Columns["sinopsis"].Index].Value.ToString();
+                ClasificacionPelicula(char.Parse(dgPeliculas.SelectedCells[dgPeliculas.Columns["clasificacion"].Index].Value.ToString()));
+                cbGeneroPel.SelectedItem = dgPeliculas.SelectedCells[dgPeliculas.Columns["genero"].Index].Value.ToString();
+            }
+        }
+        private void btAceptarPel_Click(object sender, EventArgs e)
+        {
+            RealizaAccionPel();
+        }
+
+        private void RealizaAccionPel()
+        {
+            switch (opPel)
+            {
+                case 0: //Agregar Pelicula
+                    InsertaPelicula();
+                    break;
+                case 1://Actualizar Pelicula
+                    ActualizarPelicula();
+                    break;
+                default:
+                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
+                    break;
+            }
+        }
+
+        private void btActualizaPel_Click(object sender, EventArgs e)
+        {
+            if (RenglonSeleccionadoPel() != "")
+            {
+                opPel = 1;
+                BotonesAccionPel(true);
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona al <Pelicula> que se desea actualizar", "Atención");
+            }
+        }
+
+        private string RenglonSeleccionadoPel()
+        {
+            string renglon;
+            try { renglon = dgPeliculas.SelectedCells[0].Value.ToString(); }
+            catch { renglon = string.Empty; }
+            return renglon;
+        }
+
+        private void ActualizarPelicula()
+        {
+            string clave_pel = RenglonSeleccionadoPel();
+            if (ValidaDatosPelicula())
+            {
+                if (conexion.AbrirConexion())
+                {
+                    string txtCmd = "update Cine.pelicula set nombre='" +
+                        tbNombrePel.Text + "', director='" + tbDirectorPel.Text +
+                        "', sinopsis='" + tbSinopsisPel.Text + "', clasificacion='" + ClasificacionPelicula() +
+                        "', genero='" + cbGeneroPel.Text + "' where clave_pel=" + clave_pel;
+
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosPelicula();
+                        CambiaTextoMensajePel("Se actualizo correctamente!", Color.Blue);
+                        lbMensajePel.Visible = true;
+                        LimpiaCamposPelicula();
+                        BotonesAccionPel(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+            }
+
+        }
+        private void btEliminaPel_Click(object sender, EventArgs e)
+        {
+            EliminarPelicula();
+        }
+
+        private void EliminarPelicula()
+        {
+            string clave_pel;
+
+            if ((clave_pel = RenglonSeleccionadoPel()) != "")
+            {
+                if (MessageBox.Show("¿Esta seguro de querer eliminar esta Pelicula?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (conexion.AbrirConexion())
+                    {
+                        //clave_emp = dgEmpleados.SelectedCells[0].Value.ToString();
+                        string txtCmd = "delete from Cine.Pelicula where clave_pel = " + clave_pel;
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            ObtenerRegistrosPelicula();
+                            CambiaTextoMensajePel("Se elimino correctamente!", Color.Blue);
+                            LimpiaCamposPelicula();
+                            BotonesAccionPel(false);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
+                }
+            }
+            else MessageBox.Show("Primero selecciona la <Pelicula> que se desea eliminar", "Atención");
         }
 
         #endregion
@@ -999,17 +1281,70 @@ namespace cinemax
             {
 
             }
-        }
+        }      
+
         #endregion
 
+        #region Metodos Comunes
+        private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Conexion con;
+            switch (tcAdministracion.SelectedTab.Text)
+            {
+                case "Empleado":
+                    ObtenerRegistrosEmpleado();
+                    break;
+                case "Membresía":
+                    ObtenerRegistrosMembresia();
+                    break;
+                case "Pelicula":
+                    ObtenerRegistrosPelicula();
+                    break;
+                case "Sucursal":
+                    con = new SucursalConexion();
+                    if (!(con as SucursalConexion).CargaDatosGrid(dgSucursales))
+                        MessageBox.Show("Error al llamar al servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+
+        }
+
+        private void ValidaNumero(KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
         private void ResetTimer_Tick(object sender, EventArgs e)
         {
-            foreach(Control ctrl in gbSucursal.Controls)
+            foreach (Control ctrl in gbSucursal.Controls)
             {
                 if (ctrl.AccessibleName == "StatusLabel")
                     ctrl.Visible = false;
             }
             ResetTimer.Enabled = false;
         }
+
+        #endregion
+
+
+
+
+
+
+ 
     }
 }
