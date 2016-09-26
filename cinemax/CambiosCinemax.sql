@@ -19,3 +19,11 @@ create trigger InsertaSalas
 
 GO
 -- Fin
+
+
+-- APLICADO: BECARIOS-PC
+-- Campo contraseña para la tabla Empleados
+ALTER TABLE [Cinemax].[Persona].[empleado] 
+ADD contraseña varchar(32) NOT NULL DEFAULT 'AdministracionBasesDatos';
+GO
+-- Fin

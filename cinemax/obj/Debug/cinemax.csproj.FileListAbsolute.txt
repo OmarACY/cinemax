@@ -18,7 +18,6 @@ C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Res
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe.config
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.resources
-C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Form1.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Resources.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.exe
@@ -29,3 +28,5 @@ C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.resources
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
+C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
+C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resources

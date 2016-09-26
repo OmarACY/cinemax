@@ -16,7 +16,10 @@ namespace cinemax
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Cinemax());
+            Login login = new Login();
+            Application.Run(login);
+            if (login.loginStatus)
+                Application.Run(new Cinemax());
         }
     }
 }

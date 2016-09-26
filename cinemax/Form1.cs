@@ -87,10 +87,10 @@ namespace cinemax
                 if (conexion.AbrirConexion())
                 {
 
-                    string txtCmd = "INSERT INTO Persona.empleado(nombres,app,apm,fecha_nac,colonia,calle,numero)" +
+                    string txtCmd = "INSERT INTO Persona.empleado(nombres,app,apm,fecha_nac,colonia,calle,numero, contraseña)" +
                         "VALUES('" + tbNombreEmp.Text + "','" + tbAppEmp.Text + "','" + tbApmEmp.Text + "','" +
                         dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day + "','" + tbColoniaEmp.Text + "','" +
-                        tbCalleEmp.Text + "'," + tbNumeroEmp.Text + ")";
+                        tbCalleEmp.Text + "'," + tbNumeroEmp.Text + ", '" + tbPwdEmpl.Text + "')";
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
                     try
@@ -160,6 +160,7 @@ namespace cinemax
             if (tbColoniaEmp.Text.Trim() == string.Empty) { lbColoniaEmp.Text = "Colonia *"; lbColoniaEmp.ForeColor = Color.Red; error++; }
             if (tbCalleEmp.Text.Trim() == string.Empty) { lbCalleEmp.Text = "Calle *"; lbCalleEmp.ForeColor = Color.Red; error++; }
             if (tbNumeroEmp.Text.Trim() == string.Empty) { lbNumeroEmp.Text = "Numero *"; lbNumeroEmp.ForeColor = Color.Red; error++; }
+            if (tbPwdEmpl.Text == string.Empty) { lbPassword.Text = "Contraseña *"; lbPassword.ForeColor = Color.Red; error++; }
 
             if (error > 0) { CambiaTextoMensajeEmp("* Campos requeridos!", Color.Red) ; lbMensaje.Visible = true; valido = false; }
 
@@ -175,6 +176,7 @@ namespace cinemax
             tbNumeroEmp.Clear();
             tbTelEmp.Clear();
             tbCelEmp.Clear();
+            tbPwdEmpl.Clear();
         }
 
         private void ObtenerRegistrosEmpleado() {
@@ -278,6 +280,7 @@ namespace cinemax
                 tbColoniaEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["colonia"].Index].Value.ToString();
                 tbCalleEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["calle"].Index].Value.ToString();
                 tbNumeroEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["numero"].Index].Value.ToString();
+                tbPwdEmpl.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["contraseña"].Index].Value.ToString();
             }
 
         }
@@ -294,7 +297,7 @@ namespace cinemax
                         "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
                         dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
                         "', colonia='" + tbColoniaEmp.Text + "', calle='" + tbCalleEmp.Text +
-                        "', numero='" + tbNumeroEmp.Text + "' where clave_emp=" + clave_emp;
+                        "', numero='" + tbNumeroEmp.Text + "', contraseña= '" + tbPwdEmpl.Text + "' where clave_emp=" + clave_emp;
 
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
@@ -1340,6 +1343,15 @@ namespace cinemax
         }
 
         #endregion
+
+        private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgEmpleados.Columns[e.ColumnIndex].Name == "contraseña" && e.Value != null)
+            {
+                dgEmpleados.Rows[e.RowIndex].Tag = e.Value;
+                e.Value = new String('*', 10);
+            }
+        }
 
 
 
