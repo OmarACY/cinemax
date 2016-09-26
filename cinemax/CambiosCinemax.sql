@@ -1,5 +1,5 @@
 ﻿
--- APLICADO: BECARIOS-PC
+-- APLICADO: BECARIOS-PC, MILAN-PC
 -- Creación de trigger que inserta N número de salas como sean indicadas por el campo num_salas en la tabla cine
 USE cinemax;
 GO

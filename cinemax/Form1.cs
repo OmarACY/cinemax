@@ -1304,6 +1304,7 @@ namespace cinemax
                     con = new SucursalConexion();
                     if (!(con as SucursalConexion).CargaDatosGrid(dgSucursales))
                         MessageBox.Show("Error al llamar al servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    SwitchCamposSucural("Deshabilitar");
                     break;
             }
 

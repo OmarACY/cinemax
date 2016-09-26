@@ -40,5 +40,13 @@ namespace cinemax
         {
             listaSalas.FirstOrDefault(l => l.clave_sal == (cbSalas.SelectedValue as Sala).clave_sal).cupo = (int)nudCupo.Value;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SucursalConexion conexion = new SucursalConexion();
+
+            if (!conexion.ActualizaSalas(listaSalas, ClaveSucursal))
+                MessageBox.Show("La información de una o más salas no fue actualizada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

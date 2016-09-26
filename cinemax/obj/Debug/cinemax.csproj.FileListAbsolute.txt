@@ -14,7 +14,6 @@ C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.pdb
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.pdb
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csprojResolveAssemblyReference.cache
-C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Form1.resources
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Properties.Resources.resources
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.exe.config
@@ -28,3 +27,5 @@ C:\Users\becarios\Documents\GitHub\cinemax\cinemax\bin\Debug\cinemax.pdb
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.csprojResolveAssemblyReference.cache
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.resources
+C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources

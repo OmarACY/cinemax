@@ -162,5 +162,22 @@ namespace cinemax
             }
             return listaSalas;
         }
+
+        public bool ActualizaSalas(List<Sala> salas, string claveCine)
+        {
+            bool estatus = true;
+            string query;
+
+            foreach (Sala item in salas)
+            {
+                query = "UPDATE Cine.sala SET cupo = " + item.cupo + " where clave_cin = " + claveCine + " AND clave_sal = " + item.clave_sal;
+                if (!EjecutaSentencia(query))
+                {
+                    estatus = false;
+                }
+            }
+
+            return estatus;
+        }
     }
 }
