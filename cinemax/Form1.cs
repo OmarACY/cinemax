@@ -34,7 +34,7 @@ namespace cinemax
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            tcPrincipal_SelectedIndexChanged(this, null);
+            tcPrincipal_SelectedIndexChanged(this, null);                   
         }
 
         #endregion
@@ -1309,6 +1309,11 @@ namespace cinemax
                         MessageBox.Show("Error al llamar al servidor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     SwitchCamposSucural("Deshabilitar");
                     break;
+                case "Funcion":
+                    ActualizaFecha();
+                    ObtenerPeliculas();
+                    ObtenerRegistrosFuncion();
+                    break;
             }
 
         }
@@ -1344,6 +1349,84 @@ namespace cinemax
 
         #endregion
 
+        #region Metodos Pestaña Funcion
+
+        private void ActualizaFecha()
+        {
+            dpFechaFun.MinDate = DateTime.Now;
+            dpFechaFun.Value = DateTime.Now.AddDays(30);
+        }
+
+        private void ObtenerRegistrosFuncion()
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Cine.funcion";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(ds);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    dgFunciones.DataSource = ds.Tables[0];
+                    dgFunciones.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        private void ObtenerPeliculas() {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Cine.pelicula";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose(); 
+                    cbPelFun.DataSource = dt;
+                    cbPelFun.DisplayMember = "nombre";
+                    cbPelFun.ValueMember = "clave_pel";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        private void ObtenerSalas() { 
+        
+        }
+
+        #endregion
         private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgEmpleados.Columns[e.ColumnIndex].Name == "contraseña" && e.Value != null)

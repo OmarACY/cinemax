@@ -1,5 +1,5 @@
 ﻿
--- APLICADO: BECARIOS-PC, MILAN-PC
+-- APLICADO: BECARIOS-PC, MILAN-PC, OMARACY-MAC
 -- Creación de trigger que inserta N número de salas como sean indicadas por el campo num_salas en la tabla cine
 USE cinemax;
 GO
@@ -21,9 +21,21 @@ GO
 -- Fin
 
 
--- APLICADO: BECARIOS-PC
+-- APLICADO: BECARIOS-PC, OMARACY-MAC
 -- Campo contraseña para la tabla Empleados
 ALTER TABLE [Cinemax].[Persona].[empleado] 
 ADD contraseña varchar(32) NOT NULL DEFAULT 'AdministracionBasesDatos';
 GO
 -- Fin
+
+--ALPICADO: OMARACY-MAC
+--Reglas para el tipo de membresia y los generos de las peliculas
+CREATE RULE TIPO_MEMBRESIA AS @var IN ('Standar', 'Premium', 'Vip')
+
+EXEC sp_bindrule 'TIPO_MEMBRESIA', 'Persona.membresia.tipo'
+
+CREATE RULE GENERO_PELICULA AS @var IN ('Terror', 'Comedia', 'Accion', 'Ciencia', 'Ficcion', 'Animacion', 'Infantil', 'Misterio', 'Drama')
+
+EXEC sp_bindrule 'GENERO_PELICULA', 'Cine.pelicula.genero'
+--Fin
+

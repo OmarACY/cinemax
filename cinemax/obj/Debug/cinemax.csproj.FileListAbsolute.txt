@@ -30,3 +30,4 @@ C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.ControlSalas.r
 C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resources

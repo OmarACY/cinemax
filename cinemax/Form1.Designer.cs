@@ -53,6 +53,8 @@
             this.lbColoniaEmp = new System.Windows.Forms.Label();
             this.tbColoniaEmp = new System.Windows.Forms.TextBox();
             this.gbDPEmp = new System.Windows.Forms.GroupBox();
+            this.lbPassword = new System.Windows.Forms.Label();
+            this.tbPwdEmpl = new System.Windows.Forms.TextBox();
             this.dpFechaEmp = new System.Windows.Forms.DateTimePicker();
             this.lbFechaEmp = new System.Windows.Forms.Label();
             this.lbApmEmp = new System.Windows.Forms.Label();
@@ -146,8 +148,26 @@
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btMinimizar = new System.Windows.Forms.PictureBox();
             this.pbCerrar = new System.Windows.Forms.PictureBox();
-            this.tbPwdEmpl = new System.Windows.Forms.TextBox();
-            this.lbPassword = new System.Windows.Forms.Label();
+            this.tpFuncion = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btCancelarFun = new System.Windows.Forms.Button();
+            this.btAceptarFun = new System.Windows.Forms.Button();
+            this.btActualizaFun = new System.Windows.Forms.Button();
+            this.btEliminaFun = new System.Windows.Forms.Button();
+            this.btInsertaFun = new System.Windows.Forms.Button();
+            this.gbDGFun = new System.Windows.Forms.GroupBox();
+            this.lbFechaFun = new System.Windows.Forms.Label();
+            this.lbHoraFinFun = new System.Windows.Forms.Label();
+            this.lbHoraIniFun = new System.Windows.Forms.Label();
+            this.lbSalaFun = new System.Windows.Forms.Label();
+            this.lbPelFun = new System.Windows.Forms.Label();
+            this.cbSalFun = new System.Windows.Forms.ComboBox();
+            this.cbPelFun = new System.Windows.Forms.ComboBox();
+            this.dpFechaFun = new System.Windows.Forms.DateTimePicker();
+            this.dpHoraIniFun = new System.Windows.Forms.DateTimePicker();
+            this.dpHoraFinFun = new System.Windows.Forms.DateTimePicker();
+            this.dgFunciones = new System.Windows.Forms.DataGridView();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -176,6 +196,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
+            this.tpFuncion.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.gbDGFun.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdministracion
@@ -185,6 +209,7 @@
             this.tcAdministracion.Controls.Add(this.tpMembresia);
             this.tcAdministracion.Controls.Add(this.tpPelicula);
             this.tcAdministracion.Controls.Add(this.tpSucursales);
+            this.tcAdministracion.Controls.Add(this.tpFuncion);
             this.tcAdministracion.Cursor = System.Windows.Forms.Cursors.Default;
             this.tcAdministracion.Location = new System.Drawing.Point(3, 3);
             this.tcAdministracion.Multiline = true;
@@ -448,6 +473,26 @@
             this.gbDPEmp.TabIndex = 0;
             this.gbDPEmp.TabStop = false;
             this.gbDPEmp.Text = "Datos personales";
+            // 
+            // lbPassword
+            // 
+            this.lbPassword.AutoSize = true;
+            this.lbPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbPassword.Location = new System.Drawing.Point(58, 130);
+            this.lbPassword.Name = "lbPassword";
+            this.lbPassword.Size = new System.Drawing.Size(61, 13);
+            this.lbPassword.TabIndex = 9;
+            this.lbPassword.Text = "Contraseña";
+            this.lbPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbPwdEmpl
+            // 
+            this.tbPwdEmpl.Location = new System.Drawing.Point(127, 127);
+            this.tbPwdEmpl.MaxLength = 30;
+            this.tbPwdEmpl.Name = "tbPwdEmpl";
+            this.tbPwdEmpl.Size = new System.Drawing.Size(274, 20);
+            this.tbPwdEmpl.TabIndex = 4;
+            this.tbPwdEmpl.UseSystemPasswordChar = true;
             // 
             // dpFechaEmp
             // 
@@ -1541,25 +1586,246 @@
             this.pbCerrar.TabStop = false;
             this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
-            // tbPwdEmpl
+            // tpFuncion
             // 
-            this.tbPwdEmpl.Location = new System.Drawing.Point(127, 127);
-            this.tbPwdEmpl.MaxLength = 30;
-            this.tbPwdEmpl.Name = "tbPwdEmpl";
-            this.tbPwdEmpl.Size = new System.Drawing.Size(274, 20);
-            this.tbPwdEmpl.TabIndex = 4;
-            this.tbPwdEmpl.UseSystemPasswordChar = true;
+            this.tpFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.tpFuncion.Controls.Add(this.dgFunciones);
+            this.tpFuncion.Controls.Add(this.groupBox2);
+            this.tpFuncion.Location = new System.Drawing.Point(4, 25);
+            this.tpFuncion.Name = "tpFuncion";
+            this.tpFuncion.Padding = new System.Windows.Forms.Padding(3);
+            this.tpFuncion.Size = new System.Drawing.Size(970, 507);
+            this.tpFuncion.TabIndex = 5;
+            this.tpFuncion.Text = "Funcion";
             // 
-            // lbPassword
+            // groupBox2
             // 
-            this.lbPassword.AutoSize = true;
-            this.lbPassword.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbPassword.Location = new System.Drawing.Point(58, 130);
-            this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(61, 13);
-            this.lbPassword.TabIndex = 9;
-            this.lbPassword.Text = "Contraseña";
-            this.lbPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.btCancelarFun);
+            this.groupBox2.Controls.Add(this.btAceptarFun);
+            this.groupBox2.Controls.Add(this.btActualizaFun);
+            this.groupBox2.Controls.Add(this.btEliminaFun);
+            this.groupBox2.Controls.Add(this.btInsertaFun);
+            this.groupBox2.Controls.Add(this.gbDGFun);
+            this.groupBox2.ForeColor = System.Drawing.Color.LightGray;
+            this.groupBox2.Location = new System.Drawing.Point(3, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(963, 186);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Informacion";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.LightGray;
+            this.label1.Location = new System.Drawing.Point(6, 164);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Tag = "Mensaje";
+            this.label1.Text = "Mensaje";
+            this.label1.Visible = false;
+            // 
+            // btCancelarFun
+            // 
+            this.btCancelarFun.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelarFun.Location = new System.Drawing.Point(558, 159);
+            this.btCancelarFun.Name = "btCancelarFun";
+            this.btCancelarFun.Size = new System.Drawing.Size(75, 23);
+            this.btCancelarFun.TabIndex = 14;
+            this.btCancelarFun.Text = "Cancelar";
+            this.btCancelarFun.UseVisualStyleBackColor = true;
+            this.btCancelarFun.Visible = false;
+            // 
+            // btAceptarFun
+            // 
+            this.btAceptarFun.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btAceptarFun.Location = new System.Drawing.Point(639, 159);
+            this.btAceptarFun.Name = "btAceptarFun";
+            this.btAceptarFun.Size = new System.Drawing.Size(75, 23);
+            this.btAceptarFun.TabIndex = 13;
+            this.btAceptarFun.Text = "Aceptar";
+            this.btAceptarFun.UseVisualStyleBackColor = true;
+            this.btAceptarFun.Visible = false;
+            // 
+            // btActualizaFun
+            // 
+            this.btActualizaFun.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btActualizaFun.Location = new System.Drawing.Point(720, 159);
+            this.btActualizaFun.Name = "btActualizaFun";
+            this.btActualizaFun.Size = new System.Drawing.Size(75, 23);
+            this.btActualizaFun.TabIndex = 2;
+            this.btActualizaFun.Text = "Actualizar";
+            this.btActualizaFun.UseVisualStyleBackColor = true;
+            // 
+            // btEliminaFun
+            // 
+            this.btEliminaFun.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btEliminaFun.Location = new System.Drawing.Point(801, 159);
+            this.btEliminaFun.Name = "btEliminaFun";
+            this.btEliminaFun.Size = new System.Drawing.Size(75, 23);
+            this.btEliminaFun.TabIndex = 1;
+            this.btEliminaFun.Text = "Eliminar";
+            this.btEliminaFun.UseVisualStyleBackColor = true;
+            // 
+            // btInsertaFun
+            // 
+            this.btInsertaFun.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btInsertaFun.Location = new System.Drawing.Point(882, 159);
+            this.btInsertaFun.Name = "btInsertaFun";
+            this.btInsertaFun.Size = new System.Drawing.Size(75, 23);
+            this.btInsertaFun.TabIndex = 0;
+            this.btInsertaFun.Text = "Agregar";
+            this.btInsertaFun.UseVisualStyleBackColor = true;
+            // 
+            // gbDGFun
+            // 
+            this.gbDGFun.Controls.Add(this.dpHoraFinFun);
+            this.gbDGFun.Controls.Add(this.dpHoraIniFun);
+            this.gbDGFun.Controls.Add(this.dpFechaFun);
+            this.gbDGFun.Controls.Add(this.cbPelFun);
+            this.gbDGFun.Controls.Add(this.cbSalFun);
+            this.gbDGFun.Controls.Add(this.lbFechaFun);
+            this.gbDGFun.Controls.Add(this.lbHoraFinFun);
+            this.gbDGFun.Controls.Add(this.lbHoraIniFun);
+            this.gbDGFun.Controls.Add(this.lbSalaFun);
+            this.gbDGFun.Controls.Add(this.lbPelFun);
+            this.gbDGFun.ForeColor = System.Drawing.Color.LightGray;
+            this.gbDGFun.Location = new System.Drawing.Point(6, 19);
+            this.gbDGFun.Name = "gbDGFun";
+            this.gbDGFun.Size = new System.Drawing.Size(948, 138);
+            this.gbDGFun.TabIndex = 0;
+            this.gbDGFun.TabStop = false;
+            this.gbDGFun.Text = "Datos generales";
+            // 
+            // lbFechaFun
+            // 
+            this.lbFechaFun.AutoSize = true;
+            this.lbFechaFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbFechaFun.Location = new System.Drawing.Point(490, 25);
+            this.lbFechaFun.Name = "lbFechaFun";
+            this.lbFechaFun.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbFechaFun.Size = new System.Drawing.Size(37, 13);
+            this.lbFechaFun.TabIndex = 13;
+            this.lbFechaFun.Text = "Fecha";
+            this.lbFechaFun.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbHoraFinFun
+            // 
+            this.lbHoraFinFun.AutoSize = true;
+            this.lbHoraFinFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHoraFinFun.Location = new System.Drawing.Point(70, 104);
+            this.lbHoraFinFun.Name = "lbHoraFinFun";
+            this.lbHoraFinFun.Size = new System.Drawing.Size(44, 13);
+            this.lbHoraFinFun.TabIndex = 7;
+            this.lbHoraFinFun.Text = "Hora fin";
+            this.lbHoraFinFun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbHoraIniFun
+            // 
+            this.lbHoraIniFun.AutoSize = true;
+            this.lbHoraIniFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbHoraIniFun.Location = new System.Drawing.Point(61, 78);
+            this.lbHoraIniFun.Name = "lbHoraIniFun";
+            this.lbHoraIniFun.Size = new System.Drawing.Size(57, 13);
+            this.lbHoraIniFun.TabIndex = 5;
+            this.lbHoraIniFun.Text = "Hora inicio";
+            this.lbHoraIniFun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbSalaFun
+            // 
+            this.lbSalaFun.AutoSize = true;
+            this.lbSalaFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbSalaFun.Location = new System.Drawing.Point(90, 50);
+            this.lbSalaFun.Name = "lbSalaFun";
+            this.lbSalaFun.Size = new System.Drawing.Size(28, 13);
+            this.lbSalaFun.TabIndex = 4;
+            this.lbSalaFun.Text = "Sala";
+            this.lbSalaFun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbPelFun
+            // 
+            this.lbPelFun.AutoSize = true;
+            this.lbPelFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbPelFun.Location = new System.Drawing.Point(74, 25);
+            this.lbPelFun.Name = "lbPelFun";
+            this.lbPelFun.Size = new System.Drawing.Size(44, 13);
+            this.lbPelFun.TabIndex = 1;
+            this.lbPelFun.Text = "Pelicula";
+            this.lbPelFun.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cbSalFun
+            // 
+            this.cbSalFun.DisplayMember = "10";
+            this.cbSalFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSalFun.FormattingEnabled = true;
+            this.cbSalFun.Location = new System.Drawing.Point(127, 47);
+            this.cbSalFun.Name = "cbSalFun";
+            this.cbSalFun.Size = new System.Drawing.Size(341, 21);
+            this.cbSalFun.TabIndex = 15;
+            this.cbSalFun.ValueMember = "10";
+            // 
+            // cbPelFun
+            // 
+            this.cbPelFun.DisplayMember = "10";
+            this.cbPelFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPelFun.FormattingEnabled = true;
+            this.cbPelFun.Location = new System.Drawing.Point(127, 20);
+            this.cbPelFun.Name = "cbPelFun";
+            this.cbPelFun.Size = new System.Drawing.Size(341, 21);
+            this.cbPelFun.TabIndex = 16;
+            this.cbPelFun.ValueMember = "10";
+            // 
+            // dpFechaFun
+            // 
+            this.dpFechaFun.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaFun.Location = new System.Drawing.Point(537, 23);
+            this.dpFechaFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpFechaFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpFechaFun.Name = "dpFechaFun";
+            this.dpFechaFun.Size = new System.Drawing.Size(274, 20);
+            this.dpFechaFun.TabIndex = 17;
+            this.dpFechaFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // dpHoraIniFun
+            // 
+            this.dpHoraIniFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dpHoraIniFun.Location = new System.Drawing.Point(127, 76);
+            this.dpHoraIniFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpHoraIniFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpHoraIniFun.Name = "dpHoraIniFun";
+            this.dpHoraIniFun.ShowUpDown = true;
+            this.dpHoraIniFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraIniFun.TabIndex = 18;
+            this.dpHoraIniFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // dpHoraFinFun
+            // 
+            this.dpHoraFinFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dpHoraFinFun.Location = new System.Drawing.Point(127, 103);
+            this.dpHoraFinFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpHoraFinFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpHoraFinFun.Name = "dpHoraFinFun";
+            this.dpHoraFinFun.ShowUpDown = true;
+            this.dpHoraFinFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraFinFun.TabIndex = 19;
+            this.dpHoraFinFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // dgFunciones
+            // 
+            this.dgFunciones.AllowUserToAddRows = false;
+            this.dgFunciones.AllowUserToDeleteRows = false;
+            this.dgFunciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFunciones.Location = new System.Drawing.Point(3, 198);
+            this.dgFunciones.MultiSelect = false;
+            this.dgFunciones.Name = "dgFunciones";
+            this.dgFunciones.ReadOnly = true;
+            this.dgFunciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFunciones.Size = new System.Drawing.Size(963, 306);
+            this.dgFunciones.TabIndex = 4;
             // 
             // Cinemax
             // 
@@ -1626,6 +1892,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
+            this.tpFuncion.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.gbDGFun.ResumeLayout(false);
+            this.gbDGFun.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1750,6 +2022,26 @@
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lbPassword;
         private System.Windows.Forms.TextBox tbPwdEmpl;
+        private System.Windows.Forms.TabPage tpFuncion;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btCancelarFun;
+        private System.Windows.Forms.Button btAceptarFun;
+        private System.Windows.Forms.Button btActualizaFun;
+        private System.Windows.Forms.Button btEliminaFun;
+        private System.Windows.Forms.Button btInsertaFun;
+        private System.Windows.Forms.GroupBox gbDGFun;
+        private System.Windows.Forms.DateTimePicker dpFechaFun;
+        private System.Windows.Forms.ComboBox cbPelFun;
+        private System.Windows.Forms.ComboBox cbSalFun;
+        private System.Windows.Forms.Label lbFechaFun;
+        private System.Windows.Forms.Label lbHoraFinFun;
+        private System.Windows.Forms.Label lbHoraIniFun;
+        private System.Windows.Forms.Label lbSalaFun;
+        private System.Windows.Forms.Label lbPelFun;
+        private System.Windows.Forms.DateTimePicker dpHoraFinFun;
+        private System.Windows.Forms.DateTimePicker dpHoraIniFun;
+        private System.Windows.Forms.DataGridView dgFunciones;
     }
 }
 
