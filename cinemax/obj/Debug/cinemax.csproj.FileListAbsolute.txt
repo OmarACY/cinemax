@@ -31,3 +31,6 @@ C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resour
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Cinemax.resources
 C:\Users\becarios\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resources
+C:\Users\OmarACY\Desktop\cinemax\cinemax\bin\Debug\cinemax.exe.config
+C:\Users\OmarACY\Desktop\cinemax\cinemax\obj\Debug\cinemax.exe
+C:\Users\OmarACY\Desktop\cinemax\cinemax\obj\Debug\cinemax.pdb

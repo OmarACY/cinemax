@@ -23,7 +23,11 @@ namespace cinemax
         private int opEmp = -1;
         private int opMem = -1;
         private int opPel = -1;
+
+        private int opFun = -1;
+
         public long clave_emp;
+
         #endregion
 
         #region Metodos Constructor y Load
@@ -87,11 +91,11 @@ namespace cinemax
             {
                 if (conexion.AbrirConexion())
                 {
-
                     string txtCmd = "INSERT INTO Persona.empleado(nombres,app,apm,fecha_nac,colonia,calle,numero, contraseña)" +
                         "VALUES('" + tbNombreEmp.Text + "','" + tbAppEmp.Text + "','" + tbApmEmp.Text + "','" +
                         dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day + "','" + tbColoniaEmp.Text + "','" +
                         tbCalleEmp.Text + "'," + tbNumeroEmp.Text + ", '" + tbPwdEmpl.Text + "')";
+
                     SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
                     try
@@ -101,7 +105,7 @@ namespace cinemax
                         CambiaTextoMensajeEmp("Se agrego correctamente!",Color.Blue);
                         lbMensaje.Visible = true;                     
                         LimpiaCamposEmpleado();
-                        BotonesAccionMem(false);
+                        BotonesAccionEmp(false);
                     }
                     catch (Exception ex)
                     {
@@ -275,9 +279,7 @@ namespace cinemax
                 tbNombreEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["nombres"].Index].Value.ToString();
                 tbAppEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["app"].Index].Value.ToString();
                 tbApmEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["apm"].Index].Value.ToString();
-                string fecha = dgEmpleados.SelectedCells[dgEmpleados.Columns["fecha_nac"].Index].Value.ToString();
-                string[] f = fecha.Split('/');
-                dpFechaEmp.Text = f[0] + '/' + f[1] + '/' + f[2];
+                dpFechaEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["fecha_nac"].Index].Value.ToString();
                 tbColoniaEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["colonia"].Index].Value.ToString();
                 tbCalleEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["calle"].Index].Value.ToString();
                 tbNumeroEmp.Text = dgEmpleados.SelectedCells[dgEmpleados.Columns["numero"].Index].Value.ToString();
@@ -616,9 +618,7 @@ namespace cinemax
                 tbNombreMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["nombre"].Index].Value.ToString();
                 tbAppMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["app"].Index].Value.ToString();
                 tbApmMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["apm"].Index].Value.ToString();
-                string fecha = dgMembresias.SelectedCells[dgMembresias.Columns["fecha_nac"].Index].Value.ToString();
-                string[] f = fecha.Split('/');
-                dpFechaMem.Text = f[0] + '/' + f[1] + '/' + f[2];
+                dpFechaMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["fecha_nac"].Index].Value.ToString();
                 tbColoniaMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["colonia"].Index].Value.ToString();
                 tbCalleMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["calle"].Index].Value.ToString();
                 tbNumeroMem.Text = dgMembresias.SelectedCells[dgMembresias.Columns["numero"].Index].Value.ToString();
@@ -946,7 +946,7 @@ namespace cinemax
             }
             else
             {
-                MessageBox.Show("Primero selecciona al <Pelicula> que se desea actualizar", "Atención");
+                MessageBox.Show("Primero selecciona la <Pelicula> que se desea actualizar", "Atención");
             }
         }
 
@@ -1313,6 +1313,7 @@ namespace cinemax
                 case "Funcion":
                     ActualizaFecha();
                     ObtenerPeliculas();
+                    ObtenerCines();
                     ObtenerRegistrosFuncion();
                     break;
             }
@@ -1409,6 +1410,7 @@ namespace cinemax
                     cbPelFun.DataSource = dt;
                     cbPelFun.DisplayMember = "nombre";
                     cbPelFun.ValueMember = "clave_pel";
+                    cbPelFun.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -1423,18 +1425,311 @@ namespace cinemax
             }
         }
 
-        private void ObtenerSalas() { 
-        
+        private void ObtenerCines() {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Cine.cine";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    cbCinFun.DataSource = dt;
+                    cbCinFun.DisplayMember = "nombre";
+                    cbCinFun.ValueMember = "clave_cin";
+                    cbCinFun.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+        private void cbCinFun_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCine;
+            if (cbCinFun.SelectedValue != null)
+                if (int.TryParse(cbCinFun.SelectedValue.ToString(), out idCine))
+                    ObtenerSalas(idCine);
         }
 
-        #endregion
-        private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgEmpleados.Columns[e.ColumnIndex].Name == "contraseña" && e.Value != null)
+        private void ObtenerSalas(int idCine) {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
             {
-                dgEmpleados.Rows[e.RowIndex].Tag = e.Value;
-                e.Value = new String('*', 10);
+                string txtCmd = "select * from Cine.sala where clave_cin=" + idCine;
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    cbSalFun.DataSource = dt;
+                    cbSalFun.DisplayMember = "clave_sal";
+                    cbSalFun.ValueMember = "clave_sal";
+                    cbSalFun.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
             }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+        }
+
+        private void LimpiaCamposFuncion()
+        {
+            cbPelFun.SelectedIndex = -1;
+            cbCinFun.SelectedIndex = -1;
+            cbSalFun.SelectedIndex = -1;
+        }
+
+        private void BotonesAccionFun(bool activo)
+        {
+            btAceptarFun.Visible = activo;
+            btCancelarFun.Visible = activo;
+            gbDGFun.Enabled = activo;
+            dgFunciones.Enabled = !activo;
+            btInsertaFun.Enabled = !activo;
+            btEliminaFun.Enabled = !activo;
+            btActualizaFun.Enabled = !activo;
+        }
+
+        private void RealizaAccionFun()
+        {
+            switch (opFun)
+            {
+                case 0: //Agregar Membresia
+                    InsertaFuncion();
+                    break;
+                case 1://Actualizar Membresia
+                    ActualizarFuncion();
+                    break;
+                default:
+                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
+                    break;
+            }
+        }
+
+        private void btAceptarFun_Click(object sender, EventArgs e)
+        {
+            RealizaAccionFun();
+        }
+
+        private void btCancelarFun_Click(object sender, EventArgs e)
+        {
+            LimpiaFormularioFuncion();
+            LimpiaCamposFuncion();
+            BotonesAccionFun(false);
+            dgFunciones.ClearSelection();        
+        }
+
+        private void LimpiaFormularioFuncion()
+        {
+
+            //Cambia texto
+            lbPelFun.Text = "Pelicula";
+            lbCinFun.Text = "Cine";
+            lbSalFun.Text = "Sala";
+            lbMensajeFun.Visible = false;
+            //Cambia color
+            lbPelFun.ForeColor = Color.LightGray;
+            lbCinFun.ForeColor = Color.LightGray;
+            lbSalFun.ForeColor = Color.LightGray;
+        }
+
+        private bool ValidaDatosFuncion()
+        {
+            bool valido = true;
+            int error = 0;
+
+            if (cbPelFun.Text == string.Empty) { lbPelFun.Text = "Pelicula *"; lbPelFun.ForeColor = Color.Red; error++; }
+            if (cbCinFun.Text == string.Empty) { lbCinFun.Text = "Cine *"; lbCinFun.ForeColor = Color.Red; error++; }
+            if (cbSalFun.Text == string.Empty) { lbSalFun.Text = "Sala *"; lbSalFun.ForeColor = Color.Red; error++; }
+
+            if (error > 0) { CambiaTextoMensajeFun("* Campos requeridos", Color.Red); lbMensajeFun.Visible = true; valido = false; }
+
+            return valido;
+        }
+
+        private void CambiaTextoMensajeFun(String mensaje, Color color)
+        {
+            lbMensajeFun.ForeColor = color;
+            lbMensajeFun.Text = mensaje;
+        }
+
+        private void InsertaFuncion()
+        {
+            LimpiaFormularioFuncion();
+            if (ValidaDatosFuncion())
+            {
+                if (conexion.AbrirConexion())
+                {
+
+                    string txtCmd = "INSERT INTO Cine.funcion(clave_pel,clave_sal,hora_ini,hora_fin,fecha)" +
+                        "VALUES(" + cbPelFun.SelectedValue + "," + cbSalFun.SelectedValue + ",'" +
+                         dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' +dpHoraIniFun.Value.Second + "','" +
+                         dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second + 
+                         "','" + dpFechaFun.Value.Day + "/" + dpFechaFun.Value.Month + "/" +dpFechaFun.Value.Year + "')";
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosFuncion();
+                        CambiaTextoMensajeFun("Se actualizo correctamente!", Color.Blue);
+                        lbMensajeFun.Visible = true;
+                        LimpiaCamposFuncion();
+                        BotonesAccionFun(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    conexion.CerrarConexion();
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+            }
+
+        }
+
+        private void ActualizarFuncion()
+        {
+            string clave_fun = RenglonSeleccionadoFun();
+            if (ValidaDatosFuncion())
+            {
+                if (conexion.AbrirConexion())
+                {
+                    string txtCmd = "update Cine.funcion set clave_pel=" +
+                        cbPelFun.SelectedValue + ", clave_sal=" + cbSalFun.SelectedValue +
+                        ", hora_ini='" + dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' + dpHoraIniFun.Value.Second +
+                        "', hora_fin='" + dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second +                     
+                        "', fecha='" + dpFechaFun.Value.Year + "/" + dpFechaFun.Value.Month + "/" + dpFechaFun.Value.Day +
+                        "' where clave_fun=" + clave_fun;
+
+                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        ObtenerRegistrosFuncion();
+                        CambiaTextoMensajeFun("Se actualizo correctamente!", Color.Blue);
+                        lbMensajeFun.Visible = true;
+                        LimpiaCamposFuncion();
+                        BotonesAccionFun(false);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Error al llamar al servidor");
+                }
+            }
+
+        }
+
+        private void EliminarFuncion()
+        {
+            string clave_fun;
+
+            if ((clave_fun = RenglonSeleccionadoFun()) != "")
+            {
+                if (MessageBox.Show("¿Esta seguro de querer eliminar esta Funcion?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+
+                    if (conexion.AbrirConexion())
+                    {
+                        string txtCmd = "delete from Cine.funcion where clave_fun = " + clave_fun;
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            ObtenerRegistrosFuncion();
+                            CambiaTextoMensajeFun("Se elimino correctamente!", Color.Blue);
+                            LimpiaCamposFuncion();
+                            BotonesAccionFun(false);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
+                }
+            }
+            else MessageBox.Show("Primero selecciona la <Funcion> que se desea eliminar", "Atención");
+        }
+
+        private void btInsertaFun_Click(object sender, EventArgs e)
+        {
+            opFun = 0;
+            LimpiaCamposFuncion();
+            BotonesAccionFun(true);
+            cbPelFun.Focus();
+        }
+
+        private void btActualizaFun_Click(object sender, EventArgs e)
+        {
+            if (RenglonSeleccionadoFun() != "")
+            {
+                opFun = 1;
+                BotonesAccionFun(true);
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona la <Funcion> que se desea actualizar", "Atención");
+            }
+        }
+        private void btEliminaFun_Click(object sender, EventArgs e)
+        {
+            EliminarFuncion();
+        }
+
+        private string RenglonSeleccionadoFun()
+        {
+            string renglon;
+            try { renglon = dgFunciones.SelectedCells[0].Value.ToString(); }
+            catch { renglon = string.Empty; }
+            return renglon;
+        }
+        private void dgFunciones_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SeleccionaRegistroFun();
         }
 
         private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -1523,10 +1818,65 @@ namespace cinemax
         }
 
 
+        private void dgFunciones_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SeleccionaRegistroFun();
+        }
+        private void SeleccionaRegistroFun()
+        {
+            if (dgFunciones.SelectedCells.Count > 1)
+            {
+                cbPelFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_pel"].Index].Value;
+                cbCinFun.SelectedValue = SalaPerteneceACine(dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value.ToString());
+                cbSalFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value;
+                dpHoraIniFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_ini"].Index].Value.ToString();
+                dpHoraFinFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_fin"].Index].Value.ToString();
+                dpFechaFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["fecha"].Index].Value.ToString();
+            }
+        }
 
+        private string SalaPerteneceACine(string idSala) {
+            string idCine = "-1";
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
 
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "SELECT * FROM Cine.sala WHERE clave_sal=" + idSala;
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
 
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    idCine = dt.Rows[0]["clave_cin"].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+            return idCine;
+        }
+
+        #endregion
+        private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgEmpleados.Columns[e.ColumnIndex].Name == "contraseña" && e.Value != null)
+            {
+                dgEmpleados.Rows[e.RowIndex].Tag = e.Value;
+                e.Value = new String('*', 10);
+            }
+        }
  
     }
 }

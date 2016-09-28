@@ -39,3 +39,7 @@ CREATE RULE GENERO_PELICULA AS @var IN ('Terror', 'Comedia', 'Accion', 'Ciencia'
 EXEC sp_bindrule 'GENERO_PELICULA', 'Cine.pelicula.genero'
 --Fin
 
+--APLICADO: OMARACY-MAC
+--Modificacion de el tipo de dato de la tabla funcion de las columnas hora_ini y hora_fin de datetime a time
+ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_ini TIME NOT NULL;
+ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_fin TIME NOT NULL;  
