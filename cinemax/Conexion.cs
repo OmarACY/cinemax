@@ -12,14 +12,14 @@ namespace cinemax
     public class Conexion
     {
         /* Cadena de Conexión Omar */
-         public string datosCon = @"Data Source = OMARACY-MAC\SQLEXPRESS; Initial Catalog = cinemax; Integrated Security = true;";
+        // public string datosCon = @"Data Source = OMARACY-MAC\SQLEXPRESS; Initial Catalog = cinemax; Integrated Security = true;";
 
         /* Cadena de Conexión Milán */
-        // public string datosCon = @"Data Source=BECARIOS-PC\;Initial Catalog=cinemax;Integrated Security=True;";
+         public string datosCon = @"Data Source=BECARIOS-PC\;Initial Catalog=cinemax;Integrated Security=True;";
          
 
         /* Cadena de Conexión Milán (Laptop) */
-        //public string datosCon = @"Data Source=MILAN-PC\;Initial Catalog=cinemax;Integrated Security=True;";
+        // public string datosCon = @"Data Source=MILAN-PC\;Initial Catalog=cinemax;Integrated Security=True;";
 
         public SqlConnection con;
 

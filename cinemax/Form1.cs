@@ -23,6 +23,7 @@ namespace cinemax
         private int opEmp = -1;
         private int opMem = -1;
         private int opPel = -1;
+        public long clave_emp;
         #endregion
 
         #region Metodos Constructor y Load
@@ -1434,6 +1435,91 @@ namespace cinemax
                 dgEmpleados.Rows[e.RowIndex].Tag = e.Value;
                 e.Value = new String('*', 10);
             }
+        }
+
+        private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if(tcPrincipal.SelectedTab.AccessibleName == "Ventas")
+            {
+                PictureBox butaca;
+                Label lbl;
+                int x, y, numButacas;
+                char fila;
+                
+                fila = 'A';
+                x = y = 30;
+                numButacas = 54;
+                foreach (Control ctrl in VentaContainer.Panel2.Controls)
+                    ctrl.Dispose();
+                VentaContainer.Panel2.Controls.Clear();
+                lbl = new Label()
+                {
+                    Name = "lbFila" + fila,
+                    Text = (fila++).ToString(),
+                    ForeColor = Color.DodgerBlue,
+                    Location = new System.Drawing.Point(10, y + 24),
+                    Size = new Size(15, 15)
+                };
+                VentaContainer.Panel2.Controls.Add(lbl);
+                for(int i = 0; i < numButacas; i++)
+                {
+                    if (x > VentaContainer.Panel2.Width - 69)
+                    {
+                        x = 30;
+                        y += 69;
+                        lbl = new Label() 
+                        { 
+                            Name = "lbFila" + fila,
+                            Text = (fila++).ToString(),
+                            ForeColor = Color.DodgerBlue,
+                            Location = new System.Drawing.Point(10, y + 24),
+                            Size = new Size(15, 15)
+                        };
+                        VentaContainer.Panel2.Controls.Add(lbl);
+                    }
+                    if(y == 30)
+                    {
+                        lbl = new Label()
+                        {
+                            Name = "lbNumero" + i.ToString(),
+                            Text = i.ToString(),
+                            ForeColor = Color.DodgerBlue,
+                            Location = new System.Drawing.Point(x + 24, 10),
+                            Size = new Size(15, 15)
+                        };
+                        VentaContainer.Panel2.Controls.Add(lbl);
+                    }
+                    butaca = new PictureBox()
+                    {
+                        BackColor = Color.Transparent,
+                        BackgroundImage = global::cinemax.Properties.Resources.butaca,
+                        BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom,
+                        Cursor = System.Windows.Forms.Cursors.Hand,
+                        Location = new System.Drawing.Point(x, y),
+                        Name = "pbButaca" + i.ToString(),
+                        Size = new System.Drawing.Size(64, 64)
+                    };
+                    butaca.Click += butaca_Click;
+                    x += 69;
+                    VentaContainer.Panel2.Controls.Add(butaca);
+                }
+                butaca = new PictureBox()
+                {
+                    BackColor = Color.Black,
+                    Location = new System.Drawing.Point(VentaContainer.Panel2.Width / 2 - 200, y + 138),
+                    Name = "pbPantalla",
+                    Size = new System.Drawing.Size(400, 20),
+                };
+                VentaContainer.Panel2.Controls.Add(butaca);
+            }
+        }
+
+        void butaca_Click(object sender, EventArgs e)
+        {
+            if ((sender as PictureBox).BackColor == Color.Transparent)
+                (sender as PictureBox).BackColor = Color.LightSeaGreen;
+            else
+                (sender as PictureBox).BackColor = Color.Transparent;
         }
 
 

@@ -15,6 +15,7 @@ namespace cinemax
     {
         private List<Empleado> listaEmpleados;
         public bool loginStatus;
+        public long clave_emp;
 
         public Login()
         {
@@ -26,9 +27,27 @@ namespace cinemax
         {
             EmpleadoConexion conexion = new EmpleadoConexion();
 
-            listaEmpleados = conexion.ObtenEmpleados();
-            cbCveEmpleados.DataSource = listaEmpleados;
-            cbCveEmpleados.DisplayMember = "clave_emp";
+            if (conexion.AbrirConexion())
+            {
+                conexion.CerrarConexion();
+                listaEmpleados = conexion.ObtenEmpleados();
+                if (listaEmpleados.Count > 0)
+                {
+                    cbCveEmpleados.DataSource = listaEmpleados;
+                    cbCveEmpleados.DisplayMember = "clave_emp";
+                }
+                else
+                {
+                    clave_emp = -1;
+                    loginStatus = true;
+                    Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se puede establecer conexión con la base de datos \n El programa se cerrará", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void cbCveEmpleados_SelectedIndexChanged(object sender, EventArgs e)
@@ -45,6 +64,7 @@ namespace cinemax
         {
             if ((cbCveEmpleados.SelectedValue as Empleado).contraseña.CompareTo(tbContraseña.Text) == 0)
             {
+                clave_emp = (cbCveEmpleados.SelectedValue as Empleado).clave_emp;
                 loginStatus = true;
                 Close();
             }

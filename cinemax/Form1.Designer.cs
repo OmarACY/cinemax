@@ -140,15 +140,8 @@
             this.labelSalasCine = new System.Windows.Forms.Label();
             this.tbNombreCine = new System.Windows.Forms.TextBox();
             this.tbTelefonoSucursal = new System.Windows.Forms.TextBox();
-            this.lbCinemax = new System.Windows.Forms.Label();
-            this.tcPrincipal = new System.Windows.Forms.TabControl();
-            this.tpAdministracion = new System.Windows.Forms.TabPage();
-            this.tbVenta = new System.Windows.Forms.TabPage();
-            this.ResetTimer = new System.Windows.Forms.Timer(this.components);
-            this.pbLogo = new System.Windows.Forms.PictureBox();
-            this.btMinimizar = new System.Windows.Forms.PictureBox();
-            this.pbCerrar = new System.Windows.Forms.PictureBox();
             this.tpFuncion = new System.Windows.Forms.TabPage();
+            this.dgFunciones = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btCancelarFun = new System.Windows.Forms.Button();
@@ -157,17 +150,25 @@
             this.btEliminaFun = new System.Windows.Forms.Button();
             this.btInsertaFun = new System.Windows.Forms.Button();
             this.gbDGFun = new System.Windows.Forms.GroupBox();
+            this.dpHoraFinFun = new System.Windows.Forms.DateTimePicker();
+            this.dpHoraIniFun = new System.Windows.Forms.DateTimePicker();
+            this.dpFechaFun = new System.Windows.Forms.DateTimePicker();
+            this.cbPelFun = new System.Windows.Forms.ComboBox();
+            this.cbSalFun = new System.Windows.Forms.ComboBox();
             this.lbFechaFun = new System.Windows.Forms.Label();
             this.lbHoraFinFun = new System.Windows.Forms.Label();
             this.lbHoraIniFun = new System.Windows.Forms.Label();
             this.lbSalaFun = new System.Windows.Forms.Label();
             this.lbPelFun = new System.Windows.Forms.Label();
-            this.cbSalFun = new System.Windows.Forms.ComboBox();
-            this.cbPelFun = new System.Windows.Forms.ComboBox();
-            this.dpFechaFun = new System.Windows.Forms.DateTimePicker();
-            this.dpHoraIniFun = new System.Windows.Forms.DateTimePicker();
-            this.dpHoraFinFun = new System.Windows.Forms.DateTimePicker();
-            this.dgFunciones = new System.Windows.Forms.DataGridView();
+            this.lbCinemax = new System.Windows.Forms.Label();
+            this.tcPrincipal = new System.Windows.Forms.TabControl();
+            this.tpAdministracion = new System.Windows.Forms.TabPage();
+            this.tbVenta = new System.Windows.Forms.TabPage();
+            this.ResetTimer = new System.Windows.Forms.Timer(this.components);
+            this.VentaContainer = new System.Windows.Forms.SplitContainer();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btMinimizar = new System.Windows.Forms.PictureBox();
+            this.pbCerrar = new System.Windows.Forms.PictureBox();
             this.tcAdministracion.SuspendLayout();
             this.tpEmpleado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmpleados)).BeginInit();
@@ -191,15 +192,18 @@
             this.gbUbicacionSucursal.SuspendLayout();
             this.gbInfoSucursal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).BeginInit();
+            this.tpFuncion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.gbDGFun.SuspendLayout();
             this.tcPrincipal.SuspendLayout();
             this.tpAdministracion.SuspendLayout();
+            this.tbVenta.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.VentaContainer)).BeginInit();
+            this.VentaContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).BeginInit();
-            this.tpFuncion.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.gbDGFun.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdministracion
@@ -1503,89 +1507,6 @@
             this.tbTelefonoSucursal.Size = new System.Drawing.Size(286, 20);
             this.tbTelefonoSucursal.TabIndex = 1;
             // 
-            // lbCinemax
-            // 
-            this.lbCinemax.AutoSize = true;
-            this.lbCinemax.BackColor = System.Drawing.Color.Transparent;
-            this.lbCinemax.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCinemax.Location = new System.Drawing.Point(456, -2);
-            this.lbCinemax.Name = "lbCinemax";
-            this.lbCinemax.Size = new System.Drawing.Size(67, 23);
-            this.lbCinemax.TabIndex = 3;
-            this.lbCinemax.Text = "Cinemax";
-            // 
-            // tcPrincipal
-            // 
-            this.tcPrincipal.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tcPrincipal.Controls.Add(this.tpAdministracion);
-            this.tcPrincipal.Controls.Add(this.tbVenta);
-            this.tcPrincipal.Location = new System.Drawing.Point(4, 24);
-            this.tcPrincipal.Name = "tcPrincipal";
-            this.tcPrincipal.SelectedIndex = 0;
-            this.tcPrincipal.Size = new System.Drawing.Size(992, 571);
-            this.tcPrincipal.TabIndex = 0;
-            // 
-            // tpAdministracion
-            // 
-            this.tpAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.tpAdministracion.Controls.Add(this.tcAdministracion);
-            this.tpAdministracion.Location = new System.Drawing.Point(4, 25);
-            this.tpAdministracion.Name = "tpAdministracion";
-            this.tpAdministracion.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAdministracion.Size = new System.Drawing.Size(984, 542);
-            this.tpAdministracion.TabIndex = 0;
-            this.tpAdministracion.Text = "Administración";
-            // 
-            // tbVenta
-            // 
-            this.tbVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.tbVenta.Location = new System.Drawing.Point(4, 25);
-            this.tbVenta.Name = "tbVenta";
-            this.tbVenta.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVenta.Size = new System.Drawing.Size(984, 542);
-            this.tbVenta.TabIndex = 1;
-            this.tbVenta.Text = "Venta";
-            // 
-            // ResetTimer
-            // 
-            this.ResetTimer.Interval = 1500;
-            this.ResetTimer.Tick += new System.EventHandler(this.ResetTimer_Tick);
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbLogo.Image = global::cinemax.Properties.Resources.logo_claro;
-            this.pbLogo.Location = new System.Drawing.Point(5, 1);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(20, 20);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 5;
-            this.pbLogo.TabStop = false;
-            // 
-            // btMinimizar
-            // 
-            this.btMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btMinimizar.Image = global::cinemax.Properties.Resources.minimizar;
-            this.btMinimizar.Location = new System.Drawing.Point(952, 3);
-            this.btMinimizar.Name = "btMinimizar";
-            this.btMinimizar.Size = new System.Drawing.Size(15, 15);
-            this.btMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btMinimizar.TabIndex = 4;
-            this.btMinimizar.TabStop = false;
-            this.btMinimizar.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pbCerrar
-            // 
-            this.pbCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbCerrar.Image = global::cinemax.Properties.Resources.cerrar2;
-            this.pbCerrar.Location = new System.Drawing.Point(977, 3);
-            this.pbCerrar.Name = "pbCerrar";
-            this.pbCerrar.Size = new System.Drawing.Size(15, 15);
-            this.pbCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCerrar.TabIndex = 2;
-            this.pbCerrar.TabStop = false;
-            this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
-            // 
             // tpFuncion
             // 
             this.tpFuncion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -1597,6 +1518,19 @@
             this.tpFuncion.Size = new System.Drawing.Size(970, 507);
             this.tpFuncion.TabIndex = 5;
             this.tpFuncion.Text = "Funcion";
+            // 
+            // dgFunciones
+            // 
+            this.dgFunciones.AllowUserToAddRows = false;
+            this.dgFunciones.AllowUserToDeleteRows = false;
+            this.dgFunciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFunciones.Location = new System.Drawing.Point(3, 198);
+            this.dgFunciones.MultiSelect = false;
+            this.dgFunciones.Name = "dgFunciones";
+            this.dgFunciones.ReadOnly = true;
+            this.dgFunciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFunciones.Size = new System.Drawing.Size(963, 306);
+            this.dgFunciones.TabIndex = 4;
             // 
             // groupBox2
             // 
@@ -1701,6 +1635,63 @@
             this.gbDGFun.TabStop = false;
             this.gbDGFun.Text = "Datos generales";
             // 
+            // dpHoraFinFun
+            // 
+            this.dpHoraFinFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dpHoraFinFun.Location = new System.Drawing.Point(127, 103);
+            this.dpHoraFinFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpHoraFinFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpHoraFinFun.Name = "dpHoraFinFun";
+            this.dpHoraFinFun.ShowUpDown = true;
+            this.dpHoraFinFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraFinFun.TabIndex = 19;
+            this.dpHoraFinFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // dpHoraIniFun
+            // 
+            this.dpHoraIniFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dpHoraIniFun.Location = new System.Drawing.Point(127, 76);
+            this.dpHoraIniFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpHoraIniFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpHoraIniFun.Name = "dpHoraIniFun";
+            this.dpHoraIniFun.ShowUpDown = true;
+            this.dpHoraIniFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraIniFun.TabIndex = 18;
+            this.dpHoraIniFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // dpFechaFun
+            // 
+            this.dpFechaFun.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaFun.Location = new System.Drawing.Point(537, 23);
+            this.dpFechaFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            this.dpFechaFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpFechaFun.Name = "dpFechaFun";
+            this.dpFechaFun.Size = new System.Drawing.Size(274, 20);
+            this.dpFechaFun.TabIndex = 17;
+            this.dpFechaFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            // 
+            // cbPelFun
+            // 
+            this.cbPelFun.DisplayMember = "10";
+            this.cbPelFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPelFun.FormattingEnabled = true;
+            this.cbPelFun.Location = new System.Drawing.Point(127, 20);
+            this.cbPelFun.Name = "cbPelFun";
+            this.cbPelFun.Size = new System.Drawing.Size(341, 21);
+            this.cbPelFun.TabIndex = 16;
+            this.cbPelFun.ValueMember = "10";
+            // 
+            // cbSalFun
+            // 
+            this.cbSalFun.DisplayMember = "10";
+            this.cbSalFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSalFun.FormattingEnabled = true;
+            this.cbSalFun.Location = new System.Drawing.Point(127, 47);
+            this.cbSalFun.Name = "cbSalFun";
+            this.cbSalFun.Size = new System.Drawing.Size(341, 21);
+            this.cbSalFun.TabIndex = 15;
+            this.cbSalFun.ValueMember = "10";
+            // 
             // lbFechaFun
             // 
             this.lbFechaFun.AutoSize = true;
@@ -1757,75 +1748,112 @@
             this.lbPelFun.Text = "Pelicula";
             this.lbPelFun.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cbSalFun
+            // lbCinemax
             // 
-            this.cbSalFun.DisplayMember = "10";
-            this.cbSalFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSalFun.FormattingEnabled = true;
-            this.cbSalFun.Location = new System.Drawing.Point(127, 47);
-            this.cbSalFun.Name = "cbSalFun";
-            this.cbSalFun.Size = new System.Drawing.Size(341, 21);
-            this.cbSalFun.TabIndex = 15;
-            this.cbSalFun.ValueMember = "10";
+            this.lbCinemax.AutoSize = true;
+            this.lbCinemax.BackColor = System.Drawing.Color.Transparent;
+            this.lbCinemax.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCinemax.Location = new System.Drawing.Point(456, -2);
+            this.lbCinemax.Name = "lbCinemax";
+            this.lbCinemax.Size = new System.Drawing.Size(67, 23);
+            this.lbCinemax.TabIndex = 3;
+            this.lbCinemax.Text = "Cinemax";
             // 
-            // cbPelFun
+            // tcPrincipal
             // 
-            this.cbPelFun.DisplayMember = "10";
-            this.cbPelFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPelFun.FormattingEnabled = true;
-            this.cbPelFun.Location = new System.Drawing.Point(127, 20);
-            this.cbPelFun.Name = "cbPelFun";
-            this.cbPelFun.Size = new System.Drawing.Size(341, 21);
-            this.cbPelFun.TabIndex = 16;
-            this.cbPelFun.ValueMember = "10";
+            this.tcPrincipal.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tcPrincipal.Controls.Add(this.tpAdministracion);
+            this.tcPrincipal.Controls.Add(this.tbVenta);
+            this.tcPrincipal.Location = new System.Drawing.Point(4, 24);
+            this.tcPrincipal.Name = "tcPrincipal";
+            this.tcPrincipal.SelectedIndex = 0;
+            this.tcPrincipal.Size = new System.Drawing.Size(992, 571);
+            this.tcPrincipal.TabIndex = 0;
+            this.tcPrincipal.SelectedIndexChanged += new System.EventHandler(this.tcPrincipal_SelectedIndexChanged_1);
             // 
-            // dpFechaFun
+            // tpAdministracion
             // 
-            this.dpFechaFun.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFechaFun.Location = new System.Drawing.Point(537, 23);
-            this.dpFechaFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
-            this.dpFechaFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
-            this.dpFechaFun.Name = "dpFechaFun";
-            this.dpFechaFun.Size = new System.Drawing.Size(274, 20);
-            this.dpFechaFun.TabIndex = 17;
-            this.dpFechaFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.tpAdministracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.tpAdministracion.Controls.Add(this.tcAdministracion);
+            this.tpAdministracion.Location = new System.Drawing.Point(4, 25);
+            this.tpAdministracion.Name = "tpAdministracion";
+            this.tpAdministracion.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAdministracion.Size = new System.Drawing.Size(984, 542);
+            this.tpAdministracion.TabIndex = 0;
+            this.tpAdministracion.Text = "Administración";
             // 
-            // dpHoraIniFun
+            // tbVenta
             // 
-            this.dpHoraIniFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dpHoraIniFun.Location = new System.Drawing.Point(127, 76);
-            this.dpHoraIniFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
-            this.dpHoraIniFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
-            this.dpHoraIniFun.Name = "dpHoraIniFun";
-            this.dpHoraIniFun.ShowUpDown = true;
-            this.dpHoraIniFun.Size = new System.Drawing.Size(274, 20);
-            this.dpHoraIniFun.TabIndex = 18;
-            this.dpHoraIniFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.tbVenta.AccessibleName = "Ventas";
+            this.tbVenta.BackColor = System.Drawing.Color.DodgerBlue;
+            this.tbVenta.Controls.Add(this.VentaContainer);
+            this.tbVenta.Location = new System.Drawing.Point(4, 25);
+            this.tbVenta.Name = "tbVenta";
+            this.tbVenta.Padding = new System.Windows.Forms.Padding(3);
+            this.tbVenta.Size = new System.Drawing.Size(984, 542);
+            this.tbVenta.TabIndex = 1;
+            this.tbVenta.Text = "Venta";
             // 
-            // dpHoraFinFun
+            // ResetTimer
             // 
-            this.dpHoraFinFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dpHoraFinFun.Location = new System.Drawing.Point(127, 103);
-            this.dpHoraFinFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
-            this.dpHoraFinFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
-            this.dpHoraFinFun.Name = "dpHoraFinFun";
-            this.dpHoraFinFun.ShowUpDown = true;
-            this.dpHoraFinFun.Size = new System.Drawing.Size(274, 20);
-            this.dpHoraFinFun.TabIndex = 19;
-            this.dpHoraFinFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.ResetTimer.Interval = 1500;
+            this.ResetTimer.Tick += new System.EventHandler(this.ResetTimer_Tick);
             // 
-            // dgFunciones
+            // VentaContainer
             // 
-            this.dgFunciones.AllowUserToAddRows = false;
-            this.dgFunciones.AllowUserToDeleteRows = false;
-            this.dgFunciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgFunciones.Location = new System.Drawing.Point(3, 198);
-            this.dgFunciones.MultiSelect = false;
-            this.dgFunciones.Name = "dgFunciones";
-            this.dgFunciones.ReadOnly = true;
-            this.dgFunciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgFunciones.Size = new System.Drawing.Size(963, 306);
-            this.dgFunciones.TabIndex = 4;
+            this.VentaContainer.BackColor = System.Drawing.Color.DodgerBlue;
+            this.VentaContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VentaContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.VentaContainer.IsSplitterFixed = true;
+            this.VentaContainer.Location = new System.Drawing.Point(3, 3);
+            this.VentaContainer.Name = "VentaContainer";
+            // 
+            // VentaContainer.Panel1
+            // 
+            this.VentaContainer.Panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            // 
+            // VentaContainer.Panel2
+            // 
+            this.VentaContainer.Panel2.AutoScroll = true;
+            this.VentaContainer.Panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.VentaContainer.Size = new System.Drawing.Size(978, 536);
+            this.VentaContainer.SplitterDistance = 300;
+            this.VentaContainer.TabIndex = 0;
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbLogo.Image = global::cinemax.Properties.Resources.logo_claro;
+            this.pbLogo.Location = new System.Drawing.Point(5, 1);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(20, 20);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLogo.TabIndex = 5;
+            this.pbLogo.TabStop = false;
+            // 
+            // btMinimizar
+            // 
+            this.btMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btMinimizar.Image = global::cinemax.Properties.Resources.minimizar;
+            this.btMinimizar.Location = new System.Drawing.Point(952, 3);
+            this.btMinimizar.Name = "btMinimizar";
+            this.btMinimizar.Size = new System.Drawing.Size(15, 15);
+            this.btMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btMinimizar.TabIndex = 4;
+            this.btMinimizar.TabStop = false;
+            this.btMinimizar.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pbCerrar
+            // 
+            this.pbCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbCerrar.Image = global::cinemax.Properties.Resources.cerrar2;
+            this.pbCerrar.Location = new System.Drawing.Point(977, 3);
+            this.pbCerrar.Name = "pbCerrar";
+            this.pbCerrar.Size = new System.Drawing.Size(15, 15);
+            this.pbCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCerrar.TabIndex = 2;
+            this.pbCerrar.TabStop = false;
+            this.pbCerrar.Click += new System.EventHandler(this.pbCerrar_Click);
             // 
             // Cinemax
             // 
@@ -1887,17 +1915,20 @@
             this.gbInfoSucursal.ResumeLayout(false);
             this.gbInfoSucursal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSalasCine)).EndInit();
-            this.tcPrincipal.ResumeLayout(false);
-            this.tpAdministracion.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
             this.tpFuncion.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.gbDGFun.ResumeLayout(false);
             this.gbDGFun.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFunciones)).EndInit();
+            this.tcPrincipal.ResumeLayout(false);
+            this.tpAdministracion.ResumeLayout(false);
+            this.tbVenta.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.VentaContainer)).EndInit();
+            this.VentaContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCerrar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2042,6 +2073,7 @@
         private System.Windows.Forms.DateTimePicker dpHoraFinFun;
         private System.Windows.Forms.DateTimePicker dpHoraIniFun;
         private System.Windows.Forms.DataGridView dgFunciones;
+        private System.Windows.Forms.SplitContainer VentaContainer;
     }
 }
 

@@ -19,7 +19,10 @@ namespace cinemax
             Login login = new Login();
             Application.Run(login);
             if (login.loginStatus)
-                Application.Run(new Cinemax());
+            {
+                Cinemax formularioPrincipal = new Cinemax() { clave_emp = login.clave_emp };
+                Application.Run(formularioPrincipal);
+            }
         }
     }
 }

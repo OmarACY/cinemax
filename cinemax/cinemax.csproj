@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CambiosCinemax.sql" />
+    <None Include="Resources\butaca.png" />
     <None Include="Resources\logo_claro.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
