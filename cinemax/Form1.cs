@@ -1731,7 +1731,57 @@ namespace cinemax
         {
             SeleccionaRegistroFun();
         }
+        private void dgFunciones_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            SeleccionaRegistroFun();
+        }
+        private void SeleccionaRegistroFun()
+        {
+            if (dgFunciones.SelectedCells.Count > 1)
+            {
+                cbPelFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_pel"].Index].Value;
+                cbCinFun.SelectedValue = SalaPerteneceACine(dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value.ToString());
+                cbSalFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value;
+                dpHoraIniFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_ini"].Index].Value.ToString();
+                dpHoraFinFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_fin"].Index].Value.ToString();
+                dpFechaFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["fecha"].Index].Value.ToString();
+            }
+        }
 
+        private string SalaPerteneceACine(string idSala)
+        {
+            string idCine = "-1";
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "SELECT * FROM Cine.sala WHERE clave_sal=" + idSala;
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    idCine = dt.Rows[0]["clave_cin"].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+            return idCine;
+        }
+        #endregion
         private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if(tcPrincipal.SelectedTab.AccessibleName == "Ventas")
@@ -1816,59 +1866,7 @@ namespace cinemax
             else
                 (sender as PictureBox).BackColor = Color.Transparent;
         }
-
-
-        private void dgFunciones_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            SeleccionaRegistroFun();
-        }
-        private void SeleccionaRegistroFun()
-        {
-            if (dgFunciones.SelectedCells.Count > 1)
-            {
-                cbPelFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_pel"].Index].Value;
-                cbCinFun.SelectedValue = SalaPerteneceACine(dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value.ToString());
-                cbSalFun.SelectedValue = dgFunciones.SelectedCells[dgFunciones.Columns["clave_sal"].Index].Value;
-                dpHoraIniFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_ini"].Index].Value.ToString();
-                dpHoraFinFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["hora_fin"].Index].Value.ToString();
-                dpFechaFun.Text = dgFunciones.SelectedCells[dgFunciones.Columns["fecha"].Index].Value.ToString();
-            }
-        }
-
-        private string SalaPerteneceACine(string idSala) {
-            string idCine = "-1";
-            SqlDataAdapter adaptador = new SqlDataAdapter();
-            //DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-
-            if (conexion.AbrirConexion())
-            {
-                string txtCmd = "SELECT * FROM Cine.sala WHERE clave_sal=" + idSala;
-                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                try
-                {
-                    adaptador.SelectCommand = cmd;
-                    adaptador.Fill(dt);
-                    adaptador.Dispose();
-                    cmd.Dispose();
-                    idCine = dt.Rows[0]["clave_cin"].ToString();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                conexion.CerrarConexion();
-            }
-            else
-            {
-                MessageBox.Show("Error al llamar al servidor");
-            }
-            return idCine;
-        }
-
-        #endregion
+        
         private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgEmpleados.Columns[e.ColumnIndex].Name == "contraseña" && e.Value != null)
