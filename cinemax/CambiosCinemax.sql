@@ -28,18 +28,20 @@ ADD contraseña varchar(32) NOT NULL DEFAULT 'AdministracionBasesDatos';
 GO
 -- Fin
 
---ALPICADO: OMARACY-MAC
+--ALPICADO: OMARACY-MAC, BECARIOS-PC
 --Reglas para el tipo de membresia y los generos de las peliculas
 CREATE RULE TIPO_MEMBRESIA AS @var IN ('Standar', 'Premium', 'Vip')
-
+GO
 EXEC sp_bindrule 'TIPO_MEMBRESIA', 'Persona.membresia.tipo'
-
+GO
 CREATE RULE GENERO_PELICULA AS @var IN ('Terror', 'Comedia', 'Accion', 'Ciencia', 'Ficcion', 'Animacion', 'Infantil', 'Misterio', 'Drama')
-
+GO
 EXEC sp_bindrule 'GENERO_PELICULA', 'Cine.pelicula.genero'
+GO
 --Fin
 
---APLICADO: OMARACY-MAC
+--APLICADO: OMARACY-MAC, BECARIOS-PC
 --Modificacion de el tipo de dato de la tabla funcion de las columnas hora_ini y hora_fin de datetime a time
 ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_ini TIME NOT NULL;
-ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_fin TIME NOT NULL;  
+ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_fin TIME NOT NULL;
+GO  

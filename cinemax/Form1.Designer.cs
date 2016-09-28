@@ -167,6 +167,28 @@
             this.tpAdministracion = new System.Windows.Forms.TabPage();
             this.tbVenta = new System.Windows.Forms.TabPage();
             this.VentaContainer = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbSlash = new System.Windows.Forms.Label();
+            this.tbAnoVenc = new System.Windows.Forms.TextBox();
+            this.tbMesVenc = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbCodSeguridad = new System.Windows.Forms.TextBox();
+            this.lbCodSeguridad = new System.Windows.Forms.Label();
+            this.tbNumTarjeta = new System.Windows.Forms.TextBox();
+            this.lbNumTarjeta = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbEfectivo = new System.Windows.Forms.RadioButton();
+            this.lbTipoPago = new System.Windows.Forms.Label();
+            this.tbSalaVenta = new System.Windows.Forms.TextBox();
+            this.lbSalaVenta = new System.Windows.Forms.Label();
+            this.cbHoraFuncionVenta = new System.Windows.Forms.ComboBox();
+            this.lbHoraFuncionVenta = new System.Windows.Forms.Label();
+            this.cbFuncionVenta = new System.Windows.Forms.ComboBox();
+            this.lbFuncionVenta = new System.Windows.Forms.Label();
+            this.cbCineVenta = new System.Windows.Forms.ComboBox();
+            this.lbCineVenta = new System.Windows.Forms.Label();
+            this.lbClienteVenta = new System.Windows.Forms.Label();
+            this.cbClienteVenta = new System.Windows.Forms.ComboBox();
             this.ResetTimer = new System.Windows.Forms.Timer(this.components);
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.btMinimizar = new System.Windows.Forms.PictureBox();
@@ -202,6 +224,7 @@
             this.tpAdministracion.SuspendLayout();
             this.tbVenta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VentaContainer)).BeginInit();
+            this.VentaContainer.Panel1.SuspendLayout();
             this.VentaContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btMinimizar)).BeginInit();
@@ -1849,14 +1872,241 @@
             // VentaContainer.Panel1
             // 
             this.VentaContainer.Panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.VentaContainer.Panel1.Controls.Add(this.button1);
+            this.VentaContainer.Panel1.Controls.Add(this.lbSlash);
+            this.VentaContainer.Panel1.Controls.Add(this.tbAnoVenc);
+            this.VentaContainer.Panel1.Controls.Add(this.tbMesVenc);
+            this.VentaContainer.Panel1.Controls.Add(this.label1);
+            this.VentaContainer.Panel1.Controls.Add(this.tbCodSeguridad);
+            this.VentaContainer.Panel1.Controls.Add(this.lbCodSeguridad);
+            this.VentaContainer.Panel1.Controls.Add(this.tbNumTarjeta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbNumTarjeta);
+            this.VentaContainer.Panel1.Controls.Add(this.radioButton1);
+            this.VentaContainer.Panel1.Controls.Add(this.rbEfectivo);
+            this.VentaContainer.Panel1.Controls.Add(this.lbTipoPago);
+            this.VentaContainer.Panel1.Controls.Add(this.tbSalaVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbSalaVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.cbHoraFuncionVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbHoraFuncionVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.cbFuncionVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbFuncionVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.cbCineVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbCineVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.lbClienteVenta);
+            this.VentaContainer.Panel1.Controls.Add(this.cbClienteVenta);
             // 
             // VentaContainer.Panel2
             // 
             this.VentaContainer.Panel2.AutoScroll = true;
             this.VentaContainer.Panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.VentaContainer.Size = new System.Drawing.Size(978, 536);
-            this.VentaContainer.SplitterDistance = 300;
+            this.VentaContainer.SplitterDistance = 303;
             this.VentaContainer.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.button1.Location = new System.Drawing.Point(19, 457);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 30);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Generar venta";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // lbSlash
+            // 
+            this.lbSlash.AutoSize = true;
+            this.lbSlash.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSlash.ForeColor = System.Drawing.Color.Black;
+            this.lbSlash.Location = new System.Drawing.Point(77, 407);
+            this.lbSlash.Name = "lbSlash";
+            this.lbSlash.Size = new System.Drawing.Size(12, 17);
+            this.lbSlash.TabIndex = 20;
+            this.lbSlash.Text = "/";
+            // 
+            // tbAnoVenc
+            // 
+            this.tbAnoVenc.Location = new System.Drawing.Point(92, 406);
+            this.tbAnoVenc.Name = "tbAnoVenc";
+            this.tbAnoVenc.Size = new System.Drawing.Size(55, 20);
+            this.tbAnoVenc.TabIndex = 19;
+            // 
+            // tbMesVenc
+            // 
+            this.tbMesVenc.Location = new System.Drawing.Point(19, 407);
+            this.tbMesVenc.Name = "tbMesVenc";
+            this.tbMesVenc.Size = new System.Drawing.Size(55, 20);
+            this.tbMesVenc.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(16, 390);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Fecha de vencimiento";
+            // 
+            // tbCodSeguridad
+            // 
+            this.tbCodSeguridad.Location = new System.Drawing.Point(19, 360);
+            this.tbCodSeguridad.Name = "tbCodSeguridad";
+            this.tbCodSeguridad.Size = new System.Drawing.Size(128, 20);
+            this.tbCodSeguridad.TabIndex = 16;
+            // 
+            // lbCodSeguridad
+            // 
+            this.lbCodSeguridad.AutoSize = true;
+            this.lbCodSeguridad.ForeColor = System.Drawing.Color.Black;
+            this.lbCodSeguridad.Location = new System.Drawing.Point(16, 343);
+            this.lbCodSeguridad.Name = "lbCodSeguridad";
+            this.lbCodSeguridad.Size = new System.Drawing.Size(104, 13);
+            this.lbCodSeguridad.TabIndex = 15;
+            this.lbCodSeguridad.Text = "Código de seguridad";
+            // 
+            // tbNumTarjeta
+            // 
+            this.tbNumTarjeta.Location = new System.Drawing.Point(19, 312);
+            this.tbNumTarjeta.Name = "tbNumTarjeta";
+            this.tbNumTarjeta.Size = new System.Drawing.Size(268, 20);
+            this.tbNumTarjeta.TabIndex = 14;
+            // 
+            // lbNumTarjeta
+            // 
+            this.lbNumTarjeta.AutoSize = true;
+            this.lbNumTarjeta.ForeColor = System.Drawing.Color.Black;
+            this.lbNumTarjeta.Location = new System.Drawing.Point(16, 295);
+            this.lbNumTarjeta.Name = "lbNumTarjeta";
+            this.lbNumTarjeta.Size = new System.Drawing.Size(91, 13);
+            this.lbNumTarjeta.TabIndex = 13;
+            this.lbNumTarjeta.Text = "Número de tarjeta";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AccessibleName = "Pago Tarjeta";
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.ForeColor = System.Drawing.Color.Black;
+            this.radioButton1.Location = new System.Drawing.Point(89, 266);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(58, 17);
+            this.radioButton1.TabIndex = 12;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Tarjeta";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // rbEfectivo
+            // 
+            this.rbEfectivo.AccessibleName = "Pago Efectivo";
+            this.rbEfectivo.AutoSize = true;
+            this.rbEfectivo.ForeColor = System.Drawing.Color.Black;
+            this.rbEfectivo.Location = new System.Drawing.Point(19, 266);
+            this.rbEfectivo.Name = "rbEfectivo";
+            this.rbEfectivo.Size = new System.Drawing.Size(64, 17);
+            this.rbEfectivo.TabIndex = 11;
+            this.rbEfectivo.TabStop = true;
+            this.rbEfectivo.Text = "Efectivo";
+            this.rbEfectivo.UseVisualStyleBackColor = true;
+            // 
+            // lbTipoPago
+            // 
+            this.lbTipoPago.AutoSize = true;
+            this.lbTipoPago.ForeColor = System.Drawing.Color.Black;
+            this.lbTipoPago.Location = new System.Drawing.Point(18, 249);
+            this.lbTipoPago.Name = "lbTipoPago";
+            this.lbTipoPago.Size = new System.Drawing.Size(70, 13);
+            this.lbTipoPago.TabIndex = 10;
+            this.lbTipoPago.Text = "Tipo de pago";
+            // 
+            // tbSalaVenta
+            // 
+            this.tbSalaVenta.Location = new System.Drawing.Point(19, 218);
+            this.tbSalaVenta.Name = "tbSalaVenta";
+            this.tbSalaVenta.Size = new System.Drawing.Size(268, 20);
+            this.tbSalaVenta.TabIndex = 9;
+            // 
+            // lbSalaVenta
+            // 
+            this.lbSalaVenta.AutoSize = true;
+            this.lbSalaVenta.ForeColor = System.Drawing.Color.Black;
+            this.lbSalaVenta.Location = new System.Drawing.Point(16, 201);
+            this.lbSalaVenta.Name = "lbSalaVenta";
+            this.lbSalaVenta.Size = new System.Drawing.Size(28, 13);
+            this.lbSalaVenta.TabIndex = 8;
+            this.lbSalaVenta.Text = "Sala";
+            // 
+            // cbHoraFuncionVenta
+            // 
+            this.cbHoraFuncionVenta.FormattingEnabled = true;
+            this.cbHoraFuncionVenta.Location = new System.Drawing.Point(19, 171);
+            this.cbHoraFuncionVenta.Name = "cbHoraFuncionVenta";
+            this.cbHoraFuncionVenta.Size = new System.Drawing.Size(268, 21);
+            this.cbHoraFuncionVenta.TabIndex = 7;
+            // 
+            // lbHoraFuncionVenta
+            // 
+            this.lbHoraFuncionVenta.AutoSize = true;
+            this.lbHoraFuncionVenta.ForeColor = System.Drawing.Color.Black;
+            this.lbHoraFuncionVenta.Location = new System.Drawing.Point(16, 155);
+            this.lbHoraFuncionVenta.Name = "lbHoraFuncionVenta";
+            this.lbHoraFuncionVenta.Size = new System.Drawing.Size(30, 13);
+            this.lbHoraFuncionVenta.TabIndex = 6;
+            this.lbHoraFuncionVenta.Text = "Hora";
+            // 
+            // cbFuncionVenta
+            // 
+            this.cbFuncionVenta.FormattingEnabled = true;
+            this.cbFuncionVenta.Location = new System.Drawing.Point(19, 126);
+            this.cbFuncionVenta.Name = "cbFuncionVenta";
+            this.cbFuncionVenta.Size = new System.Drawing.Size(268, 21);
+            this.cbFuncionVenta.TabIndex = 5;
+            // 
+            // lbFuncionVenta
+            // 
+            this.lbFuncionVenta.AutoSize = true;
+            this.lbFuncionVenta.ForeColor = System.Drawing.Color.Black;
+            this.lbFuncionVenta.Location = new System.Drawing.Point(16, 110);
+            this.lbFuncionVenta.Name = "lbFuncionVenta";
+            this.lbFuncionVenta.Size = new System.Drawing.Size(45, 13);
+            this.lbFuncionVenta.TabIndex = 4;
+            this.lbFuncionVenta.Text = "Funcion";
+            // 
+            // cbCineVenta
+            // 
+            this.cbCineVenta.FormattingEnabled = true;
+            this.cbCineVenta.Location = new System.Drawing.Point(19, 81);
+            this.cbCineVenta.Name = "cbCineVenta";
+            this.cbCineVenta.Size = new System.Drawing.Size(268, 21);
+            this.cbCineVenta.TabIndex = 3;
+            // 
+            // lbCineVenta
+            // 
+            this.lbCineVenta.AutoSize = true;
+            this.lbCineVenta.ForeColor = System.Drawing.Color.Black;
+            this.lbCineVenta.Location = new System.Drawing.Point(16, 65);
+            this.lbCineVenta.Name = "lbCineVenta";
+            this.lbCineVenta.Size = new System.Drawing.Size(28, 13);
+            this.lbCineVenta.TabIndex = 2;
+            this.lbCineVenta.Text = "Cine";
+            // 
+            // lbClienteVenta
+            // 
+            this.lbClienteVenta.AutoSize = true;
+            this.lbClienteVenta.ForeColor = System.Drawing.Color.Black;
+            this.lbClienteVenta.Location = new System.Drawing.Point(16, 19);
+            this.lbClienteVenta.Name = "lbClienteVenta";
+            this.lbClienteVenta.Size = new System.Drawing.Size(39, 13);
+            this.lbClienteVenta.TabIndex = 1;
+            this.lbClienteVenta.Text = "Cliente";
+            // 
+            // cbClienteVenta
+            // 
+            this.cbClienteVenta.FormattingEnabled = true;
+            this.cbClienteVenta.Location = new System.Drawing.Point(19, 35);
+            this.cbClienteVenta.Name = "cbClienteVenta";
+            this.cbClienteVenta.Size = new System.Drawing.Size(268, 21);
+            this.cbClienteVenta.TabIndex = 0;
             // 
             // ResetTimer
             // 
@@ -1967,6 +2217,8 @@
             this.tcPrincipal.ResumeLayout(false);
             this.tpAdministracion.ResumeLayout(false);
             this.tbVenta.ResumeLayout(false);
+            this.VentaContainer.Panel1.ResumeLayout(false);
+            this.VentaContainer.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VentaContainer)).EndInit();
             this.VentaContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
@@ -2121,6 +2373,28 @@
         private System.Windows.Forms.ComboBox cbCinFun;
 
         private System.Windows.Forms.SplitContainer VentaContainer;
+        private System.Windows.Forms.Label lbSlash;
+        private System.Windows.Forms.TextBox tbAnoVenc;
+        private System.Windows.Forms.TextBox tbMesVenc;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbCodSeguridad;
+        private System.Windows.Forms.Label lbCodSeguridad;
+        private System.Windows.Forms.TextBox tbNumTarjeta;
+        private System.Windows.Forms.Label lbNumTarjeta;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbEfectivo;
+        private System.Windows.Forms.Label lbTipoPago;
+        private System.Windows.Forms.TextBox tbSalaVenta;
+        private System.Windows.Forms.Label lbSalaVenta;
+        private System.Windows.Forms.ComboBox cbHoraFuncionVenta;
+        private System.Windows.Forms.Label lbHoraFuncionVenta;
+        private System.Windows.Forms.ComboBox cbFuncionVenta;
+        private System.Windows.Forms.Label lbFuncionVenta;
+        private System.Windows.Forms.ComboBox cbCineVenta;
+        private System.Windows.Forms.Label lbCineVenta;
+        private System.Windows.Forms.Label lbClienteVenta;
+        private System.Windows.Forms.ComboBox cbClienteVenta;
+        private System.Windows.Forms.Button button1;
 
     }
 }

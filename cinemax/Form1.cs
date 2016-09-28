@@ -1782,6 +1782,8 @@ namespace cinemax
             return idCine;
         }
         #endregion
+
+        #region Metodos pestaña ventas
         private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if(tcPrincipal.SelectedTab.AccessibleName == "Ventas")
@@ -1862,7 +1864,7 @@ namespace cinemax
         void butaca_Click(object sender, EventArgs e)
         {
             if ((sender as PictureBox).BackColor == Color.Transparent)
-                (sender as PictureBox).BackColor = Color.LightSeaGreen;
+                (sender as PictureBox).BackColor = Color.SteelBlue;
             else
                 (sender as PictureBox).BackColor = Color.Transparent;
         }
@@ -1875,6 +1877,7 @@ namespace cinemax
                 e.Value = new String('*', 10);
             }
         }
- 
+        #endregion
+
     }
 }
