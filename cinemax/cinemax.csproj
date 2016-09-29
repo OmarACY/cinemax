@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteConexion.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="ControlSalas.cs">
       <SubType>Form</SubType>
@@ -57,13 +58,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FuncionConexion.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cine.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Funcion.cs" />
     <Compile Include="Models\Sala.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

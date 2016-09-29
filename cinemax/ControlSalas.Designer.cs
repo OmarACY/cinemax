@@ -71,6 +71,11 @@
             // nudCupo
             // 
             this.nudCupo.Location = new System.Drawing.Point(79, 44);
+            this.nudCupo.Maximum = new decimal(new int[] {
+            96,
+            0,
+            0,
+            0});
             this.nudCupo.Name = "nudCupo";
             this.nudCupo.Size = new System.Drawing.Size(206, 20);
             this.nudCupo.TabIndex = 3;

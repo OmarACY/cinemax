@@ -179,5 +179,70 @@ namespace cinemax
 
             return estatus;
         }
+
+        public List<Cine> ObtenSucursales()
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            List<Cine> listaSucursales = new List<Cine>();
+
+            if (AbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * from Cine.cine", con);
+
+                try
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            listaSucursales.Add(new Cine()
+                            {
+                                clave_cin = long.Parse(reader.GetValue(0).ToString()),
+                                nombre = reader.GetValue(1).ToString(),
+                                num_salas = int.Parse(reader.GetValue(2).ToString()),
+                                colonia = reader.GetValue(3).ToString(),
+                                calle = reader.GetValue(4).ToString(),
+                                numero = int.Parse(reader.GetValue(5).ToString())
+                            });
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
+                CerrarConexion();
+
+            }
+            return listaSucursales;
+        }
+
+        public int ObtenCupoSala(long clave_sal)
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            int cupo;
+
+            if (AbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("SELECT cupo from Cine.sala where clave_sal = " + clave_sal, con);
+
+                try
+                {
+                    cupo = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+
+                CerrarConexion();
+                return cupo;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

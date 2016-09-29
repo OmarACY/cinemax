@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using cinemax.Models;
 
 namespace cinemax
 {
@@ -27,6 +28,8 @@ namespace cinemax
         private int opFun = -1;
 
         public long clave_emp;
+
+        private bool muestraButacas = false;
 
         #endregion
 
@@ -1285,11 +1288,19 @@ namespace cinemax
             {
 
             }
-        }      
+        }
 
         #endregion
 
         #region Metodos Comunes
+        private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (tcPrincipal.SelectedTab.AccessibleName == "Ventas")
+            {
+                CargaClientes();
+            }
+        }
+
         private void tcPrincipal_SelectedIndexChanged(object sender, EventArgs e)
         {
             Conexion con;
@@ -1313,7 +1324,7 @@ namespace cinemax
                 case "Funcion":
                     ActualizaFecha();
                     ObtenerPeliculas();
-                    CargacbCinFun();
+                    ObtenerCines();
                     ObtenerRegistrosFuncion();
                     break;
             }
@@ -1425,7 +1436,7 @@ namespace cinemax
             }
         }
 
-        private DataTable ObtenerCines() {
+        private void ObtenerCines() {
             SqlDataAdapter adaptador = new SqlDataAdapter();
             //DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -1441,6 +1452,10 @@ namespace cinemax
                     adaptador.Fill(dt);
                     adaptador.Dispose();
                     cmd.Dispose();
+                    cbCinFun.DataSource = dt;
+                    cbCinFun.DisplayMember = "nombre";
+                    cbCinFun.ValueMember = "clave_cin";
+                    cbCinFun.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -1453,32 +1468,16 @@ namespace cinemax
             {
                 MessageBox.Show("Error al llamar al servidor");
             }
-            return dt;
         }
-
-        private void CargacbCinFun() {
-            cbCinFun.DataSource = ObtenerCines();
-            cbCinFun.DisplayMember = "nombre";
-            cbCinFun.ValueMember = "clave_cin";
-            cbCinFun.SelectedIndex = -1;
-        }
-
         private void cbCinFun_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idCine;
             if (cbCinFun.SelectedValue != null)
                 if (int.TryParse(cbCinFun.SelectedValue.ToString(), out idCine))
-                    CargacbSalFun(idCine);
+                    ObtenerSalas(idCine);
         }
 
-        private void CargacbSalFun(int idCine) {
-            cbSalFun.DataSource = ObtenerSalas(idCine);
-            cbSalFun.DisplayMember = "clave_sal";
-            cbSalFun.ValueMember = "clave_sal";
-            cbSalFun.SelectedIndex = -1;
-        }
-
-        private DataTable ObtenerSalas(int idCine) {
+        private void ObtenerSalas(int idCine) {
             SqlDataAdapter adaptador = new SqlDataAdapter();
             //DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -1494,6 +1493,10 @@ namespace cinemax
                     adaptador.Fill(dt);
                     adaptador.Dispose();
                     cmd.Dispose();
+                    cbSalFun.DataSource = dt;
+                    cbSalFun.DisplayMember = "clave_sal";
+                    cbSalFun.ValueMember = "clave_sal";
+                    cbSalFun.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -1506,7 +1509,6 @@ namespace cinemax
             {
                 MessageBox.Show("Error al llamar al servidor");
             }
-            return dt;
         }
 
         private void LimpiaCamposFuncion()
@@ -1793,188 +1795,105 @@ namespace cinemax
         #endregion
 
         #region Metodos pestaña ventas
-        private void tcPrincipal_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void CargaClientes()
         {
-            if(tcPrincipal.SelectedTab.AccessibleName == "Ventas")
-            {
-                PictureBox butaca;
-                Label lbl;
-                int x, y, numButacas, tamButaca, separacion, tamEtiqueta;
-                char fila;
-                
-                fila = 'A';
-                x = y = 30;
-                tamButaca = 48;
-                numButacas = 96;
-                separacion = 5;
-                tamEtiqueta = 25;
-                foreach (Control ctrl in VentaContainer.Panel2.Controls)
-                    ctrl.Dispose();
-                VentaContainer.Panel2.Controls.Clear();
-                lbl = new Label()
-                {
-                    Name = "lbFila" + fila,
-                    Text = (fila++).ToString(),
-                    ForeColor = Color.DodgerBlue,
-                    Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
-                    Size = new Size(tamEtiqueta, tamEtiqueta)
-                };
-                VentaContainer.Panel2.Controls.Add(lbl);
-                for(int i = 0; i < numButacas; i++)
-                {
-                    if (x > VentaContainer.Panel2.Width - (tamButaca + separacion))
-                    {
-                        x = 30;
-                        y += tamButaca + separacion;
-                        lbl = new Label() 
-                        { 
-                            Name = "lbFila" + fila,
-                            Text = (fila++).ToString(),
-                            ForeColor = Color.DodgerBlue,
-                            Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
-                            Size = new Size(tamEtiqueta, tamEtiqueta)
-                        };
-                        VentaContainer.Panel2.Controls.Add(lbl);
-                    }
-                    if(y == 30)
-                    {
-                        lbl = new Label()
-                        {
-                            Name = "lbNumero" + i.ToString(),
-                            Text = i.ToString(),
-                            ForeColor = Color.DodgerBlue,
-                            Location = new System.Drawing.Point(x + (tamButaca / 3), 5),
-                            Size = new Size(tamEtiqueta, tamEtiqueta)
-                        };
-                        VentaContainer.Panel2.Controls.Add(lbl);
-                    }
-                    butaca = new PictureBox()
-                    {
-                        BackColor = Color.Transparent,
-                        BackgroundImage = global::cinemax.Properties.Resources.butaca,
-                        BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom,
-                        Cursor = System.Windows.Forms.Cursors.Hand,
-                        Location = new System.Drawing.Point(x, y),
-                        Name = "pbButaca" + i.ToString(),
-                        Size = new System.Drawing.Size(tamButaca, tamButaca)
-                    };
-                    butaca.Click += butaca_Click;
-                    x += tamButaca + separacion;
-                    VentaContainer.Panel2.Controls.Add(butaca);
-                }
-                butaca = new PictureBox()
-                {
-                    BackColor = Color.Black,
-                    Location = new System.Drawing.Point(VentaContainer.Panel2.Width / 2 - 200, y + (tamButaca * 2)),
-                    Name = "pbPantalla",
-                    Size = new System.Drawing.Size(400, 20),
-                };
-                VentaContainer.Panel2.Controls.Add(butaca);
-                CargacbCineVenta();
-                CargacbClientesVenta();
-                cbFuncionVenta.Items.Clear();
-            }
-        }
-
-        private void CargacbCineVenta() {
-            cbCineVenta.DataSource = ObtenerCines();
-            cbCineVenta.DisplayMember = "nombre";
-            cbCineVenta.ValueMember = "clave_cin";
-            cbCineVenta.SelectedIndex = -1;
-        }
-
-        private void CargacbClientesVenta() {
-            cbClienteVenta.DataSource = ObtenerMembresias();
-            cbClienteVenta.DisplayMember = "nombre";
-            cbClienteVenta.ValueMember = "clave_mem";
+            ClienteConexion conexion = new ClienteConexion();
+            List<Cliente> listaClientes = conexion.ObtenClientes();
+            cbClienteVenta.DataSource = listaClientes;
+            cbClienteVenta.DisplayMember = "nombreCompleto";
             cbClienteVenta.SelectedIndex = -1;
         }
 
-        private void cbCineVenta_SelectedIndexChanged(object sender, EventArgs e)
+        private void GeneraButacas(int cupo)
         {
-            int idCine;
-            if (cbCineVenta.SelectedValue != null)
-                if (int.TryParse(cbCineVenta.SelectedValue.ToString(), out idCine))
-                    CargacbFuncionVenta(idCine);
-        }
+            PictureBox butaca;
+            Label lbl;
+            int x, y, numButacas, tamButaca, separacion, tamEtiqueta, butacasHilera;
+            char fila;
+            List<Control> listaControles = new List<Control>();
 
-        private void CargacbFuncionVenta(int idCine) {
-            cbFuncionVenta.DataSource = ObtenerFuncionesCine(idCine);
-            cbFuncionVenta.DisplayMember = "funcion";
-            cbFuncionVenta.ValueMember = "clave_fun";
-            cbFuncionVenta.SelectedIndex = -1;
-        }
-
-        private DataTable ObtenerFuncionesCine(int idCine)
-        {
-            SqlDataAdapter adaptador = new SqlDataAdapter();
-            //DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-
-            if (conexion.AbrirConexion())
+            fila = 'A';
+            x = y = 30;
+            tamButaca = 48;
+            numButacas = cupo;
+            separacion = 5;
+            tamEtiqueta = 25;
+            butacasHilera = 0;
+            foreach (Control ctrl in VentaContainer.Panel2.Controls)
+                ctrl.Dispose();
+            VentaContainer.Panel2.Controls.Clear();
+            lbl = new Label()
             {
-                string txtCmd = "select f.clave_fun,concat(p.nombre,' ',cast(f.hora_ini as time(0)),' - ',cast(f.hora_fin as time(0))) as funcion from Cine.funcion as f, Cine.sala as s, Cine.cine as c, Cine.pelicula as p " +
-                                 "WHERE f.clave_sal= s.clave_sal and s.clave_cin = c.clave_cin and p.clave_pel=f.clave_pel and c.clave_cin = " + idCine;
-
-                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                try
-                {
-                    adaptador.SelectCommand = cmd;
-                    adaptador.Fill(dt);
-                    adaptador.Dispose();
-                    cmd.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                conexion.CerrarConexion();
-            }
-            else
+                Name = "lbFila" + fila,
+                Text = fila.ToString(),
+                ForeColor = Color.DodgerBlue,
+                Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
+                Size = new Size(tamEtiqueta, tamEtiqueta)
+            };
+            listaControles.Add(lbl);
+            for (int i = 0; i < numButacas; i++)
             {
-                MessageBox.Show("Error al llamar al servidor");
-            }
-            return dt;
-        }
-
-        private DataTable ObtenerMembresias()
-        {
-            SqlDataAdapter adaptador = new SqlDataAdapter();
-            //DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-
-            if (conexion.AbrirConexion())
-            {
-                string txtCmd = "select * from Persona.membresia";
-                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                try
+                if (x > VentaContainer.Panel2.Width - (tamButaca + separacion))
                 {
-                    adaptador.SelectCommand = cmd;
-                    adaptador.Fill(dt);
-                    adaptador.Dispose();
-                    cmd.Dispose();
+                    x = 30;
+                    y += tamButaca + separacion;
+                    fila++;
+                    lbl = new Label()
+                    {
+                        Name = "lbFila" + fila,
+                        Text = fila.ToString(),
+                        ForeColor = Color.DodgerBlue,
+                        Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
+                        Size = new Size(tamEtiqueta, tamEtiqueta)
+                    };
+                    listaControles.Add(lbl);
                 }
-                catch (Exception ex)
+                if (y == 30)
                 {
-                    MessageBox.Show(ex.Message);
+                    lbl = new Label()
+                    {
+                        Name = "lbNumero" + i.ToString(),
+                        Text = i.ToString(),
+                        ForeColor = Color.DodgerBlue,
+                        Location = new System.Drawing.Point(x + (tamButaca / 3), 5),
+                        Size = new Size(tamEtiqueta, tamEtiqueta)
+                    };
+                    butacasHilera++;
+                    listaControles.Add(lbl);
                 }
-
-                conexion.CerrarConexion();
+                butaca = new PictureBox()
+                {
+                    BackColor = Color.Transparent,
+                    BackgroundImage = global::cinemax.Properties.Resources.butaca,
+                    BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom,
+                    Cursor = System.Windows.Forms.Cursors.Hand,
+                    Location = new System.Drawing.Point(x, y),
+                    Name = "pbButaca" + i.ToString(),
+                    AccessibleName = (fila).ToString() + (i % butacasHilera).ToString(),
+                    Size = new System.Drawing.Size(tamButaca, tamButaca)
+                };
+                butaca.Click += butaca_Click;
+                x += tamButaca + separacion;
+                listaControles.Add(butaca);
             }
-            else
+            butaca = new PictureBox()
             {
-                MessageBox.Show("Error al llamar al servidor");
-            }
-            return dt;
+                BackColor = Color.Black,
+                Location = new System.Drawing.Point(VentaContainer.Panel2.Width / 2 - 200, y + (tamButaca * 2)),
+                Name = "pbPantalla",
+                Size = new System.Drawing.Size(400, 20),
+            };
+            listaControles.Add(butaca);
+            VentaContainer.Panel2.Controls.AddRange(listaControles.ToArray());
         }
 
         void butaca_Click(object sender, EventArgs e)
         {
             if ((sender as PictureBox).BackColor == Color.Transparent)
+            {
                 (sender as PictureBox).BackColor = Color.SteelBlue;
+                MessageBox.Show((sender as PictureBox).AccessibleName);
+            }
             else
                 (sender as PictureBox).BackColor = Color.Transparent;
         }
@@ -1989,7 +1908,101 @@ namespace cinemax
         }
         #endregion
 
+        private void cbClienteVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                SucursalConexion conexion = new SucursalConexion();
+                List<Cine> listaSucursales = conexion.ObtenSucursales();
+                cbCineVenta.DataSource = listaSucursales;
+                cbCineVenta.DisplayMember = "nombre";
+                cbCineVenta.SelectedIndex = -1;
+                cbCineVenta.Enabled = true;
+            }
+            else
+            {
+                cbCineVenta.SelectedIndex = -1;
+                cbCineVenta.Enabled = false;
+            }
+        }
 
+        private void cbCineVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                FuncionConexion conexion = new FuncionConexion();
+                List<Funcion> listaFunciones = conexion.ObtenPeliculas(((sender as ComboBox).SelectedValue as Cine).clave_cin);
+                cbFuncionVenta.DataSource = listaFunciones;
+                cbFuncionVenta.DisplayMember = "nombre_pelicula";
+                cbFuncionVenta.SelectedIndex = -1;
+                cbFuncionVenta.Enabled = true;
+            }
+            else
+                cbFuncionVenta.Enabled = false;
+        }
 
+        private void cbFuncionVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                FuncionConexion conexion = new FuncionConexion();
+                List<Funcion> listaFunciones = conexion.ObtenFunciones((cbCineVenta.SelectedValue as Cine).clave_cin,
+                    ((sender as ComboBox).SelectedValue as Funcion).nombre_pelicula);
+                cbHoraFuncionVenta.DataSource = listaFunciones;
+                cbHoraFuncionVenta.DisplayMember = "hora_ini";
+                cbHoraFuncionVenta.SelectedIndex = -1;
+                cbHoraFuncionVenta.Enabled = true;
+            }
+            else
+                cbHoraFuncionVenta.Enabled = false;
+        }
+
+        private void cbHoraFuncionVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                tbSalaVenta.Text = ((sender as ComboBox).SelectedValue as Funcion).clave_sal.ToString();
+                rbEfectivo.Enabled = true;
+                rbTarjeta.Enabled = true;
+            }
+            else
+            {
+                muestraButacas = false;
+                tbSalaVenta.Clear();
+                rbEfectivo.Enabled = false;
+                rbTarjeta.Enabled = false;
+            }
+        }
+
+        private void rbEfectivo_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                tbNumTarjeta.Enabled = false;
+                tbCodSeguridad.Enabled = false;
+                tbMesVenc.Enabled = false;
+                tbAnoVenc.Enabled = false;
+            }
+            else
+            {
+                tbNumTarjeta.Enabled = true;
+                tbCodSeguridad.Enabled = true;
+                tbMesVenc.Enabled = true;
+                tbAnoVenc.Enabled = true;
+            }
+            btnGenerarVenta.Enabled = true;
+        }
+
+        private void cbHoraFuncionVenta_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            SucursalConexion conexion = new SucursalConexion();
+            int cupoSala = conexion.ObtenCupoSala((cbHoraFuncionVenta.SelectedValue as Funcion).clave_sal);
+            GeneraButacas(cupoSala);
+        }
+
+        private void btnGenerarVenta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
