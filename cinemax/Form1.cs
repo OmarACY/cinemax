@@ -1790,12 +1790,15 @@ namespace cinemax
             {
                 PictureBox butaca;
                 Label lbl;
-                int x, y, numButacas;
+                int x, y, numButacas, tamButaca, separacion, tamEtiqueta;
                 char fila;
                 
                 fila = 'A';
                 x = y = 30;
-                numButacas = 54;
+                tamButaca = 48;
+                numButacas = 96;
+                separacion = 5;
+                tamEtiqueta = 25;
                 foreach (Control ctrl in VentaContainer.Panel2.Controls)
                     ctrl.Dispose();
                 VentaContainer.Panel2.Controls.Clear();
@@ -1804,23 +1807,23 @@ namespace cinemax
                     Name = "lbFila" + fila,
                     Text = (fila++).ToString(),
                     ForeColor = Color.DodgerBlue,
-                    Location = new System.Drawing.Point(10, y + 24),
-                    Size = new Size(15, 15)
+                    Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
+                    Size = new Size(tamEtiqueta, tamEtiqueta)
                 };
                 VentaContainer.Panel2.Controls.Add(lbl);
                 for(int i = 0; i < numButacas; i++)
                 {
-                    if (x > VentaContainer.Panel2.Width - 69)
+                    if (x > VentaContainer.Panel2.Width - (tamButaca + separacion))
                     {
                         x = 30;
-                        y += 69;
+                        y += tamButaca + separacion;
                         lbl = new Label() 
                         { 
                             Name = "lbFila" + fila,
                             Text = (fila++).ToString(),
                             ForeColor = Color.DodgerBlue,
-                            Location = new System.Drawing.Point(10, y + 24),
-                            Size = new Size(15, 15)
+                            Location = new System.Drawing.Point(5, y + (tamButaca / 3)),
+                            Size = new Size(tamEtiqueta, tamEtiqueta)
                         };
                         VentaContainer.Panel2.Controls.Add(lbl);
                     }
@@ -1831,8 +1834,8 @@ namespace cinemax
                             Name = "lbNumero" + i.ToString(),
                             Text = i.ToString(),
                             ForeColor = Color.DodgerBlue,
-                            Location = new System.Drawing.Point(x + 24, 10),
-                            Size = new Size(15, 15)
+                            Location = new System.Drawing.Point(x + (tamButaca / 3), 5),
+                            Size = new Size(tamEtiqueta, tamEtiqueta)
                         };
                         VentaContainer.Panel2.Controls.Add(lbl);
                     }
@@ -1844,16 +1847,16 @@ namespace cinemax
                         Cursor = System.Windows.Forms.Cursors.Hand,
                         Location = new System.Drawing.Point(x, y),
                         Name = "pbButaca" + i.ToString(),
-                        Size = new System.Drawing.Size(64, 64)
+                        Size = new System.Drawing.Size(tamButaca, tamButaca)
                     };
                     butaca.Click += butaca_Click;
-                    x += 69;
+                    x += tamButaca + separacion;
                     VentaContainer.Panel2.Controls.Add(butaca);
                 }
                 butaca = new PictureBox()
                 {
                     BackColor = Color.Black,
-                    Location = new System.Drawing.Point(VentaContainer.Panel2.Width / 2 - 200, y + 138),
+                    Location = new System.Drawing.Point(VentaContainer.Panel2.Width / 2 - 200, y + (tamButaca * 2)),
                     Name = "pbPantalla",
                     Size = new System.Drawing.Size(400, 20),
                 };
