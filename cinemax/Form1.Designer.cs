@@ -2056,6 +2056,7 @@
             // 
             // cbFuncionVenta
             // 
+            this.cbFuncionVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFuncionVenta.FormattingEnabled = true;
             this.cbFuncionVenta.Location = new System.Drawing.Point(19, 126);
             this.cbFuncionVenta.Name = "cbFuncionVenta";
@@ -2074,11 +2075,13 @@
             // 
             // cbCineVenta
             // 
+            this.cbCineVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCineVenta.FormattingEnabled = true;
             this.cbCineVenta.Location = new System.Drawing.Point(19, 81);
             this.cbCineVenta.Name = "cbCineVenta";
             this.cbCineVenta.Size = new System.Drawing.Size(268, 21);
             this.cbCineVenta.TabIndex = 3;
+            this.cbCineVenta.SelectedIndexChanged += new System.EventHandler(this.cbCineVenta_SelectedIndexChanged);
             // 
             // lbCineVenta
             // 
@@ -2102,6 +2105,7 @@
             // 
             // cbClienteVenta
             // 
+            this.cbClienteVenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbClienteVenta.FormattingEnabled = true;
             this.cbClienteVenta.Location = new System.Drawing.Point(19, 35);
             this.cbClienteVenta.Name = "cbClienteVenta";

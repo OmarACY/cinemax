@@ -1313,7 +1313,7 @@ namespace cinemax
                 case "Funcion":
                     ActualizaFecha();
                     ObtenerPeliculas();
-                    ObtenerCines();
+                    CargacbCinFun();
                     ObtenerRegistrosFuncion();
                     break;
             }
@@ -1425,7 +1425,7 @@ namespace cinemax
             }
         }
 
-        private void ObtenerCines() {
+        private DataTable ObtenerCines() {
             SqlDataAdapter adaptador = new SqlDataAdapter();
             //DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -1441,10 +1441,6 @@ namespace cinemax
                     adaptador.Fill(dt);
                     adaptador.Dispose();
                     cmd.Dispose();
-                    cbCinFun.DataSource = dt;
-                    cbCinFun.DisplayMember = "nombre";
-                    cbCinFun.ValueMember = "clave_cin";
-                    cbCinFun.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -1457,16 +1453,32 @@ namespace cinemax
             {
                 MessageBox.Show("Error al llamar al servidor");
             }
+            return dt;
         }
+
+        private void CargacbCinFun() {
+            cbCinFun.DataSource = ObtenerCines();
+            cbCinFun.DisplayMember = "nombre";
+            cbCinFun.ValueMember = "clave_cin";
+            cbCinFun.SelectedIndex = -1;
+        }
+
         private void cbCinFun_SelectedIndexChanged(object sender, EventArgs e)
         {
             int idCine;
             if (cbCinFun.SelectedValue != null)
                 if (int.TryParse(cbCinFun.SelectedValue.ToString(), out idCine))
-                    ObtenerSalas(idCine);
+                    CargacbSalFun(idCine);
         }
 
-        private void ObtenerSalas(int idCine) {
+        private void CargacbSalFun(int idCine) {
+            cbSalFun.DataSource = ObtenerSalas(idCine);
+            cbSalFun.DisplayMember = "clave_sal";
+            cbSalFun.ValueMember = "clave_sal";
+            cbSalFun.SelectedIndex = -1;
+        }
+
+        private DataTable ObtenerSalas(int idCine) {
             SqlDataAdapter adaptador = new SqlDataAdapter();
             //DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -1482,10 +1494,6 @@ namespace cinemax
                     adaptador.Fill(dt);
                     adaptador.Dispose();
                     cmd.Dispose();
-                    cbSalFun.DataSource = dt;
-                    cbSalFun.DisplayMember = "clave_sal";
-                    cbSalFun.ValueMember = "clave_sal";
-                    cbSalFun.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -1498,6 +1506,7 @@ namespace cinemax
             {
                 MessageBox.Show("Error al llamar al servidor");
             }
+            return dt;
         }
 
         private void LimpiaCamposFuncion()
@@ -1861,7 +1870,105 @@ namespace cinemax
                     Size = new System.Drawing.Size(400, 20),
                 };
                 VentaContainer.Panel2.Controls.Add(butaca);
+                CargacbCineVenta();
+                CargacbClientesVenta();
+                cbFuncionVenta.Items.Clear();
             }
+        }
+
+        private void CargacbCineVenta() {
+            cbCineVenta.DataSource = ObtenerCines();
+            cbCineVenta.DisplayMember = "nombre";
+            cbCineVenta.ValueMember = "clave_cin";
+            cbCineVenta.SelectedIndex = -1;
+        }
+
+        private void CargacbClientesVenta() {
+            cbClienteVenta.DataSource = ObtenerMembresias();
+            cbClienteVenta.DisplayMember = "nombre";
+            cbClienteVenta.ValueMember = "clave_mem";
+            cbClienteVenta.SelectedIndex = -1;
+        }
+
+        private void cbCineVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCine;
+            if (cbCineVenta.SelectedValue != null)
+                if (int.TryParse(cbCineVenta.SelectedValue.ToString(), out idCine))
+                    CargacbFuncionVenta(idCine);
+        }
+
+        private void CargacbFuncionVenta(int idCine) {
+            cbFuncionVenta.DataSource = ObtenerFuncionesCine(idCine);
+            cbFuncionVenta.DisplayMember = "funcion";
+            cbFuncionVenta.ValueMember = "clave_fun";
+            cbFuncionVenta.SelectedIndex = -1;
+        }
+
+        private DataTable ObtenerFuncionesCine(int idCine)
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select f.clave_fun,concat(p.nombre,' ',cast(f.hora_ini as time(0)),' - ',cast(f.hora_fin as time(0))) as funcion from Cine.funcion as f, Cine.sala as s, Cine.cine as c, Cine.pelicula as p " +
+                                 "WHERE f.clave_sal= s.clave_sal and s.clave_cin = c.clave_cin and p.clave_pel=f.clave_pel and c.clave_cin = " + idCine;
+
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+            return dt;
+        }
+
+        private DataTable ObtenerMembresias()
+        {
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Persona.membresia";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+            return dt;
         }
 
         void butaca_Click(object sender, EventArgs e)
@@ -1881,6 +1988,8 @@ namespace cinemax
             }
         }
         #endregion
+
+
 
     }
 }
