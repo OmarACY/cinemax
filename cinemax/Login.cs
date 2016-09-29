@@ -55,12 +55,13 @@ namespace cinemax
             tbNombreEmpledo.Text = (cbCveEmpleados.SelectedValue as Empleado).nombres + " " + (cbCveEmpleados.SelectedValue as Empleado).app + " " + (cbCveEmpleados.SelectedValue as Empleado).apm;
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+
+        private void btSalir_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void btnAcceder_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             if ((cbCveEmpleados.SelectedValue as Empleado).contraseña.CompareTo(tbContraseña.Text) == 0)
             {

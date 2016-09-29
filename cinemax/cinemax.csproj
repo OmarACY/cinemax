@@ -115,6 +115,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CambiosCinemax.sql" />
+    <None Include="Resources\entrar.png" />
+    <None Include="Resources\salir.png" />
     <None Include="Resources\butaca.png" />
     <None Include="Resources\logo_claro.png" />
   </ItemGroup>
