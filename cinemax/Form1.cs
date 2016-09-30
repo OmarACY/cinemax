@@ -1811,6 +1811,8 @@ namespace cinemax
             int x, y, numButacas, tamButaca, separacion, tamEtiqueta, butacasHilera;
             char fila;
             List<Control> listaControles = new List<Control>();
+            VentaConexion conexion = new VentaConexion();
+            List<string> listaButacas;
 
             fila = 'A';
             x = y = 30;
@@ -1819,6 +1821,7 @@ namespace cinemax
             separacion = 5;
             tamEtiqueta = 25;
             butacasHilera = 0;
+            listaButacas = conexion.ObtenButacasOcupadas((cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun);
             foreach (Control ctrl in VentaContainer.Panel2.Controls)
                 ctrl.Dispose();
             VentaContainer.Panel2.Controls.Clear();
@@ -1863,16 +1866,24 @@ namespace cinemax
                 }
                 butaca = new PictureBox()
                 {
-                    BackColor = Color.Transparent,
                     BackgroundImage = global::cinemax.Properties.Resources.butaca,
                     BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom,
-                    Cursor = System.Windows.Forms.Cursors.Hand,
                     Location = new System.Drawing.Point(x, y),
                     Name = "pbButaca" + i.ToString(),
                     AccessibleName = (fila).ToString() + (i % butacasHilera).ToString(),
                     Size = new System.Drawing.Size(tamButaca, tamButaca)
                 };
-                butaca.Click += butaca_Click;
+                if (listaButacas.FirstOrDefault(b => b == butaca.AccessibleName) == null)
+                {
+                    butaca.Cursor = System.Windows.Forms.Cursors.Hand;
+                    butaca.BackColor = Color.Transparent;
+                    butaca.Click += butaca_Click;
+                }
+                else
+                {
+                    butaca.Cursor = System.Windows.Forms.Cursors.Arrow;
+                    butaca.BackColor = Color.Firebrick;
+                }
                 x += tamButaca + separacion;
                 listaControles.Add(butaca);
             }
@@ -2010,14 +2021,21 @@ namespace cinemax
             List<string> listaButacas;
             bool ventaGenerada;
 
-            listaButacas = (from Control c in VentaContainer.Panel2.Controls where (Regex.IsMatch(c.Name, "^pbButaca") && c.AccessibleDescription == "Active") select c.AccessibleName).ToList();
+            // Busqueda de butacas seleccionadas
+            listaButacas = (from Control c in VentaContainer.Panel2.Controls
+                            where (Regex.IsMatch(c.Name, "^pbButaca") && c.AccessibleDescription == "Active")
+                            select c.AccessibleName).ToList();
+            // Generación de la venta
             ventaGenerada =  conexion.GeneraVenta((cbClienteVenta.SelectedValue as Cliente).clave_mem.ToString(),
                 (cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun.ToString(),
                 clave_emp.ToString(),
                 tbNumTarjeta.Text,
                 tbCodSeguridad.Text,
                 tbAnoVenc.Text != string.Empty ? new DateTime(int.Parse(tbAnoVenc.Text), int.Parse(tbMesVenc.Text), 1) : DateTime.Now,
-                listaButacas);
+                listaButacas,
+                rbEfectivo.Checked,
+                35,
+                "Normal");
             if (ventaGenerada)
                 MessageBox.Show("Venta generada satisfactoriamente", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else

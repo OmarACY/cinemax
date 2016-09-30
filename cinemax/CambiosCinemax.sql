@@ -21,14 +21,14 @@ GO
 -- Fin
 
 
--- APLICADO: BECARIOS-PC, OMARACY-MAC
+-- APLICADO: BECARIOS-PC, OMARACY-MAC, MILAN-PC
 -- Campo contraseña para la tabla Empleados
 ALTER TABLE [Cinemax].[Persona].[empleado] 
 ADD contraseña varchar(32) NOT NULL DEFAULT 'AdministracionBasesDatos';
 GO
 -- Fin
 
---ALPICADO: OMARACY-MAC, BECARIOS-PC
+--ALPICADO: OMARACY-MAC, BECARIOS-PC, MILAN-PC
 --Reglas para el tipo de membresia y los generos de las peliculas
 CREATE RULE TIPO_MEMBRESIA AS @var IN ('Standar', 'Premium', 'Vip')
 GO
@@ -40,13 +40,13 @@ EXEC sp_bindrule 'GENERO_PELICULA', 'Cine.pelicula.genero'
 GO
 --Fin
 
---APLICADO: OMARACY-MAC, BECARIOS-PC
+--APLICADO: OMARACY-MAC, BECARIOS-PC, MILAN-PC
 --Modificacion de el tipo de dato de la tabla funcion de las columnas hora_ini y hora_fin de datetime a time
 ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_ini TIME NOT NULL;
 ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_fin TIME NOT NULL;
 GO  
 
--- APLICADO: BECARIOS-PC
+-- APLICADO: BECARIOS-PC, MILAN-PC
 -- Eliminación de la columano clave_cue en la tabla venta debido a que la cuenta se puede obtener mediante la clave de venta 
 ALTER TABLE [Cinemax].[Venta].[venta] DROP COLUMN clave_cue;
 GO

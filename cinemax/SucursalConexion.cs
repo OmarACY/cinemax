@@ -23,7 +23,7 @@ namespace cinemax
             if (EjecutaSentencia(query1))
             {
                 query2 = "INSERT INTO Cine.tel_cin(clave_cin, telefono)" +
-                "VALUES(" + ObtenUltimoID("cine", "clave_cin") + "," + telefono + ")";
+                "VALUES(" + ObtenUltimoID("Cine.cine", "clave_cin") + "," + telefono + ")";
                 EjecutaSentencia(query2);
                 return true;
             }
