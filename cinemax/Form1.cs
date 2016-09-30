@@ -1892,10 +1892,14 @@ namespace cinemax
             if ((sender as PictureBox).BackColor == Color.Transparent)
             {
                 (sender as PictureBox).BackColor = Color.SteelBlue;
-                MessageBox.Show((sender as PictureBox).AccessibleName);
+                (sender as PictureBox).AccessibleDescription = "Active";
             }
             else
+            {
                 (sender as PictureBox).BackColor = Color.Transparent;
+
+                (sender as PictureBox).AccessibleDescription = "Inactive";
+            }
         }
         
         private void dgEmpleados_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -2002,7 +2006,22 @@ namespace cinemax
 
         private void btnGenerarVenta_Click(object sender, EventArgs e)
         {
+            VentaConexion conexion = new VentaConexion();
+            List<string> listaButacas;
+            bool ventaGenerada;
 
+            listaButacas = (from Control c in VentaContainer.Panel2.Controls where (Regex.IsMatch(c.Name, "^pbButaca") && c.AccessibleDescription == "Active") select c.AccessibleName).ToList();
+            ventaGenerada =  conexion.GeneraVenta((cbClienteVenta.SelectedValue as Cliente).clave_mem.ToString(),
+                (cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun.ToString(),
+                clave_emp.ToString(),
+                tbNumTarjeta.Text,
+                tbCodSeguridad.Text,
+                tbAnoVenc.Text != string.Empty ? new DateTime(int.Parse(tbAnoVenc.Text), int.Parse(tbMesVenc.Text), 1) : DateTime.Now,
+                listaButacas);
+            if (ventaGenerada)
+                MessageBox.Show("Venta generada satisfactoriamente", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Venta no generada", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

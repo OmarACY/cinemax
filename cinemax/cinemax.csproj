@@ -52,6 +52,7 @@
     <Compile Include="ControlSalas.Designer.cs">
       <DependentUpon>ControlSalas.cs</DependentUpon>
     </Compile>
+    <Compile Include="VentaConexion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
