@@ -21,9 +21,6 @@ namespace cinemax
         private Point formPosition;
         private bool mouseAction;
         private Conexion conexion;
-        private int opEmp = -1;
-        private int opMem = -1;
-        private int opPel = -1;
 
         private int opFun = -1;
 
@@ -83,10 +80,7 @@ namespace cinemax
         #region Metodos Pestaña Empleado
         private void btInsertaEmpeado_Click(object sender, EventArgs e)
         {
-            opEmp = 0;
-            LimpiaCamposEmpleado();
-            BotonesAccionEmp(true);
-            tbNombreEmp.Focus();
+            InsertaEmpleado();
         }
         private void InsertaEmpleado() {
             LimpiaFormularioEmpleado();
@@ -108,7 +102,6 @@ namespace cinemax
                         CambiaTextoMensajeEmp("Se agrego correctamente!",Color.Blue);
                         lbMensaje.Visible = true;                     
                         LimpiaCamposEmpleado();
-                        BotonesAccionEmp(false);
                     }
                     catch (Exception ex)
                     {
@@ -144,7 +137,8 @@ namespace cinemax
             lbFechaEmp.Text = "Fecha de nacimiento";
             lbColoniaEmp.Text = "Colonia";
             lbCalleEmp.Text = "Calle";
-            lbNumeroEmp.Text = "Numero";            
+            lbNumeroEmp.Text = "Numero";
+            lbPassword.Text = "Contraseña";
             lbMensaje.Visible = false;
             //Cambia color
             lbNombreEmp.ForeColor = Color.LightGray;
@@ -154,6 +148,7 @@ namespace cinemax
             lbColoniaEmp.ForeColor = Color.LightGray;
             lbCalleEmp.ForeColor = Color.LightGray;
             lbNumeroEmp.ForeColor = Color.LightGray;
+            lbPassword.ForeColor = Color.LightGray;
         }
 
         private bool ValidaDatosEmpleado()
@@ -242,7 +237,8 @@ namespace cinemax
                             ObtenerRegistrosEmpleado();
                             CambiaTextoMensajeEmp("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposEmpleado();
-                            BotonesAccionEmp(false);
+                            /* Deshabilitación de campos de captura */
+                            SwitchCamposEmpleado("Deshabilitar");
                         }
                         catch (Exception ex)
                         {
@@ -268,11 +264,14 @@ namespace cinemax
         private void dgEmpleados_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroEmp();
+            SwitchCamposEmpleado("Actualizar");
+            
         }
 
         private void dgEmpleados_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SeleccionaRegistroEmp();
+            SwitchCamposEmpleado("Actualizar");
         }
 
         private void SeleccionaRegistroEmp()
@@ -293,54 +292,67 @@ namespace cinemax
 
         private void ActualizarEmpleado() {
 
-            string clave_emp = RenglonSeleccionadoEmp();
-            if (ValidaDatosEmpleado())
+            string clave_emp;
+
+            if ((clave_emp = RenglonSeleccionadoEmp()) != "")
             {
-                if (conexion.AbrirConexion())
+                if (ValidaDatosEmpleado())
                 {
-                    string txtCmd = "update Persona.empleado set nombres='" +
-                        tbNombreEmp.Text + "', app='" + tbAppEmp.Text +
-                        "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
-                        dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
-                        "', colonia='" + tbColoniaEmp.Text + "', calle='" + tbCalleEmp.Text +
-                        "', numero='" + tbNumeroEmp.Text + "', contraseña= '" + tbPwdEmpl.Text + "' where clave_emp=" + clave_emp;
-
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                    try
+                    if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de este empleado?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosEmpleado();
-                        CambiaTextoMensajeEmp("Se actualizo correctamente!", Color.Blue);
-                        lbMensaje.Visible = true;
-                        LimpiaCamposEmpleado();
-                        BotonesAccionEmp(false);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                        if (conexion.AbrirConexion())
+                        {
+                            string txtCmd = "update Persona.empleado set nombres='" +
+                                tbNombreEmp.Text + "', app='" + tbAppEmp.Text +
+                                "', apm='" + tbApmEmp.Text + "', fecha_nac='" +
+                                dpFechaEmp.Value.Year + "/" + dpFechaEmp.Value.Month + "/" + dpFechaEmp.Value.Day +
+                                "', colonia='" + tbColoniaEmp.Text + "', calle='" + tbCalleEmp.Text +
+                                "', numero='" + tbNumeroEmp.Text + "', contraseña= '" + tbPwdEmpl.Text + "' where clave_emp=" + clave_emp;
 
+                            SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                                /*Carga nuevamente los registros*/
+                                ObtenerRegistrosEmpleado();
+                                /*Cambia el mensaje que se mostrara al usuario*/
+                                CambiaTextoMensajeEmp("Se actualizo correctamente!", Color.Blue);
+                                lbMensaje.Visible = true;
+                                /*Limpia los campos de captura de datos*/
+                                LimpiaCamposEmpleado();
+                                /* Deshabilitación de campos de captura */
+                                SwitchCamposEmpleado("Deshabilitar");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al llamar al servidor");
+                        }
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error al llamar al servidor");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona al <Empleado> que se desea actualizar", "Atención");
             }
             
         }
 
+        private void btCancelaEmp_Click(object sender, EventArgs e)
+        {
+            SwitchCamposEmpleado("Deshabilitar");
+            LimpiaFormularioEmpleado();
+        }
 
         private void btActualizaEmpleado_Click(object sender, EventArgs e)
-        {            
-            if (RenglonSeleccionadoEmp() != "")
-            {
-                opEmp = 1;
-                BotonesAccionEmp(true);
-            }
-            else {
-                MessageBox.Show("Primero selecciona al <Empleado> que se desea actualizar", "Atención");
-            }
+        {         
+            ActualizarEmpleado();
         }
 
         private void tbNumeroEmp_KeyPress(object sender, KeyPressEventArgs e)
@@ -357,55 +369,42 @@ namespace cinemax
         {
             ValidaNumero(e);
         }
-        private void btAceptarEmp_Click(object sender, EventArgs e)
-        {
-            RealizaAccionEmp();
-        }
 
-        private void RealizaAccionEmp() {
-            switch (opEmp)
+        private void SwitchCamposEmpleado(string caso)
+        {
+            switch (caso)
             {
-                case 0: //Agregar
-                    InsertaEmpleado();                    
+                case "Habilitar":
+                    btCancelaEmp.Visible = true;
+                    btActualizaEmp.Enabled = false;
+                    btEliminaEmp.Enabled = false;
+                    btInsertaEmp.Enabled = false;
                     break;
-                case 1://Actualizar
-                    ActualizarEmpleado();
+                case "Deshabilitar":
+                    btCancelaEmp.Visible = false;
+                    btActualizaEmp.Enabled = false;
+                    btEliminaEmp.Enabled = false;
+                    btInsertaEmp.Enabled = true;
+                    LimpiaCamposEmpleado();
+                    dgEmpleados.ClearSelection();
                     break;
-                default:
-                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
+                case "Actualizar":
+                    LimpiaFormularioEmpleado();
+                    btCancelaEmp.Visible = true;
+                    btActualizaEmp.Enabled = true;
+                    btEliminaEmp.Enabled = true;
+                    btInsertaEmp.Enabled = false;
                     break;
-            } 
+            }
         }
 
-        private void BotonesAccionEmp(bool activo) {
-            btAceptarEmp.Visible = activo;
-            btCancelarEmp.Visible = activo;
-            gbDPEmp.Enabled = activo;
-            gbDCEmp.Enabled = activo;
-            dgEmpleados.Enabled = !activo;
-            btInsertaEmpleado.Enabled = !activo;
-            btEliminaEmpleado.Enabled = !activo;
-            btActualizaEmpleado.Enabled = !activo;
-        }
-
-        private void btCancelarEmp_Click(object sender, EventArgs e)
-        {
-            LimpiaFormularioEmpleado();
-            LimpiaCamposEmpleado();
-            BotonesAccionEmp(false);
-            dgEmpleados.ClearSelection();
-        }
-        
         #endregion
 
         #region Metodos Pestaña Membresia
 
         private void btInsertaMem_Click(object sender, EventArgs e)
         {
-            opMem = 0;
-            LimpiaCamposMembresia();
-            BotonesAccionMem(true);
-            tbNombreMem.Focus();
+            InsertaMembresia();
         }
 
         private void InsertaMembresia()
@@ -426,10 +425,9 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosMembresia();
-                        CambiaTextoMensajeMem("Se actualizo correctamente!", Color.Blue);
+                        CambiaTextoMensajeMem("Se agrego correctamente!", Color.Blue);
                         lbMensajeMem.Visible = true;
                         LimpiaCamposMembresia();
-                        BotonesAccionMem(false);
                     }
                     catch (Exception ex)
                     {
@@ -444,6 +442,34 @@ namespace cinemax
                 }
             }
 
+        }
+
+        private void SwitchCamposMembresia(string caso)
+        {
+            switch (caso)
+            {
+                case "Habilitar":
+                    btCancelaMem.Visible = true;
+                    btActualizaMem.Enabled = false;
+                    btEliminaMem.Enabled = false;
+                    btInsertaMem.Enabled = false;
+                    break;
+                case "Deshabilitar":
+                    btCancelaMem.Visible = false;
+                    btActualizaMem.Enabled = false;
+                    btEliminaMem.Enabled = false;
+                    btInsertaMem.Enabled = true;
+                    LimpiaCamposMembresia();
+                    dgMembresias.ClearSelection();
+                    break;
+                case "Actualizar":
+                    LimpiaFormularioMembresia();
+                    btCancelaMem.Visible = true;
+                    btActualizaMem.Enabled = true;
+                    btEliminaMem.Enabled = true;
+                    btInsertaMem.Enabled = false;
+                    break;
+            }
         }
 
         /// <summary>
@@ -545,55 +571,57 @@ namespace cinemax
         }
         private void btActualizaMem_Click(object sender, EventArgs e)
         {
-            if (RenglonSeleccionadoMem() != "")
+            ActualizarMembresia();
+        }
+
+        private void ActualizarMembresia()
+        {
+            string clave_mem;
+            if ((clave_mem = RenglonSeleccionadoMem()) != "")
             {
-                opMem = 1;
-                BotonesAccionMem(true);
+                if (ValidaDatosMembresia())
+                {
+                    if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de esta Membresia?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (conexion.AbrirConexion())
+                        {
+                            string txtCmd = "update Persona.membresia set nombre='" +
+                                tbNombreMem.Text + "', app='" + tbAppMem.Text +
+                                "', apm='" + tbApmMem.Text + "', fecha_nac='" +
+                                dpFechaMem.Value.Year + "/" + dpFechaMem.Value.Month + "/" + dpFechaMem.Value.Day +
+                                "', colonia='" + tbColoniaMem.Text + "', calle='" + tbCalleMem.Text +
+                                "', numero=" + tbNumeroMem.Text + ", tipo='" + cbTipoMem.Text + "', puntos=" + nuPuntosMem.Value.ToString() +
+                                " where clave_mem=" + clave_mem;
+
+                            SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                                ObtenerRegistrosMembresia();
+                                CambiaTextoMensajeMem("Se actualizo correctamente!", Color.Blue);
+                                lbMensajeMem.Visible = true;
+                                LimpiaCamposMembresia();
+                                /* Deshabilitación de campos de captura */
+                                SwitchCamposMembresia("Deshabilitar");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al llamar al servidor");
+                        }
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Primero selecciona al <Membresia> que se desea actualizar", "Atención");
             }
-        }
-
-        private void ActualizarMembresia()
-        {
-            string clave_mem = RenglonSeleccionadoMem();
-            if (ValidaDatosMembresia())
-            {
-                if (conexion.AbrirConexion())
-                {
-                    string txtCmd = "update Persona.membresia set nombre='" +
-                        tbNombreMem.Text + "', app='" + tbAppMem.Text +
-                        "', apm='" + tbApmMem.Text + "', fecha_nac='" +
-                        dpFechaMem.Value.Year + "/" + dpFechaMem.Value.Month + "/" + dpFechaMem.Value.Day +
-                        "', colonia='" + tbColoniaMem.Text + "', calle='" + tbCalleMem.Text +
-                        "', numero=" + tbNumeroMem.Text + ", tipo='" + cbTipoMem.Text + "', puntos=" + nuPuntosMem.Value.ToString() +
-                        " where clave_mem=" + clave_mem;
-
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosMembresia();
-                        CambiaTextoMensajeMem("Se actualizo correctamente!", Color.Blue);
-                        lbMensajeMem.Visible = true;
-                        LimpiaCamposMembresia();
-                        BotonesAccionMem(false);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Error al llamar al servidor");
-                }
-            }
-            
         }
 
         private string RenglonSeleccionadoMem()
@@ -607,11 +635,13 @@ namespace cinemax
         private void dgMembresias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroMem();
+            SwitchCamposMembresia("Actualizar");
         }
 
         private void dgMembresias_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SeleccionaRegistroMem();
+            SwitchCamposMembresia("Actualizar");
         }
 
         private void SeleccionaRegistroMem()
@@ -655,7 +685,8 @@ namespace cinemax
                             ObtenerRegistrosMembresia();
                             CambiaTextoMensajeMem("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposMembresia();
-                            BotonesAccionMem(false);
+                            /* Deshabilitación de campos de captura */
+                            SwitchCamposMembresia("Deshabilitar");
                         }
                         catch (Exception ex)
                         {
@@ -672,55 +703,48 @@ namespace cinemax
             else MessageBox.Show("Primero selecciona la <Membresia> que se desea eliminar", "Atención");
         }
 
-        private void btAceptarMem_Click(object sender, EventArgs e)
-        {
-            RealizaAccionMem();
-        }
-
-        private void RealizaAccionMem()
-        {
-            switch (opMem)
-            {
-                case 0: //Agregar Membresia
-                    InsertaMembresia();                    
-                    break;
-                case 1://Actualizar Membresia
-                    ActualizarMembresia();
-                    break;
-                default:
-                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
-                    break;
-            }
-        }
-        private void BotonesAccionMem(bool activo)
-        {
-            btAceptarMem.Visible = activo;
-            btCancelarMem.Visible = activo;
-            gbDPMem.Enabled = activo;
-            gbDCMem.Enabled = activo;
-            gbDMem.Enabled = activo;
-            dgMembresias.Enabled = !activo;
-            btInsertaMem.Enabled = !activo;
-            btEliminaMem.Enabled = !activo;
-            btActualizaMem.Enabled = !activo;
-        }
         private void btCancelarMem_Click(object sender, EventArgs e)
         {
+            SwitchCamposMembresia("Deshabilitar");
             LimpiaFormularioMembresia();
-            LimpiaCamposMembresia();
-            BotonesAccionMem(false);
-            dgMembresias.ClearSelection();
         }
 
         #endregion
 
         #region Metodos pestaña peliculas
+
+        private void SwitchCamposPelicula(string caso)
+        {
+            
+            switch (caso)
+            {
+                case "Habilitar":
+                    btCancelaPel.Visible = true;
+                    btActualizaPel.Enabled = false;
+                    btEliminaPel.Enabled = false;
+                    btInsertaPel.Enabled = false;
+                    break;
+                case "Deshabilitar":
+                    btCancelaPel.Visible = false;
+                    btActualizaPel.Enabled = false;
+                    btEliminaPel.Enabled = false;
+                    btInsertaPel.Enabled = true;
+                    LimpiaCamposPelicula();
+                    dgPeliculas.ClearSelection();
+                    break;
+                case "Actualizar":
+                    LimpiaFormularioPelicula();
+                    btCancelaPel.Visible = true;
+                    btActualizaPel.Enabled = true;
+                    btEliminaPel.Enabled = true;
+                    btInsertaPel.Enabled = false;
+                    break;
+            }
+        }
+
         private void btAgregarPel_Click(object sender, EventArgs e)
         {
-            opPel = 0;
-            LimpiaCamposPelicula();
-            BotonesAccionPel(true);
-            tbNombrePel.Focus();
+            InsertaPelicula();
         }
 
         private void InsertaPelicula()
@@ -740,10 +764,9 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosPelicula();
-                        CambiaTextoMensajePel("Se actualizo correctamente!", Color.Blue);
+                        CambiaTextoMensajePel("Se agrego correctamente!", Color.Blue);
                         lbMensajePel.Visible = true;
                         LimpiaCamposPelicula();
-                        BotonesAccionPel(false);
                     }
                     catch (Exception ex)
                     {
@@ -823,14 +846,14 @@ namespace cinemax
         {
 
             //Cambia texto
-            lbNombreMem.Text = "Nombre";
+            lbNombrePel.Text = "Nombre";
             lbDirectorPel.Text = "Direcctor";
             lbClasificacionPel.Text = "Clasificación";
             lbGeneroPel.Text = "Genero";
             lbSinopsisPel.Text = "Sinopsis";
             lbMensajePel.Visible = false;
             //Cambia color
-            lbNombreMem.ForeColor = Color.LightGray;
+            lbNombrePel.ForeColor = Color.LightGray;
             lbDirectorPel.ForeColor = Color.LightGray;
             lbClasificacionPel.ForeColor = Color.LightGray;
             lbGeneroPel.ForeColor = Color.LightGray;
@@ -846,17 +869,6 @@ namespace cinemax
             rbCPel.Checked = false;
             cbGeneroPel.SelectedIndex = -1;
             tbSinopsisPel.Clear();
-        }
-
-        private void BotonesAccionPel(bool activo)
-        {
-            btAceptarPel.Visible = activo;
-            btCancelarPel.Visible = activo;
-            gbDGPel.Enabled = activo;
-            dgPeliculas.Enabled = !activo;
-            btInsertaPel.Enabled = !activo;
-            btEliminaPel.Enabled = !activo;
-            btActualizaPel.Enabled = !activo;
         }
 
         private void ObtenerRegistrosPelicula()
@@ -893,20 +905,20 @@ namespace cinemax
 
         private void btCancelarPel_Click(object sender, EventArgs e)
         {
+            SwitchCamposPelicula("Deshabilitar");
             LimpiaFormularioPelicula();
-            LimpiaCamposPelicula();
-            BotonesAccionPel(false);
-            dgPeliculas.ClearSelection();
         }
 
         private void dgPeliculas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroPel();
+            SwitchCamposPelicula("Actualizar");
         }
 
         private void dgPeliculas_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SeleccionaRegistroPel();
+            SwitchCamposPelicula("Actualizar");
         }
         private void SeleccionaRegistroPel()
         {
@@ -918,39 +930,11 @@ namespace cinemax
                 ClasificacionPelicula(char.Parse(dgPeliculas.SelectedCells[dgPeliculas.Columns["clasificacion"].Index].Value.ToString()));
                 cbGeneroPel.SelectedItem = dgPeliculas.SelectedCells[dgPeliculas.Columns["genero"].Index].Value.ToString();
             }
-        }
-        private void btAceptarPel_Click(object sender, EventArgs e)
-        {
-            RealizaAccionPel();
-        }
-
-        private void RealizaAccionPel()
-        {
-            switch (opPel)
-            {
-                case 0: //Agregar Pelicula
-                    InsertaPelicula();
-                    break;
-                case 1://Actualizar Pelicula
-                    ActualizarPelicula();
-                    break;
-                default:
-                    MessageBox.Show("Algo salio mal,Por favor vuelve a intentarlo");
-                    break;
-            }
-        }
+        }     
 
         private void btActualizaPel_Click(object sender, EventArgs e)
         {
-            if (RenglonSeleccionadoPel() != "")
-            {
-                opPel = 1;
-                BotonesAccionPel(true);
-            }
-            else
-            {
-                MessageBox.Show("Primero selecciona la <Pelicula> que se desea actualizar", "Atención");
-            }
+            ActualizarPelicula();
         }
 
         private string RenglonSeleccionadoPel()
@@ -963,40 +947,51 @@ namespace cinemax
 
         private void ActualizarPelicula()
         {
-            string clave_pel = RenglonSeleccionadoPel();
-            if (ValidaDatosPelicula())
+            string clave_pel;
+            if ((clave_pel = RenglonSeleccionadoPel()) != "")
             {
-                if (conexion.AbrirConexion())
+                if (ValidaDatosPelicula())
                 {
-                    string txtCmd = "update Cine.pelicula set nombre='" +
-                        tbNombrePel.Text + "', director='" + tbDirectorPel.Text +
-                        "', sinopsis='" + tbSinopsisPel.Text + "', clasificacion='" + ClasificacionPelicula() +
-                        "', genero='" + cbGeneroPel.Text + "' where clave_pel=" + clave_pel;
-
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                    try
+                    if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de este empleado?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosPelicula();
-                        CambiaTextoMensajePel("Se actualizo correctamente!", Color.Blue);
-                        lbMensajePel.Visible = true;
-                        LimpiaCamposPelicula();
-                        BotonesAccionPel(false);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                        if (conexion.AbrirConexion())
+                        {
+                            string txtCmd = "update Cine.pelicula set nombre='" +
+                                tbNombrePel.Text + "', director='" + tbDirectorPel.Text +
+                                "', sinopsis='" + tbSinopsisPel.Text + "', clasificacion='" + ClasificacionPelicula() +
+                                "', genero='" + cbGeneroPel.Text + "' where clave_pel=" + clave_pel;
 
+                            SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                                ObtenerRegistrosPelicula();
+                                CambiaTextoMensajePel("Se actualizo correctamente!", Color.Blue);
+                                lbMensajePel.Visible = true;
+                                LimpiaCamposPelicula();
+                                /* Deshabilitación de campos de captura */
+                                SwitchCamposPelicula("Deshabilitar");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Error al llamar al servidor");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona la <Pelicula> que se desea actualizar", "Atención");
             }
 
         }
+
         private void btEliminaPel_Click(object sender, EventArgs e)
         {
             EliminarPelicula();
@@ -1022,7 +1017,8 @@ namespace cinemax
                             ObtenerRegistrosPelicula();
                             CambiaTextoMensajePel("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposPelicula();
-                            BotonesAccionPel(false);
+                            /* Deshabilitación de campos de captura */
+                            SwitchCamposPelicula("Deshabilitar");
                         }
                         catch (Exception ex)
                         {
@@ -1044,7 +1040,32 @@ namespace cinemax
         #region Metodos Pestaña Sucursal
         private void btnAgregarSuc_Click(object sender, EventArgs e)
         {
-            SwitchCamposSucural("Habilitar");
+            SucursalConexion dbConexion = new SucursalConexion();
+            bool resultado;
+
+            if (ValidaDatosSucursal())
+            {
+                /* Insercción de datos */
+                resultado = dbConexion.InsertaSucursal(tbNombreCine.Text,
+                    nudSalasCine.Value.ToString(),
+                    tbColoniaSuc.Text,
+                    tbCalleSucursal.Text,
+                    tbNumeroSucursal.Text,
+                    tbTelefonoSucursal.Text);
+
+                if (!resultado)
+                    MessageBox.Show("La sucursal no fue agregada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    labelMensajeSucursal.Text = "Sucursal agregada";
+                    tcPrincipal_SelectedIndexChanged(this, null);
+                    labelMensajeSucursal.Visible = true;
+                    ResetTimer.Enabled = true;
+                }
+
+                /* Actualización del grid */
+                tcPrincipal_SelectedIndexChanged(this, null);
+            }
         }
 
         private void btnEliminarSuc_Click(object sender, EventArgs e)
@@ -1137,34 +1158,7 @@ namespace cinemax
 
         private void btnAceptarSuc_Click(object sender, EventArgs e)
         {
-            SucursalConexion dbConexion = new SucursalConexion();
-            bool resultado;
             
-            if (ValidaDatosSucursal())
-            {
-                /* Insercción de datos */
-                resultado = dbConexion.InsertaSucursal(tbNombreCine.Text,
-                    nudSalasCine.Value.ToString(),
-                    tbColoniaSuc.Text,
-                    tbCalleSucursal.Text,
-                    tbNumeroSucursal.Text,
-                    tbTelefonoSucursal.Text);
-
-                if (!resultado)
-                    MessageBox.Show("La sucursal no fue agregada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                else
-                {
-                    labelMensajeSucursal.Text = "Sucursal agregada";
-                    tcPrincipal_SelectedIndexChanged(this, null);
-                    labelMensajeSucursal.Visible = true;
-                    ResetTimer.Enabled = true;
-                }
-
-                /* Deshabilitación de campos de captura */
-                SwitchCamposSucural("Deshabilitar");
-                /* Actualización del grid */
-                tcPrincipal_SelectedIndexChanged(this, null);
-            }
         }
 
         private void btnCancelarSuc_Click(object sender, EventArgs e)
@@ -1177,9 +1171,6 @@ namespace cinemax
             switch (caso)
             {
                 case "Habilitar":
-                    gbInfoSucursal.Enabled = true;
-                    gbUbicacionSucursal.Enabled = true;
-                    btnAceptarSuc.Visible = true;
                     btnCancelarSuc.Visible = true;
                     btnActualizarSuc.Enabled = false;
                     btnEliminarSuc.Enabled = false;
@@ -1187,32 +1178,29 @@ namespace cinemax
                     nudSalasCine.Enabled = true;
                     btnEditarSalas.Visible = false;
                     labelSalasSucursal.Visible = false;
+                    
                     break;
                 case "Deshabilitar":
-                    gbInfoSucursal.Enabled = false;
-                    gbUbicacionSucursal.Enabled = false;
-                    btnAceptarSuc.Visible = false;
                     btnCancelarSuc.Visible = false;
                     btnActualizarSuc.Enabled = false;
                     btnEliminarSuc.Enabled = false;
                     btnAgregarSuc.Enabled = true;
                     tbNombreCine.Text = string.Empty;
                     nudSalasCine.Value = 0;
+                    nudSalasCine.Enabled = true;
                     tbColoniaSuc.Text = string.Empty;
                     tbCalleSucursal.Text = string.Empty;
                     tbNumeroSucursal.Text = string.Empty;
                     tbTelefonoSucursal.Text = string.Empty;
                     btnEditarSalas.Visible = false;
                     labelSalasSucursal.Visible = false;
+                    dgSucursales.ClearSelection();
                     break;
                 case "Actualizar":
-                    gbInfoSucursal.Enabled = true;
-                    gbUbicacionSucursal.Enabled = true;
                     btnCancelarSuc.Visible = true;
                     btnAgregarSuc.Enabled = false;
                     btnActualizarSuc.Enabled = true;
                     btnEliminarSuc.Enabled = true;
-                    btnAceptarSuc.Visible = false;
                     nudSalasCine.Enabled = false;
                     btnEditarSalas.Visible = true;
                     labelSalasSucursal.Visible = true;
@@ -1363,6 +1351,35 @@ namespace cinemax
         #endregion
 
         #region Metodos Pestaña Funcion
+
+        private void SwitchCamposFuncion(string caso)
+        {
+
+            switch (caso)
+            {
+                case "Habilitar":
+                    btCancelarFun.Visible = true;
+                    btActualizaFun.Enabled = false;
+                    btEliminaFun.Enabled = false;
+                    btInsertaFun.Enabled = false;
+                    break;
+                case "Deshabilitar":
+                    btCancelarFun.Visible = false;
+                    btActualizaFun.Enabled = false;
+                    btEliminaFun.Enabled = false;
+                    btInsertaFun.Enabled = true;
+                    LimpiaCamposFuncion();
+                    dgFunciones.ClearSelection();
+                    break;
+                case "Actualizar":
+                    LimpiaFormularioFuncion();
+                    btCancelarFun.Visible = true;
+                    btActualizaFun.Enabled = true;
+                    btEliminaFun.Enabled = true;
+                    btInsertaFun.Enabled = false;
+                    break;
+            }
+        }
 
         private void ActualizaFecha()
         {
@@ -1518,16 +1535,7 @@ namespace cinemax
             cbSalFun.SelectedIndex = -1;
         }
 
-        private void BotonesAccionFun(bool activo)
-        {
-            btAceptarFun.Visible = activo;
-            btCancelarFun.Visible = activo;
-            gbDGFun.Enabled = activo;
-            dgFunciones.Enabled = !activo;
-            btInsertaFun.Enabled = !activo;
-            btEliminaFun.Enabled = !activo;
-            btActualizaFun.Enabled = !activo;
-        }
+    
 
         private void RealizaAccionFun()
         {
@@ -1552,10 +1560,8 @@ namespace cinemax
 
         private void btCancelarFun_Click(object sender, EventArgs e)
         {
+            SwitchCamposFuncion("Deshabilitar");
             LimpiaFormularioFuncion();
-            LimpiaCamposFuncion();
-            BotonesAccionFun(false);
-            dgFunciones.ClearSelection();        
         }
 
         private void LimpiaFormularioFuncion()
@@ -1611,10 +1617,9 @@ namespace cinemax
                     {
                         cmd.ExecuteNonQuery();
                         ObtenerRegistrosFuncion();
-                        CambiaTextoMensajeFun("Se actualizo correctamente!", Color.Blue);
+                        CambiaTextoMensajeFun("Se agrego correctamente!", Color.Blue);
                         lbMensajeFun.Visible = true;
                         LimpiaCamposFuncion();
-                        BotonesAccionFun(false);
                     }
                     catch (Exception ex)
                     {
@@ -1633,41 +1638,50 @@ namespace cinemax
 
         private void ActualizarFuncion()
         {
-            string clave_fun = RenglonSeleccionadoFun();
-            if (ValidaDatosFuncion())
+            string clave_fun;
+            if ((clave_fun=RenglonSeleccionadoFun()) != "")
             {
-                if (conexion.AbrirConexion())
+                if (ValidaDatosFuncion())
                 {
-                    string txtCmd = "update Cine.funcion set clave_pel=" +
-                        cbPelFun.SelectedValue + ", clave_sal=" + cbSalFun.SelectedValue +
-                        ", hora_ini='" + dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' + dpHoraIniFun.Value.Second +
-                        "', hora_fin='" + dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second +                     
-                        "', fecha='" + dpFechaFun.Value.Year + "/" + dpFechaFun.Value.Month + "/" + dpFechaFun.Value.Day +
-                        "' where clave_fun=" + clave_fun;
-
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                    try
+                    if (MessageBox.Show("¿Esta seguro de querer actualizar la \n información de esta funcion?", "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosFuncion();
-                        CambiaTextoMensajeFun("Se actualizo correctamente!", Color.Blue);
-                        lbMensajeFun.Visible = true;
-                        LimpiaCamposFuncion();
-                        BotonesAccionFun(false);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                        if (conexion.AbrirConexion())
+                        {
+                            string txtCmd = "update Cine.funcion set clave_pel=" +
+                                cbPelFun.SelectedValue + ", clave_sal=" + cbSalFun.SelectedValue +
+                                ", hora_ini='" + dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' + dpHoraIniFun.Value.Second +
+                                "', hora_fin='" + dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second +
+                                "', fecha='" + dpFechaFun.Value.Year + "/" + dpFechaFun.Value.Month + "/" + dpFechaFun.Value.Day +
+                                "' where clave_fun=" + clave_fun;
 
-                }
-                else
-                {
-                    MessageBox.Show("Error al llamar al servidor");
+                            SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                                ObtenerRegistrosFuncion();
+                                CambiaTextoMensajeFun("Se actualizo correctamente!", Color.Blue);
+                                lbMensajeFun.Visible = true;
+                                LimpiaCamposFuncion();
+                                SwitchCamposFuncion("Deshabilitar");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al llamar al servidor");
+                        }
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("Primero selecciona la <Funcion> que se desea actualizar", "Atención");
+            }
         }
 
         private void EliminarFuncion()
@@ -1689,7 +1703,7 @@ namespace cinemax
                             ObtenerRegistrosFuncion();
                             CambiaTextoMensajeFun("Se elimino correctamente!", Color.Blue);
                             LimpiaCamposFuncion();
-                            BotonesAccionFun(false);
+                            SwitchCamposFuncion("Deshabilitar");
                         }
                         catch (Exception ex)
                         {
@@ -1708,23 +1722,12 @@ namespace cinemax
 
         private void btInsertaFun_Click(object sender, EventArgs e)
         {
-            opFun = 0;
-            LimpiaCamposFuncion();
-            BotonesAccionFun(true);
-            cbPelFun.Focus();
+            InsertaFuncion();
         }
 
         private void btActualizaFun_Click(object sender, EventArgs e)
         {
-            if (RenglonSeleccionadoFun() != "")
-            {
-                opFun = 1;
-                BotonesAccionFun(true);
-            }
-            else
-            {
-                MessageBox.Show("Primero selecciona la <Funcion> que se desea actualizar", "Atención");
-            }
+            ActualizarFuncion();
         }
         private void btEliminaFun_Click(object sender, EventArgs e)
         {
@@ -1741,10 +1744,12 @@ namespace cinemax
         private void dgFunciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             SeleccionaRegistroFun();
+            SwitchCamposFuncion("Actualizar");
         }
         private void dgFunciones_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SeleccionaRegistroFun();
+            SwitchCamposFuncion("Actualizar");
         }
         private void SeleccionaRegistroFun()
         {
@@ -2041,5 +2046,7 @@ namespace cinemax
             else
                 MessageBox.Show("Venta no generada", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+  
     }
 }

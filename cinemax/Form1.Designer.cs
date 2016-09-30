@@ -35,12 +35,11 @@
             this.tpEmpleado = new System.Windows.Forms.TabPage();
             this.dgEmpleados = new System.Windows.Forms.DataGridView();
             this.gbEmpleado = new System.Windows.Forms.GroupBox();
-            this.btCancelarEmp = new System.Windows.Forms.Button();
+            this.btCancelaEmp = new System.Windows.Forms.Button();
             this.lbMensaje = new System.Windows.Forms.Label();
-            this.btActualizaEmpleado = new System.Windows.Forms.Button();
-            this.btAceptarEmp = new System.Windows.Forms.Button();
-            this.btEliminaEmpleado = new System.Windows.Forms.Button();
-            this.btInsertaEmpleado = new System.Windows.Forms.Button();
+            this.btActualizaEmp = new System.Windows.Forms.Button();
+            this.btEliminaEmp = new System.Windows.Forms.Button();
+            this.btInsertaEmp = new System.Windows.Forms.Button();
             this.gbDCEmp = new System.Windows.Forms.GroupBox();
             this.tbCelEmp = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,8 +65,7 @@
             this.tpMembresia = new System.Windows.Forms.TabPage();
             this.dgMembresias = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btCancelarMem = new System.Windows.Forms.Button();
-            this.btAceptarMem = new System.Windows.Forms.Button();
+            this.btCancelaMem = new System.Windows.Forms.Button();
             this.gbDMem = new System.Windows.Forms.GroupBox();
             this.nuPuntosMem = new System.Windows.Forms.NumericUpDown();
             this.cbTipoMem = new System.Windows.Forms.ComboBox();
@@ -97,8 +95,7 @@
             this.dgPeliculas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbMensajePel = new System.Windows.Forms.Label();
-            this.btCancelarPel = new System.Windows.Forms.Button();
-            this.btAceptarPel = new System.Windows.Forms.Button();
+            this.btCancelaPel = new System.Windows.Forms.Button();
             this.btActualizaPel = new System.Windows.Forms.Button();
             this.btEliminaPel = new System.Windows.Forms.Button();
             this.btInsertaPel = new System.Windows.Forms.Button();
@@ -127,7 +124,6 @@
             this.tbColoniaSuc = new System.Windows.Forms.TextBox();
             this.labelMensajeSucursal = new System.Windows.Forms.Label();
             this.btnCancelarSuc = new System.Windows.Forms.Button();
-            this.btnAceptarSuc = new System.Windows.Forms.Button();
             this.btnActualizarSuc = new System.Windows.Forms.Button();
             this.btnEliminarSuc = new System.Windows.Forms.Button();
             this.btnAgregarSuc = new System.Windows.Forms.Button();
@@ -145,7 +141,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbMensajeFun = new System.Windows.Forms.Label();
             this.btCancelarFun = new System.Windows.Forms.Button();
-            this.btAceptarFun = new System.Windows.Forms.Button();
             this.btActualizaFun = new System.Windows.Forms.Button();
             this.btEliminaFun = new System.Windows.Forms.Button();
             this.btInsertaFun = new System.Windows.Forms.Button();
@@ -277,18 +272,18 @@
             this.dgEmpleados.Size = new System.Drawing.Size(963, 277);
             this.dgEmpleados.TabIndex = 15;
             this.dgEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellClick);
+            this.dgEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEmpleados_CellClick);
             this.dgEmpleados.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgEmpleados_CellFormatting);
             this.dgEmpleados.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEmpleados_RowHeaderMouseClick);
             // 
             // gbEmpleado
             // 
             this.gbEmpleado.BackColor = System.Drawing.Color.Transparent;
-            this.gbEmpleado.Controls.Add(this.btCancelarEmp);
+            this.gbEmpleado.Controls.Add(this.btCancelaEmp);
             this.gbEmpleado.Controls.Add(this.lbMensaje);
-            this.gbEmpleado.Controls.Add(this.btActualizaEmpleado);
-            this.gbEmpleado.Controls.Add(this.btAceptarEmp);
-            this.gbEmpleado.Controls.Add(this.btEliminaEmpleado);
-            this.gbEmpleado.Controls.Add(this.btInsertaEmpleado);
+            this.gbEmpleado.Controls.Add(this.btActualizaEmp);
+            this.gbEmpleado.Controls.Add(this.btEliminaEmp);
+            this.gbEmpleado.Controls.Add(this.btInsertaEmp);
             this.gbEmpleado.Controls.Add(this.gbDCEmp);
             this.gbEmpleado.Controls.Add(this.gbDPEmp);
             this.gbEmpleado.ForeColor = System.Drawing.Color.LightGray;
@@ -299,17 +294,17 @@
             this.gbEmpleado.TabStop = false;
             this.gbEmpleado.Text = "Informacion";
             // 
-            // btCancelarEmp
+            // btCancelaEmp
             // 
-            this.btCancelarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btCancelarEmp.Location = new System.Drawing.Point(558, 187);
-            this.btCancelarEmp.Name = "btCancelarEmp";
-            this.btCancelarEmp.Size = new System.Drawing.Size(75, 23);
-            this.btCancelarEmp.TabIndex = 11;
-            this.btCancelarEmp.Text = "Cancelar";
-            this.btCancelarEmp.UseVisualStyleBackColor = true;
-            this.btCancelarEmp.Visible = false;
-            this.btCancelarEmp.Click += new System.EventHandler(this.btCancelarEmp_Click);
+            this.btCancelaEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelaEmp.Location = new System.Drawing.Point(639, 187);
+            this.btCancelaEmp.Name = "btCancelaEmp";
+            this.btCancelaEmp.Size = new System.Drawing.Size(75, 23);
+            this.btCancelaEmp.TabIndex = 15;
+            this.btCancelaEmp.Text = "Cancelar";
+            this.btCancelaEmp.UseVisualStyleBackColor = true;
+            this.btCancelaEmp.Visible = false;
+            this.btCancelaEmp.Click += new System.EventHandler(this.btCancelaEmp_Click);
             // 
             // lbMensaje
             // 
@@ -323,50 +318,40 @@
             this.lbMensaje.Text = "Mensaje";
             this.lbMensaje.Visible = false;
             // 
-            // btActualizaEmpleado
+            // btActualizaEmp
             // 
-            this.btActualizaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btActualizaEmpleado.Location = new System.Drawing.Point(720, 187);
-            this.btActualizaEmpleado.Name = "btActualizaEmpleado";
-            this.btActualizaEmpleado.Size = new System.Drawing.Size(75, 23);
-            this.btActualizaEmpleado.TabIndex = 12;
-            this.btActualizaEmpleado.Text = "Actualizar";
-            this.btActualizaEmpleado.UseVisualStyleBackColor = true;
-            this.btActualizaEmpleado.Click += new System.EventHandler(this.btActualizaEmpleado_Click);
+            this.btActualizaEmp.Enabled = false;
+            this.btActualizaEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btActualizaEmp.Location = new System.Drawing.Point(720, 187);
+            this.btActualizaEmp.Name = "btActualizaEmp";
+            this.btActualizaEmp.Size = new System.Drawing.Size(75, 23);
+            this.btActualizaEmp.TabIndex = 12;
+            this.btActualizaEmp.Text = "Actualizar";
+            this.btActualizaEmp.UseVisualStyleBackColor = true;
+            this.btActualizaEmp.Click += new System.EventHandler(this.btActualizaEmpleado_Click);
             // 
-            // btAceptarEmp
+            // btEliminaEmp
             // 
-            this.btAceptarEmp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btAceptarEmp.Location = new System.Drawing.Point(639, 187);
-            this.btAceptarEmp.Name = "btAceptarEmp";
-            this.btAceptarEmp.Size = new System.Drawing.Size(75, 23);
-            this.btAceptarEmp.TabIndex = 10;
-            this.btAceptarEmp.Text = "Aceptar";
-            this.btAceptarEmp.UseVisualStyleBackColor = true;
-            this.btAceptarEmp.Visible = false;
-            this.btAceptarEmp.Click += new System.EventHandler(this.btAceptarEmp_Click);
+            this.btEliminaEmp.Enabled = false;
+            this.btEliminaEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btEliminaEmp.Location = new System.Drawing.Point(801, 187);
+            this.btEliminaEmp.Name = "btEliminaEmp";
+            this.btEliminaEmp.Size = new System.Drawing.Size(75, 23);
+            this.btEliminaEmp.TabIndex = 13;
+            this.btEliminaEmp.Text = "Eliminar";
+            this.btEliminaEmp.UseVisualStyleBackColor = true;
+            this.btEliminaEmp.Click += new System.EventHandler(this.btEliminaEmpleado_Click);
             // 
-            // btEliminaEmpleado
+            // btInsertaEmp
             // 
-            this.btEliminaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btEliminaEmpleado.Location = new System.Drawing.Point(801, 187);
-            this.btEliminaEmpleado.Name = "btEliminaEmpleado";
-            this.btEliminaEmpleado.Size = new System.Drawing.Size(75, 23);
-            this.btEliminaEmpleado.TabIndex = 13;
-            this.btEliminaEmpleado.Text = "Eliminar";
-            this.btEliminaEmpleado.UseVisualStyleBackColor = true;
-            this.btEliminaEmpleado.Click += new System.EventHandler(this.btEliminaEmpleado_Click);
-            // 
-            // btInsertaEmpleado
-            // 
-            this.btInsertaEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btInsertaEmpleado.Location = new System.Drawing.Point(882, 187);
-            this.btInsertaEmpleado.Name = "btInsertaEmpleado";
-            this.btInsertaEmpleado.Size = new System.Drawing.Size(75, 23);
-            this.btInsertaEmpleado.TabIndex = 14;
-            this.btInsertaEmpleado.Text = "Agregar";
-            this.btInsertaEmpleado.UseVisualStyleBackColor = true;
-            this.btInsertaEmpleado.Click += new System.EventHandler(this.btInsertaEmpeado_Click);
+            this.btInsertaEmp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btInsertaEmp.Location = new System.Drawing.Point(882, 187);
+            this.btInsertaEmp.Name = "btInsertaEmp";
+            this.btInsertaEmp.Size = new System.Drawing.Size(75, 23);
+            this.btInsertaEmp.TabIndex = 14;
+            this.btInsertaEmp.Text = "Agregar";
+            this.btInsertaEmp.UseVisualStyleBackColor = true;
+            this.btInsertaEmp.Click += new System.EventHandler(this.btInsertaEmpeado_Click);
             // 
             // gbDCEmp
             // 
@@ -380,7 +365,6 @@
             this.gbDCEmp.Controls.Add(this.tbCalleEmp);
             this.gbDCEmp.Controls.Add(this.lbColoniaEmp);
             this.gbDCEmp.Controls.Add(this.tbColoniaEmp);
-            this.gbDCEmp.Enabled = false;
             this.gbDCEmp.ForeColor = System.Drawing.Color.Silver;
             this.gbDCEmp.Location = new System.Drawing.Point(423, 19);
             this.gbDCEmp.Name = "gbDCEmp";
@@ -494,7 +478,6 @@
             this.gbDPEmp.Controls.Add(this.tbAppEmp);
             this.gbDPEmp.Controls.Add(this.lbNombreEmp);
             this.gbDPEmp.Controls.Add(this.tbNombreEmp);
-            this.gbDPEmp.Enabled = false;
             this.gbDPEmp.ForeColor = System.Drawing.Color.LightGray;
             this.gbDPEmp.Location = new System.Drawing.Point(6, 19);
             this.gbDPEmp.Name = "gbDPEmp";
@@ -629,13 +612,13 @@
             this.dgMembresias.Size = new System.Drawing.Size(963, 306);
             this.dgMembresias.TabIndex = 2;
             this.dgMembresias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMembresias_CellClick);
+            this.dgMembresias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMembresias_CellClick);
             this.dgMembresias.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembresias_RowHeaderMouseClick);
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.btCancelarMem);
-            this.groupBox3.Controls.Add(this.btAceptarMem);
+            this.groupBox3.Controls.Add(this.btCancelaMem);
             this.groupBox3.Controls.Add(this.gbDMem);
             this.groupBox3.Controls.Add(this.lbMensajeMem);
             this.groupBox3.Controls.Add(this.btActualizaMem);
@@ -651,29 +634,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Informacion";
             // 
-            // btCancelarMem
+            // btCancelaMem
             // 
-            this.btCancelarMem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btCancelarMem.Location = new System.Drawing.Point(558, 159);
-            this.btCancelarMem.Name = "btCancelarMem";
-            this.btCancelarMem.Size = new System.Drawing.Size(75, 23);
-            this.btCancelarMem.TabIndex = 14;
-            this.btCancelarMem.Text = "Cancelar";
-            this.btCancelarMem.UseVisualStyleBackColor = true;
-            this.btCancelarMem.Visible = false;
-            this.btCancelarMem.Click += new System.EventHandler(this.btCancelarMem_Click);
-            // 
-            // btAceptarMem
-            // 
-            this.btAceptarMem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btAceptarMem.Location = new System.Drawing.Point(639, 159);
-            this.btAceptarMem.Name = "btAceptarMem";
-            this.btAceptarMem.Size = new System.Drawing.Size(75, 23);
-            this.btAceptarMem.TabIndex = 13;
-            this.btAceptarMem.Text = "Aceptar";
-            this.btAceptarMem.UseVisualStyleBackColor = true;
-            this.btAceptarMem.Visible = false;
-            this.btAceptarMem.Click += new System.EventHandler(this.btAceptarMem_Click);
+            this.btCancelaMem.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelaMem.Location = new System.Drawing.Point(639, 159);
+            this.btCancelaMem.Name = "btCancelaMem";
+            this.btCancelaMem.Size = new System.Drawing.Size(75, 23);
+            this.btCancelaMem.TabIndex = 14;
+            this.btCancelaMem.Text = "Cancelar";
+            this.btCancelaMem.UseVisualStyleBackColor = true;
+            this.btCancelaMem.Visible = false;
+            this.btCancelaMem.Click += new System.EventHandler(this.btCancelarMem_Click);
             // 
             // gbDMem
             // 
@@ -681,7 +652,6 @@
             this.gbDMem.Controls.Add(this.cbTipoMem);
             this.gbDMem.Controls.Add(this.lbPuntosMem);
             this.gbDMem.Controls.Add(this.lbTipoMem);
-            this.gbDMem.Enabled = false;
             this.gbDMem.ForeColor = System.Drawing.Color.Silver;
             this.gbDMem.Location = new System.Drawing.Point(753, 19);
             this.gbDMem.Name = "gbDMem";
@@ -754,6 +724,7 @@
             // 
             // btActualizaMem
             // 
+            this.btActualizaMem.Enabled = false;
             this.btActualizaMem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btActualizaMem.Location = new System.Drawing.Point(720, 159);
             this.btActualizaMem.Name = "btActualizaMem";
@@ -765,6 +736,7 @@
             // 
             // btEliminaMem
             // 
+            this.btEliminaMem.Enabled = false;
             this.btEliminaMem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btEliminaMem.Location = new System.Drawing.Point(801, 159);
             this.btEliminaMem.Name = "btEliminaMem";
@@ -793,7 +765,6 @@
             this.gbDCMem.Controls.Add(this.tbCalleMem);
             this.gbDCMem.Controls.Add(this.lbColoniaMem);
             this.gbDCMem.Controls.Add(this.tbColoniaMem);
-            this.gbDCMem.Enabled = false;
             this.gbDCMem.ForeColor = System.Drawing.Color.Silver;
             this.gbDCMem.Location = new System.Drawing.Point(423, 19);
             this.gbDCMem.Name = "gbDCMem";
@@ -868,7 +839,6 @@
             this.gbDPMem.Controls.Add(this.tbAppMem);
             this.gbDPMem.Controls.Add(this.lbNombreMem);
             this.gbDPMem.Controls.Add(this.tbNombreMem);
-            this.gbDPMem.Enabled = false;
             this.gbDPMem.ForeColor = System.Drawing.Color.LightGray;
             this.gbDPMem.Location = new System.Drawing.Point(6, 19);
             this.gbDPMem.Name = "gbDPMem";
@@ -983,14 +953,14 @@
             this.dgPeliculas.Size = new System.Drawing.Size(963, 306);
             this.dgPeliculas.TabIndex = 3;
             this.dgPeliculas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPeliculas_CellClick);
+            this.dgPeliculas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPeliculas_CellClick);
             this.dgPeliculas.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPeliculas_RowHeaderMouseClick);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.lbMensajePel);
-            this.groupBox1.Controls.Add(this.btCancelarPel);
-            this.groupBox1.Controls.Add(this.btAceptarPel);
+            this.groupBox1.Controls.Add(this.btCancelaPel);
             this.groupBox1.Controls.Add(this.btActualizaPel);
             this.groupBox1.Controls.Add(this.btEliminaPel);
             this.groupBox1.Controls.Add(this.btInsertaPel);
@@ -1016,32 +986,21 @@
             this.lbMensajePel.Text = "Mensaje";
             this.lbMensajePel.Visible = false;
             // 
-            // btCancelarPel
+            // btCancelaPel
             // 
-            this.btCancelarPel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btCancelarPel.Location = new System.Drawing.Point(558, 159);
-            this.btCancelarPel.Name = "btCancelarPel";
-            this.btCancelarPel.Size = new System.Drawing.Size(75, 23);
-            this.btCancelarPel.TabIndex = 14;
-            this.btCancelarPel.Text = "Cancelar";
-            this.btCancelarPel.UseVisualStyleBackColor = true;
-            this.btCancelarPel.Visible = false;
-            this.btCancelarPel.Click += new System.EventHandler(this.btCancelarPel_Click);
-            // 
-            // btAceptarPel
-            // 
-            this.btAceptarPel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btAceptarPel.Location = new System.Drawing.Point(639, 159);
-            this.btAceptarPel.Name = "btAceptarPel";
-            this.btAceptarPel.Size = new System.Drawing.Size(75, 23);
-            this.btAceptarPel.TabIndex = 13;
-            this.btAceptarPel.Text = "Aceptar";
-            this.btAceptarPel.UseVisualStyleBackColor = true;
-            this.btAceptarPel.Visible = false;
-            this.btAceptarPel.Click += new System.EventHandler(this.btAceptarPel_Click);
+            this.btCancelaPel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btCancelaPel.Location = new System.Drawing.Point(639, 159);
+            this.btCancelaPel.Name = "btCancelaPel";
+            this.btCancelaPel.Size = new System.Drawing.Size(75, 23);
+            this.btCancelaPel.TabIndex = 14;
+            this.btCancelaPel.Text = "Cancelar";
+            this.btCancelaPel.UseVisualStyleBackColor = true;
+            this.btCancelaPel.Visible = false;
+            this.btCancelaPel.Click += new System.EventHandler(this.btCancelarPel_Click);
             // 
             // btActualizaPel
             // 
+            this.btActualizaPel.Enabled = false;
             this.btActualizaPel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btActualizaPel.Location = new System.Drawing.Point(720, 159);
             this.btActualizaPel.Name = "btActualizaPel";
@@ -1053,6 +1012,7 @@
             // 
             // btEliminaPel
             // 
+            this.btEliminaPel.Enabled = false;
             this.btEliminaPel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btEliminaPel.Location = new System.Drawing.Point(801, 159);
             this.btEliminaPel.Name = "btEliminaPel";
@@ -1087,7 +1047,6 @@
             this.gbDGPel.Controls.Add(this.tbDirectorPel);
             this.gbDGPel.Controls.Add(this.lbNombrePel);
             this.gbDGPel.Controls.Add(this.tbNombrePel);
-            this.gbDGPel.Enabled = false;
             this.gbDGPel.ForeColor = System.Drawing.Color.LightGray;
             this.gbDGPel.Location = new System.Drawing.Point(6, 19);
             this.gbDGPel.Name = "gbDGPel";
@@ -1257,6 +1216,7 @@
             this.dgSucursales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSucursales.Size = new System.Drawing.Size(963, 306);
             this.dgSucursales.TabIndex = 12;
+            this.dgSucursales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSucursales_CellContentClick);
             this.dgSucursales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSucursales_CellContentClick);
             this.dgSucursales.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSucursales_RowHeaderMouseClick);
             // 
@@ -1266,7 +1226,6 @@
             this.gbSucursal.Controls.Add(this.gbUbicacionSucursal);
             this.gbSucursal.Controls.Add(this.labelMensajeSucursal);
             this.gbSucursal.Controls.Add(this.btnCancelarSuc);
-            this.gbSucursal.Controls.Add(this.btnAceptarSuc);
             this.gbSucursal.Controls.Add(this.btnActualizarSuc);
             this.gbSucursal.Controls.Add(this.btnEliminarSuc);
             this.gbSucursal.Controls.Add(this.btnAgregarSuc);
@@ -1288,7 +1247,6 @@
             this.gbUbicacionSucursal.Controls.Add(this.labelColoniaSucursal);
             this.gbUbicacionSucursal.Controls.Add(this.labelNumeroSucursal);
             this.gbUbicacionSucursal.Controls.Add(this.tbColoniaSuc);
-            this.gbUbicacionSucursal.Enabled = false;
             this.gbUbicacionSucursal.ForeColor = System.Drawing.Color.LightGray;
             this.gbUbicacionSucursal.Location = new System.Drawing.Point(484, 19);
             this.gbUbicacionSucursal.Name = "gbUbicacionSucursal";
@@ -1383,18 +1341,6 @@
             this.btnCancelarSuc.Visible = false;
             this.btnCancelarSuc.Click += new System.EventHandler(this.btnCancelarSuc_Click);
             // 
-            // btnAceptarSuc
-            // 
-            this.btnAceptarSuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAceptarSuc.Location = new System.Drawing.Point(558, 159);
-            this.btnAceptarSuc.Name = "btnAceptarSuc";
-            this.btnAceptarSuc.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarSuc.TabIndex = 7;
-            this.btnAceptarSuc.Text = "Aceptar";
-            this.btnAceptarSuc.UseVisualStyleBackColor = true;
-            this.btnAceptarSuc.Visible = false;
-            this.btnAceptarSuc.Click += new System.EventHandler(this.btnAceptarSuc_Click);
-            // 
             // btnActualizarSuc
             // 
             this.btnActualizarSuc.Enabled = false;
@@ -1441,7 +1387,6 @@
             this.gbInfoSucursal.Controls.Add(this.labelSalasCine);
             this.gbInfoSucursal.Controls.Add(this.tbNombreCine);
             this.gbInfoSucursal.Controls.Add(this.tbTelefonoSucursal);
-            this.gbInfoSucursal.Enabled = false;
             this.gbInfoSucursal.ForeColor = System.Drawing.Color.LightGray;
             this.gbInfoSucursal.Location = new System.Drawing.Point(7, 19);
             this.gbInfoSucursal.Name = "gbInfoSucursal";
@@ -1558,6 +1503,7 @@
             this.dgFunciones.Size = new System.Drawing.Size(963, 306);
             this.dgFunciones.TabIndex = 4;
             this.dgFunciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFunciones_CellClick);
+            this.dgFunciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFunciones_CellClick);
             this.dgFunciones.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgFunciones_RowHeaderMouseClick);
             // 
             // groupBox2
@@ -1565,7 +1511,6 @@
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.lbMensajeFun);
             this.groupBox2.Controls.Add(this.btCancelarFun);
-            this.groupBox2.Controls.Add(this.btAceptarFun);
             this.groupBox2.Controls.Add(this.btActualizaFun);
             this.groupBox2.Controls.Add(this.btEliminaFun);
             this.groupBox2.Controls.Add(this.btInsertaFun);
@@ -1594,7 +1539,7 @@
             // btCancelarFun
             // 
             this.btCancelarFun.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btCancelarFun.Location = new System.Drawing.Point(558, 159);
+            this.btCancelarFun.Location = new System.Drawing.Point(639, 159);
             this.btCancelarFun.Name = "btCancelarFun";
             this.btCancelarFun.Size = new System.Drawing.Size(75, 23);
             this.btCancelarFun.TabIndex = 14;
@@ -1603,20 +1548,9 @@
             this.btCancelarFun.Visible = false;
             this.btCancelarFun.Click += new System.EventHandler(this.btCancelarFun_Click);
             // 
-            // btAceptarFun
-            // 
-            this.btAceptarFun.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btAceptarFun.Location = new System.Drawing.Point(639, 159);
-            this.btAceptarFun.Name = "btAceptarFun";
-            this.btAceptarFun.Size = new System.Drawing.Size(75, 23);
-            this.btAceptarFun.TabIndex = 13;
-            this.btAceptarFun.Text = "Aceptar";
-            this.btAceptarFun.UseVisualStyleBackColor = true;
-            this.btAceptarFun.Visible = false;
-            this.btAceptarFun.Click += new System.EventHandler(this.btAceptarFun_Click);
-            // 
             // btActualizaFun
             // 
+            this.btActualizaFun.Enabled = false;
             this.btActualizaFun.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btActualizaFun.Location = new System.Drawing.Point(720, 159);
             this.btActualizaFun.Name = "btActualizaFun";
@@ -1628,6 +1562,7 @@
             // 
             // btEliminaFun
             // 
+            this.btEliminaFun.Enabled = false;
             this.btEliminaFun.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btEliminaFun.Location = new System.Drawing.Point(801, 159);
             this.btEliminaFun.Name = "btEliminaFun";
@@ -1662,7 +1597,6 @@
             this.gbDGFun.Controls.Add(this.lbHoraIniFun);
             this.gbDGFun.Controls.Add(this.lbSalFun);
             this.gbDGFun.Controls.Add(this.lbPelFun);
-            this.gbDGFun.Enabled = false;
             this.gbDGFun.ForeColor = System.Drawing.Color.LightGray;
             this.gbDGFun.Location = new System.Drawing.Point(6, 19);
             this.gbDGFun.Name = "gbDGFun";
@@ -2272,9 +2206,9 @@
         private System.Windows.Forms.TextBox tbCalleEmp;
         private System.Windows.Forms.Label lbColoniaEmp;
         private System.Windows.Forms.Label lbMensaje;
-        private System.Windows.Forms.Button btActualizaEmpleado;
-        private System.Windows.Forms.Button btEliminaEmpleado;
-        private System.Windows.Forms.Button btInsertaEmpleado;
+        private System.Windows.Forms.Button btActualizaEmp;
+        private System.Windows.Forms.Button btEliminaEmp;
+        private System.Windows.Forms.Button btInsertaEmp;
         private System.Windows.Forms.TextBox tbCelEmp;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbTelEmp;
@@ -2310,19 +2244,15 @@
         private System.Windows.Forms.Label lbTipoMem;
         private System.Windows.Forms.ComboBox cbTipoMem;
         private System.Windows.Forms.NumericUpDown nuPuntosMem;
-        private System.Windows.Forms.Button btCancelarEmp;
-        private System.Windows.Forms.Button btAceptarEmp;
         private System.Windows.Forms.TabControl tcPrincipal;
         private System.Windows.Forms.TabPage tpAdministracion;
         private System.Windows.Forms.TabPage tbVenta;
         private System.Windows.Forms.PictureBox btMinimizar;
-        private System.Windows.Forms.Button btCancelarMem;
-        private System.Windows.Forms.Button btAceptarMem;
+        private System.Windows.Forms.Button btCancelaMem;
         private System.Windows.Forms.TabPage tpPelicula;
         private System.Windows.Forms.DataGridView dgPeliculas;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btCancelarPel;
-        private System.Windows.Forms.Button btAceptarPel;
+        private System.Windows.Forms.Button btCancelaPel;
         private System.Windows.Forms.ComboBox cbGeneroPel;
         private System.Windows.Forms.Button btActualizaPel;
         private System.Windows.Forms.Button btEliminaPel;
@@ -2344,7 +2274,6 @@
         private System.Windows.Forms.GroupBox gbSucursal;
         private System.Windows.Forms.Label labelMensajeSucursal;
         private System.Windows.Forms.Button btnCancelarSuc;
-        private System.Windows.Forms.Button btnAceptarSuc;
         private System.Windows.Forms.Button btnActualizarSuc;
         private System.Windows.Forms.Button btnEliminarSuc;
         private System.Windows.Forms.Button btnAgregarSuc;
@@ -2373,7 +2302,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbMensajeFun;
         private System.Windows.Forms.Button btCancelarFun;
-        private System.Windows.Forms.Button btAceptarFun;
         private System.Windows.Forms.Button btActualizaFun;
         private System.Windows.Forms.Button btEliminaFun;
         private System.Windows.Forms.Button btInsertaFun;
@@ -2416,6 +2344,7 @@
         private System.Windows.Forms.Label lbClienteVenta;
         private System.Windows.Forms.ComboBox cbClienteVenta;
         private System.Windows.Forms.Button btnGenerarVenta;
+        private System.Windows.Forms.Button btCancelaEmp;
 
     }
 }

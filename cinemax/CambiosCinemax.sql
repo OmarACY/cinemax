@@ -46,7 +46,7 @@ ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_ini TIME NOT NULL;
 ALTER TABLE [Cinemax].[Cine].[Funcion] ALTER COLUMN hora_fin TIME NOT NULL;
 GO  
 
--- APLICADO: BECARIOS-PC, MILAN-PC
+-- APLICADO: BECARIOS-PC, MILAN-PC, OMARACY-MAC
 -- Eliminación de la columano clave_cue en la tabla venta debido a que la cuenta se puede obtener mediante la clave de venta 
 ALTER TABLE [Cinemax].[Venta].[venta] DROP COLUMN clave_cue;
 GO
