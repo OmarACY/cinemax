@@ -63,7 +63,8 @@ namespace cinemax
                     "INNER JOIN Cine.sala as sala on sala.clave_sal = funcion.clave_sal " +
                     "INNER JOIN Cine.cine as cine on cine.clave_cin = sala.clave_cin " +
                     "INNER JOIN Cine.pelicula as pelicula on pelicula.clave_pel = funcion.clave_pel " +
-                    "WHERE cine.clave_cin = " + clave_cin.ToString() +
+                    "WHERE funcion.cupo > 0" +
+                    " AND cine.clave_cin = " + clave_cin.ToString() +
                     " AND pelicula.nombre = '" + nombre_pelicula + "'", con);
 
                 try

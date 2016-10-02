@@ -50,3 +50,81 @@ GO
 -- Eliminación de la columano clave_cue en la tabla venta debido a que la cuenta se puede obtener mediante la clave de venta 
 ALTER TABLE [Cinemax].[Venta].[venta] DROP COLUMN clave_cue;
 GO
+
+
+-- APLICADO: MILAN-PC
+-- Disparador. Implementación de actualización del total de una venta en base a sus detalles
+/****** Object:  Trigger [ActualizaTotal]    Script Date: 02/10/2016 10:17:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create trigger [ActualizaTotal]
+  on [Cinemax].[Venta].[detalle_venta]
+  for insert
+ as 
+  BEGIN
+	DECLARE @cveVenta bigint = (Select clave_ven from inserted);
+	DECLARE @subtotal float = (Select subtotal from inserted);
+
+	UPDATE [Cinemax].[Venta].[venta] SET total = total + @subtotal WHERE clave_ven = @cveVenta;
+  END;
+GO
+-- Fin
+
+
+-- APLICADO: MILAN-PC
+-- Disparador. Implementación de actualización de puntos por membresía
+/****** Object:  Trigger [ActualizaTotal]    Script Date: 02/10/2016 10:17:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create trigger [ActualizaPuntosMembresia]
+  on [Cinemax].[Venta].[detalle_venta]
+  for insert
+ as 
+  BEGIN
+	DECLARE @cveVenta bigint = (Select clave_ven from inserted);
+	DECLARE @cveMembresia bigint = (Select clave_mem from [cinemax].[Venta].[venta] WHERE clave_ven = @cveVenta);
+	DECLARE @subtotal float = (Select subtotal from inserted);
+	DECLARE @puntos int = CAST(@subtotal * 0.10 as int);
+
+	UPDATE [Cinemax].[Persona].[membresia] SET puntos = puntos + @puntos WHERE clave_mem = @cveMembresia;
+  END;
+GO
+-- Fin
+
+
+-- APLICADO MILAN-PC
+-- Modificación de tabla función. Se agrega la columna cupo para así poder implementar el disparador de actualización de cupos
+ALTER TABLE [cinemax].[Cine].[funcion] ADD cupo int NOT NULL DEFAULT 0;
+GO
+
+Create trigger [ActualizaCupoFuncion]
+  on [Cinemax].[Cine].[funcion]
+  for insert
+ as 
+  BEGIN
+	DECLARE @cveFuncion bigint = (Select clave_fun from inserted);
+	DECLARE @cveSala bigint = (Select clave_sal from inserted);
+	DECLARE @cupo float = (Select cupo from [cinemax].[Cine].[sala] WHERE clave_sal = @cveSala);
+
+	UPDATE [Cinemax].[Cine].[funcion] SET cupo = @cupo WHERE clave_fun = @cveFuncion;
+  END;
+GO
+
+Create trigger [ActualizaCupoTrasVenta]
+  on [Cinemax].[Venta].[detalle_venta]
+  for insert
+ as 
+  BEGIN
+	DECLARE @cveVenta bigint = (select clave_ven from inserted); 
+	DECLARE @cveFuncion bigint = (Select clave_fun from [Venta].[venta] WHERE clave_ven = @cveVenta);
+
+	UPDATE [Cinemax].[Cine].[funcion] SET cupo = (cupo - 1) WHERE clave_fun = @cveFuncion;
+  END;
+GO
+-- Fin

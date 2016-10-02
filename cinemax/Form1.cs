@@ -1828,9 +1828,7 @@ namespace cinemax
             tamEtiqueta = 25;
             butacasHilera = 0;
             listaButacas = conexion.ObtenButacasOcupadas((cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun);
-            foreach (Control ctrl in VentaContainer.Panel2.Controls)
-                ctrl.Dispose();
-            VentaContainer.Panel2.Controls.Clear();
+            LimpiaPanelButacas();
             lbl = new Label()
             {
                 Name = "lbFila" + fila,
@@ -1959,7 +1957,10 @@ namespace cinemax
                 cbFuncionVenta.Enabled = true;
             }
             else
+            {
+                cbFuncionVenta.SelectedIndex = -1;
                 cbFuncionVenta.Enabled = false;
+            }
         }
 
         private void cbFuncionVenta_SelectedIndexChanged(object sender, EventArgs e)
@@ -1975,7 +1976,10 @@ namespace cinemax
                 cbHoraFuncionVenta.Enabled = true;
             }
             else
+            {
+                cbHoraFuncionVenta.SelectedIndex = -1;
                 cbHoraFuncionVenta.Enabled = false;
+            }
         }
 
         private void cbHoraFuncionVenta_SelectedIndexChanged(object sender, EventArgs e)
@@ -1992,6 +1996,7 @@ namespace cinemax
                 tbSalaVenta.Clear();
                 rbEfectivo.Enabled = false;
                 rbTarjeta.Enabled = false;
+                btnGenerarVenta.Enabled = false;
             }
         }
 
@@ -2028,7 +2033,7 @@ namespace cinemax
             bool ventaGenerada;
             float subtotal;
 
-            subtotal = 35;
+            subtotal = 40;
             // Busqueda de butacas seleccionadas
             listaButacas = (from Control c in VentaContainer.Panel2.Controls
                             where (Regex.IsMatch(c.Name, "^pbButaca") && c.AccessibleDescription == "Active")
@@ -2049,7 +2054,8 @@ namespace cinemax
                 if (ventaGenerada)
                 {
                     MessageBox.Show("Venta generada satisfactoriamente", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cbHoraFuncionVenta_SelectionChangeCommitted(this, null);
+                    LimpiaPanelButacas();
+                    cbClienteVenta.SelectedIndex = -1;
                 }
                 else
                     MessageBox.Show("Venta no generada", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -2113,6 +2119,13 @@ namespace cinemax
             return (MessageBox.Show(mensajeConf, "Confirmación de venta", MessageBoxButtons.OKCancel, MessageBoxIcon.None) == DialogResult.OK) ?
                 true :
                 false;
+        }
+
+        private void LimpiaPanelButacas()
+        {
+            foreach (Control ctrl in VentaContainer.Panel2.Controls)
+                ctrl.Dispose();
+            VentaContainer.Panel2.Controls.Clear();
         }
         #endregion
     }
