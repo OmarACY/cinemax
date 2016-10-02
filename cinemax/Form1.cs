@@ -27,6 +27,7 @@ namespace cinemax
         public long clave_emp;
 
         private bool muestraButacas = false;
+        private int contadorButacas = 0;
 
         #endregion
 
@@ -1909,12 +1910,13 @@ namespace cinemax
             {
                 (sender as PictureBox).BackColor = Color.SteelBlue;
                 (sender as PictureBox).AccessibleDescription = "Active";
+                contadorButacas++;
             }
             else
             {
                 (sender as PictureBox).BackColor = Color.Transparent;
-
                 (sender as PictureBox).AccessibleDescription = "Inactive";
+                contadorButacas--;
             }
         }
         
@@ -1926,7 +1928,6 @@ namespace cinemax
                 e.Value = new String('*', 10);
             }
         }
-        #endregion
 
         private void cbClienteVenta_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2025,28 +2026,94 @@ namespace cinemax
             VentaConexion conexion = new VentaConexion();
             List<string> listaButacas;
             bool ventaGenerada;
+            float subtotal;
 
+            subtotal = 35;
             // Busqueda de butacas seleccionadas
             listaButacas = (from Control c in VentaContainer.Panel2.Controls
                             where (Regex.IsMatch(c.Name, "^pbButaca") && c.AccessibleDescription == "Active")
                             select c.AccessibleName).ToList();
-            // Generación de la venta
-            ventaGenerada =  conexion.GeneraVenta((cbClienteVenta.SelectedValue as Cliente).clave_mem.ToString(),
-                (cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun.ToString(),
-                clave_emp.ToString(),
-                tbNumTarjeta.Text,
-                tbCodSeguridad.Text,
-                tbAnoVenc.Text != string.Empty ? new DateTime(int.Parse(tbAnoVenc.Text), int.Parse(tbMesVenc.Text), 1) : DateTime.Now,
-                listaButacas,
-                rbEfectivo.Checked,
-                35,
-                "Normal");
-            if (ventaGenerada)
-                MessageBox.Show("Venta generada satisfactoriamente", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Venta no generada", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (ValidaControlesVenta() && ConfirmaVenta(listaButacas, subtotal))
+            {
+                // Generación de la venta
+                ventaGenerada = conexion.GeneraVenta((cbClienteVenta.SelectedValue as Cliente).clave_mem.ToString(),
+                    (cbHoraFuncionVenta.SelectedValue as Funcion).clave_fun.ToString(),
+                    clave_emp.ToString(),
+                    tbNumTarjeta.Text,
+                    tbCodSeguridad.Text,
+                    tbAnoVenc.Text != string.Empty ? new DateTime(int.Parse(tbAnoVenc.Text), int.Parse(tbMesVenc.Text), 1) : DateTime.Now,
+                    listaButacas,
+                    rbEfectivo.Checked,
+                    subtotal,
+                    "Normal");
+                if (ventaGenerada)
+                {
+                    MessageBox.Show("Venta generada satisfactoriamente", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbHoraFuncionVenta_SelectionChangeCommitted(this, null);
+                }
+                else
+                    MessageBox.Show("Venta no generada", "Cinemax", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-  
+        private bool ValidaControlesVenta()
+        {
+            bool success = true;
+            string validaciones = string.Empty;
+
+            if (contadorButacas <= 0)
+            {
+                success = false;
+                validaciones += "Por favor seleccione los asientos para la función\r\n";
+            }
+            else if(!rbEfectivo.Checked)
+            {
+                if (!Regex.IsMatch(tbNumTarjeta.Text, @"^[0-9]+$"))
+                {
+                    success = false;
+                    validaciones += "Por favor ingrese un número de tarjeta válido\r\n";
+                }
+                if (!Regex.IsMatch(tbCodSeguridad.Text, @"^[0-9]{3}$"))
+                {
+                    success = false;
+                    validaciones += "Por favor ingrese un código de seguridad a 3 dígitos\r\n";
+                }
+                if (!Regex.IsMatch(tbMesVenc.Text, @"^([0][1-9])|([1][0-2])$"))
+                {
+                    success = false;
+                    validaciones += "Por favor ingrese un mes válido\r\n";
+                }
+                if (!Regex.IsMatch(tbAnoVenc.Text, @"^[2]([0-9]{3})$") || (DateTime.Now.Year.CompareTo(int.Parse(tbAnoVenc.Text)) > 0) )
+                {
+                    success = false;
+                    validaciones += "Por favor ingrese un año válido\r\n";
+                }
+            }
+            if(!success)
+               MessageBox.Show(validaciones, "Venta de tickets", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return success;
+        }
+
+        private bool ConfirmaVenta(List<string> listaButacas, float precio)
+        {
+            string mensajeConf = string.Empty;
+            float total = 0;
+            
+            mensajeConf += "Cliente:\r\n" + (cbClienteVenta.SelectedValue as Cliente).nombreCompleto.ToString();
+            mensajeConf += "\r\nCine: \r\n" + (cbCineVenta.SelectedValue as Cine).nombre.ToString();
+            mensajeConf += "\r\nFunción: \r\n" + (cbFuncionVenta.SelectedValue as Funcion).nombre_pelicula.ToString();
+            mensajeConf += "\r\nHora: \r\n" + (cbHoraFuncionVenta.SelectedValue as Funcion).hora_ini.ToString();
+            mensajeConf += "\r\nSala: \r\n" + (cbHoraFuncionVenta.SelectedValue as Funcion).clave_sal.ToString() + "\r\n\r\n";
+            foreach (string butaca in listaButacas)
+            {
+                mensajeConf += "Asiento " + butaca + " :\t\t$" + precio.ToString() + "\r\n";
+                total += precio;
+            }
+            mensajeConf += "*********************************\r\n TOTAL:\t\t\t$" + total;
+            return (MessageBox.Show(mensajeConf, "Confirmación de venta", MessageBoxButtons.OKCancel, MessageBoxIcon.None) == DialogResult.OK) ?
+                true :
+                false;
+        }
+        #endregion
     }
 }

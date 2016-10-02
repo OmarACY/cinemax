@@ -1883,9 +1883,9 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(16, 390);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.Size = new System.Drawing.Size(178, 13);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Fecha de vencimiento";
+            this.label1.Text = "Fecha de vencimiento (MM / AAAA)";
             // 
             // tbCodSeguridad
             // 
