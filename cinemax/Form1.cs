@@ -1314,7 +1314,8 @@ namespace cinemax
                     ActualizaFecha();
                     ObtenerPeliculas();
                     ObtenerCines();
-                    ObtenerRegistrosFuncion();
+                    ConfiguraHoraFinFuncion();
+                    ObtenerRegistrosFuncion();                    
                     break;
             }
 
@@ -1583,14 +1584,61 @@ namespace cinemax
         {
             bool valido = true;
             int error = 0;
+                        
+            if ( dpHoraFinFun.Value < dpHoraIniFun.Value.AddHours(1))
+            {
+                MessageBox.Show("La <hora fin> debe de ser por lo menos 1 hora mayor a la <hora de inicio> ","Atención");
+            }
 
             if (cbPelFun.Text == string.Empty) { lbPelFun.Text = "Pelicula *"; lbPelFun.ForeColor = Color.Red; error++; }
             if (cbCinFun.Text == string.Empty) { lbCinFun.Text = "Cine *"; lbCinFun.ForeColor = Color.Red; error++; }
             if (cbSalFun.Text == string.Empty) { lbSalFun.Text = "Sala *"; lbSalFun.ForeColor = Color.Red; error++; }
 
-            if (error > 0) { CambiaTextoMensajeFun("* Campos requeridos", Color.Red); lbMensajeFun.Visible = true; valido = false; }
-
+            if (error > 0) {
+                CambiaTextoMensajeFun("* Campos requeridos", Color.Red);
+                lbMensajeFun.Visible = true;
+                valido = false;
+            }
+            
             return valido;
+        }
+
+        private bool DisponibilidadFuncion(){
+            
+            bool disp = false;
+
+            SqlDataAdapter adaptador = new SqlDataAdapter();
+            //DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            if (conexion.AbrirConexion())
+            {
+                string txtCmd = "select * from Cine.Funcion where clave_sal = "+cbSalFun.Text+" and hora_fin>='"+
+                    dpHoraIniFun.Value.Hour+":"+dpHoraIniFun.Value.Minute+":"+dpHoraIniFun.Value.Second+
+                    "' and fecha='"+dpFechaFun.Value.Year+"/"+dpFechaFun.Value.Month+"/"+dpFechaFun.Value.Day+"'";
+                SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                try
+                {
+                    adaptador.SelectCommand = cmd;
+                    adaptador.Fill(dt);
+                    adaptador.Dispose();
+                    cmd.Dispose();
+                    if (dt.Rows.Count == 0)
+                        disp = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                conexion.CerrarConexion();
+            }
+            else
+            {
+                MessageBox.Show("Error al llamar al servidor");
+            }
+            return disp;
         }
 
         private void CambiaTextoMensajeFun(String mensaje, Color color)
@@ -1604,34 +1652,41 @@ namespace cinemax
             LimpiaFormularioFuncion();
             if (ValidaDatosFuncion())
             {
-                if (conexion.AbrirConexion())
+                if (DisponibilidadFuncion())
                 {
-
-                    string txtCmd = "INSERT INTO Cine.funcion(clave_pel,clave_sal,hora_ini,hora_fin,fecha)" +
-                        "VALUES(" + cbPelFun.SelectedValue + "," + cbSalFun.SelectedValue + ",'" +
-                         dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' +dpHoraIniFun.Value.Second + "','" +
-                         dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second + 
-                         "','" + dpFechaFun.Value.Day + "/" + dpFechaFun.Value.Month + "/" +dpFechaFun.Value.Year + "')";
-                    SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
-
-                    try
+                    if (conexion.AbrirConexion())
                     {
-                        cmd.ExecuteNonQuery();
-                        ObtenerRegistrosFuncion();
-                        CambiaTextoMensajeFun("Se agrego correctamente!", Color.Blue);
-                        lbMensajeFun.Visible = true;
-                        LimpiaCamposFuncion();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
 
-                    conexion.CerrarConexion();
+                        string txtCmd = "INSERT INTO Cine.funcion(clave_pel,clave_sal,hora_ini,hora_fin,fecha)" +
+                            "VALUES(" + cbPelFun.SelectedValue + "," + cbSalFun.SelectedValue + ",'" +
+                             dpHoraIniFun.Value.Hour + ':' + dpHoraIniFun.Value.Minute + ':' + dpHoraIniFun.Value.Second + "','" +
+                             dpHoraFinFun.Value.Hour + ':' + dpHoraFinFun.Value.Minute + ':' + dpHoraFinFun.Value.Second +
+                             "','" + dpFechaFun.Value.Day + "/" + dpFechaFun.Value.Month + "/" + dpFechaFun.Value.Year + "')";
+                        SqlCommand cmd = new SqlCommand(txtCmd, conexion.con);
+
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            ObtenerRegistrosFuncion();
+                            CambiaTextoMensajeFun("Se agrego correctamente!", Color.Blue);
+                            lbMensajeFun.Visible = true;
+                            LimpiaCamposFuncion();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+
+                        conexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al llamar al servidor");
+                    }
                 }
-                else
+                else 
                 {
-                    MessageBox.Show("Error al llamar al servidor");
+                    MessageBox.Show("Ya existe una funcion a esta misma hora o se empalma con otra, Por favor verifique la información","Atención");
                 }
             }
 
@@ -1798,6 +1853,17 @@ namespace cinemax
             }
             return idCine;
         }
+
+        private void dpHoraIniFun_ValueChanged(object sender, EventArgs e)
+        {
+            ConfiguraHoraFinFuncion();
+        }
+
+        private void ConfiguraHoraFinFuncion() {
+            dpHoraFinFun.Value = dpHoraIniFun.Value.AddHours(2);
+            dpHoraFinFun.MinDate = dpHoraIniFun.Value.AddHours(1);
+        }
+
         #endregion
 
         #region Metodos pestaña ventas
@@ -2128,5 +2194,7 @@ namespace cinemax
             VentaContainer.Panel2.Controls.Clear();
         }
         #endregion
+
+
     }
 }
