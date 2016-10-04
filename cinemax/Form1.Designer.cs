@@ -1609,7 +1609,7 @@
             // 
             this.lbCinFun.AutoSize = true;
             this.lbCinFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbCinFun.Location = new System.Drawing.Point(90, 50);
+            this.lbCinFun.Location = new System.Drawing.Point(289, 49);
             this.lbCinFun.Name = "lbCinFun";
             this.lbCinFun.Size = new System.Drawing.Size(28, 13);
             this.lbCinFun.TabIndex = 21;
@@ -1623,7 +1623,7 @@
             this.cbCinFun.FormattingEnabled = true;
             this.cbCinFun.Items.AddRange(new object[] {
             ""});
-            this.cbCinFun.Location = new System.Drawing.Point(127, 47);
+            this.cbCinFun.Location = new System.Drawing.Point(326, 46);
             this.cbCinFun.Name = "cbCinFun";
             this.cbCinFun.Size = new System.Drawing.Size(150, 21);
             this.cbCinFun.TabIndex = 20;
@@ -1634,12 +1634,12 @@
             // 
             this.dpHoraFinFun.CustomFormat = "HH:mm:ss";
             this.dpHoraFinFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dpHoraFinFun.Location = new System.Drawing.Point(127, 103);
+            this.dpHoraFinFun.Location = new System.Drawing.Point(527, 99);
             this.dpHoraFinFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
             this.dpHoraFinFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
             this.dpHoraFinFun.Name = "dpHoraFinFun";
             this.dpHoraFinFun.ShowUpDown = true;
-            this.dpHoraFinFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraFinFun.Size = new System.Drawing.Size(140, 20);
             this.dpHoraFinFun.TabIndex = 19;
             this.dpHoraFinFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
             // 
@@ -1647,24 +1647,25 @@
             // 
             this.dpHoraIniFun.CustomFormat = "HH:mm:ss";
             this.dpHoraIniFun.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dpHoraIniFun.Location = new System.Drawing.Point(127, 76);
+            this.dpHoraIniFun.Location = new System.Drawing.Point(326, 99);
             this.dpHoraIniFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
             this.dpHoraIniFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
             this.dpHoraIniFun.Name = "dpHoraIniFun";
             this.dpHoraIniFun.ShowUpDown = true;
-            this.dpHoraIniFun.Size = new System.Drawing.Size(274, 20);
+            this.dpHoraIniFun.Size = new System.Drawing.Size(140, 20);
             this.dpHoraIniFun.TabIndex = 18;
             this.dpHoraIniFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
+            this.dpHoraIniFun.ValueChanged += new System.EventHandler(this.dpHoraIniFun_ValueChanged);
             // 
             // dpFechaFun
             // 
             this.dpFechaFun.CustomFormat = "yyyy/MM/dd";
             this.dpFechaFun.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFechaFun.Location = new System.Drawing.Point(537, 23);
+            this.dpFechaFun.Location = new System.Drawing.Point(326, 73);
             this.dpFechaFun.MaxDate = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
             this.dpFechaFun.MinDate = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
             this.dpFechaFun.Name = "dpFechaFun";
-            this.dpFechaFun.Size = new System.Drawing.Size(274, 20);
+            this.dpFechaFun.Size = new System.Drawing.Size(341, 20);
             this.dpFechaFun.TabIndex = 17;
             this.dpFechaFun.Value = new System.DateTime(2016, 9, 27, 0, 0, 0, 0);
             // 
@@ -1675,7 +1676,7 @@
             this.cbPelFun.FormattingEnabled = true;
             this.cbPelFun.Items.AddRange(new object[] {
             ""});
-            this.cbPelFun.Location = new System.Drawing.Point(127, 20);
+            this.cbPelFun.Location = new System.Drawing.Point(326, 19);
             this.cbPelFun.Name = "cbPelFun";
             this.cbPelFun.Size = new System.Drawing.Size(341, 21);
             this.cbPelFun.TabIndex = 16;
@@ -1686,7 +1687,7 @@
             this.cbSalFun.DisplayMember = "10";
             this.cbSalFun.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSalFun.FormattingEnabled = true;
-            this.cbSalFun.Location = new System.Drawing.Point(328, 47);
+            this.cbSalFun.Location = new System.Drawing.Point(527, 46);
             this.cbSalFun.Name = "cbSalFun";
             this.cbSalFun.Size = new System.Drawing.Size(140, 21);
             this.cbSalFun.TabIndex = 15;
@@ -1696,7 +1697,7 @@
             // 
             this.lbFechaFun.AutoSize = true;
             this.lbFechaFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbFechaFun.Location = new System.Drawing.Point(490, 25);
+            this.lbFechaFun.Location = new System.Drawing.Point(280, 82);
             this.lbFechaFun.Name = "lbFechaFun";
             this.lbFechaFun.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbFechaFun.Size = new System.Drawing.Size(37, 13);
@@ -1708,7 +1709,7 @@
             // 
             this.lbHoraFinFun.AutoSize = true;
             this.lbHoraFinFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbHoraFinFun.Location = new System.Drawing.Point(70, 104);
+            this.lbHoraFinFun.Location = new System.Drawing.Point(477, 105);
             this.lbHoraFinFun.Name = "lbHoraFinFun";
             this.lbHoraFinFun.Size = new System.Drawing.Size(44, 13);
             this.lbHoraFinFun.TabIndex = 7;
@@ -1719,7 +1720,7 @@
             // 
             this.lbHoraIniFun.AutoSize = true;
             this.lbHoraIniFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbHoraIniFun.Location = new System.Drawing.Point(61, 78);
+            this.lbHoraIniFun.Location = new System.Drawing.Point(260, 106);
             this.lbHoraIniFun.Name = "lbHoraIniFun";
             this.lbHoraIniFun.Size = new System.Drawing.Size(57, 13);
             this.lbHoraIniFun.TabIndex = 5;
@@ -1730,7 +1731,7 @@
             // 
             this.lbSalFun.AutoSize = true;
             this.lbSalFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbSalFun.Location = new System.Drawing.Point(290, 50);
+            this.lbSalFun.Location = new System.Drawing.Point(489, 49);
             this.lbSalFun.Name = "lbSalFun";
             this.lbSalFun.Size = new System.Drawing.Size(28, 13);
             this.lbSalFun.TabIndex = 4;
@@ -1741,7 +1742,7 @@
             // 
             this.lbPelFun.AutoSize = true;
             this.lbPelFun.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbPelFun.Location = new System.Drawing.Point(74, 25);
+            this.lbPelFun.Location = new System.Drawing.Point(273, 24);
             this.lbPelFun.Name = "lbPelFun";
             this.lbPelFun.Size = new System.Drawing.Size(44, 13);
             this.lbPelFun.TabIndex = 1;
