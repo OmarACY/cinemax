@@ -3,15 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controlador;
 
 import modelo.Funcion;
+import vista.Principal;
 
 /**
  *
  * @author MILAN
  */
-public class FuncionConexion extends Conexion<Funcion> {
+public class FuncionConexion extends Conexion<Funcion, Principal> {
+
+    public FuncionConexion(Principal vista) {
+        super(vista);
+    }
 
     @Override
     public boolean inserta(Funcion modelo) {

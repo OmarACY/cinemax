@@ -5,42 +5,28 @@
  */
 package modelo;
 
-import java.util.Date;
-
 /**
  *
  * @author MILAN
  */
-public class Membresia {
-    private long clave_mem;
+public class Cine {
+    private long clave_cin;
     private String nombre;
-    private String app;
-    private String apm;
-    private Date fecha_nac;
+    private int num_salas;
     private String colonia;
     private String calle;
     private int numero;
-    private String tipo;
-    private int puntos;
 
-    public long getClave_mem() {
-        return clave_mem;
+    public long getClave_cin() {
+        return clave_cin;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getApp() {
-        return app;
-    }
-
-    public String getApm() {
-        return apm;
-    }
-
-    public Date getFecha_nac() {
-        return fecha_nac;
+    public int getNum_salas() {
+        return num_salas;
     }
 
     public String getColonia() {
@@ -55,28 +41,12 @@ public class Membresia {
         return numero;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public int getPuntos() {
-        return puntos;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setApp(String app) {
-        this.app = app;
-    }
-
-    public void setApm(String apm) {
-        this.apm = apm;
-    }
-
-    public void setFecha_nac(Date fecha_nac) {
-        this.fecha_nac = fecha_nac;
+    public void setNum_salas(int num_salas) {
+        this.num_salas = num_salas;
     }
 
     public void setColonia(String colonia) {
@@ -89,13 +59,5 @@ public class Membresia {
 
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
     }
 }

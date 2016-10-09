@@ -3,28 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controlador;
 
-import modelo.Sucursal;
+import modelo.Pelicula;
+import vista.Principal;
 
 /**
  *
  * @author MILAN
  */
-public class SucursalConexion extends Conexion<Sucursal> {
+public class PeliculaConexion extends Conexion<Pelicula, Principal> {
+
+    public PeliculaConexion(Principal vista) {
+        super(vista);
+    }
 
     @Override
-    public boolean inserta(Sucursal modelo) {
+    public boolean inserta(Pelicula modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean elimina(Sucursal modelo) {
+    public boolean elimina(Pelicula modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean actualiza(Sucursal modelo) {
+    public boolean actualiza(Pelicula modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

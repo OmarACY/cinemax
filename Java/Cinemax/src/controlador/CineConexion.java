@@ -3,28 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controlador;
 
-import modelo.Membresia;
+import modelo.Cine;
+import vista.Principal;
 
 /**
  *
  * @author MILAN
  */
-public class MembresiaConexion extends Conexion<Membresia> {
+public class CineConexion extends Conexion<Cine, Principal> {
 
+    public CineConexion(Principal vista) {
+        super(vista);
+    }
+    
     @Override
-    public boolean inserta(Membresia modelo) {
+    public boolean inserta(Cine modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean elimina(Membresia modelo) {
+    public boolean elimina(Cine modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean actualiza(Membresia modelo) {
+    public boolean actualiza(Cine modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

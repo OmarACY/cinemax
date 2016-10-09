@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controlador;
 
 import java.sql.*;
 
 /**
  *
  * @author MILAN
- * @param <T>
+ * @param <Modelo>
+ * @param <Vista>
  */
-public abstract class Conexion<T> {
-    private Connection db;
+public abstract class Conexion<Modelo, Vista> {
+    protected Connection db;
+    protected Vista vista;
     
-    public Conexion(){
+    public Conexion(Vista vista){
         db = null;
+        this.vista = vista;
     }
     
     private void realizaConexion() throws ClassNotFoundException, SQLException {
@@ -37,7 +40,7 @@ public abstract class Conexion<T> {
         db = null;
     }
     
-    public abstract boolean inserta(T modelo);
-    public abstract boolean elimina(T modelo);
-    public abstract boolean actualiza(T modelo);
+    public abstract boolean inserta(Modelo modelo);
+    public abstract boolean elimina(Modelo modelo);
+    public abstract boolean actualiza(Modelo modelo);
 }

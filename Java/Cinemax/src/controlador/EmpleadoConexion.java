@@ -3,29 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package controlador;
 
-import modelo.Venta;
+import modelo.Empleado;
+import vista.Principal;
 
 /**
  *
  * @author MILAN
  */
-public class VentaConexion extends Conexion<Venta> {
+public class EmpleadoConexion extends Conexion<Empleado, Principal>{
+
+    public EmpleadoConexion(Principal vista) {
+        super(vista);
+    }
 
     @Override
-    public boolean inserta(Venta modelo) {
+    public boolean inserta(Empleado modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean elimina(Venta modelo) {
+    public boolean elimina(Empleado modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean actualiza(Venta modelo) {
+    public boolean actualiza(Empleado modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
