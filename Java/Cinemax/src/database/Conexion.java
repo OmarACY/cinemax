@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo.database;
+package database;
 
 import java.sql.*;
 
 /**
  *
  * @author MILAN
+ * @param <T>
  */
-public abstract class Conexion {
+public abstract class Conexion<T> {
     private Connection db;
     
     public Conexion(){
@@ -36,7 +37,7 @@ public abstract class Conexion {
         db = null;
     }
     
-    public abstract boolean inserta();
-    public abstract boolean elimina();
-    public abstract boolean actualiza();
+    public abstract boolean inserta(T modelo);
+    public abstract boolean elimina(T modelo);
+    public abstract boolean actualiza(T modelo);
 }

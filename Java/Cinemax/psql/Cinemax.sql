@@ -1,15 +1,16 @@
-﻿-- Database: "Cinemex"
--- DROP DATABASE "Cinemex";
--- Creación de la base de datos
--- APLICADO: MILAN-PC
-/*CREATE DATABASE "Cinemex"
+﻿-- Database: "Cinemax"
+-- DROP DATABASE "Cinemax";
+CREATE DATABASE "Cinemax"
   WITH OWNER = postgres
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
        LC_COLLATE = 'Spanish_Spain.1252'
        LC_CTYPE = 'Spanish_Spain.1252'
        CONNECTION LIMIT = -1;
-*/
+
+
+/******************************************************************************/
+
 
 -- Creación de esquemas y tablas
 -- APLICADO: MILAN-PC

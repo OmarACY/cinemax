@@ -5,27 +5,10 @@
  */
 package modelo;
 
-import modelo.database.Conexion;
-
 /**
  *
  * @author MILAN
  */
-public class Pelicula extends Conexion {
+public class Pelicula {
 
-    @Override
-    public boolean inserta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean elimina() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean actualiza() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
