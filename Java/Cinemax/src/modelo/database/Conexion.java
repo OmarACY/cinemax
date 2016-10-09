@@ -11,7 +11,7 @@ import java.sql.*;
  *
  * @author MILAN
  */
-public class Conexion {
+public abstract class Conexion {
     private Connection db;
     
     public Conexion(){
@@ -35,4 +35,8 @@ public class Conexion {
         db.close();
         db = null;
     }
+    
+    public abstract boolean inserta();
+    public abstract boolean elimina();
+    public abstract boolean actualiza();
 }
