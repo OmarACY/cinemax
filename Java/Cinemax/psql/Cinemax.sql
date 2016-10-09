@@ -56,8 +56,8 @@ create table Cine.funcion (
 	clave_fun bigserial not null,
 	clave_pel bigint not null,
 	clave_sal bigint not null,
-	hora_ini timestamp not null,
-	hora_fin timestamp not null,
+	hora_ini time not null,
+	hora_fin time not null,
 	fecha date not null,
 	constraint PK_FUN primary key (clave_fun),
 	constraint FK_FUN_PEL foreign key (clave_pel) references Cine.pelicula(clave_pel),
@@ -87,6 +87,7 @@ create table Persona.empleado (
 	colonia varchar(45) not null,
 	calle varchar(45) not null,
 	numero int not null,
+        contraseña varchar(32) not null,
 	constraint PK_EMP primary key (clave_emp)
 );
 
@@ -102,7 +103,6 @@ create table Venta.venta (
 	clave_mem bigint not null,
 	clave_fun bigint not null,
 	clave_emp bigint not null,
-	clave_cue bigint not null,
 	constraint PK_VEN primary key (clave_ven),
 	constraint FK_VEN_MEM foreign key (clave_mem) references Persona.membresia(clave_mem),
 	constraint FK_VEN_FUN foreign key (clave_fun) references Cine.funcion(clave_fun),
@@ -124,4 +124,3 @@ create table Venta.detalle_venta(
 	tipo_asi varchar(10) not null,
 	constraint FK_DET_VEN foreign key (clave_ven) references Venta.venta(clave_ven)
 );
-
