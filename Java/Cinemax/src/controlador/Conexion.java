@@ -28,8 +28,11 @@ public abstract class Conexion<Modelo, Vista> {
         String baseDatos = "Cinemax";
         String url = String.format("jdbc:postgresql://localhost:%d/%s", puerto, baseDatos);
         // Usuario y Contraseña MILAN-PC 
-        String nombreUsuario = "root";
-        String contraseña = "toor";
+        //String nombreUsuario = "root";
+        //String contraseña = "toor";
+        // Usuario y Contraseña OMARACY-MAC 
+        String nombreUsuario = "postgres";
+        String contraseña = "postgres";
         
         Class.forName(nombreDriver);
         db = DriverManager.getConnection(url, nombreUsuario, contraseña);
