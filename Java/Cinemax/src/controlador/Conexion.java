@@ -24,7 +24,7 @@ public abstract class Conexion<Modelo> {
     protected void realizaConexion() throws ClassNotFoundException, SQLException {
         String nombreDriver  ="org.postgresql.Driver";
         int puerto = 5432;
-        String baseDatos = "Cinemax";
+        String baseDatos = "cinemax";
         String url = String.format("jdbc:postgresql://localhost:%d/%s", puerto, baseDatos);
         String nombreUsuario = "postgres";
         String contraseña = "postgres";
