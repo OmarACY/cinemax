@@ -22,7 +22,7 @@ public abstract class Conexion<Modelo, Vista> {
         this.vista = vista;
     }
     
-    private void realizaConexion() throws ClassNotFoundException, SQLException {
+    protected void realizaConexion() throws ClassNotFoundException, SQLException {
         String nombreDriver  ="org.postgresql.Driver";
         int puerto = 5432;
         String baseDatos = "Cinemax";
@@ -38,12 +38,12 @@ public abstract class Conexion<Modelo, Vista> {
         db = DriverManager.getConnection(url, nombreUsuario, contraseña);
     }
     
-    private void cierraConexion() throws SQLException{
+    protected void cierraConexion() throws SQLException{
         db.close();
         db = null;
     }
     
-    public abstract boolean inserta(Modelo modelo);
+    public abstract boolean inserta(Modelo modelo) throws ClassNotFoundException, SQLException;
     public abstract boolean elimina(Modelo modelo);
     public abstract boolean actualiza(Modelo modelo);
 }

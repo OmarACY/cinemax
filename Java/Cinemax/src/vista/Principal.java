@@ -22,15 +22,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Principal extends javax.swing.JFrame {
     
-    //EmpleadoConexion conEmp;
-    Conexion con;
+    EmpleadoConexion conEmp;
+    //Conexion con;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
         setIcon();
-        //conEmp = new EmpleadoConexion(this);
+        conEmp = new EmpleadoConexion(this);
         inicializaMensajes();
         
     }
@@ -635,25 +635,34 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void btAgregaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaEmpActionPerformed
-        agregaEmpleado();
+       agregaEmpleado();
     }//GEN-LAST:event_btAgregaEmpActionPerformed
     
-    private void agregaEmpleado(){
+    private void agregaEmpleado()
+    {
         Empleado empleado;
+        limpiaFormularioEmpleado();
         
-        if(validaDatosEmpleado()){
-        empleado = new Empleado();
-        empleado.setNombres(ctNombreEmp.getText());
-        empleado.setApp(ctAppEmp.getText());
-        empleado.setApm(ctApmEmp.getText());        
-        empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
-        empleado.setContraseña(ctContEmp.getText());
-        empleado.setColonia(ctColoniaEmp.getText());
-        empleado.setCalle(ctCalleEmp.getText());        
-        empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));           
-                
-        con.inserta(empleado);
-        //conEmp.inserta(empleado);
+        if(validaDatosEmpleado())
+        {
+            empleado = new Empleado();
+            empleado.setNombres(ctNombreEmp.getText());
+            empleado.setApp(ctAppEmp.getText());
+            empleado.setApm(ctApmEmp.getText());        
+            empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
+            empleado.setContraseña(ctContEmp.getText());
+            empleado.setColonia(ctColoniaEmp.getText());
+            empleado.setCalle(ctCalleEmp.getText());        
+            empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));           
+
+            try {
+                //con.inserta(empleado);
+                conEmp.inserta(empleado);
+                limpiaCamposEmpleado();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         cambiaTextoMensajeEmp("Se agrego correctamente!",Color.RED);
         
         }
@@ -680,6 +689,29 @@ public class Principal extends javax.swing.JFrame {
     private void cambiaTextoMensajeEmp(String mensaje, Color color){
         etMensajeEmp.setText(mensaje);
         etMensajeEmp.setForeground(color);
+    }
+    
+    private void limpiaCamposEmpleado()
+    {
+        ctNombreEmp.setText("");
+        ctAppEmp.setText("");
+        ctApmEmp.setText("");
+        ctFechaEmp.setText("");
+        ctColoniaEmp.setText("");
+        ctCalleEmp.setText("");
+        ctNumeroEmp.setText("");
+        ctContEmp.setText("");
+    }
+    
+    private void limpiaFormularioEmpleado(){
+        etNombreEmp.setText("Nombre (s)");
+        etAppEmp.setText("Apellido paterno");
+        etApmEmp.setText("Apellido materno");
+        etFechaEmp.setText("Fecha de nacimiento");
+        etColoniaEmp.setText("Colonia");
+        etCalleEmp.setText("Calle");
+        etNumeroEmp.setText("Numero");
+        etContEmp.setText("Contraseña");
     }
     /**
      * @param args the command line arguments
