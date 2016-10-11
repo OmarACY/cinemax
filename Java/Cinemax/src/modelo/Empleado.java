@@ -19,7 +19,7 @@ public class Empleado{
     private Date fecha_nac;
     private String colonia;
     private String calle;
-    private int numero;
+    private Integer numero;
     private String contraseña;
 
     public long getClave_emp() {
@@ -50,12 +50,16 @@ public class Empleado{
         return calle;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
     public String getContraseña() {
         return contraseña;
+    }
+
+    public void setClave_emp(long clave_emp) {
+        this.clave_emp = clave_emp;
     }
 
     public void setNombres(String nombres) {
@@ -82,7 +86,7 @@ public class Empleado{
         this.calle = calle;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

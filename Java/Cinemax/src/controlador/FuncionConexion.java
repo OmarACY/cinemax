@@ -12,11 +12,7 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class FuncionConexion extends Conexion<Funcion, Principal> {
-
-    public FuncionConexion(Principal vista) {
-        super(vista);
-    }
+public class FuncionConexion extends Conexion<Funcion> {
 
     @Override
     public boolean inserta(Funcion modelo) {

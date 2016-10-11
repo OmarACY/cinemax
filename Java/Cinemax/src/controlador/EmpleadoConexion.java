@@ -7,6 +7,7 @@ package controlador;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
 import vista.Principal;
 
@@ -14,37 +15,66 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class EmpleadoConexion extends Conexion<Empleado, Principal>{
-
-    public EmpleadoConexion(Principal vista) {
-        super(vista);
-    }
+public class EmpleadoConexion extends Conexion<Empleado>{
 
     @Override
-    public boolean inserta(Empleado modelo) throws ClassNotFoundException, SQLException {        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Statement stmt;
-        int filasAfectadas = 0; // Aqui se alojara las columnas que fueron afectadas al momento de la inserción, en casos comunes solo se afecta 1
-        String dml = String.format("INSERT INTO Persona.empleado (nombres, app, apm,fecha_nac,colonia,calle,numero,contraseña"+
-                ") VALUES ('%s','%s','%s','%t','%s','%s',%d,'$s')",modelo.getNombres(),modelo.getApp(),modelo.getApp(),
-                modelo.getFecha_nac(),modelo.getColonia(),modelo.getCalle(),modelo.getNumero(),modelo.getContraseña()); // Cadena de formato de la consulta
+    public boolean inserta(Empleado modelo) {     
+        String sentencia;
+        int filasAfectadas;
         
-        super.realizaConexion(); // Realiza conexion con la base de datos
-        stmt = super.db.createStatement();
-        filasAfectadas = stmt.executeUpdate(dml);
-        super.cierraConexion();
-        return true;
+        sentencia = String.format("INSERT INTO Persona.empleado (nombres, app, apm,fecha_nac,colonia,calle,numero,contraseña"+
+                ") VALUES ('%s','%s','%s','%s','%s','%s',%d,'%s')",modelo.getNombres(),modelo.getApp(),modelo.getApm(),
+                modelo.getFecha_nac().toString(),modelo.getColonia(),modelo.getCalle(),modelo.getNumero(),modelo.getContraseña()); 
+        try {
+            filasAfectadas = ejecutaSentencia(sentencia);
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            filasAfectadas = 0;
+        }
+        return (filasAfectadas > 0);
     }
 
     @Override
     public boolean elimina(Empleado modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sentencia;
+        int filasAfectadas;
+        
+        sentencia = String.format("DELETE FROM Persona.empleado WHERE clave_emp = %d",modelo.getClave_emp()); 
+        try {
+            filasAfectadas = ejecutaSentencia(sentencia);
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            filasAfectadas = 0;
+        }
+        return (filasAfectadas > 0);
     }
 
     @Override
     public boolean actualiza(Empleado modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sentencia;
+        int filasAfectadas;
+        
+        sentencia = String.format("UPDATE Persona.empleado SET nombres = '%s', app = '%s', apm = '%s', fecha_nac = '%s', colonia = '%s', calle = '%s' ,numero = %d ,contraseña = '%s' WHERE clave_emp = %d", 
+                modelo.getNombres(), modelo.getApp(), modelo.getApm(), modelo.getFecha_nac().toString(), modelo.getColonia(), modelo.getCalle(), modelo.getNumero(), modelo.getContraseña(), modelo.getClave_emp()); 
+        try {
+            filasAfectadas = ejecutaSentencia(sentencia);
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            filasAfectadas = 0;
+        }
+        return (filasAfectadas > 0);
     }
-
     
+    public DefaultTableModel getDatosTabla() {
+        String consulta;
+        
+        consulta = "SELECT * FROM Persona.empleado";
+        
+        try {
+            return getModeloTabla(ejecutaConsulta(consulta));
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            return null;
+        }
+    }
 }

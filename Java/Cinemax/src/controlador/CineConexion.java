@@ -12,12 +12,8 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class CineConexion extends Conexion<Cine, Principal> {
+public class CineConexion extends Conexion<Cine> {
 
-    public CineConexion(Principal vista) {
-        super(vista);
-    }
-    
     @Override
     public boolean inserta(Cine modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

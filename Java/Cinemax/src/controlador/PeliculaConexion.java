@@ -12,11 +12,7 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class PeliculaConexion extends Conexion<Pelicula, Principal> {
-
-    public PeliculaConexion(Principal vista) {
-        super(vista);
-    }
+public class PeliculaConexion extends Conexion<Pelicula> {
 
     @Override
     public boolean inserta(Pelicula modelo) {

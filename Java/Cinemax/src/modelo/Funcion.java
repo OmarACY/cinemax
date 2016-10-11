@@ -44,6 +44,10 @@ public class Funcion {
         return fecha;
     }
 
+    public void setClave_fun(long clave_fun) {
+        this.clave_fun = clave_fun;
+    }
+
     public void setClave_pel(long clave_pel) {
         this.clave_pel = clave_pel;
     }

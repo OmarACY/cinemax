@@ -9,32 +9,27 @@ import java.awt.Toolkit;
 import controlador.*;
 import java.awt.Color;
 import java.sql.Date;
-import modelo.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import modelo.*;
 
 /**
  *
  * @author MILAN
  */
 public class Principal extends javax.swing.JFrame {
-    
-    EmpleadoConexion conEmp;
-    //Conexion con;
-    /**
-     * Creates new form Principal
-     */
+
     public Principal() {
         initComponents();
         setIcon();
-        conEmp = new EmpleadoConexion(this);
-        inicializaMensajes();
-        
     }
 
+    /**
+     * This method sets the application icon
+     */
+    private void setIcon() {
+        super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagenes/logo_oscuro.png")));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         ctApmEmp = new javax.swing.JTextField();
         ctFechaEmp = new javax.swing.JTextField();
         ctContEmp = new javax.swing.JTextField();
+        etFechaEmp1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         etColoniaEmp = new javax.swing.JLabel();
         etNumeroEmp = new javax.swing.JLabel();
@@ -73,8 +69,8 @@ public class Principal extends javax.swing.JFrame {
         btActualizaEmp = new javax.swing.JButton();
         btCancelaEmp = new javax.swing.JButton();
         etMensajeEmp = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaEmpleado = new javax.swing.JTable();
         panelMembresia = new javax.swing.JPanel();
         panelInfoEmp2 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -114,6 +110,12 @@ public class Principal extends javax.swing.JFrame {
 
         tpPrincipal.setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        panelEmpleado.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panelEmpleadoComponentShown(evt);
+            }
+        });
+
         panelInfoEmp.setBorder(javax.swing.BorderFactory.createTitledBorder("Información"));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos personales"));
@@ -133,33 +135,56 @@ public class Principal extends javax.swing.JFrame {
         etContEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etContEmp.setText("Contraseña");
 
+        ctNombreEmp.setName("ctNombreEmp"); // NOI18N
+
+        ctAppEmp.setName("ctAppEmp"); // NOI18N
+
+        ctApmEmp.setName("ctApmEmp"); // NOI18N
+
+        ctFechaEmp.setName("ctFechaEmp"); // NOI18N
+
+        ctContEmp.setName("ctContEmp"); // NOI18N
+
+        etFechaEmp1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etFechaEmp1.setText("AAAA-MM-DD");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ctApmEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(etFechaEmp1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ctFechaEmp))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ctNombreEmp)
-                            .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ctApmEmp)
-                            .addComponent(ctFechaEmp)
-                            .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ctNombreEmp)
+                                    .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -179,7 +204,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctFechaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etFechaEmp))
+                    .addComponent(etFechaEmp)
+                    .addComponent(etFechaEmp1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,22 +223,21 @@ public class Principal extends javax.swing.JFrame {
         etCalleEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etCalleEmp.setText("Calle");
 
+        ctColoniaEmp.setName("ctColoniaEmp"); // NOI18N
+
+        ctCalleEmp.setName("ctCalleEmp"); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(etNumeroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(etCalleEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(etColoniaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(etNumeroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etCalleEmp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etColoniaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ctCalleEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
@@ -246,10 +271,25 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btEliminaEmp.setText("Eliminar");
+        btEliminaEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminaEmpActionPerformed(evt);
+            }
+        });
 
         btActualizaEmp.setText("Actualizar");
+        btActualizaEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizaEmpActionPerformed(evt);
+            }
+        });
 
         btCancelaEmp.setText("Cancelar");
+        btCancelaEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelaEmpActionPerformed(evt);
+            }
+        });
 
         etMensajeEmp.setText("Mensaje");
 
@@ -295,18 +335,23 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btAgregaEmp)))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEmpleadoMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tablaEmpleado);
 
         javax.swing.GroupLayout panelEmpleadoLayout = new javax.swing.GroupLayout(panelEmpleado);
         panelEmpleado.setLayout(panelEmpleadoLayout);
@@ -315,8 +360,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelEmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(panelInfoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelInfoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         panelEmpleadoLayout.setVerticalGroup(
@@ -325,8 +370,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Empleado", panelEmpleado);
@@ -534,7 +579,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(panelInfoEmp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Membresía", panelMembresia);
@@ -547,7 +592,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelPeliculaLayout.setVerticalGroup(
             panelPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         tpAdministración.addTab("Película", panelPelicula);
@@ -560,7 +605,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelSucursalLayout.setVerticalGroup(
             panelSucursalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         tpAdministración.addTab("Sucursal", panelSucursal);
@@ -573,7 +618,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelFuncionLayout.setVerticalGroup(
             panelFuncionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 501, Short.MAX_VALUE)
         );
 
         tpAdministración.addTab("Función", panelFuncion);
@@ -599,7 +644,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelVentasLayout.setVerticalGroup(
             panelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGap(0, 529, Short.MAX_VALUE)
         );
 
         tpPrincipal.addTab("Ventas", panelVentas);
@@ -612,7 +657,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(tpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -623,28 +668,70 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void inicializaMensajes(){
-        etMensajeEmp.setVisible(false);
-    }
-    
+  
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña empleados">
     private void btAgregaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaEmpActionPerformed
        agregaEmpleado();
     }//GEN-LAST:event_btAgregaEmpActionPerformed
+
+    private void panelEmpleadoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelEmpleadoComponentShown
+        actualizaTablaEmpleados();
+        etMensajeEmp.setVisible(false);
+        habilitaEdicionEmpleado(false);
+    }//GEN-LAST:event_panelEmpleadoComponentShown
+
+    private void tablaEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpleadoMouseClicked
+        if (tablaEmpleado.getSelectedRow() > -1) {
+            cargaDatosEmpleado();
+        }
+    }//GEN-LAST:event_tablaEmpleadoMouseClicked
+
+    private void btActualizaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizaEmpActionPerformed
+        actualizaEmpleado();
+    }//GEN-LAST:event_btActualizaEmpActionPerformed
+
+    private void btEliminaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminaEmpActionPerformed
+        eliminaEmpleado();
+    }//GEN-LAST:event_btEliminaEmpActionPerformed
+
+    private void btCancelaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaEmpActionPerformed
+        habilitaEdicionEmpleado(false);
+    }//GEN-LAST:event_btCancelaEmpActionPerformed
+    // </editor-fold>     
     
-    private void agregaEmpleado()
-    {
+    // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña empleados">   
+    private void habilitaEdicionEmpleado(boolean visible){
+        if(visible) {
+            btActualizaEmp.setVisible(true);
+            btEliminaEmp.setVisible(true);
+            btCancelaEmp.setVisible(true);
+            btAgregaEmp.setVisible(false);
+        }
+        else {
+            limpiaFormularioEmpleado();
+            limpiaCamposEmpleado();
+            btActualizaEmp.setVisible(false);
+            btEliminaEmp.setVisible(false);
+            btCancelaEmp.setVisible(false);
+            btAgregaEmp.setVisible(true);
+        }
+        etMensajeEmp.setVisible(false);
+    }
+    
+    private void agregaEmpleado() {
+        EmpleadoConexion conEmp;
         Empleado empleado;
         limpiaFormularioEmpleado();
         
         if(validaDatosEmpleado())
         {
+            conEmp = new EmpleadoConexion();
             empleado = new Empleado();
             empleado.setNombres(ctNombreEmp.getText());
             empleado.setApp(ctAppEmp.getText());
@@ -653,25 +740,78 @@ public class Principal extends javax.swing.JFrame {
             empleado.setContraseña(ctContEmp.getText());
             empleado.setColonia(ctColoniaEmp.getText());
             empleado.setCalle(ctCalleEmp.getText());        
-            empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));           
+            empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));  
+            empleado.setContraseña(ctContEmp.getText());
 
-            try {
-                //con.inserta(empleado);
-                conEmp.inserta(empleado);
+            if(conEmp.inserta(empleado)) {
                 limpiaCamposEmpleado();
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                cambiaTextoMensajeEmp("Se agregó correctamente!",Color.BLUE);
+                etMensajeEmp.setVisible(true);
+                actualizaTablaEmpleados();
             }
-            
-        cambiaTextoMensajeEmp("Se agrego correctamente!",Color.RED);
-        
+            else {
+                cambiaTextoMensajeEmp("Empleado no insertado",Color.RED); 
+                etMensajeEmp.setVisible(true);
+            }
         }
+    }
+    
+    private void actualizaEmpleado() {
+        EmpleadoConexion conEmp;
+        Empleado empleado;
+        limpiaFormularioEmpleado();
+        
+        if(validaDatosEmpleado())
+        {
+            conEmp = new EmpleadoConexion();
+            empleado = new Empleado();
+            empleado.setClave_emp(Long.parseLong(tablaEmpleado.getValueAt(tablaEmpleado.getSelectedRow(), 0).toString()));
+            empleado.setNombres(ctNombreEmp.getText());
+            empleado.setApp(ctAppEmp.getText());
+            empleado.setApm(ctApmEmp.getText());        
+            empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
+            empleado.setContraseña(ctContEmp.getText());
+            empleado.setColonia(ctColoniaEmp.getText());
+            empleado.setCalle(ctCalleEmp.getText());        
+            empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));  
+            empleado.setContraseña(ctContEmp.getText());
+            if(conEmp.actualiza(empleado)) {
+                cambiaTextoMensajeEmp("Se actualizó correctamente!",Color.BLUE);
+                etMensajeEmp.setVisible(true);
+                actualizaTablaEmpleados();
+            }
+            else {
+                cambiaTextoMensajeEmp("Empleado no actualizado",Color.RED); 
+                etMensajeEmp.setVisible(true);
+            }
+            habilitaEdicionEmpleado(false);
+        }
+    }
+    
+    private void eliminaEmpleado() {
+        EmpleadoConexion conEmp;
+        Empleado empleado;
+        limpiaFormularioEmpleado();
+        
+        conEmp = new EmpleadoConexion();
+        empleado = new Empleado();
+        empleado.setClave_emp(Long.parseLong(tablaEmpleado.getValueAt(tablaEmpleado.getSelectedRow(), 0).toString()));  
+        if(conEmp.elimina(empleado)) {
+            cambiaTextoMensajeEmp("Se eliminó correctamente!",Color.BLUE);
+            etMensajeEmp.setVisible(true);
+            actualizaTablaEmpleados();
+        }
+        else {
+            cambiaTextoMensajeEmp("Empleado no eliminado",Color.RED); 
+            etMensajeEmp.setVisible(true);
+        }
+        habilitaEdicionEmpleado(false);
     }
     
     private boolean validaDatosEmpleado(){
         boolean valido = true;
-         int error = 0;
-        ;
+        int error = 0;
+        
         if (ctNombreEmp.getText().trim().equals("")) { etNombreEmp.setText("Nombre (s) *") ; error++; }
         if (ctAppEmp.getText().trim().equals("")) { etAppEmp.setText("Apellido paterno *"); error++; }
         if (ctApmEmp.getText().trim().equals("")) { etApmEmp.setText("Apellido materno *"); error++; }
@@ -691,8 +831,7 @@ public class Principal extends javax.swing.JFrame {
         etMensajeEmp.setForeground(color);
     }
     
-    private void limpiaCamposEmpleado()
-    {
+    private void limpiaCamposEmpleado() {
         ctNombreEmp.setText("");
         ctAppEmp.setText("");
         ctApmEmp.setText("");
@@ -703,7 +842,7 @@ public class Principal extends javax.swing.JFrame {
         ctContEmp.setText("");
     }
     
-    private void limpiaFormularioEmpleado(){
+    private void limpiaFormularioEmpleado() {
         etNombreEmp.setText("Nombre (s)");
         etAppEmp.setText("Apellido paterno");
         etApmEmp.setText("Apellido materno");
@@ -712,7 +851,35 @@ public class Principal extends javax.swing.JFrame {
         etCalleEmp.setText("Calle");
         etNumeroEmp.setText("Numero");
         etContEmp.setText("Contraseña");
+    }     
+    
+    private void actualizaTablaEmpleados() {
+        EmpleadoConexion con;
+
+        con = new EmpleadoConexion();
+        try {
+            tablaEmpleado.setModel(con.getDatosTabla());
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
+        }
     }
+    
+    private void cargaDatosEmpleado() {
+        int renglon = tablaEmpleado.getSelectedRow();
+        
+        ctNombreEmp.setText(tablaEmpleado.getValueAt(renglon, 1).toString());
+        ctAppEmp.setText(tablaEmpleado.getValueAt(renglon, 2).toString());
+        ctApmEmp.setText(tablaEmpleado.getValueAt(renglon, 3).toString());        
+        ctFechaEmp.setText(tablaEmpleado.getValueAt(renglon, 4).toString());
+        ctColoniaEmp.setText(tablaEmpleado.getValueAt(renglon, 5).toString());
+        ctCalleEmp.setText(tablaEmpleado.getValueAt(renglon, 6).toString());        
+        ctNumeroEmp.setText(tablaEmpleado.getValueAt(renglon, 7).toString());  
+        ctContEmp.setText(tablaEmpleado.getValueAt(renglon, 8).toString());
+        habilitaEdicionEmpleado(true);
+    }
+    // </editor-fold>  
+    
     /**
      * @param args the command line arguments
      */
@@ -771,6 +938,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etColoniaEmp;
     private javax.swing.JLabel etContEmp;
     private javax.swing.JLabel etFechaEmp;
+    private javax.swing.JLabel etFechaEmp1;
     private javax.swing.JLabel etFechaEmp2;
     private javax.swing.JLabel etMensajeEmp;
     private javax.swing.JLabel etNombreEmp;
@@ -785,9 +953,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
@@ -805,14 +972,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPelicula;
     private javax.swing.JPanel panelSucursal;
     private javax.swing.JPanel panelVentas;
+    private javax.swing.JTable tablaEmpleado;
     private javax.swing.JTabbedPane tpAdministración;
     private javax.swing.JTabbedPane tpPrincipal;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * This method sets the application icon
-     */
-    private void setIcon() {
-        super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagenes/logo_oscuro.png")));
-    }
 }

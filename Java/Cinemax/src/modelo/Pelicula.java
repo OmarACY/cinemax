@@ -41,6 +41,10 @@ public class Pelicula {
         return genero;
     }
 
+    public void setClave_pel(long clave_pel) {
+        this.clave_pel = clave_pel;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

@@ -12,11 +12,7 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class MembresiaConexion extends Conexion<Membresia, Principal> {
-
-    public MembresiaConexion(Principal vista) {
-        super(vista);
-    }
+public class MembresiaConexion extends Conexion<Membresia> {
 
     @Override
     public boolean inserta(Membresia modelo) {

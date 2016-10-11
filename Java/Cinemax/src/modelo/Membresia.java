@@ -43,6 +43,10 @@ public class Membresia {
         return fecha_nac;
     }
 
+    public void setClave_mem(long clave_mem) {
+        this.clave_mem = clave_mem;
+    }
+
     public String getColonia() {
         return colonia;
     }

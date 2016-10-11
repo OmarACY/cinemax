@@ -12,11 +12,7 @@ import vista.Principal;
  *
  * @author MILAN
  */
-public class VentaConexion extends Conexion<Venta, Principal> {
-
-    public VentaConexion(Principal vista) {
-        super(vista);
-    }
+public class VentaConexion extends Conexion<Venta> {
 
     @Override
     public boolean inserta(Venta modelo) {

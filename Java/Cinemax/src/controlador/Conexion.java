@@ -6,20 +6,19 @@
 package controlador;
 
 import java.sql.*;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author MILAN
  * @param <Modelo>
- * @param <Vista>
  */
-public abstract class Conexion<Modelo, Vista> {
+public abstract class Conexion<Modelo> {
     protected Connection db;
-    protected Vista vista;
     
-    public Conexion(Vista vista){
+    public Conexion(){
         db = null;
-        this.vista = vista;
     }
     
     protected void realizaConexion() throws ClassNotFoundException, SQLException {
@@ -27,10 +26,6 @@ public abstract class Conexion<Modelo, Vista> {
         int puerto = 5432;
         String baseDatos = "Cinemax";
         String url = String.format("jdbc:postgresql://localhost:%d/%s", puerto, baseDatos);
-        // Usuario y Contraseña MILAN-PC 
-        //String nombreUsuario = "root";
-        //String contraseña = "toor";
-        // Usuario y Contraseña OMARACY-MAC 
         String nombreUsuario = "postgres";
         String contraseña = "postgres";
         
@@ -43,7 +38,51 @@ public abstract class Conexion<Modelo, Vista> {
         db = null;
     }
     
-    public abstract boolean inserta(Modelo modelo) throws ClassNotFoundException, SQLException;
+    protected int ejecutaSentencia(String sentencia) throws ClassNotFoundException, SQLException {
+        Statement stmt;
+        int filasAfectadas;
+        
+        realizaConexion();
+        stmt = db.createStatement();
+        filasAfectadas = stmt.executeUpdate(sentencia);
+        cierraConexion();
+        return filasAfectadas;
+    }
+    
+    protected ResultSet ejecutaConsulta(String consulta) throws ClassNotFoundException, SQLException {
+        Statement stmt;
+        ResultSet rs;
+        
+        realizaConexion();
+        stmt = db.createStatement();
+        rs = stmt.executeQuery(consulta);
+        cierraConexion();
+        return rs;
+    }
+    
+    protected DefaultTableModel getModeloTabla(ResultSet rs) throws SQLException {
+        ResultSetMetaData metadata = rs.getMetaData();
+        int cantidadColumnas = metadata.getColumnCount();
+        Vector<String> nombresColumnas = new Vector<String>();
+        Vector<Vector<Object>> tuplas = new Vector<Vector<Object>>();
+        
+        // Nombres Columnas
+        for(int columna = 1; columna <= cantidadColumnas; columna++) {
+            nombresColumnas.add(metadata.getColumnName(columna));
+        }
+        
+        // Recuperacion de tuplas
+        while(rs.next()) {
+            Vector<Object> renglon = new Vector<Object>();
+            for(int columna = 1; columna <= cantidadColumnas; columna++) {
+                renglon.add(rs.getObject(columna));
+            }
+            tuplas.add(renglon);
+        }
+        return new DefaultTableModel(tuplas, nombresColumnas);
+   }
+    
+    public abstract boolean inserta(Modelo modelo);
     public abstract boolean elimina(Modelo modelo);
     public abstract boolean actualiza(Modelo modelo);
 }

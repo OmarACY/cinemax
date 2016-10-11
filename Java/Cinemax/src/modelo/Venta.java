@@ -36,6 +36,10 @@ public class Venta {
         return clave_emp;
     }
 
+    public void setClave_ven(long clave_ven) {
+        this.clave_ven = clave_ven;
+    }
+
     public void setTotal(float total) {
         this.total = total;
     }

@@ -12,11 +12,7 @@ import vista.Login;
  *
  * @author MILAN
  */
-public class LoginConexion extends Conexion<Empleado, Login>{
-
-    public LoginConexion(Login vista) {
-        super(vista);
-    }
+public class LoginConexion extends Conexion<Empleado>{
 
     @Override
     public boolean inserta(Empleado modelo) {
