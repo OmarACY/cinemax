@@ -124,3 +124,5 @@ create table Venta.detalle_venta(
 	tipo_asi varchar(10) not null,
 	constraint FK_DET_VEN foreign key (clave_ven) references Venta.venta(clave_ven)
 );
+
+select * from Persona.empleado

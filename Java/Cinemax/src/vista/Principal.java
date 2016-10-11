@@ -6,19 +6,33 @@
 package vista;
 
 import java.awt.Toolkit;
+import controlador.*;
+import java.awt.Color;
+import java.sql.Date;
+import modelo.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author MILAN
  */
 public class Principal extends javax.swing.JFrame {
-
+    
+    //EmpleadoConexion conEmp;
+    Conexion con;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
         setIcon();
+        //conEmp = new EmpleadoConexion(this);
+        inicializaMensajes();
+        
     }
 
     /**
@@ -42,22 +56,23 @@ public class Principal extends javax.swing.JFrame {
         etApmEmp = new javax.swing.JLabel();
         etFechaEmp = new javax.swing.JLabel();
         etContEmp = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        ctNombreEmp = new javax.swing.JTextField();
+        ctAppEmp = new javax.swing.JTextField();
+        ctApmEmp = new javax.swing.JTextField();
+        ctFechaEmp = new javax.swing.JTextField();
+        ctContEmp = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        etNombreEmp1 = new javax.swing.JLabel();
-        etNombreEmp2 = new javax.swing.JLabel();
-        etNombreEmp3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        etColoniaEmp = new javax.swing.JLabel();
+        etNumeroEmp = new javax.swing.JLabel();
+        etCalleEmp = new javax.swing.JLabel();
+        ctColoniaEmp = new javax.swing.JTextField();
+        ctCalleEmp = new javax.swing.JTextField();
+        ctNumeroEmp = new javax.swing.JTextField();
         btAgregaEmp = new javax.swing.JButton();
         btEliminaEmp = new javax.swing.JButton();
         btActualizaEmp = new javax.swing.JButton();
         btCancelaEmp = new javax.swing.JButton();
+        etMensajeEmp = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         panelMembresia = new javax.swing.JPanel();
@@ -104,45 +119,47 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos personales"));
 
         etNombreEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etNombreEmp.setText("Nombre (s) *");
+        etNombreEmp.setText("Nombre (s)");
 
         etAppEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etAppEmp.setText("Apellido paterno *");
+        etAppEmp.setText("Apellido paterno");
 
-        etApmEmp.setText("Apellido materno *");
+        etApmEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etApmEmp.setText("Apellido materno");
 
-        etFechaEmp.setText("Fecha de nacimiento *");
+        etFechaEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etFechaEmp.setText("Fecha de nacimiento");
 
-        etContEmp.setText("Contraseña *");
+        etContEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etContEmp.setText("Contraseña");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ctNombreEmp)
+                            .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etFechaEmp)
-                            .addComponent(etContEmp)
-                            .addComponent(etApmEmp))
+                            .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(ctApmEmp)
+                            .addComponent(ctFechaEmp)
+                            .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -150,51 +167,57 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etNombreEmp)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ctNombreEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etAppEmp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctApmEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etApmEmp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctFechaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etFechaEmp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etContEmp)))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de contacto"));
 
-        etNombreEmp1.setText("Colonia *");
+        etColoniaEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etColoniaEmp.setText("Colonia");
 
-        etNombreEmp2.setText("Numero *");
+        etNumeroEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etNumeroEmp.setText("Numero");
 
-        etNombreEmp3.setText("Calle *");
+        etCalleEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etCalleEmp.setText("Calle");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(etNumeroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(etCalleEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etNombreEmp3)
-                            .addComponent(etNombreEmp1)))
-                    .addComponent(etNombreEmp2))
+                        .addContainerGap()
+                        .addComponent(etColoniaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField8))
+                    .addComponent(ctCalleEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(ctColoniaEmp)
+                    .addComponent(ctNumeroEmp))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -202,20 +225,25 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etNombreEmp1)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etColoniaEmp)
+                    .addComponent(ctColoniaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etNombreEmp3)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(etCalleEmp)
+                    .addComponent(ctCalleEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etNombreEmp2))
+                    .addComponent(ctNumeroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etNumeroEmp))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
         btAgregaEmp.setText("Agregar");
+        btAgregaEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAgregaEmpActionPerformed(evt);
+            }
+        });
 
         btEliminaEmp.setText("Eliminar");
 
@@ -223,20 +251,24 @@ public class Principal extends javax.swing.JFrame {
 
         btCancelaEmp.setText("Cancelar");
 
+        etMensajeEmp.setText("Mensaje");
+
         javax.swing.GroupLayout panelInfoEmpLayout = new javax.swing.GroupLayout(panelInfoEmp);
         panelInfoEmp.setLayout(panelInfoEmpLayout);
         panelInfoEmpLayout.setHorizontalGroup(
             panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoEmpLayout.createSequentialGroup()
-                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoEmpLayout.createSequentialGroup()
-                        .addGap(607, 607, 607)
+                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(etMensajeEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCancelaEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btActualizaEmp)
@@ -244,24 +276,23 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btEliminaEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAgregaEmp)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         panelInfoEmpLayout.setVerticalGroup(
             panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btCancelaEmp)
-                            .addComponent(btActualizaEmp)
-                            .addComponent(btEliminaEmp)
-                            .addComponent(btAgregaEmp))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etMensajeEmp)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCancelaEmp)
+                    .addComponent(btActualizaEmp)
+                    .addComponent(btEliminaEmp)
+                    .addComponent(btAgregaEmp)))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -294,11 +325,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
-        panelInfoEmp.getAccessibleContext().setAccessibleName("Información");
 
         tpAdministración.addTab("Empleado", panelEmpleado);
         panelEmpleado.getAccessibleContext().setAccessibleName("");
@@ -600,7 +629,58 @@ public class Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void inicializaMensajes(){
+        etMensajeEmp.setVisible(false);
+    }
+    
+    private void btAgregaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaEmpActionPerformed
+        agregaEmpleado();
+    }//GEN-LAST:event_btAgregaEmpActionPerformed
+    
+    private void agregaEmpleado(){
+        Empleado empleado;
+        
+        if(validaDatosEmpleado()){
+        empleado = new Empleado();
+        empleado.setNombres(ctNombreEmp.getText());
+        empleado.setApp(ctAppEmp.getText());
+        empleado.setApm(ctApmEmp.getText());        
+        empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
+        empleado.setContraseña(ctContEmp.getText());
+        empleado.setColonia(ctColoniaEmp.getText());
+        empleado.setCalle(ctCalleEmp.getText());        
+        empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));           
+                
+        con.inserta(empleado);
+        //conEmp.inserta(empleado);
+        cambiaTextoMensajeEmp("Se agrego correctamente!",Color.RED);
+        
+        }
+    }
+    
+    private boolean validaDatosEmpleado(){
+        boolean valido = true;
+         int error = 0;
+        ;
+        if (ctNombreEmp.getText().trim().equals("")) { etNombreEmp.setText("Nombre (s) *") ; error++; }
+        if (ctAppEmp.getText().trim().equals("")) { etAppEmp.setText("Apellido paterno *"); error++; }
+        if (ctApmEmp.getText().trim().equals("")) { etApmEmp.setText("Apellido materno *"); error++; }
+        if (ctFechaEmp.getText().trim().equals("")) { etFechaEmp.setText("Fecha de nacimiento *"); error++; }
+        if (ctColoniaEmp.getText().trim().equals("")) { etColoniaEmp.setText("Colonia *"); error++; }
+        if (ctCalleEmp.getText().trim().equals("")) { etCalleEmp.setText("Calle *"); error++; }
+        if (ctNumeroEmp.getText().trim().equals("")) { etNumeroEmp.setText("Numero *"); error++; }
+        if (ctContEmp.getText().trim().equals("")) { etContEmp.setText("Contraseña *"); error++; }
 
+        if (error > 0) { cambiaTextoMensajeEmp("* Campos requeridos!",Color.RED) ; etMensajeEmp.setVisible(true); valido = false; }   
+        
+        return valido;
+    }
+    
+    private void cambiaTextoMensajeEmp(String mensaje, Color color){
+        etMensajeEmp.setText(mensaje);
+        etMensajeEmp.setForeground(color);
+    }
     /**
      * @param args the command line arguments
      */
@@ -643,21 +723,30 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btCancelaEmp2;
     private javax.swing.JButton btEliminaEmp;
     private javax.swing.JButton btEliminaEmp2;
+    private javax.swing.JTextField ctApmEmp;
+    private javax.swing.JTextField ctAppEmp;
+    private javax.swing.JTextField ctCalleEmp;
+    private javax.swing.JTextField ctColoniaEmp;
+    private javax.swing.JTextField ctContEmp;
+    private javax.swing.JTextField ctFechaEmp;
+    private javax.swing.JTextField ctNombreEmp;
+    private javax.swing.JTextField ctNumeroEmp;
     private javax.swing.JLabel etApmEmp;
     private javax.swing.JLabel etApmEmp2;
     private javax.swing.JLabel etAppEmp;
     private javax.swing.JLabel etAppEmp2;
+    private javax.swing.JLabel etCalleEmp;
+    private javax.swing.JLabel etColoniaEmp;
     private javax.swing.JLabel etContEmp;
     private javax.swing.JLabel etFechaEmp;
     private javax.swing.JLabel etFechaEmp2;
+    private javax.swing.JLabel etMensajeEmp;
     private javax.swing.JLabel etNombreEmp;
-    private javax.swing.JLabel etNombreEmp1;
     private javax.swing.JLabel etNombreEmp10;
     private javax.swing.JLabel etNombreEmp11;
-    private javax.swing.JLabel etNombreEmp2;
-    private javax.swing.JLabel etNombreEmp3;
     private javax.swing.JLabel etNombreEmp8;
     private javax.swing.JLabel etNombreEmp9;
+    private javax.swing.JLabel etNumeroEmp;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -668,21 +757,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel panelAdministracion;
     private javax.swing.JPanel panelEmpleado;
     private javax.swing.JPanel panelFuncion;
