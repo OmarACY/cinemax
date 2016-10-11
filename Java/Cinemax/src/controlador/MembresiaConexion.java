@@ -65,7 +65,7 @@ public class MembresiaConexion extends Conexion<Membresia> {
         return (filasAfectadas > 0);
     }
     
-        public DefaultTableModel getDatosTabla() {
+    public DefaultTableModel getDatosTabla() {
         String consulta;
         
         consulta = "SELECT * FROM Persona.membresia";

@@ -110,18 +110,19 @@ public class Principal extends javax.swing.JFrame {
         btCancelaPel = new javax.swing.JButton();
         etMensajePel = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        ctNombreMem1 = new javax.swing.JTextField();
-        etNombreMem1 = new javax.swing.JLabel();
-        etAppMem1 = new javax.swing.JLabel();
-        ctAppMem1 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        cbTipoMem1 = new javax.swing.JComboBox<>();
-        etAppMem2 = new javax.swing.JLabel();
+        ctNombrePel = new javax.swing.JTextField();
+        etNombrePel = new javax.swing.JLabel();
+        etDirectorPel = new javax.swing.JLabel();
+        ctDirectorPel = new javax.swing.JTextField();
+        rbAPel = new javax.swing.JRadioButton();
+        rbBPel = new javax.swing.JRadioButton();
+        rbCPel = new javax.swing.JRadioButton();
+        cbGeneroPel = new javax.swing.JComboBox<>();
+        etGeneroPel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        etNombreMem2 = new javax.swing.JLabel();
+        taSinopsisPel = new javax.swing.JTextArea();
+        etSinopsisPel = new javax.swing.JLabel();
+        etClasificacionPel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaPelicula = new javax.swing.JTable();
         panelSucursal = new javax.swing.JPanel();
@@ -692,6 +693,12 @@ public class Principal extends javax.swing.JFrame {
 
         tpAdministración.addTab("Membresía", panelMembresia);
 
+        panelPelicula.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panelPeliculaComponentShown(evt);
+            }
+        });
+
         panelInfoEmp3.setBorder(javax.swing.BorderFactory.createTitledBorder("Información"));
 
         btAgregaPel.setText("Agregar");
@@ -726,29 +733,32 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
 
-        etNombreMem1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etNombreMem1.setText("Nombre");
+        etNombrePel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etNombrePel.setText("Nombre");
 
-        etAppMem1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etAppMem1.setText("Director");
+        etDirectorPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etDirectorPel.setText("Director");
 
-        jRadioButton1.setText("A (Todos)");
+        rbAPel.setText("A (Todos)");
 
-        jRadioButton2.setText("B (15 años +)");
+        rbBPel.setText("B (15 años +)");
 
-        jRadioButton3.setText("C (18 años +)");
+        rbCPel.setText("C (18 años +)");
 
-        cbTipoMem1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standar", "Premium", "Vip" }));
+        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
 
-        etAppMem2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etAppMem2.setText("Genero");
+        etGeneroPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etGeneroPel.setText("Genero");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taSinopsisPel.setColumns(20);
+        taSinopsisPel.setRows(5);
+        jScrollPane1.setViewportView(taSinopsisPel);
 
-        etNombreMem2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etNombreMem2.setText("Sinopsis");
+        etSinopsisPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etSinopsisPel.setText("Sinopsis");
+
+        etClasificacionPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etClasificacionPel.setText("Clasificacion");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -757,24 +767,25 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(etAppMem1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(etNombreMem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(etAppMem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(etDirectorPel, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(etNombrePel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etGeneroPel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etClasificacionPel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
+                        .addComponent(rbCPel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)
+                        .addComponent(rbBPel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton1))
-                    .addComponent(ctAppMem1)
-                    .addComponent(ctNombreMem1)
-                    .addComponent(cbTipoMem1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rbAPel))
+                    .addComponent(ctDirectorPel)
+                    .addComponent(ctNombrePel)
+                    .addComponent(cbGeneroPel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etNombreMem2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(etSinopsisPel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -784,22 +795,23 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etNombreMem1)
-                            .addComponent(ctNombreMem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etNombreMem2))
+                            .addComponent(etNombrePel)
+                            .addComponent(ctNombrePel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etSinopsisPel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ctAppMem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etAppMem1))
+                            .addComponent(ctDirectorPel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etDirectorPel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1))
+                            .addComponent(rbCPel)
+                            .addComponent(rbBPel)
+                            .addComponent(rbAPel)
+                            .addComponent(etClasificacionPel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etAppMem2)
-                            .addComponent(cbTipoMem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(etGeneroPel)
+                            .addComponent(cbGeneroPel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -1017,24 +1029,33 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_panelMembresiaComponentShown
 
     private void btAgregaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaPelActionPerformed
-        // TODO add your handling code here:
+        agregaPelicula();
     }//GEN-LAST:event_btAgregaPelActionPerformed
 
     private void btEliminaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminaPelActionPerformed
-        // TODO add your handling code here:
+        eliminaPelicula();
     }//GEN-LAST:event_btEliminaPelActionPerformed
 
     private void btActualizaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizaPelActionPerformed
-        // TODO add your handling code here:
+        actualizaPelicula();
     }//GEN-LAST:event_btActualizaPelActionPerformed
 
     private void btCancelaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaPelActionPerformed
-        // TODO add your handling code here:
+        habilitaEdicionPelicula(false);
     }//GEN-LAST:event_btCancelaPelActionPerformed
 
     private void tablaPeliculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPeliculaMouseClicked
-        // TODO add your handling code here:
+        if (tablaPelicula.getSelectedRow() > -1) {
+            cargaDatosPelicula();
+            etMensajePel.setVisible(false);
+        }
     }//GEN-LAST:event_tablaPeliculaMouseClicked
+
+    private void panelPeliculaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelPeliculaComponentShown
+        actualizaTablaPelicula();
+        etMensajePel.setVisible(false);
+        habilitaEdicionPelicula(false);
+    }//GEN-LAST:event_panelPeliculaComponentShown
    
     // </editor-fold>     
     
@@ -1338,7 +1359,7 @@ public class Principal extends javax.swing.JFrame {
         etPuntosMem.setText("Puntos");
     }
     
-        private boolean validaDatosMembresia(){
+    private boolean validaDatosMembresia(){
         boolean valido = true;
         int error = 0;
         
@@ -1399,8 +1420,209 @@ public class Principal extends javax.swing.JFrame {
         spPuntosMem.setValue(tablaMembresia.getValueAt(renglon, 9));
         habilitaEdicionMembresia(true);
     }
-        
     // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña pelicula">
+    
+    private void habilitaEdicionPelicula(boolean visible){
+        if(visible) {
+            btActualizaPel.setVisible(true);
+            btEliminaPel.setVisible(true);
+            btCancelaPel.setVisible(true);
+            btAgregaPel.setVisible(false);
+        }
+        else {
+            limpiaFormularioPelicula();
+            limpiaCamposPelicula();
+            btActualizaPel.setVisible(false);
+            btEliminaPel.setVisible(false);
+            btCancelaPel.setVisible(false);
+            btAgregaPel.setVisible(true);
+        }
+        //etMensajeMem.setVisible(false);
+    }
+    
+    private void agregaPelicula(){
+        
+        PeliculaConexion conPel;
+        Pelicula pelicula;
+        limpiaFormularioPelicula();
+        
+        if(validaDatosPelicula())
+        {
+            conPel = new PeliculaConexion();
+            pelicula = new Pelicula();
+            pelicula.setNombre(ctNombrePel.getText());
+            pelicula.setDirector(ctDirectorPel.getText());
+            pelicula.setClasificacion(clasificacionPelicula());        
+            pelicula.setGenero(cbGeneroPel.getSelectedItem().toString());
+            pelicula.setSinopsis(taSinopsisPel.getText());
+
+            if(conPel.inserta(pelicula)) {
+                limpiaCamposPelicula();
+                cambiaTextoMensajePel("Se agregó correctamente!",Color.BLUE);
+                etMensajePel.setVisible(true);
+                actualizaTablaPelicula();
+            }
+            else {
+                cambiaTextoMensajePel("Pelicula no insertado",Color.RED); 
+                etMensajePel.setVisible(true);
+            }
+        }   
+    }
+    
+    private void actualizaPelicula() {
+        PeliculaConexion conPel;
+        Pelicula pelicula;
+        limpiaFormularioPelicula();
+        
+        if(validaDatosPelicula())
+        {
+            conPel = new PeliculaConexion();
+            pelicula = new Pelicula();
+            pelicula.setClave_pel(Long.parseLong(tablaPelicula.getValueAt(tablaPelicula.getSelectedRow(), 0).toString()));
+            pelicula.setNombre(ctNombrePel.getText());
+            pelicula.setDirector(ctDirectorPel.getText());
+            pelicula.setClasificacion(clasificacionPelicula());        
+            pelicula.setGenero(cbGeneroPel.getSelectedItem().toString());
+            pelicula.setSinopsis(taSinopsisPel.getText());
+            
+            if(conPel.actualiza(pelicula)) {
+                cambiaTextoMensajePel("Se actualizó correctamente!",Color.BLUE);
+                etMensajePel.setVisible(true);
+                actualizaTablaPelicula();
+            }
+            else {
+                cambiaTextoMensajePel("Pelicula no actualizado",Color.RED); 
+                etMensajePel.setVisible(true);
+            }
+            habilitaEdicionPelicula(false);
+        }
+    }
+    
+    private void eliminaPelicula() {
+        PeliculaConexion conPel;
+        Pelicula pelicula;
+        limpiaFormularioPelicula();
+        
+        conPel = new PeliculaConexion();
+        pelicula = new Pelicula();
+        pelicula.setClave_pel(Long.parseLong(tablaPelicula.getValueAt(tablaPelicula.getSelectedRow(), 0).toString()));
+        int opcion = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            if(conPel.elimina(pelicula)) {
+                cambiaTextoMensajePel("Se eliminó correctamente!",Color.BLUE);
+                etMensajePel.setVisible(true);
+                actualizaTablaPelicula();
+            }
+            else {
+                cambiaTextoMensajePel("Membresia no eliminada",Color.RED); 
+                etMensajePel.setVisible(true);
+            }
+            habilitaEdicionPelicula(false);
+        }
+        
+    }
+    
+    private void limpiaFormularioPelicula() {
+        etNombrePel.setText("Nombre");
+        etDirectorPel.setText("Director");
+        etClasificacionPel.setText("Casificación");
+        etGeneroPel.setText("Genero");
+        etSinopsisPel.setText("Sinopsis");
+    }
+
+    private boolean validaDatosPelicula(){
+        boolean valido = true;
+        int error = 0;
+        
+        if (ctNombrePel.getText().trim().equals("")) { etNombrePel.setText("Nombre *") ; error++; }
+        if (ctDirectorPel.getText().trim().equals("")) { etDirectorPel.setText("Director *"); error++; }
+        if (clasificacionPelicula().equals("")) { etClasificacionPel.setText("Clasificacion *"); error++; }
+        if (cbGeneroPel.getSelectedIndex() == -1) { etGeneroPel.setText("Genero *"); error++; }
+        if (taSinopsisPel.getText().trim().equals("")) { etSinopsisPel.setText("Sinopsis *"); error++; }
+        
+        
+        if (error > 0) { cambiaTextoMensajePel("* Campos requeridos!",Color.RED) ; etMensajePel.setVisible(true); valido = false; }   
+        
+        return valido;
+    }
+    
+    private String clasificacionPelicula() {
+            String clas = "0";
+            
+            if (rbAPel.isSelected())
+                clas = "A";
+            else
+                if (rbBPel.isSelected())
+                    clas = "B";
+                else
+                    if (rbCPel.isSelected())
+                        clas = "C";
+
+            return clas;
+    }
+    
+    private void clasificacionPelicula(String clas){
+        
+        switch (clas) { 
+            case "A":
+                rbAPel.setSelected(true);
+                break;
+            case "B":
+                rbBPel.setSelected(true);
+                break;
+            case "C":
+                rbCPel.setSelected(true);
+                break;
+            default:
+                rbAPel.setSelected(false);
+                rbBPel.setSelected(false);
+                rbCPel.setSelected(false);
+                break;
+
+        }
+
+    }
+    
+    private void cambiaTextoMensajePel(String mensaje, Color color){
+        etMensajePel.setText(mensaje);
+        etMensajePel.setForeground(color);
+    }
+    
+    private void limpiaCamposPelicula() {
+        ctNombrePel.setText("");
+        ctDirectorPel.setText("");
+        clasificacionPelicula("0");
+        cbGeneroPel.setSelectedIndex(-1);
+        taSinopsisPel.setText("");
+    }
+    
+    private void actualizaTablaPelicula() {
+        PeliculaConexion con;
+
+        con = new PeliculaConexion();
+        try {
+            tablaPelicula.setModel(con.getDatosTabla());
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void cargaDatosPelicula() {
+        int renglon = tablaPelicula.getSelectedRow();
+        
+        ctNombrePel.setText(tablaPelicula.getValueAt(renglon, 1).toString());
+        ctDirectorPel.setText(tablaPelicula.getValueAt(renglon, 2).toString());
+        taSinopsisPel.setText(tablaPelicula.getValueAt(renglon, 3).toString());
+        clasificacionPelicula(tablaPelicula.getValueAt(renglon, 4).toString());
+        cbGeneroPel.setSelectedItem(tablaPelicula.getValueAt(renglon, 5).toString());
+        habilitaEdicionPelicula(true);
+    }
+   
+    // </editor-fold>
+    
     /**
      * @param args the command line arguments
      */
@@ -1447,50 +1669,51 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btEliminaEmp;
     private javax.swing.JButton btEliminaMem;
     private javax.swing.JButton btEliminaPel;
+    private javax.swing.JComboBox<String> cbGeneroPel;
     private javax.swing.JComboBox<String> cbTipoMem;
-    private javax.swing.JComboBox<String> cbTipoMem1;
     private javax.swing.JTextField ctApmEmp;
     private javax.swing.JTextField ctApmMem;
     private javax.swing.JTextField ctAppEmp;
     private javax.swing.JTextField ctAppMem;
-    private javax.swing.JTextField ctAppMem1;
     private javax.swing.JTextField ctCalleEmp;
     private javax.swing.JTextField ctCalleMem;
     private javax.swing.JTextField ctColoniaEmp;
     private javax.swing.JTextField ctColoniaMem;
     private javax.swing.JTextField ctContEmp;
+    private javax.swing.JTextField ctDirectorPel;
     private javax.swing.JTextField ctFechaEmp;
     private javax.swing.JTextField ctFechaMem;
     private javax.swing.JTextField ctNombreEmp;
     private javax.swing.JTextField ctNombreMem;
-    private javax.swing.JTextField ctNombreMem1;
+    private javax.swing.JTextField ctNombrePel;
     private javax.swing.JTextField ctNumeroEmp;
     private javax.swing.JTextField ctNumeroMem;
     private javax.swing.JLabel etApmEmp;
     private javax.swing.JLabel etApmMem;
     private javax.swing.JLabel etAppEmp;
     private javax.swing.JLabel etAppMem;
-    private javax.swing.JLabel etAppMem1;
-    private javax.swing.JLabel etAppMem2;
     private javax.swing.JLabel etCalleEmp;
     private javax.swing.JLabel etCalleMem;
+    private javax.swing.JLabel etClasificacionPel;
     private javax.swing.JLabel etColoniaEmp;
     private javax.swing.JLabel etColoniaMem;
     private javax.swing.JLabel etContEmp;
+    private javax.swing.JLabel etDirectorPel;
     private javax.swing.JLabel etFechaEmp;
     private javax.swing.JLabel etFechaEmp1;
     private javax.swing.JLabel etFechaEmp2;
     private javax.swing.JLabel etFechaMem;
+    private javax.swing.JLabel etGeneroPel;
     private javax.swing.JLabel etMensajeEmp;
     private javax.swing.JLabel etMensajeMem;
     private javax.swing.JLabel etMensajePel;
     private javax.swing.JLabel etNombreEmp;
     private javax.swing.JLabel etNombreMem;
-    private javax.swing.JLabel etNombreMem1;
-    private javax.swing.JLabel etNombreMem2;
+    private javax.swing.JLabel etNombrePel;
     private javax.swing.JLabel etNumeroEmp;
     private javax.swing.JLabel etNumeroMem;
     private javax.swing.JLabel etPuntosMem;
+    private javax.swing.JLabel etSinopsisPel;
     private javax.swing.JLabel etTipoMem;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1499,14 +1722,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel panelAdministracion;
     private javax.swing.JPanel panelEmpleado;
     private javax.swing.JPanel panelFuncion;
@@ -1517,7 +1736,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPelicula;
     private javax.swing.JPanel panelSucursal;
     private javax.swing.JPanel panelVentas;
+    private javax.swing.JRadioButton rbAPel;
+    private javax.swing.JRadioButton rbBPel;
+    private javax.swing.JRadioButton rbCPel;
     private javax.swing.JSpinner spPuntosMem;
+    private javax.swing.JTextArea taSinopsisPel;
     private javax.swing.JTable tablaEmpleado;
     private javax.swing.JTable tablaMembresia;
     private javax.swing.JTable tablaPelicula;

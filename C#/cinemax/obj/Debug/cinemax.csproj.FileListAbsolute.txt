@@ -38,3 +38,6 @@ C:\Users\MILAN\Documents\GitHub\cinemax\cinemax\obj\Debug\cinemax.Login.resource
 C:\Users\MILAN\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.exe.config
 C:\Users\MILAN\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.exe
 C:\Users\MILAN\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.pdb
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.exe.config
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.exe
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.pdb
