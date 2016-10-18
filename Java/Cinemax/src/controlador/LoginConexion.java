@@ -5,8 +5,11 @@
  */
 package controlador;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import modelo.Empleado;
-import vista.Login;
 
 /**
  *
@@ -28,5 +31,22 @@ public class LoginConexion extends Conexion<Empleado>{
     public boolean actualiza(Empleado modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void rellenaComboBox(JComboBox cb){
+        String consulta;
+        
+        consulta = "SELECT * FROM Persona.empleado";
+        try {
+            cb.removeAllItems();
+            ResultSet rs = ejecutaConsulta(consulta);
+            while(rs.next()) {
+                String nombreComppleto = rs.getString("nombres") + " " + rs.getString("app") + " " + rs.getString("apm");
+                cb.addItem(nombreComppleto);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+   }
     
 }

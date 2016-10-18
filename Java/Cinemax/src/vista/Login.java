@@ -5,6 +5,12 @@
  */
 package vista;
 
+import controlador.EmpleadoConexion;
+import controlador.LoginConexion;
+import java.util.Arrays;
+import javax.swing.text.BadLocationException;
+import modelo.Empleado;
+
 /**
  *
  * @author MILAN
@@ -29,21 +35,25 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         btnAcceder = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        cbIdEmpleado = new javax.swing.JComboBox<>();
-        labIdEmpleado = new javax.swing.JLabel();
-        labNomEmpleado = new javax.swing.JLabel();
-        tfNomEmpleado = new javax.swing.JTextField();
-        labPsswEmpleado = new javax.swing.JLabel();
-        pfPsswEmpleado = new javax.swing.JPasswordField();
+        cbIdEmpleado = new javax.swing.JComboBox();
+        lbNombreLogin = new javax.swing.JLabel();
+        lbContrasenaLogin = new javax.swing.JLabel();
+        pfContrasenaLogin = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio de sesión");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -61,36 +71,40 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        cbIdEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbIdEmpleado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbIdEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbIdEmpleadoActionPerformed(evt);
+            }
+        });
 
-        labIdEmpleado.setText("Identificador");
+        lbNombreLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbNombreLogin.setText("Nombre");
 
-        labNomEmpleado.setText("Nombre");
-
-        labPsswEmpleado.setText("Contraseña");
+        lbContrasenaLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbContrasenaLogin.setText("Contraseña");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labIdEmpleado)
-                        .addComponent(labPsswEmpleado, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(labNomEmpleado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAcceder)
+                        .addComponent(lbContrasenaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelar)
-                        .addGap(0, 145, Short.MAX_VALUE))
-                    .addComponent(cbIdEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfNomEmpleado)
-                    .addComponent(pfPsswEmpleado))
-                .addContainerGap())
+                        .addComponent(pfContrasenaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbNombreLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAcceder)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelar))
+                            .addComponent(cbIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,20 +112,16 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labIdEmpleado))
-                .addGap(18, 18, 18)
+                    .addComponent(lbNombreLogin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labNomEmpleado)
-                    .addComponent(tfNomEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labPsswEmpleado)
-                    .addComponent(pfPsswEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbContrasenaLogin)
+                    .addComponent(pfContrasenaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,13 +140,38 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccederMouseClicked
-        formularioPrincipal.setVisible(true);
-        dispose();
+        EmpleadoConexion con;
+        Empleado emp;
+        
+        con = new EmpleadoConexion();
+        emp = new Empleado();
+        String psswd = "";
+        
+        for(char c : pfContrasenaLogin.getPassword()) {
+            psswd += c;
+        }
+        emp.setNombres(String.valueOf(cbIdEmpleado.getSelectedItem()));
+        emp.setContraseña(psswd);
+        if(con.existe(emp)) {
+            formularioPrincipal.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnAccederMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        LoginConexion con;
+        
+        con = new LoginConexion();
+        con.rellenaComboBox(cbIdEmpleado);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void cbIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbIdEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,12 +209,11 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceder;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbIdEmpleado;
+    private javax.swing.JComboBox cbIdEmpleado;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labIdEmpleado;
-    private javax.swing.JLabel labNomEmpleado;
-    private javax.swing.JLabel labPsswEmpleado;
-    private javax.swing.JPasswordField pfPsswEmpleado;
-    private javax.swing.JTextField tfNomEmpleado;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel lbContrasenaLogin;
+    private javax.swing.JLabel lbNombreLogin;
+    private javax.swing.JPasswordField pfContrasenaLogin;
     // End of variables declaration//GEN-END:variables
 }

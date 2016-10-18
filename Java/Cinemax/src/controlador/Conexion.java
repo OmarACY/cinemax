@@ -7,6 +7,7 @@ package controlador;
 
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -5,8 +5,10 @@
  */
 package controlador;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
 import vista.Principal;
@@ -76,5 +78,26 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         catch(ClassNotFoundException | SQLException ex) {
             return null;
         }
+    }
+    
+    public boolean existe(Empleado modelo) {
+        boolean existe = false;       
+        String consulta;
+        
+        consulta = "SELECT * FROM Persona.empleado where Concat(nombres, ' ', app, ' ', apm) = '" + modelo.getNombres()+ "' AND contraseña = '" + modelo.getContraseña() + "'";
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            if(rs.next()) {
+                existe = true;
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intente nuevamente", "Inicio de sesión", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+        
+        return existe;
     }
 }
