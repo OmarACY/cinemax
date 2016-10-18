@@ -7,6 +7,7 @@ package vista;
 
 import controlador.EmpleadoConexion;
 import controlador.LoginConexion;
+import java.awt.Toolkit;
 import java.util.Arrays;
 import javax.swing.text.BadLocationException;
 import modelo.Empleado;
@@ -24,6 +25,14 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         formularioPrincipal = new Principal();
+        setIcon();
+    }
+    
+    /**
+     * This method sets the application icon
+     */
+    private void setIcon() {
+        super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagenes/logo_oscuro.png")));
     }
 
     /**
@@ -48,7 +57,6 @@ public class Login extends javax.swing.JFrame {
         setTitle("Inicio de sesión");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
