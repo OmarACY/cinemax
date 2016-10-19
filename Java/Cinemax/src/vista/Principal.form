@@ -1310,8 +1310,8 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane5" min="-2" pref="296" max="-2" attributes="0"/>
-                                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" min="-2" pref="318" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1330,13 +1330,11 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                               <Component id="etMensajeSuc" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1361,11 +1359,11 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jPanel10" max="32767" attributes="0"/>
-                                          <Component id="jPanel9" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="etMensajeSuc" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -1375,7 +1373,6 @@
                                               <Component id="btAgregaSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1393,17 +1390,20 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="etSalasSuc" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="etTelSuc" alignment="0" pref="96" max="32767" attributes="0"/>
-                                                  <Component id="etNombreSuc" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="etTelSuc" alignment="0" pref="96" max="32767" attributes="0"/>
+                                              <Component id="etNombreSuc" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="etSalasSuc" max="32767" attributes="0"/>
+                                              <Component id="etSalasEditarSuc" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="btSalasSuc" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
                                               <Component id="spSalasSuc" pref="313" max="32767" attributes="0"/>
                                               <Component id="ctNombreSuc" alignment="1" max="32767" attributes="0"/>
                                               <Component id="ctTelSuc" alignment="1" max="32767" attributes="0"/>
@@ -1429,7 +1429,12 @@
                                               <Component id="etSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="spSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="btSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="etSalasEditarSuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1459,6 +1464,20 @@
                                 </Component>
                                 <Component class="javax.swing.JSpinner" name="spSalasSuc">
                                 </Component>
+                                <Component class="javax.swing.JButton" name="btSalasSuc">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Editar"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalasSucActionPerformed"/>
+                                  </Events>
+                                </Component>
+                                <Component class="javax.swing.JLabel" name="etSalasEditarSuc">
+                                  <Properties>
+                                    <Property name="horizontalAlignment" type="int" value="4"/>
+                                    <Property name="text" type="java.lang.String" value="Salas"/>
+                                  </Properties>
+                                </Component>
                               </SubComponents>
                             </Container>
                             <Container class="javax.swing.JPanel" name="jPanel10">
@@ -1476,14 +1495,14 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="etColoniaMem1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="etColoniaSuc" alignment="0" max="32767" attributes="0"/>
                                               <Component id="etNumeroSuc" alignment="0" pref="41" max="32767" attributes="0"/>
                                               <Component id="etCalleSuc" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="ctNumeroMem1" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="ctCalleMem1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="ctNumeroSuc" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="ctCalleSuc" alignment="0" max="32767" attributes="0"/>
                                               <Component id="ctColoniaSuc" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -1494,26 +1513,26 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="etColoniaMem1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="etColoniaSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="ctColoniaSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="etCalleSuc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ctCalleMem1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="ctCalleSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="ctNumeroMem1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="ctNumeroSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="etNumeroSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Component class="javax.swing.JLabel" name="etColoniaMem1">
+                                <Component class="javax.swing.JLabel" name="etColoniaSuc">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
                                     <Property name="text" type="java.lang.String" value="Colonia"/>
@@ -1533,9 +1552,9 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="ctColoniaSuc">
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="ctCalleMem1">
+                                <Component class="javax.swing.JTextField" name="ctCalleSuc">
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="ctNumeroMem1">
+                                <Component class="javax.swing.JTextField" name="ctNumeroSuc">
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1751,17 +1770,17 @@
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="etFechaFun" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="etFechaEmp3" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="etHoraIniFun" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="etHoraIniFun" min="-2" pref="85" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
                                                           <Component id="etFechaEmp4" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="etFechaFun" min="-2" pref="125" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="etFechaEmp3" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -1771,15 +1790,15 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="cbCineFun" min="-2" pref="171" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="etGeneroPel3" min="-2" pref="55" max="-2" attributes="0"/>
+                                                  <Component id="etSalaFun" min="-2" pref="55" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="cbGeneroPel3" min="-2" pref="103" max="-2" attributes="0"/>
+                                                  <Component id="cbSalaFun" min="-2" pref="103" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="cbPeliculaFun" alignment="0" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
                                                   <Component id="ctHoraIniFun" min="-2" pref="113" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                                  <Component id="etHoraFinFun" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="etHoraFinFun" min="-2" pref="73" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="etFechaEmp5" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
@@ -1802,8 +1821,8 @@
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="cbCineFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="etCineFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cbGeneroPel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etGeneroPel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbSalaFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="etSalaFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1852,6 +1871,9 @@
                                       <StringArray count="0"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbCineFunItemStateChanged"/>
+                                  </Events>
                                   <AuxValues>
                                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                   </AuxValues>
@@ -1862,7 +1884,7 @@
                                     <Property name="text" type="java.lang.String" value="Cine"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JComboBox" name="cbGeneroPel3">
+                                <Component class="javax.swing.JComboBox" name="cbSalaFun">
                                   <Properties>
                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                       <StringArray count="0"/>
@@ -1872,7 +1894,7 @@
                                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                   </AuxValues>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="etGeneroPel3">
+                                <Component class="javax.swing.JLabel" name="etSalaFun">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
                                     <Property name="text" type="java.lang.String" value="Sala"/>
@@ -1886,7 +1908,7 @@
                                 <Component class="javax.swing.JLabel" name="etFechaFun">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
+                                    <Property name="text" type="java.lang.String" value="Fecha"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="etFechaEmp3">
@@ -1915,7 +1937,7 @@
                                 <Component class="javax.swing.JLabel" name="etHoraFinFun">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="Hora de inicio"/>
+                                    <Property name="text" type="java.lang.String" value="Hora de final"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="etFechaEmp5">

@@ -41,3 +41,11 @@ C:\Users\MILAN\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.pdb
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.exe.config
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.exe
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.pdb
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.exe
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.pdb
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.csprojResolveAssemblyReference.cache
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.ControlSalas.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Cinemax.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Login.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Properties.Resources.resources
+C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache

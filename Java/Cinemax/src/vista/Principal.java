@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import controlador.*;
 import java.awt.Color;
 import java.sql.Date;
+import java.sql.Time;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -134,13 +135,15 @@ public class Principal extends javax.swing.JFrame {
         ctNombreSuc = new javax.swing.JTextField();
         ctTelSuc = new javax.swing.JTextField();
         spSalasSuc = new javax.swing.JSpinner();
+        btSalasSuc = new javax.swing.JButton();
+        etSalasEditarSuc = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        etColoniaMem1 = new javax.swing.JLabel();
+        etColoniaSuc = new javax.swing.JLabel();
         etNumeroSuc = new javax.swing.JLabel();
         etCalleSuc = new javax.swing.JLabel();
         ctColoniaSuc = new javax.swing.JTextField();
-        ctCalleMem1 = new javax.swing.JTextField();
-        ctNumeroMem1 = new javax.swing.JTextField();
+        ctCalleSuc = new javax.swing.JTextField();
+        ctNumeroSuc = new javax.swing.JTextField();
         btAgregaSuc = new javax.swing.JButton();
         btEliminaSuc = new javax.swing.JButton();
         btActualizaSuc = new javax.swing.JButton();
@@ -160,8 +163,8 @@ public class Principal extends javax.swing.JFrame {
         etPeliculaFun = new javax.swing.JLabel();
         cbCineFun = new javax.swing.JComboBox<>();
         etCineFun = new javax.swing.JLabel();
-        cbGeneroPel3 = new javax.swing.JComboBox<>();
-        etGeneroPel3 = new javax.swing.JLabel();
+        cbSalaFun = new javax.swing.JComboBox<>();
+        etSalaFun = new javax.swing.JLabel();
         ctHoraIniFun = new javax.swing.JTextField();
         etFechaFun = new javax.swing.JLabel();
         etFechaEmp3 = new javax.swing.JLabel();
@@ -959,19 +962,32 @@ public class Principal extends javax.swing.JFrame {
         etSalasSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etSalasSuc.setText("Numero de salas");
 
+        btSalasSuc.setText("Editar");
+        btSalasSuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalasSucActionPerformed(evt);
+            }
+        });
+
+        etSalasEditarSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etSalasEditarSuc.setText("Salas");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etSalasSuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(etTelSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addComponent(etNombreSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etTelSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(etNombreSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etSalasSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etSalasEditarSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(btSalasSuc)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(spSalasSuc, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                     .addComponent(ctNombreSuc, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ctTelSuc, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -991,13 +1007,17 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etSalasSuc)
                     .addComponent(spSalasSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalasSuc)
+                    .addComponent(etSalasEditarSuc))
+                .addContainerGap())
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de contacto"));
 
-        etColoniaMem1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etColoniaMem1.setText("Colonia");
+        etColoniaSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etColoniaSuc.setText("Colonia");
 
         etNumeroSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etNumeroSuc.setText("Numero");
@@ -1012,13 +1032,13 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(etColoniaMem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etColoniaSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(etNumeroSuc, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                     .addComponent(etCalleSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ctNumeroMem1)
-                    .addComponent(ctCalleMem1)
+                    .addComponent(ctNumeroSuc)
+                    .addComponent(ctCalleSuc)
                     .addComponent(ctColoniaSuc))
                 .addContainerGap())
         );
@@ -1026,17 +1046,17 @@ public class Principal extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etColoniaMem1)
+                    .addComponent(etColoniaSuc)
                     .addComponent(ctColoniaSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etCalleSuc)
-                    .addComponent(ctCalleMem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ctCalleSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ctNumeroMem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctNumeroSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etNumeroSuc))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
 
         btAgregaSuc.setText("Agregar");
@@ -1074,12 +1094,11 @@ public class Principal extends javax.swing.JFrame {
         panelInfoEmp4Layout.setHorizontalGroup(
             panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoEmp4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelInfoEmp4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelInfoEmp4Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(10, 10, 10)
                         .addComponent(etMensajeSuc)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1098,18 +1117,17 @@ public class Principal extends javax.swing.JFrame {
         panelInfoEmp4Layout.setVerticalGroup(
             panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoEmp4Layout.createSequentialGroup()
-                .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etMensajeSuc)
                     .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btCancelaSuc)
                         .addComponent(btActualizaSuc)
                         .addComponent(btEliminaSuc)
-                        .addComponent(btAgregaSuc)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btAgregaSuc))))
         );
 
         tablaSucursal.setModel(new javax.swing.table.DefaultTableModel(
@@ -1147,8 +1165,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Sucursal", panelSucursal);
@@ -1196,16 +1214,22 @@ public class Principal extends javax.swing.JFrame {
         etPeliculaFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etPeliculaFun.setText("Pelicula");
 
+        cbCineFun.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbCineFunItemStateChanged(evt);
+            }
+        });
+
         etCineFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etCineFun.setText("Cine");
 
-        etGeneroPel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etGeneroPel3.setText("Sala");
+        etSalaFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        etSalaFun.setText("Sala");
 
         ctHoraIniFun.setName("ctFechaEmp"); // NOI18N
 
         etFechaFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaFun.setText("Fecha de nacimiento");
+        etFechaFun.setText("Fecha");
 
         etFechaEmp3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etFechaEmp3.setText("AAAA-MM-DD");
@@ -1219,7 +1243,7 @@ public class Principal extends javax.swing.JFrame {
         etFechaEmp4.setText("HH:MM");
 
         etHoraFinFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etHoraFinFun.setText("Hora de inicio");
+        etHoraFinFun.setText("Hora de final");
 
         etFechaEmp5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etFechaEmp5.setText("HH:MM");
@@ -1238,29 +1262,29 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(etPeliculaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(etFechaFun)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(etFechaEmp3))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(etHoraIniFun)
+                        .addGap(113, 113, 113)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                .addComponent(etHoraIniFun, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(etFechaEmp4)))))
+                                .addComponent(etFechaEmp4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                .addComponent(etFechaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(etFechaEmp3)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(cbCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(etGeneroPel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbGeneroPel3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cbPeliculaFun, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(ctHoraIniFun, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(etHoraFinFun)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(etHoraFinFun, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(etFechaEmp5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1278,8 +1302,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etCineFun)
-                    .addComponent(cbGeneroPel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etGeneroPel3))
+                    .addComponent(cbSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etSalaFun))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etFechaFun)
@@ -1550,36 +1574,36 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_panelPeliculaComponentShown
 
     private void btAgregaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaSucActionPerformed
-       // agregaSucursal();
+        agregaSucursal();
     }//GEN-LAST:event_btAgregaSucActionPerformed
 
     private void btEliminaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminaSucActionPerformed
-       //eliminaSucursal();
+       eliminaSucursal();
     }//GEN-LAST:event_btEliminaSucActionPerformed
 
     private void btActualizaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizaSucActionPerformed
-       //actualizaSucursal();
+       actualizaSucursal();
     }//GEN-LAST:event_btActualizaSucActionPerformed
 
     private void btCancelaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaSucActionPerformed
-        //habilitaEdicionSucursal(false);
+        habilitaEdicionSucursal(false);
     }//GEN-LAST:event_btCancelaSucActionPerformed
 
     private void tablaSucursalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaSucursalMouseClicked
        if (tablaSucursal.getSelectedRow() > -1) {
-            //cargaDatosSucursal();
+            cargaDatosSucursal();
             etMensajeSuc.setVisible(false);
         }
     }//GEN-LAST:event_tablaSucursalMouseClicked
 
     private void panelSucursalComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelSucursalComponentShown
-        //actualizaTablaSucursal();
+        actualizaTablaSucursal();
         etMensajeSuc.setVisible(false);
-        //habilitaEdicionSucursal(false);
+        habilitaEdicionSucursal(false);
     }//GEN-LAST:event_panelSucursalComponentShown
 
     private void btAgregaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaFunActionPerformed
-        // agregaFuncion();
+        agregaFuncion();
     }//GEN-LAST:event_btAgregaFunActionPerformed
 
     private void btEliminaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminaFunActionPerformed
@@ -1601,11 +1625,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaFuncionMouseClicked
 
+    private void btSalasSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalasSucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSalasSucActionPerformed
+
     private void panelFuncionComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelFuncionComponentShown
+        rellenaComboPeliculas();
+        rellenaComboSucursales();
         //actualizaTablaFuncion();
-        etMensajeSuc.setVisible(false);
+        //etMensajeFun.setVisible(false);
         //habilitaEdicionFuncion(false);
     }//GEN-LAST:event_panelFuncionComponentShown
+
+    private void cbCineFunItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCineFunItemStateChanged
+        if(cbCineFun.getSelectedIndex() != -1)
+            rellenaComboSalas();
+        //JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
+    }//GEN-LAST:event_cbCineFunItemStateChanged
    
     // </editor-fold>     
     
@@ -2174,13 +2210,282 @@ public class Principal extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Sucursal">
-    
         
+        private void habilitaEdicionSucursal(boolean visible){
+        if(visible) {
+            btActualizaSuc.setVisible(true);
+            btEliminaSuc.setVisible(true);
+            btCancelaSuc.setVisible(true);
+            btAgregaSuc.setVisible(false);
+            spSalasSuc.setEnabled(false);
+            btSalasSuc.setVisible(true);
+            etSalasEditarSuc.setVisible(true);
+        }
+        else {
+            limpiaFormularioSucursal();
+            limpiaCamposSucursal();
+            btActualizaSuc.setVisible(false);
+            btEliminaSuc.setVisible(false);
+            btCancelaSuc.setVisible(false);
+            btAgregaSuc.setVisible(true);
+            spSalasSuc.setEnabled(true);
+            btSalasSuc.setVisible(false);
+            etSalasEditarSuc.setVisible(false);
+        }
+        //etMensajeMem.setVisible(false);
+        }
+        private void agregaSucursal(){
+        
+        CineConexion conCin;
+        Cine cine;
+        limpiaFormularioSucursal();
+        
+        if(validaDatosSucursal())
+        {
+            conCin = new CineConexion();
+            cine = new Cine();
+            cine.setNombre(ctNombreSuc.getText());
+            cine.setTelefono(ctTelSuc.getText());
+            cine.setNum_salas(Integer.parseInt(spSalasSuc.getValue().toString()));
+            cine.setColonia(ctColoniaSuc.getText());
+            cine.setCalle(ctCalleSuc.getText());
+            cine.setNumero(Integer.parseInt(ctNumeroSuc.getText()));
+
+            if(conCin.inserta(cine)) {
+                limpiaCamposSucursal();
+                cambiaTextoMensajeSuc("Se agregó correctamente!",Color.BLUE);
+                etMensajeSuc.setVisible(true);
+                actualizaTablaSucursal();
+            }
+            else {
+                cambiaTextoMensajeSuc("Sucursal no insertado",Color.RED); 
+                etMensajeSuc.setVisible(true);
+            }
+        }   
+    }
+        
+    private void actualizaSucursal() {
+        CineConexion conCin;
+        Cine cine;
+        limpiaFormularioSucursal();
+        
+        if(validaDatosSucursal())
+        {
+            conCin = new CineConexion();
+            cine = new Cine();
+            cine.setClave_cin(Long.parseLong(tablaSucursal.getValueAt(tablaSucursal.getSelectedRow(), 0).toString()));
+            cine.setNombre(ctNombreSuc.getText());
+            cine.setTelefono(ctTelSuc.getText());
+            cine.setNum_salas(Integer.parseInt(spSalasSuc.getValue().toString()));
+            cine.setNumero(Integer.parseInt(ctNumeroSuc.getText()));
+            cine.setColonia(ctColoniaSuc.getText());
+            cine.setCalle(ctCalleSuc.getText());        
+            
+            
+            if(conCin.actualiza(cine)) {
+                cambiaTextoMensajeSuc("Se actualizó correctamente!",Color.BLUE);
+                etMensajeSuc.setVisible(true);
+                actualizaTablaSucursal();
+            }
+            else {
+                cambiaTextoMensajeSuc("Sucursal no actualizada",Color.RED); 
+                etMensajeSuc.setVisible(true);
+            }
+            habilitaEdicionSucursal(false);
+        }
+    }
+
+    private void eliminaSucursal() {
+        CineConexion conCin;
+        Cine cine;
+        limpiaFormularioSucursal();
+        
+        conCin = new CineConexion();
+        cine = new Cine();
+        cine.setClave_cin(Long.parseLong(tablaSucursal.getValueAt(tablaSucursal.getSelectedRow(), 0).toString()));
+        int opcion = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            if(conCin.elimina(cine)) {
+                cambiaTextoMensajeSuc("Se eliminó correctamente!",Color.BLUE);
+                etMensajeSuc.setVisible(true);
+                actualizaTablaSucursal();
+            }
+            else {
+                cambiaTextoMensajeSuc("Sucursal no eliminada",Color.RED); 
+                etMensajeSuc.setVisible(true);
+            }
+            habilitaEdicionSucursal(false);
+        }
+        
+    }
+            
+    private void limpiaFormularioSucursal() {
+        etNombreSuc.setText("Nombre");
+        etTelSuc.setText("Telefono");
+        etSalasSuc.setText("Numero de salas");
+        etColoniaSuc.setText("Colonia");
+        etCalleSuc.setText("Calle");
+        etNumeroSuc.setText("Numero");
+    }
+    
+        private boolean validaDatosSucursal(){
+        boolean valido = true;
+        int error = 0;
+        
+        if (ctNombreSuc.getText().trim().equals("")) { etNombreSuc.setText("Nombre *") ; error++; }
+        if (ctTelSuc.getText().trim().equals("")) { etTelSuc.setText("Telefono *"); error++; }
+        if (spSalasSuc.getValue().toString().equals("0")) { etSalasSuc.setText("Numero de salas *"); error++; }
+        if (ctColoniaSuc.getText().trim().equals("")) { etColoniaSuc.setText("Colonia *"); error++; }
+        if (ctCalleSuc.getText().trim().equals("")) { etCalleSuc.setText("Calle *"); error++; }
+        if (ctNumeroSuc.getText().trim().equals("")) { etNumeroSuc.setText("Numero *"); error++; }
+        
+        
+        if (error > 0) { cambiaTextoMensajeSuc("* Campos requeridos!",Color.RED) ; etMensajeSuc.setVisible(true); valido = false; }   
+        
+        return valido;
+    }
+        
+    private void cambiaTextoMensajeSuc(String mensaje, Color color){
+        etMensajeSuc.setText(mensaje);
+        etMensajeSuc.setForeground(color);
+    }
+    
+    private void limpiaCamposSucursal() {
+        ctNombreSuc.setText("");
+        ctTelSuc.setText("");
+        spSalasSuc.setValue(0);
+        ctColoniaSuc.setText("");
+        ctCalleSuc.setText("");
+        ctNumeroSuc.setText("");  
+    }
+    
+    private void actualizaTablaSucursal() {
+        CineConexion con;
+
+        con = new CineConexion();
+        try {
+            tablaSucursal.setModel(con.getDatosTabla());
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void cargaDatosSucursal() {//Adaptar
+        int renglon = tablaSucursal.getSelectedRow();
+        
+        ctNombreSuc.setText(tablaSucursal.getValueAt(renglon, 1).toString());
+        spSalasSuc.setValue(tablaSucursal.getValueAt(renglon, 2));        
+        ctColoniaSuc.setText(tablaSucursal.getValueAt(renglon, 3).toString());
+        ctCalleSuc.setText(tablaSucursal.getValueAt(renglon, 4).toString());        
+        ctNumeroSuc.setText(tablaSucursal.getValueAt(renglon, 5).toString());
+        ctTelSuc.setText(tablaSucursal.getValueAt(renglon, 6).toString());
+        habilitaEdicionSucursal(true);
+    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Funcion">
+    private void rellenaComboPeliculas(){
+        FuncionConexion con;        
+        con = new FuncionConexion();
+        con.rellenaComboBox(cbPeliculaFun,"Cine.pelicula","nombre");
+        cbPeliculaFun.setSelectedIndex(-1);
+    }
     
+    private void rellenaComboSucursales(){
+        FuncionConexion con;        
+        con = new FuncionConexion();
+        con.rellenaComboBox(cbCineFun,"Cine.cine","nombre");
+        cbCineFun.setSelectedIndex(-1);
+    }
+    
+    private void rellenaComboSalas(){
+        FuncionConexion con;        
+        con = new FuncionConexion();
+        con.rellenaComboBoxSalas(cbSalaFun,cbCineFun.getSelectedItem().toString());
+        cbSalaFun.setSelectedIndex(-1);
+    }
+    
+    private void agregaFuncion(){
         
+        FuncionConexion conFun;
+        Funcion funcion;
+        limpiaFormularioFuncion();
+        
+        if(validaDatosFuncion())
+        {
+            conFun = new FuncionConexion();
+            funcion = new Funcion();            
+            funcion.setClave_pel(Integer.parseInt(cbPeliculaFun.getSelectedItem().toString()));//Checar que el id
+            funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
+            funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
+            funcion.setHora_fin(Time.valueOf(ctFechaFun.getText()));
+            funcion.setHora_ini(Time.valueOf(ctFechaFun.getText()));
+
+            if(conFun.inserta(funcion)) {
+                limpiaCamposFuncion();
+                cambiaTextoMensajeFun("Se agregó correctamente!",Color.BLUE);
+                etMensajeFun.setVisible(true);
+                actualizaTablaFuncion();
+            }
+            else {
+                cambiaTextoMensajeFun("Empleado no insertado",Color.RED); 
+                etMensajeFun.setVisible(true);
+            }
+        }   
+    }
+    
+    private void limpiaFormularioFuncion() {
+        etPeliculaFun.setText("Nombre (s)");
+        etCineFun.setText("Cine");
+        etSalaFun.setText("Sala");
+        etFechaFun.setText("Fecha");
+        etHoraIniFun.setText("Hora de inicio");
+        etHoraFinFun.setText("Hora de fin");
+    }
+    
+    private boolean validaDatosFuncion(){
+        boolean valido = true;
+        int error = 0;
+        
+        if (cbPeliculaFun.getSelectedIndex() == -1) { etPeliculaFun.setText("Pelicula *"); error++; }
+        if (cbCineFun.getSelectedIndex() == -1) { etCineFun.setText("Cine *"); error++; }
+        if (cbSalaFun.getSelectedIndex() == -1) { etSalaFun.setText("Sala *"); error++; }
+        if (ctFechaFun.getText().trim().equals("")) { etFechaFun.setText("Fecha *") ; error++; }
+        if (ctHoraIniFun.getText().trim().equals("")) { etHoraIniFun.setText("Hora de inicio *") ; error++; }
+        if (ctHoraIniFun.getText().trim().equals("")) { etHoraFinFun.setText("Hora de fin *") ; error++; }
+        
+        if (error > 0) { cambiaTextoMensajeFun("* Campos requeridos!",Color.RED) ; etMensajeFun.setVisible(true); valido = false; }   
+        
+        return valido;
+    }
+    
+    private void cambiaTextoMensajeFun(String mensaje, Color color){
+        etMensajeFun.setText(mensaje);
+        etMensajeFun.setForeground(color);
+    }
+    
+    private void limpiaCamposFuncion() {
+        cbPeliculaFun.setSelectedIndex(-1);
+        cbCineFun.setSelectedIndex(-1);
+        cbCineFun.setSelectedIndex(-1);
+        ctFechaFun.setText("");
+        ctHoraIniFun.setText("");
+        ctHoraFinFun.setText("");
+        
+    }
+    
+    private void actualizaTablaFuncion() {
+        FuncionConexion con;
+
+        con = new FuncionConexion();
+        try {
+            tablaFuncion.setModel(con.getDatosTabla());
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     // </editor-fold>
     /**
      * @param args the command line arguments
@@ -2236,10 +2541,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btEliminaMem;
     private javax.swing.JButton btEliminaPel;
     private javax.swing.JButton btEliminaSuc;
+    private javax.swing.JButton btSalasSuc;
     private javax.swing.JComboBox<String> cbCineFun;
     private javax.swing.JComboBox<String> cbGeneroPel;
-    private javax.swing.JComboBox<String> cbGeneroPel3;
     private javax.swing.JComboBox<String> cbPeliculaFun;
+    private javax.swing.JComboBox<String> cbSalaFun;
     private javax.swing.JComboBox<String> cbTipoMem;
     private javax.swing.JTextField ctApmEmp;
     private javax.swing.JTextField ctApmMem;
@@ -2247,7 +2553,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ctAppMem;
     private javax.swing.JTextField ctCalleEmp;
     private javax.swing.JTextField ctCalleMem;
-    private javax.swing.JTextField ctCalleMem1;
+    private javax.swing.JTextField ctCalleSuc;
     private javax.swing.JTextField ctColoniaEmp;
     private javax.swing.JTextField ctColoniaMem;
     private javax.swing.JTextField ctColoniaSuc;
@@ -2264,7 +2570,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ctNombreSuc;
     private javax.swing.JTextField ctNumeroEmp;
     private javax.swing.JTextField ctNumeroMem;
-    private javax.swing.JTextField ctNumeroMem1;
+    private javax.swing.JTextField ctNumeroSuc;
     private javax.swing.JTextField ctTelSuc;
     private javax.swing.JLabel etApmEmp;
     private javax.swing.JLabel etApmMem;
@@ -2277,7 +2583,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etClasificacionPel;
     private javax.swing.JLabel etColoniaEmp;
     private javax.swing.JLabel etColoniaMem;
-    private javax.swing.JLabel etColoniaMem1;
+    private javax.swing.JLabel etColoniaSuc;
     private javax.swing.JLabel etContEmp;
     private javax.swing.JLabel etDirectorPel;
     private javax.swing.JLabel etFechaEmp;
@@ -2289,7 +2595,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etFechaFun;
     private javax.swing.JLabel etFechaMem;
     private javax.swing.JLabel etGeneroPel;
-    private javax.swing.JLabel etGeneroPel3;
     private javax.swing.JLabel etHoraFinFun;
     private javax.swing.JLabel etHoraIniFun;
     private javax.swing.JLabel etMensajeEmp;
@@ -2306,6 +2611,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etNumeroSuc;
     private javax.swing.JLabel etPeliculaFun;
     private javax.swing.JLabel etPuntosMem;
+    private javax.swing.JLabel etSalaFun;
+    private javax.swing.JLabel etSalasEditarSuc;
     private javax.swing.JLabel etSalasSuc;
     private javax.swing.JLabel etSinopsisPel;
     private javax.swing.JLabel etTelSuc;

@@ -12,6 +12,7 @@ package modelo;
 public class Cine {
     private long clave_cin;
     private String nombre;
+    private String telefono;
     private int num_salas;
     private String colonia;
     private String calle;
@@ -24,7 +25,11 @@ public class Cine {
     public String getNombre() {
         return nombre;
     }
-
+    
+    public String getTelefono() {
+        return telefono;
+    }
+        
     public int getNum_salas() {
         return num_salas;
     }
@@ -40,9 +45,17 @@ public class Cine {
     public int getNumero() {
         return numero;
     }
-
+    
+    public void setClave_cin(long clave_cin) {
+        this.clave_cin = clave_cin;
+    }
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public void setNum_salas(int num_salas) {

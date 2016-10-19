@@ -82,7 +82,24 @@ public abstract class Conexion<Modelo> {
         }
         return new DefaultTableModel(tuplas, nombresColumnas);
    }
-    
+   
+   protected int ObtenUltimoID(String tabla, String nombreId)
+    {
+        String consulta;        
+        consulta = "SELECT " + nombreId + " from " + tabla + " order by " + nombreId + " desc limit 1";
+        int id;
+        
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            rs.next();
+            id = Integer.parseInt(rs.getString("clave_cin"));
+            return id;
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            return -1;
+        }
+    }
+   
     public abstract boolean inserta(Modelo modelo);
     public abstract boolean elimina(Modelo modelo);
     public abstract boolean actualiza(Modelo modelo);
