@@ -49,3 +49,6 @@ C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Cinemax.r
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Login.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.Properties.Resources.resources
 C:\Users\OmarACY\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.csproj.GenerateResource.Cache
+C:\Users\becarios\Documents\GitHub\cinemax\C#\cinemax\bin\Debug\cinemax.exe.config
+C:\Users\becarios\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.exe
+C:\Users\becarios\Documents\GitHub\cinemax\C#\cinemax\obj\Debug\cinemax.pdb

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Cinemax"/>
@@ -30,7 +34,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="576" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="585" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -53,7 +57,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tpPrincipal" alignment="1" pref="576" max="32767" attributes="0"/>
+              <Component id="tpPrincipal" alignment="0" pref="585" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -84,7 +88,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tpAdministración" alignment="1" pref="549" max="32767" attributes="0"/>
+                      <Component id="tpAdministración" alignment="1" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -130,8 +134,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" min="-2" pref="271" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="310" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -537,8 +540,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="269" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="308" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -993,8 +995,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" min="-2" pref="287" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="295" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1310,8 +1311,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane5" min="-2" pref="318" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" pref="320" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1655,7 +1655,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane6" pref="306" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" pref="314" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2017,7 +2017,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSeparator1" pref="548" max="32767" attributes="0"/>
+                      <Component id="jSeparator1" pref="557" max="32767" attributes="0"/>
                       <Component id="jPanel5" alignment="0" max="32767" attributes="0"/>
                       <Component id="jPanel12" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -2039,15 +2039,238 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="294" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbClienteVenta" max="32767" attributes="0"/>
+                                  <Component id="cbCineVenta" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbPeliculaVenta" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbHoraVenta" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbSalaVenta" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfNumeroTarjeta" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbClienteVenta" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbCineVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbPeliculaVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbHoraVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbSalaVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbPagoVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="rbEfectivo" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="rbTarjeta" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lbTarjetaVenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbCodigoSeg" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbFechaVencimiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="btnGenerarVenta" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="tfMesVenc" min="-2" pref="65" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="lbSlash" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="tfAnoVenc" min="-2" pref="65" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="tfCodigoSeg" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbClienteVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbClienteVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbCineVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbCineVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbPeliculaVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbPeliculaVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbHoraVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbHoraVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbSalaVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbSalaVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbPagoVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="rbEfectivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lbTarjetaVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfNumeroTarjeta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbCodigoSeg" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfCodigoSeg" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lbFechaVencimiento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tfMesVenc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfAnoVenc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbSlash" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnGenerarVenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="lbClienteVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Cliente"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbClienteVenta">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbCineVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Cine"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbCineVenta">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbPeliculaVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Pel&#xed;cula"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbPeliculaVenta">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbHoraVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Hora"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbHoraVenta">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbSalaVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sala"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cbSalaVenta">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbPagoVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Tipo de pago"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="rbEfectivo">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Efectivo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="rbTarjeta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Tarjeta"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbTarjetaVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="N&#xfa;mero de tarjeta"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfNumeroTarjeta">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbCodigoSeg">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="C&#xf3;digo de seguridad"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfCodigoSeg">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbFechaVencimiento">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Fecha de vencimiento (MM / AA)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfMesVenc">
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfAnoVenc">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbSlash">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="/"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnGenerarVenta">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Generar venta"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel12">
                   <Properties>

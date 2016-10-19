@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         tpPrincipal = new javax.swing.JTabbedPane();
         panelAdministracion = new javax.swing.JPanel();
@@ -96,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         btActualizaMem = new javax.swing.JButton();
         btCancelaMem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        cbTipoMem = new javax.swing.JComboBox<>();
+        cbTipoMem = new javax.swing.JComboBox<String>();
         etTipoMem = new javax.swing.JLabel();
         spPuntosMem = new javax.swing.JSpinner();
         etPuntosMem = new javax.swing.JLabel();
@@ -118,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
         rbAPel = new javax.swing.JRadioButton();
         rbBPel = new javax.swing.JRadioButton();
         rbCPel = new javax.swing.JRadioButton();
-        cbGeneroPel = new javax.swing.JComboBox<>();
+        cbGeneroPel = new javax.swing.JComboBox<String>();
         etGeneroPel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSinopsisPel = new javax.swing.JTextArea();
@@ -159,11 +160,11 @@ public class Principal extends javax.swing.JFrame {
         btCancelaFun = new javax.swing.JButton();
         etMensajeFun = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        cbPeliculaFun = new javax.swing.JComboBox<>();
+        cbPeliculaFun = new javax.swing.JComboBox<String>();
         etPeliculaFun = new javax.swing.JLabel();
-        cbCineFun = new javax.swing.JComboBox<>();
+        cbCineFun = new javax.swing.JComboBox<String>();
         etCineFun = new javax.swing.JLabel();
-        cbSalaFun = new javax.swing.JComboBox<>();
+        cbSalaFun = new javax.swing.JComboBox<String>();
         etSalaFun = new javax.swing.JLabel();
         ctHoraIniFun = new javax.swing.JTextField();
         etFechaFun = new javax.swing.JLabel();
@@ -179,6 +180,28 @@ public class Principal extends javax.swing.JFrame {
         panelVentas = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
+        lbClienteVenta = new javax.swing.JLabel();
+        cbClienteVenta = new javax.swing.JComboBox();
+        lbCineVenta = new javax.swing.JLabel();
+        cbCineVenta = new javax.swing.JComboBox();
+        lbPeliculaVenta = new javax.swing.JLabel();
+        cbPeliculaVenta = new javax.swing.JComboBox();
+        lbHoraVenta = new javax.swing.JLabel();
+        cbHoraVenta = new javax.swing.JComboBox();
+        lbSalaVenta = new javax.swing.JLabel();
+        cbSalaVenta = new javax.swing.JComboBox();
+        lbPagoVenta = new javax.swing.JLabel();
+        rbEfectivo = new javax.swing.JRadioButton();
+        rbTarjeta = new javax.swing.JRadioButton();
+        lbTarjetaVenta = new javax.swing.JLabel();
+        tfNumeroTarjeta = new javax.swing.JTextField();
+        lbCodigoSeg = new javax.swing.JLabel();
+        tfCodigoSeg = new javax.swing.JTextField();
+        lbFechaVencimiento = new javax.swing.JLabel();
+        tfMesVenc = new javax.swing.JTextField();
+        tfAnoVenc = new javax.swing.JTextField();
+        lbSlash = new javax.swing.JLabel();
+        btnGenerarVenta = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -451,8 +474,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Empleado", panelEmpleado);
@@ -613,7 +635,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de membresia"));
 
-        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standar", "Premium", "Vip" }));
+        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Standar", "Premium", "Vip" }));
 
         etTipoMem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etTipoMem.setText("Tipo");
@@ -739,8 +761,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Membresía", panelMembresia);
@@ -797,7 +818,7 @@ public class Principal extends javax.swing.JFrame {
 
         rbCPel.setText("C (18 años +)");
 
-        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
+        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
 
         etGeneroPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etGeneroPel.setText("Genero");
@@ -937,8 +958,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Película", panelPelicula);
@@ -1165,8 +1185,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Sucursal", panelSucursal);
@@ -1391,7 +1410,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Función", panelFuncion);
@@ -1404,7 +1423,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelAdministracionLayout.setVerticalGroup(
             panelAdministracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpAdministración, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 549, Short.MAX_VALUE)
+            .addComponent(tpAdministración, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         tpPrincipal.addTab("Administración", panelAdministracion);
@@ -1415,15 +1434,129 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
+        lbClienteVenta.setText("Cliente");
+
+        cbClienteVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbCineVenta.setText("Cine");
+
+        cbCineVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbPeliculaVenta.setText("Película");
+
+        cbPeliculaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbHoraVenta.setText("Hora");
+
+        cbHoraVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbSalaVenta.setText("Sala");
+
+        cbSalaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbPagoVenta.setText("Tipo de pago");
+
+        rbEfectivo.setText("Efectivo");
+
+        rbTarjeta.setText("Tarjeta");
+
+        lbTarjetaVenta.setText("Número de tarjeta");
+
+        lbCodigoSeg.setText("Código de seguridad");
+
+        lbFechaVencimiento.setText("Fecha de vencimiento (MM / AA)");
+
+        lbSlash.setText("/");
+
+        btnGenerarVenta.setText("Generar venta");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbClienteVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbCineVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbPeliculaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbHoraVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbSalaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfNumeroTarjeta)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbClienteVenta)
+                            .addComponent(lbCineVenta)
+                            .addComponent(lbPeliculaVenta)
+                            .addComponent(lbHoraVenta)
+                            .addComponent(lbSalaVenta)
+                            .addComponent(lbPagoVenta)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(rbEfectivo)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbTarjeta))
+                            .addComponent(lbTarjetaVenta)
+                            .addComponent(lbCodigoSeg)
+                            .addComponent(lbFechaVencimiento)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnGenerarVenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                                    .addComponent(tfMesVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lbSlash)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfAnoVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfCodigoSeg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 118, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbClienteVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbClienteVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbCineVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbCineVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbPeliculaVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbPeliculaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbHoraVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbHoraVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbSalaVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbSalaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbPagoVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbEfectivo)
+                    .addComponent(rbTarjeta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbTarjetaVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNumeroTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbCodigoSeg)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCodigoSeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbFechaVencimiento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfMesVenc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfAnoVenc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbSlash))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnGenerarVenta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -1452,7 +1585,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panelVentasLayout.setVerticalGroup(
             panelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -1467,7 +1600,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(tpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1478,7 +1611,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
         );
 
         pack();
@@ -2542,10 +2675,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btEliminaPel;
     private javax.swing.JButton btEliminaSuc;
     private javax.swing.JButton btSalasSuc;
+    private javax.swing.JButton btnGenerarVenta;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbCineFun;
+    private javax.swing.JComboBox cbCineVenta;
+    private javax.swing.JComboBox cbClienteVenta;
     private javax.swing.JComboBox<String> cbGeneroPel;
+    private javax.swing.JComboBox cbHoraVenta;
     private javax.swing.JComboBox<String> cbPeliculaFun;
+    private javax.swing.JComboBox cbPeliculaVenta;
     private javax.swing.JComboBox<String> cbSalaFun;
+    private javax.swing.JComboBox cbSalaVenta;
     private javax.swing.JComboBox<String> cbTipoMem;
     private javax.swing.JTextField ctApmEmp;
     private javax.swing.JTextField ctApmMem;
@@ -2636,6 +2776,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbCineVenta;
+    private javax.swing.JLabel lbClienteVenta;
+    private javax.swing.JLabel lbCodigoSeg;
+    private javax.swing.JLabel lbFechaVencimiento;
+    private javax.swing.JLabel lbHoraVenta;
+    private javax.swing.JLabel lbPagoVenta;
+    private javax.swing.JLabel lbPeliculaVenta;
+    private javax.swing.JLabel lbSalaVenta;
+    private javax.swing.JLabel lbSlash;
+    private javax.swing.JLabel lbTarjetaVenta;
     private javax.swing.JPanel panelAdministracion;
     private javax.swing.JPanel panelEmpleado;
     private javax.swing.JPanel panelFuncion;
@@ -2651,6 +2801,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbAPel;
     private javax.swing.JRadioButton rbBPel;
     private javax.swing.JRadioButton rbCPel;
+    private javax.swing.JRadioButton rbEfectivo;
+    private javax.swing.JRadioButton rbTarjeta;
     private javax.swing.JSpinner spPuntosMem;
     private javax.swing.JSpinner spSalasSuc;
     private javax.swing.JTextArea taSinopsisPel;
@@ -2659,6 +2811,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable tablaMembresia;
     private javax.swing.JTable tablaPelicula;
     private javax.swing.JTable tablaSucursal;
+    private javax.swing.JTextField tfAnoVenc;
+    private javax.swing.JTextField tfCodigoSeg;
+    private javax.swing.JTextField tfMesVenc;
+    private javax.swing.JTextField tfNumeroTarjeta;
     private javax.swing.JTabbedPane tpAdministración;
     private javax.swing.JTabbedPane tpPrincipal;
     // End of variables declaration//GEN-END:variables
