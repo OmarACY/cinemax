@@ -37,12 +37,33 @@ public class FuncionConexion extends Conexion<Funcion> {
 
     @Override
     public boolean elimina(Funcion modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sentencia;
+        int filasAfectadas;
+        
+        sentencia = String.format("DELETE FROM Cine.funcion WHERE clave_fun = %d",modelo.getClave_fun()); 
+        try {
+            filasAfectadas = ejecutaSentencia(sentencia);
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            filasAfectadas = 0;
+        }
+        return (filasAfectadas > 0);
     }
 
     @Override
     public boolean actualiza(Funcion modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sentencia;
+        int filasAfectadas;
+        
+        sentencia = String.format("UPDATE Cine.funcion SET clave_pel = %d, clave_sal = %d, hora_ini = '%s', hora_fin = '%s', fecha = '%s' WHERE clave_fun = %d", 
+                modelo.getClave_pel(), modelo.getClave_sal(), modelo.getHora_ini().toString(), modelo.getHora_fin().toString(), modelo.getFecha().toString(),modelo.getClave_fun()); 
+        try {
+            filasAfectadas = ejecutaSentencia(sentencia);
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            filasAfectadas = 0;
+        }
+        return (filasAfectadas > 0);
     }
     
     public DefaultTableModel getDatosTabla() {

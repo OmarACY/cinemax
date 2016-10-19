@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         btActualizaMem = new javax.swing.JButton();
         btCancelaMem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        cbTipoMem = new javax.swing.JComboBox<String>();
+        cbTipoMem = new javax.swing.JComboBox<>();
         etTipoMem = new javax.swing.JLabel();
         spPuntosMem = new javax.swing.JSpinner();
         etPuntosMem = new javax.swing.JLabel();
@@ -119,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
         rbAPel = new javax.swing.JRadioButton();
         rbBPel = new javax.swing.JRadioButton();
         rbCPel = new javax.swing.JRadioButton();
-        cbGeneroPel = new javax.swing.JComboBox<String>();
+        cbGeneroPel = new javax.swing.JComboBox<>();
         etGeneroPel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSinopsisPel = new javax.swing.JTextArea();
@@ -160,11 +160,11 @@ public class Principal extends javax.swing.JFrame {
         btCancelaFun = new javax.swing.JButton();
         etMensajeFun = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        cbPeliculaFun = new javax.swing.JComboBox<String>();
+        cbPeliculaFun = new javax.swing.JComboBox<>();
         etPeliculaFun = new javax.swing.JLabel();
-        cbCineFun = new javax.swing.JComboBox<String>();
+        cbCineFun = new javax.swing.JComboBox<>();
         etCineFun = new javax.swing.JLabel();
-        cbSalaFun = new javax.swing.JComboBox<String>();
+        cbSalaFun = new javax.swing.JComboBox<>();
         etSalaFun = new javax.swing.JLabel();
         ctHoraIniFun = new javax.swing.JTextField();
         etFechaFun = new javax.swing.JLabel();
@@ -635,7 +635,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de membresia"));
 
-        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Standar", "Premium", "Vip" }));
+        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standar", "Premium", "Vip" }));
 
         etTipoMem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etTipoMem.setText("Tipo");
@@ -818,7 +818,7 @@ public class Principal extends javax.swing.JFrame {
 
         rbCPel.setText("C (18 años +)");
 
-        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
+        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
 
         etGeneroPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etGeneroPel.setText("Genero");
@@ -1259,13 +1259,13 @@ public class Principal extends javax.swing.JFrame {
         etHoraIniFun.setText("Hora de inicio");
 
         etFechaEmp4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp4.setText("HH:MM");
+        etFechaEmp4.setText("HH:MM:SS");
 
         etHoraFinFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etHoraFinFun.setText("Hora de final");
 
         etFechaEmp5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp5.setText("HH:MM");
+        etFechaEmp5.setText("HH:MM:SS");
 
         ctHoraFinFun.setName("ctFechaEmp"); // NOI18N
 
@@ -1309,7 +1309,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctHoraFinFun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ctFechaFun))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1744,11 +1744,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btAgregaFunActionPerformed
 
     private void btEliminaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminaFunActionPerformed
-        //eliminaFuncion();
+        eliminaFuncion();
     }//GEN-LAST:event_btEliminaFunActionPerformed
 
     private void btActualizaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizaFunActionPerformed
-        //actualizaFuncion();
+        actualizaFuncion();
     }//GEN-LAST:event_btActualizaFunActionPerformed
 
     private void btCancelaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaFunActionPerformed
@@ -2576,8 +2576,8 @@ public class Principal extends javax.swing.JFrame {
             funcion.setClave_pel(Integer.parseInt(arr[0]));
             funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
             funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
-            funcion.setHora_fin(Time.valueOf(ctHoraIniFun.getText()));
-            funcion.setHora_ini(Time.valueOf(ctHoraFinFun.getText()));
+            funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
+            funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
 
             if(conFun.inserta(funcion)) {
                 limpiaCamposFuncion();
@@ -2590,6 +2590,59 @@ public class Principal extends javax.swing.JFrame {
                 etMensajeFun.setVisible(true);
             }
         }   
+    }
+
+    private void actualizaFuncion() {
+        FuncionConexion conFun;
+        Funcion funcion;
+        limpiaFormularioFuncion();
+        
+        if(validaDatosFuncion())
+        {
+            conFun = new FuncionConexion();
+            funcion = new Funcion();
+            funcion.setClave_fun(Long.parseLong(tablaFuncion.getValueAt(tablaFuncion.getSelectedRow(), 0).toString()));
+            String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
+            funcion.setClave_pel(Integer.parseInt(arr[0]));
+            funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
+            funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
+            funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
+            funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
+            
+            if(conFun.actualiza(funcion)) {
+                cambiaTextoMensajeFun("Se actualizó correctamente!",Color.BLUE);
+                etMensajeFun.setVisible(true);
+                actualizaTablaFuncion();
+            }
+            else {
+                cambiaTextoMensajeFun("Funcion no actualizada",Color.RED); 
+                etMensajeFun.setVisible(true);
+            }
+            habilitaEdicionFuncion(false);
+        }
+    }
+    private void eliminaFuncion() {
+        FuncionConexion conFun;
+        Funcion funcion;
+        limpiaFormularioFuncion();
+        
+        conFun = new FuncionConexion();
+        funcion = new Funcion();
+        funcion.setClave_fun(Long.parseLong(tablaFuncion.getValueAt(tablaFuncion.getSelectedRow(), 0).toString()));
+        int opcion = JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            if(conFun.elimina(funcion)) {
+                cambiaTextoMensajeFun("Se eliminó correctamente!",Color.BLUE);
+                etMensajeFun.setVisible(true);
+                actualizaTablaFuncion();
+            }
+            else {
+                cambiaTextoMensajeFun("Funcion no eliminada",Color.RED); 
+                etMensajeFun.setVisible(true);
+            }
+            habilitaEdicionFuncion(false);
+        }
+        
     }
     
     private void limpiaFormularioFuncion() {
@@ -2610,7 +2663,7 @@ public class Principal extends javax.swing.JFrame {
         if (cbSalaFun.getSelectedIndex() == -1) { etSalaFun.setText("Sala *"); error++; }
         if (ctFechaFun.getText().trim().equals("")) { etFechaFun.setText("Fecha *") ; error++; }
         if (ctHoraIniFun.getText().trim().equals("")) { etHoraIniFun.setText("Hora de inicio *") ; error++; }
-        if (ctHoraIniFun.getText().trim().equals("")) { etHoraFinFun.setText("Hora de fin *") ; error++; }
+        if (ctHoraFinFun.getText().trim().equals("")) { etHoraFinFun.setText("Hora de fin *") ; error++; }
         
         if (error > 0) { cambiaTextoMensajeFun("* Campos requeridos!",Color.RED) ; etMensajeFun.setVisible(true); valido = false; }   
         
@@ -2652,7 +2705,7 @@ public class Principal extends javax.swing.JFrame {
         cbSalaFun.setSelectedItem(tablaFuncion.getValueAt(renglon,2).toString());
         ctHoraIniFun.setText(tablaFuncion.getValueAt(renglon, 3).toString());        
         ctHoraFinFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());        
-        ctFechaFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());
+        ctFechaFun.setText(tablaFuncion.getValueAt(renglon, 5).toString());
 
         habilitaEdicionFuncion(true);
     }
