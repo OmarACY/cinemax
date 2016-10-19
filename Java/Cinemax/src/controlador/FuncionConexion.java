@@ -113,4 +113,25 @@ public class FuncionConexion extends Conexion<Funcion> {
             // TODO: ADD DATABASE LOG
         }
    }
+   
+   public boolean disponibilidadFuncion(Funcion modelo){
+        String consulta;
+        boolean disp = true;
+        
+        consulta = String.format( "SELECT * FROM Cine.Funcion where clave_sal =%d and "
+                + "hora_fin >= '%s' and fecha = '%s' ",modelo.getClave_sal(),
+                modelo.getHora_ini().toString(),modelo.getFecha().toString());
+        
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            
+            if(rs.next()){
+                disp = false;
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+        return disp;
+   }
 }

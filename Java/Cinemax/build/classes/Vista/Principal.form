@@ -213,47 +213,33 @@
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                                          <Component id="etFechaEmp" pref="109" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="etApmEmp" max="32767" attributes="0"/>
-                                                      </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="etApmEmp" max="32767" attributes="0"/>
+                                                      <Component id="etFechaEmp" pref="103" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="ctApmEmp" min="-2" pref="244" max="-2" attributes="0"/>
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                          <Component id="etFechaEmp1" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="ctFechaEmp" max="32767" attributes="0"/>
-                                                      </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="ctApmEmp" pref="244" max="32767" attributes="0"/>
+                                                      <Component id="dcFechaEmp" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Group type="102" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="etContEmp" max="32767" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="ctContEmp" min="-2" pref="242" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="etContEmp" max="32767" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="ctContEmp" min="-2" pref="242" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="etAppEmp" max="32767" attributes="0"/>
-                                                              <Component id="etNombreEmp" max="32767" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="ctNombreEmp" max="32767" attributes="0"/>
-                                                              <Component id="ctAppEmp" min="-2" pref="244" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
+                                                      <Component id="etAppEmp" pref="103" max="32767" attributes="0"/>
+                                                      <Component id="etNombreEmp" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="ctNombreEmp" max="32767" attributes="0"/>
+                                                      <Component id="ctAppEmp" min="-2" pref="244" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -279,10 +265,9 @@
                                               <Component id="etApmEmp" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="ctFechaEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etFechaEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etFechaEmp1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="etFechaEmp" min="-2" max="-2" attributes="0"/>
+                                              <Component id="dcFechaEmp" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -339,21 +324,12 @@
                                     <Property name="name" type="java.lang.String" value="ctApmEmp" noResource="true"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="ctFechaEmp">
-                                  <Properties>
-                                    <Property name="name" type="java.lang.String" value="ctFechaEmp" noResource="true"/>
-                                  </Properties>
-                                </Component>
                                 <Component class="javax.swing.JTextField" name="ctContEmp">
                                   <Properties>
                                     <Property name="name" type="java.lang.String" value="ctContEmp" noResource="true"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="etFechaEmp1">
-                                  <Properties>
-                                    <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="AAAA-MM-DD"/>
-                                  </Properties>
+                                <Component class="com.toedter.calendar.JDateChooser" name="dcFechaEmp">
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -640,10 +616,8 @@
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                                   <Component id="etFechaMem" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="etFechaEmp2" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="ctFechaMem" max="32767" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="dcFechaMem" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -691,10 +665,9 @@
                                               <Component id="etApmMem" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="etFechaMem" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ctFechaMem" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etFechaEmp2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="etFechaMem" min="-2" max="-2" attributes="0"/>
+                                              <Component id="dcFechaMem" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
@@ -730,16 +703,7 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="ctApmMem">
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="etFechaEmp2">
-                                  <Properties>
-                                    <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="AAAA-MM-DD"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="ctFechaMem">
-                                  <Properties>
-                                    <Property name="name" type="java.lang.String" value="ctFechaEmp" noResource="true"/>
-                                  </Properties>
+                                <Component class="com.toedter.calendar.JDateChooser" name="dcFechaMem">
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1655,7 +1619,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane6" pref="314" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane6" pref="308" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1764,24 +1728,18 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="etPeliculaFun" min="-2" pref="69" max="-2" attributes="0"/>
-                                                      <Component id="etCineFun" min="-2" pref="69" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="etCineFun" min="-2" pref="69" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <Component id="etHoraIniFun" min="-2" pref="85" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
                                                           <Component id="etFechaEmp4" min="-2" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="etFechaFun" min="-2" pref="125" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="etFechaEmp3" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="etPeliculaFun" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
+                                                      <Component id="etFechaFun" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1792,7 +1750,7 @@
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="etSalaFun" min="-2" pref="55" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="cbSalaFun" min="-2" pref="103" max="-2" attributes="0"/>
+                                                  <Component id="cbSalaFun" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="cbPeliculaFun" alignment="0" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
@@ -1804,9 +1762,9 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="ctHoraFinFun" min="-2" pref="112" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="ctFechaFun" max="32767" attributes="0"/>
+                                              <Component id="dcFechaFun" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="226" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1817,7 +1775,7 @@
                                               <Component id="cbPeliculaFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="etPeliculaFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="cbCineFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="etCineFun" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1825,10 +1783,9 @@
                                               <Component id="etSalaFun" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="etFechaFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etFechaEmp3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="ctFechaFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="etFechaFun" min="-2" max="-2" attributes="0"/>
+                                              <Component id="dcFechaFun" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1911,17 +1868,6 @@
                                     <Property name="text" type="java.lang.String" value="Fecha"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="etFechaEmp3">
-                                  <Properties>
-                                    <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="AAAA-MM-DD"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="ctFechaFun">
-                                  <Properties>
-                                    <Property name="name" type="java.lang.String" value="ctFechaEmp" noResource="true"/>
-                                  </Properties>
-                                </Component>
                                 <Component class="javax.swing.JLabel" name="etHoraIniFun">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
@@ -1931,7 +1877,7 @@
                                 <Component class="javax.swing.JLabel" name="etFechaEmp4">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="HH:MM:SS"/>
+                                    <Property name="text" type="java.lang.String" value="hh:mm:ss"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="etHoraFinFun">
@@ -1943,13 +1889,15 @@
                                 <Component class="javax.swing.JLabel" name="etFechaEmp5">
                                   <Properties>
                                     <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="HH:MM:SS"/>
+                                    <Property name="text" type="java.lang.String" value="hh:mm:ss"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="ctHoraFinFun">
                                   <Properties>
                                     <Property name="name" type="java.lang.String" value="ctFechaEmp" noResource="true"/>
                                   </Properties>
+                                </Component>
+                                <Component class="com.toedter.calendar.JDateChooser" name="dcFechaFun">
                                 </Component>
                               </SubComponents>
                             </Container>

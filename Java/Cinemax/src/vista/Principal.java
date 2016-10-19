@@ -56,9 +56,8 @@ public class Principal extends javax.swing.JFrame {
         ctNombreEmp = new javax.swing.JTextField();
         ctAppEmp = new javax.swing.JTextField();
         ctApmEmp = new javax.swing.JTextField();
-        ctFechaEmp = new javax.swing.JTextField();
         ctContEmp = new javax.swing.JTextField();
-        etFechaEmp1 = new javax.swing.JLabel();
+        dcFechaEmp = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         etColoniaEmp = new javax.swing.JLabel();
         etNumeroEmp = new javax.swing.JLabel();
@@ -83,8 +82,7 @@ public class Principal extends javax.swing.JFrame {
         ctNombreMem = new javax.swing.JTextField();
         ctAppMem = new javax.swing.JTextField();
         ctApmMem = new javax.swing.JTextField();
-        etFechaEmp2 = new javax.swing.JLabel();
-        ctFechaMem = new javax.swing.JTextField();
+        dcFechaMem = new com.toedter.calendar.JDateChooser();
         jPanel7 = new javax.swing.JPanel();
         etColoniaMem = new javax.swing.JLabel();
         etNumeroMem = new javax.swing.JLabel();
@@ -168,13 +166,12 @@ public class Principal extends javax.swing.JFrame {
         etSalaFun = new javax.swing.JLabel();
         ctHoraIniFun = new javax.swing.JTextField();
         etFechaFun = new javax.swing.JLabel();
-        etFechaEmp3 = new javax.swing.JLabel();
-        ctFechaFun = new javax.swing.JTextField();
         etHoraIniFun = new javax.swing.JLabel();
         etFechaEmp4 = new javax.swing.JLabel();
         etHoraFinFun = new javax.swing.JLabel();
         etFechaEmp5 = new javax.swing.JLabel();
         ctHoraFinFun = new javax.swing.JTextField();
+        dcFechaFun = new com.toedter.calendar.JDateChooser();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaFuncion = new javax.swing.JTable();
         panelVentas = new javax.swing.JPanel();
@@ -246,49 +243,35 @@ public class Principal extends javax.swing.JFrame {
 
         ctApmEmp.setName("ctApmEmp"); // NOI18N
 
-        ctFechaEmp.setName("ctFechaEmp"); // NOI18N
-
         ctContEmp.setName("ctContEmp"); // NOI18N
-
-        etFechaEmp1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp1.setText("AAAA-MM-DD");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ctApmEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(etFechaEmp1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ctFechaEmp))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ctNombreEmp)
-                                    .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ctApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(dcFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                            .addComponent(etNombreEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ctNombreEmp)
+                            .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -306,10 +289,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(ctApmEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etApmEmp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ctFechaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etFechaEmp)
-                    .addComponent(etFechaEmp1))
+                    .addComponent(dcFechaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -500,11 +482,6 @@ public class Principal extends javax.swing.JFrame {
 
         etFechaMem.setText("Fecha de nacimiento");
 
-        etFechaEmp2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp2.setText("AAAA-MM-DD");
-
-        ctFechaMem.setName("ctFechaEmp"); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -514,10 +491,8 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(etFechaMem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(etFechaEmp2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ctFechaMem))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcFechaMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(etNombreMem, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
@@ -552,10 +527,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(ctApmMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etApmMem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etFechaMem)
-                    .addComponent(ctFechaMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etFechaEmp2))
+                    .addComponent(dcFechaMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1250,22 +1224,17 @@ public class Principal extends javax.swing.JFrame {
         etFechaFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etFechaFun.setText("Fecha");
 
-        etFechaEmp3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp3.setText("AAAA-MM-DD");
-
-        ctFechaFun.setName("ctFechaEmp"); // NOI18N
-
         etHoraIniFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etHoraIniFun.setText("Hora de inicio");
 
         etFechaEmp4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp4.setText("HH:MM:SS");
+        etFechaEmp4.setText("hh:mm:ss");
 
         etHoraFinFun.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etHoraFinFun.setText("Hora de final");
 
         etFechaEmp5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etFechaEmp5.setText("HH:MM:SS");
+        etFechaEmp5.setText("hh:mm:ss");
 
         ctHoraFinFun.setName("ctFechaEmp"); // NOI18N
 
@@ -1277,20 +1246,16 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(245, 245, 245)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etPeliculaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(etCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
+                        .addGap(173, 173, 173)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                                 .addComponent(etHoraIniFun, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(etFechaEmp4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addComponent(etFechaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(etFechaEmp3)))))
+                            .addComponent(etPeliculaFun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etFechaFun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -1298,7 +1263,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(etSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbSalaFun, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(cbPeliculaFun, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(ctHoraIniFun, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1308,8 +1273,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(etFechaEmp5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctHoraFinFun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ctFechaFun))
-                .addContainerGap(226, Short.MAX_VALUE))
+                    .addComponent(dcFechaFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1317,17 +1282,16 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPeliculaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etPeliculaFun))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etCineFun)
                     .addComponent(cbSalaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etSalaFun))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(etFechaFun)
-                    .addComponent(etFechaEmp3)
-                    .addComponent(ctFechaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dcFechaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1410,7 +1374,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Función", panelFuncion);
@@ -1618,7 +1582,7 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
-    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña empleados">
+// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña empleados">
     private void btAgregaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaEmpActionPerformed
        agregaEmpleado();
     }//GEN-LAST:event_btAgregaEmpActionPerformed
@@ -1813,7 +1777,7 @@ public class Principal extends javax.swing.JFrame {
             empleado.setNombres(ctNombreEmp.getText());
             empleado.setApp(ctAppEmp.getText());
             empleado.setApm(ctApmEmp.getText());        
-            empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
+            empleado.setFecha_nac(dcFechaEmp.getDate());
             empleado.setContraseña(ctContEmp.getText());
             empleado.setColonia(ctColoniaEmp.getText());
             empleado.setCalle(ctCalleEmp.getText());        
@@ -1846,7 +1810,7 @@ public class Principal extends javax.swing.JFrame {
             empleado.setNombres(ctNombreEmp.getText());
             empleado.setApp(ctAppEmp.getText());
             empleado.setApm(ctApmEmp.getText());        
-            empleado.setFecha_nac(Date.valueOf(ctFechaEmp.getText()));
+            empleado.setFecha_nac(dcFechaEmp.getDate());
             empleado.setContraseña(ctContEmp.getText());
             empleado.setColonia(ctColoniaEmp.getText());
             empleado.setCalle(ctCalleEmp.getText());        
@@ -1895,7 +1859,7 @@ public class Principal extends javax.swing.JFrame {
         if (ctNombreEmp.getText().trim().equals("")) { etNombreEmp.setText("Nombre (s) *") ; error++; }
         if (ctAppEmp.getText().trim().equals("")) { etAppEmp.setText("Apellido paterno *"); error++; }
         if (ctApmEmp.getText().trim().equals("")) { etApmEmp.setText("Apellido materno *"); error++; }
-        if (ctFechaEmp.getText().trim().equals("")) { etFechaEmp.setText("Fecha de nacimiento *"); error++; }
+        if (dcFechaEmp.getDate() == null) { etFechaEmp.setText("Fecha de nacimiento *"); error++; }
         if (ctColoniaEmp.getText().trim().equals("")) { etColoniaEmp.setText("Colonia *"); error++; }
         if (ctCalleEmp.getText().trim().equals("")) { etCalleEmp.setText("Calle *"); error++; }
         if (ctNumeroEmp.getText().trim().equals("")) { etNumeroEmp.setText("Numero *"); error++; }
@@ -1915,7 +1879,7 @@ public class Principal extends javax.swing.JFrame {
         ctNombreEmp.setText("");
         ctAppEmp.setText("");
         ctApmEmp.setText("");
-        ctFechaEmp.setText("");
+        dcFechaEmp.setDate(null);
         ctColoniaEmp.setText("");
         ctCalleEmp.setText("");
         ctNumeroEmp.setText("");
@@ -1951,7 +1915,7 @@ public class Principal extends javax.swing.JFrame {
         ctNombreEmp.setText(tablaEmpleado.getValueAt(renglon, 1).toString());
         ctAppEmp.setText(tablaEmpleado.getValueAt(renglon, 2).toString());
         ctApmEmp.setText(tablaEmpleado.getValueAt(renglon, 3).toString());        
-        ctFechaEmp.setText(tablaEmpleado.getValueAt(renglon, 4).toString());
+        dcFechaEmp.setDate(Date.valueOf(tablaEmpleado.getValueAt(renglon, 4).toString()));
         ctColoniaEmp.setText(tablaEmpleado.getValueAt(renglon, 5).toString());
         ctCalleEmp.setText(tablaEmpleado.getValueAt(renglon, 6).toString());        
         ctNumeroEmp.setText(tablaEmpleado.getValueAt(renglon, 7).toString());  
@@ -1993,7 +1957,7 @@ public class Principal extends javax.swing.JFrame {
             membresia.setNombre(ctNombreMem.getText());
             membresia.setApp(ctAppMem.getText());
             membresia.setApm(ctApmMem.getText());        
-            membresia.setFecha_nac(Date.valueOf(ctFechaMem.getText()));
+            membresia.setFecha_nac(dcFechaMem.getDate());
             membresia.setColonia(ctColoniaMem.getText());
             membresia.setCalle(ctCalleMem.getText());        
             membresia.setNumero(Integer.parseInt(ctNumeroMem.getText()));
@@ -2026,7 +1990,7 @@ public class Principal extends javax.swing.JFrame {
             membresia.setNombre(ctNombreMem.getText());
             membresia.setApp(ctAppMem.getText());
             membresia.setApm(ctApmMem.getText());        
-            membresia.setFecha_nac(Date.valueOf(ctFechaMem.getText()));
+            membresia.setFecha_nac(dcFechaMem.getDate());
             membresia.setColonia(ctColoniaMem.getText());
             membresia.setCalle(ctCalleMem.getText());        
             membresia.setNumero(Integer.parseInt(ctNumeroMem.getText()));
@@ -2089,7 +2053,7 @@ public class Principal extends javax.swing.JFrame {
         if (ctNombreMem.getText().trim().equals("")) { etNombreMem.setText("Nombre (s) *") ; error++; }
         if (ctAppMem.getText().trim().equals("")) { etAppMem.setText("Apellido paterno *"); error++; }
         if (ctApmMem.getText().trim().equals("")) { etApmMem.setText("Apellido materno *"); error++; }
-        if (ctFechaMem.getText().trim().equals("")) { etFechaMem.setText("Fecha de nacimiento *"); error++; }
+        if (dcFechaMem.getDate() == null) { etFechaMem.setText("Fecha de nacimiento *"); error++; }
         if (ctColoniaMem.getText().trim().equals("")) { etColoniaMem.setText("Colonia *"); error++; }
         if (ctCalleMem.getText().trim().equals("")) { etCalleMem.setText("Calle *"); error++; }
         if (ctNumeroMem.getText().trim().equals("")) { etNumeroMem.setText("Numero *"); error++; }
@@ -2109,7 +2073,7 @@ public class Principal extends javax.swing.JFrame {
         ctNombreMem.setText("");
         ctAppMem.setText("");
         ctApmMem.setText("");
-        ctFechaMem.setText("");
+        dcFechaMem.setDate(null);
         ctColoniaMem.setText("");        
         ctCalleMem.setText("");
         ctNumeroMem.setText("");
@@ -2135,7 +2099,7 @@ public class Principal extends javax.swing.JFrame {
         ctNombreMem.setText(tablaMembresia.getValueAt(renglon, 1).toString());
         ctAppMem.setText(tablaMembresia.getValueAt(renglon, 2).toString());
         ctApmMem.setText(tablaMembresia.getValueAt(renglon, 3).toString());        
-        ctFechaMem.setText(tablaMembresia.getValueAt(renglon, 4).toString());
+        dcFechaMem.setDate(Date.valueOf(tablaMembresia.getValueAt(renglon, 4).toString()));
         ctColoniaMem.setText(tablaMembresia.getValueAt(renglon, 5).toString());
         ctCalleMem.setText(tablaMembresia.getValueAt(renglon, 6).toString());        
         ctNumeroMem.setText(tablaMembresia.getValueAt(renglon, 7).toString());
@@ -2575,19 +2539,26 @@ public class Principal extends javax.swing.JFrame {
             String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
             funcion.setClave_pel(Integer.parseInt(arr[0]));
             funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
-            funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
+            //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));
+            funcion.setFecha(dcFechaFun.getDate());            
             funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
+            //funcion.setHora_fin(Time.valueOf(spHoraFinFun.getValue().toString()));
             funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
-
-            if(conFun.inserta(funcion)) {
-                limpiaCamposFuncion();
-                cambiaTextoMensajeFun("Se agregó correctamente!",Color.BLUE);
-                etMensajeFun.setVisible(true);
-                actualizaTablaFuncion();
-            }
-            else {
-                cambiaTextoMensajeFun("Empleado no insertado",Color.RED); 
-                etMensajeFun.setVisible(true);
+            
+            if(conFun.disponibilidadFuncion(funcion)){
+                if(conFun.inserta(funcion)) {
+                    limpiaCamposFuncion();
+                    cambiaTextoMensajeFun("Se agregó correctamente!",Color.BLUE);
+                    etMensajeFun.setVisible(true);
+                    actualizaTablaFuncion();
+                }
+                else {
+                    cambiaTextoMensajeFun("Empleado no insertado",Color.RED); 
+                    etMensajeFun.setVisible(true);
+                }
+            }else {
+                JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
+                        + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
             }
         }   
     }
@@ -2605,10 +2576,12 @@ public class Principal extends javax.swing.JFrame {
             String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
             funcion.setClave_pel(Integer.parseInt(arr[0]));
             funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
-            funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
+            funcion.setFecha(dcFechaFun.getDate());
+            //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
             funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
             funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
             
+            if(conFun.disponibilidadFuncion(funcion)){
             if(conFun.actualiza(funcion)) {
                 cambiaTextoMensajeFun("Se actualizó correctamente!",Color.BLUE);
                 etMensajeFun.setVisible(true);
@@ -2617,8 +2590,12 @@ public class Principal extends javax.swing.JFrame {
             else {
                 cambiaTextoMensajeFun("Funcion no actualizada",Color.RED); 
                 etMensajeFun.setVisible(true);
-            }
+            }            
             habilitaEdicionFuncion(false);
+            }else {
+                JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
+                    + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     private void eliminaFuncion() {
@@ -2661,7 +2638,7 @@ public class Principal extends javax.swing.JFrame {
         if (cbPeliculaFun.getSelectedIndex() == -1) { etPeliculaFun.setText("Pelicula *"); error++; }
         if (cbCineFun.getSelectedIndex() == -1) { etCineFun.setText("Cine *"); error++; }
         if (cbSalaFun.getSelectedIndex() == -1) { etSalaFun.setText("Sala *"); error++; }
-        if (ctFechaFun.getText().trim().equals("")) { etFechaFun.setText("Fecha *") ; error++; }
+        if (dcFechaFun.getDate() == null) { etFechaFun.setText("Fecha *") ; error++; }
         if (ctHoraIniFun.getText().trim().equals("")) { etHoraIniFun.setText("Hora de inicio *") ; error++; }
         if (ctHoraFinFun.getText().trim().equals("")) { etHoraFinFun.setText("Hora de fin *") ; error++; }
         
@@ -2679,7 +2656,8 @@ public class Principal extends javax.swing.JFrame {
         cbPeliculaFun.setSelectedIndex(-1);
         cbCineFun.setSelectedIndex(-1);
         cbSalaFun.setSelectedIndex(-1);
-        ctFechaFun.setText("");
+        dcFechaFun.setDate(null);
+        //ctFechaFun.setText("");
         ctHoraIniFun.setText("");
         ctHoraFinFun.setText("");
         
@@ -2704,8 +2682,9 @@ public class Principal extends javax.swing.JFrame {
         CargaCineCombo(renglon);
         cbSalaFun.setSelectedItem(tablaFuncion.getValueAt(renglon,2).toString());
         ctHoraIniFun.setText(tablaFuncion.getValueAt(renglon, 3).toString());        
-        ctHoraFinFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());        
-        ctFechaFun.setText(tablaFuncion.getValueAt(renglon, 5).toString());
+        ctHoraFinFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());
+        dcFechaFun.setDate(Date.valueOf(tablaFuncion.getValueAt(renglon, 5).toString()));
+        //ctFechaFun.setText(tablaFuncion.getValueAt(renglon, 5).toString());
 
         habilitaEdicionFuncion(true);
     }
@@ -2827,9 +2806,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ctColoniaSuc;
     private javax.swing.JTextField ctContEmp;
     private javax.swing.JTextField ctDirectorPel;
-    private javax.swing.JTextField ctFechaEmp;
-    private javax.swing.JTextField ctFechaFun;
-    private javax.swing.JTextField ctFechaMem;
     private javax.swing.JTextField ctHoraFinFun;
     private javax.swing.JTextField ctHoraIniFun;
     private javax.swing.JTextField ctNombreEmp;
@@ -2840,6 +2816,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ctNumeroMem;
     private javax.swing.JTextField ctNumeroSuc;
     private javax.swing.JTextField ctTelSuc;
+    private com.toedter.calendar.JDateChooser dcFechaEmp;
+    private com.toedter.calendar.JDateChooser dcFechaFun;
+    private com.toedter.calendar.JDateChooser dcFechaMem;
     private javax.swing.JLabel etApmEmp;
     private javax.swing.JLabel etApmMem;
     private javax.swing.JLabel etAppEmp;
@@ -2855,9 +2834,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etContEmp;
     private javax.swing.JLabel etDirectorPel;
     private javax.swing.JLabel etFechaEmp;
-    private javax.swing.JLabel etFechaEmp1;
-    private javax.swing.JLabel etFechaEmp2;
-    private javax.swing.JLabel etFechaEmp3;
     private javax.swing.JLabel etFechaEmp4;
     private javax.swing.JLabel etFechaEmp5;
     private javax.swing.JLabel etFechaFun;
