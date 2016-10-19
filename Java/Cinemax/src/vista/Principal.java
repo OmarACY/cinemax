@@ -2534,31 +2534,33 @@ public class Principal extends javax.swing.JFrame {
         
         if(validaDatosFuncion())
         {
-            conFun = new FuncionConexion();
-            funcion = new Funcion();
-            String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
-            funcion.setClave_pel(Integer.parseInt(arr[0]));
-            funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
-            //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));
-            funcion.setFecha(dcFechaFun.getDate());            
-            funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
-            //funcion.setHora_fin(Time.valueOf(spHoraFinFun.getValue().toString()));
-            funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
-            
-            if(conFun.disponibilidadFuncion(funcion)){
-                if(conFun.inserta(funcion)) {
-                    limpiaCamposFuncion();
-                    cambiaTextoMensajeFun("Se agregó correctamente!",Color.BLUE);
-                    etMensajeFun.setVisible(true);
-                    actualizaTablaFuncion();
+            if(validaHorasFuncion()){
+                conFun = new FuncionConexion();
+                funcion = new Funcion();
+                String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
+                funcion.setClave_pel(Integer.parseInt(arr[0]));
+                funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
+                //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));
+                funcion.setFecha(dcFechaFun.getDate());            
+                funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
+                //funcion.setHora_fin(Time.valueOf(spHoraFinFun.getValue().toString()));
+                funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
+
+                if(conFun.disponibilidadFuncion(funcion)){
+                    if(conFun.inserta(funcion)) {
+                        limpiaCamposFuncion();
+                        cambiaTextoMensajeFun("Se agregó correctamente!",Color.BLUE);
+                        etMensajeFun.setVisible(true);
+                        actualizaTablaFuncion();
+                    }
+                    else {
+                        cambiaTextoMensajeFun("Empleado no insertado",Color.RED); 
+                        etMensajeFun.setVisible(true);
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
+                            + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
                 }
-                else {
-                    cambiaTextoMensajeFun("Empleado no insertado",Color.RED); 
-                    etMensajeFun.setVisible(true);
-                }
-            }else {
-                JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
-                        + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
             }
         }   
     }
@@ -2568,33 +2570,34 @@ public class Principal extends javax.swing.JFrame {
         Funcion funcion;
         limpiaFormularioFuncion();
         
-        if(validaDatosFuncion())
-        {
-            conFun = new FuncionConexion();
-            funcion = new Funcion();
-            funcion.setClave_fun(Long.parseLong(tablaFuncion.getValueAt(tablaFuncion.getSelectedRow(), 0).toString()));
-            String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
-            funcion.setClave_pel(Integer.parseInt(arr[0]));
-            funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
-            funcion.setFecha(dcFechaFun.getDate());
-            //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
-            funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
-            funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
-            
-            if(conFun.disponibilidadFuncion(funcion)){
-            if(conFun.actualiza(funcion)) {
-                cambiaTextoMensajeFun("Se actualizó correctamente!",Color.BLUE);
-                etMensajeFun.setVisible(true);
-                actualizaTablaFuncion();
-            }
-            else {
-                cambiaTextoMensajeFun("Funcion no actualizada",Color.RED); 
-                etMensajeFun.setVisible(true);
-            }            
-            habilitaEdicionFuncion(false);
-            }else {
-                JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
-                    + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
+        if(validaDatosFuncion()){
+            if(validaHorasFuncion()){
+                conFun = new FuncionConexion();
+                funcion = new Funcion();
+                funcion.setClave_fun(Long.parseLong(tablaFuncion.getValueAt(tablaFuncion.getSelectedRow(), 0).toString()));
+                String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
+                funcion.setClave_pel(Integer.parseInt(arr[0]));
+                funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
+                funcion.setFecha(dcFechaFun.getDate());
+                //funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
+                funcion.setHora_ini(Time.valueOf(ctHoraIniFun.getText()));
+                funcion.setHora_fin(Time.valueOf(ctHoraFinFun.getText()));
+
+                if(conFun.disponibilidadFuncion(funcion)){
+                if(conFun.actualiza(funcion)) {
+                    cambiaTextoMensajeFun("Se actualizó correctamente!",Color.BLUE);
+                    etMensajeFun.setVisible(true);
+                    actualizaTablaFuncion();
+                }
+                else {
+                    cambiaTextoMensajeFun("Funcion no actualizada",Color.RED); 
+                    etMensajeFun.setVisible(true);
+                }            
+                habilitaEdicionFuncion(false);
+                }else {
+                    JOptionPane.showMessageDialog(this,"Ya existe una funcion a esa hora en la misma fecha o se empalma con otra, "
+                        + "Verifique su informacion y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }
@@ -2620,10 +2623,10 @@ public class Principal extends javax.swing.JFrame {
             habilitaEdicionFuncion(false);
         }
         
-    }
+    }  
     
     private void limpiaFormularioFuncion() {
-        etPeliculaFun.setText("Nombre (s)");
+        etPeliculaFun.setText("Nombre");
         etCineFun.setText("Cine");
         etSalaFun.setText("Sala");
         etFechaFun.setText("Fecha");
@@ -2643,6 +2646,25 @@ public class Principal extends javax.swing.JFrame {
         if (ctHoraFinFun.getText().trim().equals("")) { etHoraFinFun.setText("Hora de fin *") ; error++; }
         
         if (error > 0) { cambiaTextoMensajeFun("* Campos requeridos!",Color.RED) ; etMensajeFun.setVisible(true); valido = false; }   
+        
+        return valido;
+    }
+    
+    private boolean validaHorasFuncion(){
+        
+        boolean valido = false;
+        
+        try{
+            if( Time.valueOf(ctHoraIniFun.getText()).compareTo(Time.valueOf(ctHoraFinFun.getText())) < 0 ){
+                valido = true;
+            }else {
+                 JOptionPane.showMessageDialog(this,"La hora de fin debe ser mayor a la hora de inicio, "
+                                + "Verifique su información y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE); 
+            }
+        }catch(Exception ex){
+             JOptionPane.showMessageDialog(this,"La hora de inicio o de fin no tienen un formato valido, "
+                            + "Verifique su información y vuelva a intentarlo por favor", "Atención",JOptionPane.ERROR_MESSAGE);
+        }        
         
         return valido;
     }
