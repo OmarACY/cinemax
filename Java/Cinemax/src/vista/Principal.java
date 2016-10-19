@@ -1647,7 +1647,8 @@ public class Principal extends javax.swing.JFrame {
     private void btCancelaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaEmpActionPerformed
         habilitaEdicionEmpleado(false);
     }//GEN-LAST:event_btCancelaEmpActionPerformed
-
+// </editor-fold> 
+// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña membresia">
     private void btAgregaMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaMemActionPerformed
         agregaMembresia();
     }//GEN-LAST:event_btAgregaMemActionPerformed
@@ -1676,7 +1677,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajeMem.setVisible(false);
         habilitaEdicionMembresia(false);
     }//GEN-LAST:event_panelMembresiaComponentShown
-
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña pelicula">    
     private void btAgregaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaPelActionPerformed
         agregaPelicula();
     }//GEN-LAST:event_btAgregaPelActionPerformed
@@ -1705,7 +1707,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajePel.setVisible(false);
         habilitaEdicionPelicula(false);
     }//GEN-LAST:event_panelPeliculaComponentShown
-
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
     private void btAgregaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaSucActionPerformed
         agregaSucursal();
     }//GEN-LAST:event_btAgregaSucActionPerformed
@@ -1734,7 +1737,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajeSuc.setVisible(false);
         habilitaEdicionSucursal(false);
     }//GEN-LAST:event_panelSucursalComponentShown
-
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
     private void btAgregaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaFunActionPerformed
         agregaFuncion();
     }//GEN-LAST:event_btAgregaFunActionPerformed
@@ -1748,12 +1752,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btActualizaFunActionPerformed
 
     private void btCancelaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaFunActionPerformed
-        //habilitaFuncionFuncion(false);
+        habilitaEdicionFuncion(false);
     }//GEN-LAST:event_btCancelaFunActionPerformed
 
     private void tablaFuncionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaFuncionMouseClicked
         if (tablaFuncion.getSelectedRow() > -1) {
-            //cargaDatosFuncion();
+            cargaDatosFuncion();
             etMensajeFun.setVisible(false);
         }
     }//GEN-LAST:event_tablaFuncionMouseClicked
@@ -1765,9 +1769,9 @@ public class Principal extends javax.swing.JFrame {
     private void panelFuncionComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelFuncionComponentShown
         rellenaComboPeliculas();
         rellenaComboSucursales();
-        //actualizaTablaFuncion();
-        //etMensajeFun.setVisible(false);
-        //habilitaEdicionFuncion(false);
+        actualizaTablaFuncion();
+        etMensajeFun.setVisible(false);
+        habilitaEdicionFuncion(false);
     }//GEN-LAST:event_panelFuncionComponentShown
 
     private void cbCineFunItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbCineFunItemStateChanged
@@ -1775,8 +1779,8 @@ public class Principal extends javax.swing.JFrame {
             rellenaComboSalas();
         //JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_cbCineFunItemStateChanged
-   
-    // </editor-fold>     
+// </editor-fold>   
+        
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña empleados">   
     private void habilitaEdicionEmpleado(boolean visible){
@@ -2518,27 +2522,46 @@ public class Principal extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Funcion">
+    
     private void rellenaComboPeliculas(){
         FuncionConexion con;        
         con = new FuncionConexion();
-        con.rellenaComboBox(cbPeliculaFun,"Cine.pelicula","nombre");
+        con.rellenaComboBox(cbPeliculaFun,"Cine.pelicula","clave_pel","nombre");
         cbPeliculaFun.setSelectedIndex(-1);
     }
     
     private void rellenaComboSucursales(){
         FuncionConexion con;        
         con = new FuncionConexion();
-        con.rellenaComboBox(cbCineFun,"Cine.cine","nombre");
+        con.rellenaComboBox(cbCineFun,"Cine.cine","clave_cin","nombre");
         cbCineFun.setSelectedIndex(-1);
     }
     
     private void rellenaComboSalas(){
         FuncionConexion con;        
         con = new FuncionConexion();
-        con.rellenaComboBoxSalas(cbSalaFun,cbCineFun.getSelectedItem().toString());
+        String[] arr = cbCineFun.getSelectedItem().toString().split("-");
+        con.rellenaComboBoxSalas(cbSalaFun,arr[0]);
         cbSalaFun.setSelectedIndex(-1);
     }
     
+    private void habilitaEdicionFuncion(boolean visible){
+        if(visible) {
+            btActualizaFun.setVisible(true);
+            btEliminaFun.setVisible(true);
+            btCancelaFun.setVisible(true);
+            btAgregaFun.setVisible(false);
+        }
+        else {
+            limpiaFormularioFuncion();
+            limpiaCamposFuncion();
+            btActualizaFun.setVisible(false);
+            btEliminaFun.setVisible(false);
+            btCancelaFun.setVisible(false);
+            btAgregaFun.setVisible(true);
+        }
+        //etMensajeMem.setVisible(false);
+    }
     private void agregaFuncion(){
         
         FuncionConexion conFun;
@@ -2548,12 +2571,13 @@ public class Principal extends javax.swing.JFrame {
         if(validaDatosFuncion())
         {
             conFun = new FuncionConexion();
-            funcion = new Funcion();            
-            funcion.setClave_pel(Integer.parseInt(cbPeliculaFun.getSelectedItem().toString()));//Checar que el id
+            funcion = new Funcion();
+            String[] arr = cbPeliculaFun.getSelectedItem().toString().split("-");
+            funcion.setClave_pel(Integer.parseInt(arr[0]));
             funcion.setClave_sal(Integer.parseInt(cbSalaFun.getSelectedItem().toString()));
             funcion.setFecha(Date.valueOf(ctFechaFun.getText()));            
-            funcion.setHora_fin(Time.valueOf(ctFechaFun.getText()));
-            funcion.setHora_ini(Time.valueOf(ctFechaFun.getText()));
+            funcion.setHora_fin(Time.valueOf(ctHoraIniFun.getText()));
+            funcion.setHora_ini(Time.valueOf(ctHoraFinFun.getText()));
 
             if(conFun.inserta(funcion)) {
                 limpiaCamposFuncion();
@@ -2601,7 +2625,7 @@ public class Principal extends javax.swing.JFrame {
     private void limpiaCamposFuncion() {
         cbPeliculaFun.setSelectedIndex(-1);
         cbCineFun.setSelectedIndex(-1);
-        cbCineFun.setSelectedIndex(-1);
+        cbSalaFun.setSelectedIndex(-1);
         ctFechaFun.setText("");
         ctHoraIniFun.setText("");
         ctHoraFinFun.setText("");
@@ -2618,6 +2642,57 @@ public class Principal extends javax.swing.JFrame {
         catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+        private void cargaDatosFuncion() {
+        int renglon = tablaFuncion.getSelectedRow();       
+        
+        CargaPeliculaCombo(renglon);        
+        CargaCineCombo(renglon);
+        cbSalaFun.setSelectedItem(tablaFuncion.getValueAt(renglon,2).toString());
+        ctHoraIniFun.setText(tablaFuncion.getValueAt(renglon, 3).toString());        
+        ctHoraFinFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());        
+        ctFechaFun.setText(tablaFuncion.getValueAt(renglon, 4).toString());
+
+        habilitaEdicionFuncion(true);
+    }
+    
+    private void CargaPeliculaCombo(int renglon){
+       for(int i = 0; i < cbPeliculaFun.getItemCount(); i++){
+            
+            String[] arr = cbPeliculaFun.getItemAt(i).split("-");
+            
+            if(arr[0].equals(tablaFuncion.getValueAt(renglon, 1).toString())){
+                   cbPeliculaFun.setSelectedIndex(i);
+                   break;
+            }
+        }
+    }
+    
+    private void CargaCineCombo(int renglon){
+        String claveCine;
+        claveCine = IdCine(tablaFuncion.getValueAt(renglon,2).toString());       
+        for(int i = 0; i < cbCineFun.getItemCount(); i++){
+            
+            String[] arr = cbCineFun.getItemAt(i).split("-");
+            
+            if(arr[0].equals(claveCine)){
+                   cbCineFun.setSelectedIndex(i);
+                   break;
+            }
+        }
+    }
+    private String IdCine(String claveSala){
+        CineConexion con;
+        String id = "-1";
+        con = new CineConexion();
+        try {
+            id = con.ObtenIDCine(claveSala);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(),  "Error al cargar los datos", JOptionPane.ERROR_MESSAGE);
+        }
+        return id;
     }
     // </editor-fold>
     /**

@@ -102,4 +102,21 @@ public class CineConexion extends Conexion<Cine> {
             return null;
         }
     }
+    
+    public String ObtenIDCine(String claveSala)
+    {
+        String consulta;        
+        consulta = "SELECT clave_cin from Cine.sala where clave_sal=" + claveSala + " limit 1";
+        String id;
+        
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            rs.next();
+            id = rs.getString("clave_cin");
+            return id;
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            return "-1";
+        }
+    }    
 }

@@ -58,7 +58,7 @@ public class FuncionConexion extends Conexion<Funcion> {
         }
     }
     
-    public void rellenaComboBox(JComboBox cb,String tabla, String campo){
+   public void rellenaComboBox(JComboBox cb,String tabla, String clave,String campo){
         String consulta;
         
         consulta = "SELECT * FROM " + tabla;
@@ -66,7 +66,7 @@ public class FuncionConexion extends Conexion<Funcion> {
             cb.removeAllItems();
             ResultSet rs = ejecutaConsulta(consulta);
             while(rs.next()) {
-                String nombre = rs.getString(campo);
+                String nombre =rs.getString(clave) + "-" +  rs.getString(campo);
                 cb.addItem(nombre);
             }
         }
@@ -75,10 +75,11 @@ public class FuncionConexion extends Conexion<Funcion> {
         }
    }
    
-   public void rellenaComboBoxSalas(JComboBox cb,String nombreCin){
+   public void rellenaComboBoxSalas(JComboBox cb,String claveCin){
         String consulta;
         
-        consulta = "SELECT * FROM Cine.sala as sal INNER JOIN Cine.cine as cin ON sal.clave_cin=cin.clave_cin WHERE cin.nombre='"+nombreCin+"'";
+        //consulta = "SELECT * FROM Cine.sala as sal INNER JOIN Cine.cine as cin ON sal.clave_cin=cin.clave_cin WHERE cin.nombre='"+nombreCin+"'";
+        consulta = "SELECT * FROM Cine.sala WHERE clave_cin="+claveCin;
         try {
             cb.removeAllItems();
             ResultSet rs = ejecutaConsulta(consulta);
