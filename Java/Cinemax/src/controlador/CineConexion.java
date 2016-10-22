@@ -7,6 +7,7 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cine;
 import vista.Principal;
@@ -119,4 +120,22 @@ public class CineConexion extends Conexion<Cine> {
             return "-1";
         }
     }    
+
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]) {
+        String consulta;
+        
+        consulta = "SELECT clave_cin, nombre FROM Cine.cine";
+        try {
+            cb.removeAllItems();
+            ResultSet rs = ejecutaConsulta(consulta);
+            while(rs.next()) {
+                String nombreComppleto = rs.getString("clave_cin") + "-" + rs.getString("nombre");
+                cb.addItem(nombreComppleto);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+    }
 }

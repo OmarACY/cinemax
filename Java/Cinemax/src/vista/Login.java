@@ -71,6 +71,11 @@ public class Login extends javax.swing.JFrame {
                 btnAccederMouseClicked(evt);
             }
         });
+        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccederActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,6 +153,25 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccederMouseClicked
+        
+    }//GEN-LAST:event_btnAccederMouseClicked
+
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelarMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        LoginConexion con;
+        
+        con = new LoginConexion();
+        con.rellenaComboBox(cbIdEmpleado, null);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void cbIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbIdEmpleadoActionPerformed
+
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
         EmpleadoConexion con;
         Empleado emp;
         
@@ -164,22 +188,7 @@ public class Login extends javax.swing.JFrame {
             formularioPrincipal.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_btnAccederMouseClicked
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnCancelarMouseClicked
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        LoginConexion con;
-        
-        con = new LoginConexion();
-        con.rellenaComboBox(cbIdEmpleado);
-    }//GEN-LAST:event_formWindowActivated
-
-    private void cbIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbIdEmpleadoActionPerformed
+    }//GEN-LAST:event_btnAccederActionPerformed
 
     /**
      * @param args the command line arguments

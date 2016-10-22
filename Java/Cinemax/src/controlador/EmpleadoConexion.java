@@ -8,6 +8,7 @@ package controlador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Empleado;
@@ -99,5 +100,10 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         }
         
         return existe;
+    }
+
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

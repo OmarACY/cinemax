@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Membresia;
 import vista.Principal;
@@ -77,5 +79,23 @@ public class MembresiaConexion extends Conexion<Membresia> {
             return null;
         }
     }
+    
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]){
+        String consulta;
+        
+        consulta = "SELECT * FROM Persona.membresia";
+        try {
+            cb.removeAllItems();
+            ResultSet rs = ejecutaConsulta(consulta);
+            while(rs.next()) {
+                String nombreComppleto = rs.getString("nombre") + " " + rs.getString("app") + " " + rs.getString("apm");
+                cb.addItem(nombreComppleto);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+   }
     
 }

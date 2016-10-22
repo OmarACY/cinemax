@@ -32,7 +32,8 @@ public class LoginConexion extends Conexion<Empleado>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void rellenaComboBox(JComboBox cb){
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]){
         String consulta;
         
         consulta = "SELECT * FROM Persona.empleado";

@@ -103,4 +103,5 @@ public abstract class Conexion<Modelo> {
     public abstract boolean inserta(Modelo modelo);
     public abstract boolean elimina(Modelo modelo);
     public abstract boolean actualiza(Modelo modelo);
+    public abstract void rellenaComboBox(JComboBox cb, String args[]);
 }

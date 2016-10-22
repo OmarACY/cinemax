@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pelicula;
 import vista.Principal;
@@ -74,6 +76,26 @@ public class PeliculaConexion extends Conexion<Pelicula> {
         }
         catch(ClassNotFoundException | SQLException ex) {
             return null;
+        }
+    }
+
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]) {
+        if((args != null) && (args.length > 0)) {
+            String consulta;
+
+            consulta = "SELECT clave_pel, nombre FROM Cine.pelicula";
+            try {
+                cb.removeAllItems();
+                ResultSet rs = ejecutaConsulta(consulta);
+                while(rs.next()) {
+                    String nombreComppleto = rs.getString("clave_pel") + "-" + rs.getString("nombre");
+                    cb.addItem(nombreComppleto);
+                }
+            }
+            catch(ClassNotFoundException | SQLException ex) {
+                // TODO: ADD DATABASE LOG
+            }
         }
     }
     

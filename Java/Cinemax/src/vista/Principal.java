@@ -186,7 +186,6 @@ public class Principal extends javax.swing.JFrame {
         lbHoraVenta = new javax.swing.JLabel();
         cbHoraVenta = new javax.swing.JComboBox();
         lbSalaVenta = new javax.swing.JLabel();
-        cbSalaVenta = new javax.swing.JComboBox();
         lbPagoVenta = new javax.swing.JLabel();
         rbEfectivo = new javax.swing.JRadioButton();
         rbTarjeta = new javax.swing.JRadioButton();
@@ -199,6 +198,7 @@ public class Principal extends javax.swing.JFrame {
         tfAnoVenc = new javax.swing.JTextField();
         lbSlash = new javax.swing.JLabel();
         btnGenerarVenta = new javax.swing.JButton();
+        tfSalaVenta = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1394,6 +1394,11 @@ public class Principal extends javax.swing.JFrame {
 
         panelVentas.setBackground(new java.awt.Color(255, 255, 255));
         panelVentas.setForeground(new java.awt.Color(255, 255, 255));
+        panelVentas.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panelVentasComponentShown(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
@@ -1416,8 +1421,6 @@ public class Principal extends javax.swing.JFrame {
 
         lbSalaVenta.setText("Sala");
 
-        cbSalaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lbPagoVenta.setText("Tipo de pago");
 
         rbEfectivo.setText("Efectivo");
@@ -1434,6 +1437,8 @@ public class Principal extends javax.swing.JFrame {
 
         btnGenerarVenta.setText("Generar venta");
 
+        tfSalaVenta.setEnabled(false);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1445,7 +1450,6 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(cbCineVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbPeliculaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbHoraVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbSalaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tfNumeroTarjeta)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1471,7 +1475,8 @@ public class Principal extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(tfAnoVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(tfCodigoSeg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 118, Short.MAX_VALUE)))
+                        .addGap(0, 118, Short.MAX_VALUE))
+                    .addComponent(tfSalaVenta))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -1496,7 +1501,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSalaVenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbSalaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSalaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbPagoVenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1520,7 +1525,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbSlash))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGenerarVenta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -1582,7 +1587,7 @@ public class Principal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
   
-// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña empleados">
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña empleados">
     private void btAgregaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaEmpActionPerformed
        agregaEmpleado();
     }//GEN-LAST:event_btAgregaEmpActionPerformed
@@ -1611,8 +1616,8 @@ public class Principal extends javax.swing.JFrame {
     private void btCancelaEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaEmpActionPerformed
         habilitaEdicionEmpleado(false);
     }//GEN-LAST:event_btCancelaEmpActionPerformed
-// </editor-fold> 
-// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña membresia">
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña membresia">
     private void btAgregaMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaMemActionPerformed
         agregaMembresia();
     }//GEN-LAST:event_btAgregaMemActionPerformed
@@ -1641,8 +1646,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajeMem.setVisible(false);
         habilitaEdicionMembresia(false);
     }//GEN-LAST:event_panelMembresiaComponentShown
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña pelicula">    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña pelicula">    
     private void btAgregaPelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaPelActionPerformed
         agregaPelicula();
     }//GEN-LAST:event_btAgregaPelActionPerformed
@@ -1671,8 +1676,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajePel.setVisible(false);
         habilitaEdicionPelicula(false);
     }//GEN-LAST:event_panelPeliculaComponentShown
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
     private void btAgregaSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaSucActionPerformed
         agregaSucursal();
     }//GEN-LAST:event_btAgregaSucActionPerformed
@@ -1701,8 +1706,8 @@ public class Principal extends javax.swing.JFrame {
         etMensajeSuc.setVisible(false);
         habilitaEdicionSucursal(false);
     }//GEN-LAST:event_panelSucursalComponentShown
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
     private void btAgregaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaFunActionPerformed
         agregaFuncion();
     }//GEN-LAST:event_btAgregaFunActionPerformed
@@ -1743,8 +1748,28 @@ public class Principal extends javax.swing.JFrame {
             rellenaComboSalas();
         //JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar este registro?", "Atención", JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_cbCineFunItemStateChanged
-// </editor-fold>   
+    // </editor-fold>      
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña ventas"> 
+    private void panelVentasComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelVentasComponentShown
+        Conexion con;
         
+        con = new MembresiaConexion();
+        ((MembresiaConexion)con).rellenaComboBox(cbClienteVenta, null);
+        con = new CineConexion();
+        ((CineConexion)con).rellenaComboBox(cbCineVenta, null);
+        con = new PeliculaConexion();
+        ((PeliculaConexion)con).rellenaComboBox(cbPeliculaVenta, new String[]
+        { 
+            String.valueOf(cbCineVenta.getSelectedItem()).split("-")[0]
+        });
+        con = new FuncionConexion();
+        ((FuncionConexion)con).rellenaComboBox(cbHoraVenta, new String[]
+        { 
+            String.valueOf(cbCineVenta.getSelectedItem()).split("-")[0],
+            String.valueOf(cbPeliculaVenta.getSelectedItem()).split("-")[0] 
+        });
+    }//GEN-LAST:event_panelVentasComponentShown
+    // </editor-fold>   
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña empleados">   
     private void habilitaEdicionEmpleado(boolean visible){
@@ -1922,8 +1947,7 @@ public class Principal extends javax.swing.JFrame {
         ctContEmp.setText(tablaEmpleado.getValueAt(renglon, 8).toString());
         habilitaEdicionEmpleado(true);
     }
-    // </editor-fold>  
-    
+    // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña membresia">
     
     private void habilitaEdicionMembresia(boolean visible){
@@ -2107,8 +2131,7 @@ public class Principal extends javax.swing.JFrame {
         spPuntosMem.setValue(tablaMembresia.getValueAt(renglon, 9));
         habilitaEdicionMembresia(true);
     }
-    // </editor-fold>
-    
+    // </editor-fold>  
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña pelicula">
     
     private void habilitaEdicionPelicula(boolean visible){
@@ -2309,7 +2332,6 @@ public class Principal extends javax.swing.JFrame {
     }
    
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Sucursal">
         
         private void habilitaEdicionSucursal(boolean visible){
@@ -2484,7 +2506,6 @@ public class Principal extends javax.swing.JFrame {
         habilitaEdicionSucursal(true);
     }
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Funcion">
     
     private void rellenaComboPeliculas(){
@@ -2749,6 +2770,7 @@ public class Principal extends javax.swing.JFrame {
         return id;
     }
     // </editor-fold>
+    
     /**
      * @param args the command line arguments
      */
@@ -2814,7 +2836,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbPeliculaFun;
     private javax.swing.JComboBox cbPeliculaVenta;
     private javax.swing.JComboBox<String> cbSalaFun;
-    private javax.swing.JComboBox cbSalaVenta;
     private javax.swing.JComboBox<String> cbTipoMem;
     private javax.swing.JTextField ctApmEmp;
     private javax.swing.JTextField ctApmMem;
@@ -2941,6 +2962,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tfCodigoSeg;
     private javax.swing.JTextField tfMesVenc;
     private javax.swing.JTextField tfNumeroTarjeta;
+    private javax.swing.JTextField tfSalaVenta;
     private javax.swing.JTabbedPane tpAdministración;
     private javax.swing.JTabbedPane tpPrincipal;
     // End of variables declaration//GEN-END:variables

@@ -134,4 +134,24 @@ public class FuncionConexion extends Conexion<Funcion> {
         }
         return disp;
    }
+
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]) {
+        if((args != null) || (args.length > 0)) {
+            String consulta;
+
+            consulta = "SELECT hora_ini, hora_fin FROM Cine.funcion";
+            try {
+                cb.removeAllItems();
+                ResultSet rs = ejecutaConsulta(consulta);
+                while(rs.next()) {
+                    String nombreComppleto = rs.getString("hora_ini") + "-" + rs.getString("hora_fin");
+                    cb.addItem(nombreComppleto);
+                }
+            }
+            catch(ClassNotFoundException | SQLException ex) {
+                // TODO: ADD DATABASE LOG
+            }
+        }
+    }
 }

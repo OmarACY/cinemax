@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import javax.swing.JComboBox;
 import modelo.Venta;
 import vista.Principal;
 
@@ -26,6 +27,11 @@ public class VentaConexion extends Conexion<Venta> {
 
     @Override
     public boolean actualiza(Venta modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void rellenaComboBox(JComboBox cb, String args[]) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
