@@ -82,18 +82,25 @@ public class PeliculaConexion extends Conexion<Pelicula> {
     @Override
     public void rellenaComboBox(JComboBox cb, String args[]) {
         if((args != null) && (args.length > 0)) {
-            String consulta;
-
-            consulta = "SELECT clave_pel, nombre FROM Cine.pelicula";
             try {
+                String consulta;
+                Integer clave_cin;
+
+                clave_cin = Integer.parseInt(args[0]);
+                consulta = "SELECT distinct pelicula.nombre " +
+                    "from Cine.funcion as funcion " + 
+                    "INNER JOIN Cine.sala as sala on sala.clave_sal = funcion.clave_sal "+
+                    "INNER JOIN Cine.cine as cine on cine.clave_cin = sala.clave_cin " + 
+                    "INNER JOIN Cine.pelicula as pelicula on pelicula.clave_pel = funcion.clave_pel " +
+                    "WHERE cine.clave_cin = " + clave_cin.toString();
                 cb.removeAllItems();
                 ResultSet rs = ejecutaConsulta(consulta);
                 while(rs.next()) {
-                    String nombreComppleto = rs.getString("clave_pel") + "-" + rs.getString("nombre");
+                    String nombreComppleto = rs.getString("nombre");
                     cb.addItem(nombreComppleto);
                 }
             }
-            catch(ClassNotFoundException | SQLException ex) {
+            catch(NumberFormatException | ClassNotFoundException | SQLException ex) {
                 // TODO: ADD DATABASE LOG
             }
         }

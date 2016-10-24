@@ -125,4 +125,6 @@ create table Venta.detalle_venta(
 	constraint FK_DET_VEN foreign key (clave_ven) references Venta.venta(clave_ven)
 );
 
-select * from Persona.empleado
+-- Adición de cupo en las funciones. Se utiliza al momento de consultar 
+-- las funciones disponibles en la sección de ventas
+ALTER TABLE Cine.funcion ADD cupo int NOT NULL DEFAULT 0;

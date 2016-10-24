@@ -137,19 +137,28 @@ public class FuncionConexion extends Conexion<Funcion> {
 
     @Override
     public void rellenaComboBox(JComboBox cb, String args[]) {
-        if((args != null) || (args.length > 0)) {
-            String consulta;
-
-            consulta = "SELECT hora_ini, hora_fin FROM Cine.funcion";
+        if((args != null) && (args.length > 0)) {
             try {
+                String consulta;
+                Integer clave_cin;
+
+                clave_cin = Integer.parseInt(args[0]);
+                consulta = "SELECT funcion.* " +
+                    "from Cine.funcion as funcion " +
+                    "INNER JOIN Cine.sala as sala on sala.clave_sal = funcion.clave_sal " +
+                    "INNER JOIN Cine.cine as cine on cine.clave_cin = sala.clave_cin " +
+                    "INNER JOIN Cine.pelicula as pelicula on pelicula.clave_pel = funcion.clave_pel " +
+                    "WHERE funcion.cupo > 0" +
+                    " AND cine.clave_cin = " + clave_cin.toString() +
+                    " AND pelicula.nombre = '" + args[1] + "'";
                 cb.removeAllItems();
                 ResultSet rs = ejecutaConsulta(consulta);
                 while(rs.next()) {
-                    String nombreComppleto = rs.getString("hora_ini") + "-" + rs.getString("hora_fin");
+                    String nombreComppleto = rs.getString("clave_fun") + "-" + rs.getString("hora_ini") + " a " + rs.getString("hora_fin");
                     cb.addItem(nombreComppleto);
                 }
             }
-            catch(ClassNotFoundException | SQLException ex) {
+            catch(NumberFormatException | ClassNotFoundException | SQLException ex) {
                 // TODO: ADD DATABASE LOG
             }
         }

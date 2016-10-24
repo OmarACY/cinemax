@@ -1406,26 +1406,56 @@ public class Principal extends javax.swing.JFrame {
         lbClienteVenta.setText("Cliente");
 
         cbClienteVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbClienteVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbClienteVentaActionPerformed(evt);
+            }
+        });
 
         lbCineVenta.setText("Cine");
 
         cbCineVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCineVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCineVentaActionPerformed(evt);
+            }
+        });
 
         lbPeliculaVenta.setText("Película");
 
         cbPeliculaVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPeliculaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPeliculaVentaActionPerformed(evt);
+            }
+        });
 
         lbHoraVenta.setText("Hora");
 
         cbHoraVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbHoraVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbHoraVentaActionPerformed(evt);
+            }
+        });
 
         lbSalaVenta.setText("Sala");
 
         lbPagoVenta.setText("Tipo de pago");
 
         rbEfectivo.setText("Efectivo");
+        rbEfectivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbEfectivoActionPerformed(evt);
+            }
+        });
 
         rbTarjeta.setText("Tarjeta");
+        rbTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTarjetaActionPerformed(evt);
+            }
+        });
 
         lbTarjetaVenta.setText("Número de tarjeta");
 
@@ -1707,7 +1737,7 @@ public class Principal extends javax.swing.JFrame {
         habilitaEdicionSucursal(false);
     }//GEN-LAST:event_panelSucursalComponentShown
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña sucursal"> 
+    // <editor-fold defaultstate="collapsed" desc="Eventos de la pestaña salas"> 
     private void btAgregaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregaFunActionPerformed
         agregaFuncion();
     }//GEN-LAST:event_btAgregaFunActionPerformed
@@ -1754,21 +1784,85 @@ public class Principal extends javax.swing.JFrame {
         Conexion con;
         
         con = new MembresiaConexion();
-        ((MembresiaConexion)con).rellenaComboBox(cbClienteVenta, null);
+        ((MembresiaConexion)con).rellenaComboBox(cbClienteVenta, null); 
+        
+        cbClienteVenta.setSelectedIndex(-1);
+        cbCineVenta.removeAllItems();
+        cbPeliculaVenta.removeAllItems();
+        cbHoraVenta.removeAllItems();
+    }//GEN-LAST:event_panelVentasComponentShown
+
+    private void cbClienteVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClienteVentaActionPerformed
+        Conexion con;
+        
         con = new CineConexion();
         ((CineConexion)con).rellenaComboBox(cbCineVenta, null);
+    }//GEN-LAST:event_cbClienteVentaActionPerformed
+
+    private void cbCineVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCineVentaActionPerformed
+        Conexion con;
+        
         con = new PeliculaConexion();
         ((PeliculaConexion)con).rellenaComboBox(cbPeliculaVenta, new String[]
         { 
             String.valueOf(cbCineVenta.getSelectedItem()).split("-")[0]
         });
+    }//GEN-LAST:event_cbCineVentaActionPerformed
+
+    private void cbPeliculaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPeliculaVentaActionPerformed
+        Conexion con;
+        
         con = new FuncionConexion();
         ((FuncionConexion)con).rellenaComboBox(cbHoraVenta, new String[]
         { 
             String.valueOf(cbCineVenta.getSelectedItem()).split("-")[0],
-            String.valueOf(cbPeliculaVenta.getSelectedItem()).split("-")[0] 
+            String.valueOf(cbPeliculaVenta.getSelectedItem())
         });
-    }//GEN-LAST:event_panelVentasComponentShown
+    }//GEN-LAST:event_cbPeliculaVentaActionPerformed
+
+    private void cbHoraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHoraVentaActionPerformed
+        Integer sala = null;
+        
+        try {
+            sala = Integer.parseInt(String.valueOf(cbHoraVenta.getSelectedItem()).split("-")[0]);
+        }
+        catch (Exception ex) {
+            
+        }
+        if(sala != null) {
+            tfSalaVenta.setText(sala.toString());
+            rbEfectivo.setEnabled(true);
+            rbTarjeta.setEnabled(true);
+            btnGenerarVenta.setEnabled(true);
+            rbEfectivo.setSelected(true);
+            rbTarjeta.setSelected(false);
+        }
+        else {
+            rbEfectivo.setEnabled(false);
+            rbTarjeta.setEnabled(false);
+            btnGenerarVenta.setEnabled(false);
+        }
+        tfNumeroTarjeta.setEnabled(false);
+        tfCodigoSeg.setEnabled(false);
+        tfMesVenc.setEnabled(false);
+        tfAnoVenc.setEnabled(false);
+    }//GEN-LAST:event_cbHoraVentaActionPerformed
+
+    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
+        rbTarjeta.setSelected(false);
+        tfNumeroTarjeta.setEnabled(false);
+        tfCodigoSeg.setEnabled(false);
+        tfMesVenc.setEnabled(false);
+        tfAnoVenc.setEnabled(false);
+    }//GEN-LAST:event_rbEfectivoActionPerformed
+
+    private void rbTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTarjetaActionPerformed
+        rbEfectivo.setSelected(false);
+        tfNumeroTarjeta.setEnabled(true);
+        tfCodigoSeg.setEnabled(true);
+        tfMesVenc.setEnabled(true);
+        tfAnoVenc.setEnabled(true);
+    }//GEN-LAST:event_rbTarjetaActionPerformed
     // </editor-fold>   
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña empleados">   
