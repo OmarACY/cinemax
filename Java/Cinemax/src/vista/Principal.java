@@ -8,8 +8,10 @@ package vista;
 import java.awt.Toolkit;
 import controlador.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.sql.Date;
 import java.sql.Time;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -18,7 +20,7 @@ import modelo.*;
  * @author MILAN
  */
 public class Principal extends javax.swing.JFrame {
-
+    
     public Principal() {
         initComponents();
         setIcon();
@@ -29,6 +31,18 @@ public class Principal extends javax.swing.JFrame {
      */
     private void setIcon() {
         super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagenes/logo_oscuro.png")));
+        
+        for (Component child : panelAsientos.getComponents()) {
+            if (child instanceof JLabel) {
+                JLabel label = (JLabel)child;
+                label.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        lbButacaMousePressed(evt);
+                    }
+                });
+            }
+        }
     }
     
     /**
@@ -95,7 +109,7 @@ public class Principal extends javax.swing.JFrame {
         btActualizaMem = new javax.swing.JButton();
         btCancelaMem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        cbTipoMem = new javax.swing.JComboBox<>();
+        cbTipoMem = new javax.swing.JComboBox<String>();
         etTipoMem = new javax.swing.JLabel();
         spPuntosMem = new javax.swing.JSpinner();
         etPuntosMem = new javax.swing.JLabel();
@@ -117,7 +131,7 @@ public class Principal extends javax.swing.JFrame {
         rbAPel = new javax.swing.JRadioButton();
         rbBPel = new javax.swing.JRadioButton();
         rbCPel = new javax.swing.JRadioButton();
-        cbGeneroPel = new javax.swing.JComboBox<>();
+        cbGeneroPel = new javax.swing.JComboBox<String>();
         etGeneroPel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taSinopsisPel = new javax.swing.JTextArea();
@@ -158,11 +172,11 @@ public class Principal extends javax.swing.JFrame {
         btCancelaFun = new javax.swing.JButton();
         etMensajeFun = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        cbPeliculaFun = new javax.swing.JComboBox<>();
+        cbPeliculaFun = new javax.swing.JComboBox<String>();
         etPeliculaFun = new javax.swing.JLabel();
-        cbCineFun = new javax.swing.JComboBox<>();
+        cbCineFun = new javax.swing.JComboBox<String>();
         etCineFun = new javax.swing.JLabel();
-        cbSalaFun = new javax.swing.JComboBox<>();
+        cbSalaFun = new javax.swing.JComboBox<String>();
         etSalaFun = new javax.swing.JLabel();
         ctHoraIniFun = new javax.swing.JTextField();
         etFechaFun = new javax.swing.JLabel();
@@ -199,7 +213,106 @@ public class Principal extends javax.swing.JFrame {
         lbSlash = new javax.swing.JLabel();
         btnGenerarVenta = new javax.swing.JButton();
         tfSalaVenta = new javax.swing.JTextField();
-        jPanel12 = new javax.swing.JPanel();
+        panelAsientos = new javax.swing.JPanel();
+        lbButaca1 = new javax.swing.JLabel();
+        lbButaca0 = new javax.swing.JLabel();
+        lbButaca3 = new javax.swing.JLabel();
+        lbButaca2 = new javax.swing.JLabel();
+        lbButaca4 = new javax.swing.JLabel();
+        lbButaca5 = new javax.swing.JLabel();
+        lbButaca6 = new javax.swing.JLabel();
+        lbButaca7 = new javax.swing.JLabel();
+        lbButaca8 = new javax.swing.JLabel();
+        lbButaca9 = new javax.swing.JLabel();
+        lbButaca10 = new javax.swing.JLabel();
+        lbButaca11 = new javax.swing.JLabel();
+        lbButaca12 = new javax.swing.JLabel();
+        lbButaca13 = new javax.swing.JLabel();
+        lbButaca14 = new javax.swing.JLabel();
+        lbButaca15 = new javax.swing.JLabel();
+        lbButaca16 = new javax.swing.JLabel();
+        lbButaca17 = new javax.swing.JLabel();
+        lbButaca18 = new javax.swing.JLabel();
+        lbButaca19 = new javax.swing.JLabel();
+        lbButaca20 = new javax.swing.JLabel();
+        lbButaca21 = new javax.swing.JLabel();
+        lbButaca22 = new javax.swing.JLabel();
+        lbButaca23 = new javax.swing.JLabel();
+        lbButaca24 = new javax.swing.JLabel();
+        lbButaca25 = new javax.swing.JLabel();
+        lbButaca26 = new javax.swing.JLabel();
+        lbButaca27 = new javax.swing.JLabel();
+        lbButaca28 = new javax.swing.JLabel();
+        lbButaca29 = new javax.swing.JLabel();
+        lbButaca30 = new javax.swing.JLabel();
+        lbButaca31 = new javax.swing.JLabel();
+        lbButaca32 = new javax.swing.JLabel();
+        lbButaca33 = new javax.swing.JLabel();
+        lbButaca34 = new javax.swing.JLabel();
+        lbButaca35 = new javax.swing.JLabel();
+        lbButaca36 = new javax.swing.JLabel();
+        lbButaca37 = new javax.swing.JLabel();
+        lbButaca38 = new javax.swing.JLabel();
+        lbButaca39 = new javax.swing.JLabel();
+        lbButaca40 = new javax.swing.JLabel();
+        lbButaca41 = new javax.swing.JLabel();
+        lbButaca42 = new javax.swing.JLabel();
+        lbButaca43 = new javax.swing.JLabel();
+        lbButaca44 = new javax.swing.JLabel();
+        lbButaca45 = new javax.swing.JLabel();
+        lbButaca46 = new javax.swing.JLabel();
+        lbButaca47 = new javax.swing.JLabel();
+        lbButaca48 = new javax.swing.JLabel();
+        lbButaca49 = new javax.swing.JLabel();
+        lbButaca50 = new javax.swing.JLabel();
+        lbButaca51 = new javax.swing.JLabel();
+        lbButaca52 = new javax.swing.JLabel();
+        lbButaca53 = new javax.swing.JLabel();
+        lbButaca54 = new javax.swing.JLabel();
+        lbButaca55 = new javax.swing.JLabel();
+        lbButaca56 = new javax.swing.JLabel();
+        lbButaca57 = new javax.swing.JLabel();
+        lbButaca58 = new javax.swing.JLabel();
+        lbButaca59 = new javax.swing.JLabel();
+        lbButaca60 = new javax.swing.JLabel();
+        lbButaca61 = new javax.swing.JLabel();
+        lbButaca62 = new javax.swing.JLabel();
+        lbButaca63 = new javax.swing.JLabel();
+        lbButaca64 = new javax.swing.JLabel();
+        lbButaca65 = new javax.swing.JLabel();
+        lbButaca66 = new javax.swing.JLabel();
+        lbButaca67 = new javax.swing.JLabel();
+        lbButaca68 = new javax.swing.JLabel();
+        lbButaca69 = new javax.swing.JLabel();
+        panelPantalla = new javax.swing.JPanel();
+        lbButaca70 = new javax.swing.JLabel();
+        lbButaca71 = new javax.swing.JLabel();
+        lbButaca72 = new javax.swing.JLabel();
+        lbButaca73 = new javax.swing.JLabel();
+        lbButaca74 = new javax.swing.JLabel();
+        lbButaca75 = new javax.swing.JLabel();
+        lbButaca76 = new javax.swing.JLabel();
+        lbButaca77 = new javax.swing.JLabel();
+        lbButaca78 = new javax.swing.JLabel();
+        lbButaca79 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cinemax");
@@ -326,7 +439,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(etColoniaEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ctCalleEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addComponent(ctCalleEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                     .addComponent(ctColoniaEmp)
                     .addComponent(ctNumeroEmp))
                 .addContainerGap())
@@ -402,7 +515,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btEliminaEmp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAgregaEmp)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         panelInfoEmpLayout.setVerticalGroup(
             panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +569,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Empleado", panelEmpleado);
@@ -609,7 +722,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de membresia"));
 
-        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standar", "Premium", "Vip" }));
+        cbTipoMem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Standar", "Premium", "Vip" }));
 
         etTipoMem.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etTipoMem.setText("Tipo");
@@ -628,7 +741,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(etPuntosMem, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbTipoMem, 0, 162, Short.MAX_VALUE)
+                    .addComponent(cbTipoMem, 0, 190, Short.MAX_VALUE)
                     .addComponent(spPuntosMem))
                 .addContainerGap())
         );
@@ -735,7 +848,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Membresía", panelMembresia);
@@ -792,7 +905,7 @@ public class Principal extends javax.swing.JFrame {
 
         rbCPel.setText("C (18 años +)");
 
-        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
+        cbGeneroPel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terror", "Comedia", "Accion", "Ciencia Ficcion", "Animacion", "Infantil", "Misterio", "Drama" }));
 
         etGeneroPel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etGeneroPel.setText("Genero");
@@ -832,7 +945,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etSinopsisPel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -923,7 +1036,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelPeliculaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelInfoEmp3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelPeliculaLayout.setVerticalGroup(
@@ -932,7 +1045,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Película", panelPelicula);
@@ -1097,7 +1210,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInfoEmp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInfoEmp4Layout.createSequentialGroup()
-                        .addGap(0, 145, Short.MAX_VALUE)
+                        .addGap(0, 173, Short.MAX_VALUE)
                         .addComponent(btCancelaSuc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btActualizaSuc)
@@ -1159,7 +1272,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Sucursal", panelSucursal);
@@ -1365,7 +1478,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelFuncionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelInfoEmp5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 978, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelFuncionLayout.setVerticalGroup(
@@ -1374,7 +1487,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Función", panelFuncion);
@@ -1505,7 +1618,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(tfAnoVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(tfCodigoSeg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 118, Short.MAX_VALUE))
+                        .addGap(0, 67, Short.MAX_VALUE))
                     .addComponent(tfSalaVenta))
                 .addContainerGap())
         );
@@ -1555,20 +1668,809 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbSlash))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGenerarVenta)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
-        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        panelAsientos.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+        lbButaca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca1.setEnabled(false);
+        lbButaca1.setName("H2"); // NOI18N
+
+        lbButaca0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca0.setEnabled(false);
+        lbButaca0.setName("H1"); // NOI18N
+
+        lbButaca3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca3.setEnabled(false);
+        lbButaca3.setName("H4"); // NOI18N
+
+        lbButaca2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca2.setEnabled(false);
+        lbButaca2.setName("H3"); // NOI18N
+
+        lbButaca4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca4.setEnabled(false);
+        lbButaca4.setName("H5"); // NOI18N
+
+        lbButaca5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca5.setEnabled(false);
+        lbButaca5.setName("H6"); // NOI18N
+
+        lbButaca6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca6.setEnabled(false);
+        lbButaca6.setName("H7"); // NOI18N
+
+        lbButaca7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca7.setEnabled(false);
+        lbButaca7.setName("H8"); // NOI18N
+
+        lbButaca8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca8.setEnabled(false);
+        lbButaca8.setName("H9"); // NOI18N
+
+        lbButaca9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca9.setEnabled(false);
+        lbButaca9.setName("H10"); // NOI18N
+
+        lbButaca10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca10.setEnabled(false);
+        lbButaca10.setName("G1"); // NOI18N
+
+        lbButaca11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca11.setEnabled(false);
+        lbButaca11.setName("G2"); // NOI18N
+
+        lbButaca12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca12.setEnabled(false);
+        lbButaca12.setName("G3"); // NOI18N
+
+        lbButaca13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca13.setEnabled(false);
+        lbButaca13.setName("G4"); // NOI18N
+
+        lbButaca14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca14.setEnabled(false);
+        lbButaca14.setName("G5"); // NOI18N
+
+        lbButaca15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca15.setEnabled(false);
+        lbButaca15.setName("G6"); // NOI18N
+
+        lbButaca16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca16.setEnabled(false);
+        lbButaca16.setName("G7"); // NOI18N
+
+        lbButaca17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca17.setEnabled(false);
+        lbButaca17.setName("G8"); // NOI18N
+
+        lbButaca18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca18.setEnabled(false);
+        lbButaca18.setName("G9"); // NOI18N
+
+        lbButaca19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca19.setEnabled(false);
+        lbButaca19.setName("G10"); // NOI18N
+
+        lbButaca20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca20.setEnabled(false);
+        lbButaca20.setName("F1"); // NOI18N
+
+        lbButaca21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca21.setEnabled(false);
+        lbButaca21.setName("F2"); // NOI18N
+
+        lbButaca22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca22.setEnabled(false);
+        lbButaca22.setName("F3"); // NOI18N
+
+        lbButaca23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca23.setEnabled(false);
+        lbButaca23.setName("F4"); // NOI18N
+
+        lbButaca24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca24.setEnabled(false);
+        lbButaca24.setName("F5"); // NOI18N
+
+        lbButaca25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca25.setEnabled(false);
+        lbButaca25.setName("F6"); // NOI18N
+
+        lbButaca26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca26.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca26.setEnabled(false);
+        lbButaca26.setName("F7"); // NOI18N
+
+        lbButaca27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca27.setEnabled(false);
+        lbButaca27.setName("F8"); // NOI18N
+
+        lbButaca28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca28.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca28.setEnabled(false);
+        lbButaca28.setName("F9"); // NOI18N
+
+        lbButaca29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca29.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca29.setEnabled(false);
+        lbButaca29.setName("F10"); // NOI18N
+
+        lbButaca30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca30.setEnabled(false);
+        lbButaca30.setName("E1"); // NOI18N
+
+        lbButaca31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca31.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca31.setEnabled(false);
+        lbButaca31.setName("E2"); // NOI18N
+
+        lbButaca32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca32.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca32.setEnabled(false);
+        lbButaca32.setName("E3"); // NOI18N
+
+        lbButaca33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca33.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca33.setEnabled(false);
+        lbButaca33.setName("E4"); // NOI18N
+
+        lbButaca34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca34.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca34.setEnabled(false);
+        lbButaca34.setName("E5"); // NOI18N
+
+        lbButaca35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca35.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca35.setEnabled(false);
+        lbButaca35.setName("E6"); // NOI18N
+
+        lbButaca36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca36.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca36.setEnabled(false);
+        lbButaca36.setName("E7"); // NOI18N
+
+        lbButaca37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca37.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca37.setEnabled(false);
+        lbButaca37.setName("E8"); // NOI18N
+
+        lbButaca38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca38.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca38.setEnabled(false);
+        lbButaca38.setName("E9"); // NOI18N
+
+        lbButaca39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca39.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca39.setEnabled(false);
+        lbButaca39.setName("E10"); // NOI18N
+
+        lbButaca40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca40.setEnabled(false);
+        lbButaca40.setName("D1"); // NOI18N
+
+        lbButaca41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca41.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca41.setEnabled(false);
+        lbButaca41.setName("D2"); // NOI18N
+
+        lbButaca42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca42.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca42.setEnabled(false);
+        lbButaca42.setName("D3"); // NOI18N
+
+        lbButaca43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca43.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca43.setEnabled(false);
+        lbButaca43.setName("D4"); // NOI18N
+
+        lbButaca44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca44.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca44.setEnabled(false);
+        lbButaca44.setName("D5"); // NOI18N
+
+        lbButaca45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca45.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca45.setEnabled(false);
+        lbButaca45.setName("D6"); // NOI18N
+
+        lbButaca46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca46.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca46.setEnabled(false);
+        lbButaca46.setName("D7"); // NOI18N
+
+        lbButaca47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca47.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca47.setEnabled(false);
+        lbButaca47.setName("D8"); // NOI18N
+
+        lbButaca48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca48.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca48.setEnabled(false);
+        lbButaca48.setName("D9"); // NOI18N
+
+        lbButaca49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca49.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca49.setEnabled(false);
+        lbButaca49.setName("D10"); // NOI18N
+
+        lbButaca50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca50.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca50.setEnabled(false);
+        lbButaca50.setName("C1"); // NOI18N
+
+        lbButaca51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca51.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca51.setEnabled(false);
+        lbButaca51.setName("C2"); // NOI18N
+
+        lbButaca52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca52.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca52.setEnabled(false);
+        lbButaca52.setName("C3"); // NOI18N
+
+        lbButaca53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca53.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca53.setEnabled(false);
+        lbButaca53.setName("C4"); // NOI18N
+
+        lbButaca54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca54.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca54.setEnabled(false);
+        lbButaca54.setName("C5"); // NOI18N
+
+        lbButaca55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca55.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca55.setEnabled(false);
+        lbButaca55.setName("C6"); // NOI18N
+
+        lbButaca56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca56.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca56.setEnabled(false);
+        lbButaca56.setName("C7"); // NOI18N
+
+        lbButaca57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca57.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca57.setEnabled(false);
+        lbButaca57.setName("C8"); // NOI18N
+
+        lbButaca58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca58.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca58.setEnabled(false);
+        lbButaca58.setName("C9"); // NOI18N
+
+        lbButaca59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca59.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca59.setEnabled(false);
+        lbButaca59.setName("C10"); // NOI18N
+
+        lbButaca60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca60.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca60.setEnabled(false);
+        lbButaca60.setName("B1"); // NOI18N
+
+        lbButaca61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca61.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca61.setEnabled(false);
+        lbButaca61.setName("B2"); // NOI18N
+
+        lbButaca62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca62.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca62.setEnabled(false);
+        lbButaca62.setName("B3"); // NOI18N
+
+        lbButaca63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca63.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca63.setEnabled(false);
+        lbButaca63.setName("B4"); // NOI18N
+
+        lbButaca64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca64.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca64.setEnabled(false);
+        lbButaca64.setName("B5"); // NOI18N
+
+        lbButaca65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca65.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca65.setEnabled(false);
+        lbButaca65.setName("B6"); // NOI18N
+
+        lbButaca66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca66.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca66.setEnabled(false);
+        lbButaca66.setName("B7"); // NOI18N
+
+        lbButaca67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca67.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca67.setEnabled(false);
+        lbButaca67.setName("B8"); // NOI18N
+
+        lbButaca68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca68.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca68.setEnabled(false);
+        lbButaca68.setName("B9"); // NOI18N
+
+        lbButaca69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca69.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca69.setEnabled(false);
+        lbButaca69.setName("B10"); // NOI18N
+
+        panelPantalla.setBackground(java.awt.Color.gray);
+        panelPantalla.setEnabled(false);
+
+        javax.swing.GroupLayout panelPantallaLayout = new javax.swing.GroupLayout(panelPantalla);
+        panelPantalla.setLayout(panelPantallaLayout);
+        panelPantallaLayout.setHorizontalGroup(
+            panelPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        panelPantallaLayout.setVerticalGroup(
+            panelPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+
+        lbButaca70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca70.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca70.setEnabled(false);
+        lbButaca70.setName("A1"); // NOI18N
+
+        lbButaca71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca71.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca71.setEnabled(false);
+        lbButaca71.setName("A2"); // NOI18N
+
+        lbButaca72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca72.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca72.setEnabled(false);
+        lbButaca72.setName("A3"); // NOI18N
+
+        lbButaca73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca73.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca73.setEnabled(false);
+        lbButaca73.setName("A4"); // NOI18N
+
+        lbButaca74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca74.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca74.setEnabled(false);
+        lbButaca74.setName("A5"); // NOI18N
+
+        lbButaca75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca75.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca75.setEnabled(false);
+        lbButaca75.setName("A6"); // NOI18N
+
+        lbButaca76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca76.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca76.setEnabled(false);
+        lbButaca76.setName("A7"); // NOI18N
+
+        lbButaca77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca77.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca77.setEnabled(false);
+        lbButaca77.setName("A8"); // NOI18N
+
+        lbButaca78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca78.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca78.setEnabled(false);
+        lbButaca78.setName("A9"); // NOI18N
+
+        lbButaca79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/butaca_64.png"))); // NOI18N
+        lbButaca79.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lbButaca79.setEnabled(false);
+        lbButaca79.setName("A10"); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("H");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("A");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("B");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("C");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("D");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("E");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("F");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("G");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("1");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("2");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("3");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("4");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("5");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("6");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("7");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("8");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("9");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("10");
+
+        javax.swing.GroupLayout panelAsientosLayout = new javax.swing.GroupLayout(panelAsientos);
+        panelAsientos.setLayout(panelAsientosLayout);
+        panelAsientosLayout.setHorizontalGroup(
+            panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAsientosLayout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(panelPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsientosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbButaca10)
+                    .addComponent(lbButaca0)
+                    .addComponent(lbButaca20)
+                    .addComponent(lbButaca30)
+                    .addComponent(lbButaca40)
+                    .addComponent(lbButaca50)
+                    .addComponent(lbButaca60)
+                    .addComponent(lbButaca70)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca19))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca29))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca39))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca46)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca47)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca48)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca49))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca51)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca53)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca55)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca56)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca57)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca58)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca59))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca61)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca62)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca63)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca64)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca65)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca66)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca67)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca69))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addComponent(lbButaca71)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca72)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca73)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca74)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca75)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca76)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca77)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca78)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbButaca79))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca1)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca2)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca3)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca4)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca5)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca6)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca7)
+                            .addComponent(jLabel16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca8)
+                            .addComponent(jLabel17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca9)
+                            .addComponent(jLabel18)))))
+        );
+        panelAsientosLayout.setVerticalGroup(
+            panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAsientosLayout.createSequentialGroup()
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca0)
+                            .addComponent(lbButaca3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbButaca10)
+                    .addComponent(lbButaca13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbButaca20, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbButaca23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbButaca30, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbButaca33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca32, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca35, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca38, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAsientosLayout.createSequentialGroup()
+                                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbButaca40, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbButaca43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca42, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca44, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca45, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca46, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca47, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca48, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca49, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbButaca50)
+                                    .addComponent(lbButaca53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca51, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca57, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbButaca59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(panelAsientosLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbButaca60)
+                            .addComponent(lbButaca63, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca61, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbButaca69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbButaca73, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                    .addComponent(lbButaca71, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca75, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca76, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca78, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbButaca79, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelAsientosLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel2))
+                    .addComponent(lbButaca70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelVentasLayout = new javax.swing.GroupLayout(panelVentas);
@@ -1578,15 +2480,15 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelVentasLayout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelVentasLayout.setVerticalGroup(
             panelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAsientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tpPrincipal.addTab("Ventas", panelVentas);
@@ -1595,22 +2497,22 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1008, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+            .addComponent(tpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
         );
 
         pack();
@@ -1863,7 +2765,19 @@ public class Principal extends javax.swing.JFrame {
         tfMesVenc.setEnabled(true);
         tfAnoVenc.setEnabled(true);
     }//GEN-LAST:event_rbTarjetaActionPerformed
-    // </editor-fold>   
+    
+    private void lbButacaMousePressed(java.awt.event.MouseEvent evt) {   
+        if(evt.getSource() instanceof JLabel && !((JLabel)evt.getSource()).isOpaque()) {  
+            if(((JLabel)evt.getSource()).isEnabled()) {
+                ((JLabel)evt.getSource()).setEnabled(false);
+            }
+            else {
+                ((JLabel)evt.getSource()).setEnabled(true);
+            }
+            //JOptionPane.showMessageDialog(null, ((JLabel)evt.getSource()).getName());
+        }
+    }   
+// </editor-fold>   
     
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña empleados">   
     private void habilitaEdicionEmpleado(boolean visible){
@@ -2998,10 +3912,27 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel etSinopsisPel;
     private javax.swing.JLabel etTelSuc;
     private javax.swing.JLabel etTipoMem;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3017,6 +3948,86 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbButaca0;
+    private javax.swing.JLabel lbButaca1;
+    private javax.swing.JLabel lbButaca10;
+    private javax.swing.JLabel lbButaca11;
+    private javax.swing.JLabel lbButaca12;
+    private javax.swing.JLabel lbButaca13;
+    private javax.swing.JLabel lbButaca14;
+    private javax.swing.JLabel lbButaca15;
+    private javax.swing.JLabel lbButaca16;
+    private javax.swing.JLabel lbButaca17;
+    private javax.swing.JLabel lbButaca18;
+    private javax.swing.JLabel lbButaca19;
+    private javax.swing.JLabel lbButaca2;
+    private javax.swing.JLabel lbButaca20;
+    private javax.swing.JLabel lbButaca21;
+    private javax.swing.JLabel lbButaca22;
+    private javax.swing.JLabel lbButaca23;
+    private javax.swing.JLabel lbButaca24;
+    private javax.swing.JLabel lbButaca25;
+    private javax.swing.JLabel lbButaca26;
+    private javax.swing.JLabel lbButaca27;
+    private javax.swing.JLabel lbButaca28;
+    private javax.swing.JLabel lbButaca29;
+    private javax.swing.JLabel lbButaca3;
+    private javax.swing.JLabel lbButaca30;
+    private javax.swing.JLabel lbButaca31;
+    private javax.swing.JLabel lbButaca32;
+    private javax.swing.JLabel lbButaca33;
+    private javax.swing.JLabel lbButaca34;
+    private javax.swing.JLabel lbButaca35;
+    private javax.swing.JLabel lbButaca36;
+    private javax.swing.JLabel lbButaca37;
+    private javax.swing.JLabel lbButaca38;
+    private javax.swing.JLabel lbButaca39;
+    private javax.swing.JLabel lbButaca4;
+    private javax.swing.JLabel lbButaca40;
+    private javax.swing.JLabel lbButaca41;
+    private javax.swing.JLabel lbButaca42;
+    private javax.swing.JLabel lbButaca43;
+    private javax.swing.JLabel lbButaca44;
+    private javax.swing.JLabel lbButaca45;
+    private javax.swing.JLabel lbButaca46;
+    private javax.swing.JLabel lbButaca47;
+    private javax.swing.JLabel lbButaca48;
+    private javax.swing.JLabel lbButaca49;
+    private javax.swing.JLabel lbButaca5;
+    private javax.swing.JLabel lbButaca50;
+    private javax.swing.JLabel lbButaca51;
+    private javax.swing.JLabel lbButaca52;
+    private javax.swing.JLabel lbButaca53;
+    private javax.swing.JLabel lbButaca54;
+    private javax.swing.JLabel lbButaca55;
+    private javax.swing.JLabel lbButaca56;
+    private javax.swing.JLabel lbButaca57;
+    private javax.swing.JLabel lbButaca58;
+    private javax.swing.JLabel lbButaca59;
+    private javax.swing.JLabel lbButaca6;
+    private javax.swing.JLabel lbButaca60;
+    private javax.swing.JLabel lbButaca61;
+    private javax.swing.JLabel lbButaca62;
+    private javax.swing.JLabel lbButaca63;
+    private javax.swing.JLabel lbButaca64;
+    private javax.swing.JLabel lbButaca65;
+    private javax.swing.JLabel lbButaca66;
+    private javax.swing.JLabel lbButaca67;
+    private javax.swing.JLabel lbButaca68;
+    private javax.swing.JLabel lbButaca69;
+    private javax.swing.JLabel lbButaca7;
+    private javax.swing.JLabel lbButaca70;
+    private javax.swing.JLabel lbButaca71;
+    private javax.swing.JLabel lbButaca72;
+    private javax.swing.JLabel lbButaca73;
+    private javax.swing.JLabel lbButaca74;
+    private javax.swing.JLabel lbButaca75;
+    private javax.swing.JLabel lbButaca76;
+    private javax.swing.JLabel lbButaca77;
+    private javax.swing.JLabel lbButaca78;
+    private javax.swing.JLabel lbButaca79;
+    private javax.swing.JLabel lbButaca8;
+    private javax.swing.JLabel lbButaca9;
     private javax.swing.JLabel lbCineVenta;
     private javax.swing.JLabel lbClienteVenta;
     private javax.swing.JLabel lbCodigoSeg;
@@ -3028,6 +4039,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lbSlash;
     private javax.swing.JLabel lbTarjetaVenta;
     private javax.swing.JPanel panelAdministracion;
+    private javax.swing.JPanel panelAsientos;
     private javax.swing.JPanel panelEmpleado;
     private javax.swing.JPanel panelFuncion;
     private javax.swing.JPanel panelInfoEmp;
@@ -3036,6 +4048,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panelInfoEmp4;
     private javax.swing.JPanel panelInfoEmp5;
     private javax.swing.JPanel panelMembresia;
+    private javax.swing.JPanel panelPantalla;
     private javax.swing.JPanel panelPelicula;
     private javax.swing.JPanel panelSucursal;
     private javax.swing.JPanel panelVentas;
@@ -3060,5 +4073,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpAdministración;
     private javax.swing.JTabbedPane tpPrincipal;
     // End of variables declaration//GEN-END:variables
+
 
 }
