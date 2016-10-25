@@ -11,8 +11,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import modelo.*;
 
 /**
@@ -20,10 +23,15 @@ import modelo.*;
  * @author MILAN
  */
 public class Principal extends javax.swing.JFrame {
+    private Long clave_emp;
     
     public Principal() {
         initComponents();
         setIcon();
+    }
+
+    public void setClave_emp(Long clave_emp) {
+        this.clave_emp = clave_emp;
     }
 
     /**
@@ -43,6 +51,29 @@ public class Principal extends javax.swing.JFrame {
                 });
             }
         }
+    }
+    
+    private void habilitaAsientos(String clave_fun) {
+        LinkedList<String> listaAsientos;
+        FuncionConexion con;
+        
+        con = new FuncionConexion();
+        listaAsientos = con.obtenAsientosAcupados(clave_fun);
+        for (Component child : panelAsientos.getComponents()) {
+            if (child instanceof JLabel) {
+                JLabel label = (JLabel)child;
+                if (label.getName() != null) {
+                    label.setEnabled(false);
+                    if(listaAsientos.contains(label.getName())) {
+                        label.setOpaque(true);
+                    }
+                    else {
+                        label.setOpaque(false);
+                    }
+                }
+            }
+        }
+        panelAsientos.repaint();
     }
     
     /**
@@ -1552,7 +1583,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lbSalaVenta.setText("Sala");
+        lbSalaVenta.setText("Función");
 
         lbPagoVenta.setText("Tipo de pago");
 
@@ -1579,6 +1610,11 @@ public class Principal extends javax.swing.JFrame {
         lbSlash.setText("/");
 
         btnGenerarVenta.setText("Generar venta");
+        btnGenerarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarVentaActionPerformed(evt);
+            }
+        });
 
         tfSalaVenta.setEnabled(false);
 
@@ -2089,57 +2125,75 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("H");
+        jLabel1.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("A");
+        jLabel2.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("B");
+        jLabel3.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("C");
+        jLabel4.setEnabled(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("D");
+        jLabel5.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("E");
+        jLabel6.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("F");
+        jLabel7.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("G");
+        jLabel8.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("1");
+        jLabel9.setEnabled(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("2");
+        jLabel10.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("3");
+        jLabel11.setEnabled(false);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("4");
+        jLabel12.setEnabled(false);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("5");
+        jLabel13.setEnabled(false);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("6");
+        jLabel14.setEnabled(false);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("7");
+        jLabel15.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setText("8");
+        jLabel16.setEnabled(false);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("9");
+        jLabel17.setEnabled(false);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("10");
+        jLabel18.setEnabled(false);
 
         javax.swing.GroupLayout panelAsientosLayout = new javax.swing.GroupLayout(panelAsientos);
         panelAsientos.setLayout(panelAsientosLayout);
@@ -2738,11 +2792,14 @@ public class Principal extends javax.swing.JFrame {
             btnGenerarVenta.setEnabled(true);
             rbEfectivo.setSelected(true);
             rbTarjeta.setSelected(false);
+            panelAsientos.setVisible(true);
+            habilitaAsientos(tfSalaVenta.getText());
         }
         else {
             rbEfectivo.setEnabled(false);
             rbTarjeta.setEnabled(false);
             btnGenerarVenta.setEnabled(false);
+            panelAsientos.setVisible(false);
         }
         tfNumeroTarjeta.setEnabled(false);
         tfCodigoSeg.setEnabled(false);
@@ -2765,6 +2822,47 @@ public class Principal extends javax.swing.JFrame {
         tfMesVenc.setEnabled(true);
         tfAnoVenc.setEnabled(true);
     }//GEN-LAST:event_rbTarjetaActionPerformed
+
+    private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVentaActionPerformed
+        ArrayList<String> asientos = new ArrayList<>();
+        Integer total = 0;
+        String msg = "¿Generar venta?\n";
+        
+        for (Component child : panelAsientos.getComponents()) {
+            if (child instanceof JLabel) {
+                JLabel label = (JLabel)child;
+                if (label.isEnabled() && label.getName() != null) {
+                    asientos.add(label.getName());
+                    total += 40;
+                    msg += label.getName() + ":\t" + "$40.00\n";
+                }
+            }
+        }
+        msg += "Total:\t$" + total.toString() + ".00";
+        if(total == 0) {
+            JOptionPane.showMessageDialog(null, "Primero debe seleccionar los asientos", "Cinemax", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            if(JOptionPane.showConfirmDialog(null, msg, "Cinemax", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                Venta venta = new Venta();
+                VentaConexion con = new VentaConexion();
+                
+                venta.setClave_emp(this.clave_emp);
+                venta.setClave_fun(Long.parseLong(String.valueOf(tfSalaVenta.getText())));
+                venta.setClave_mem(Long.parseLong(String.valueOf(cbClienteVenta.getSelectedItem()).split("-")[0]));
+                venta.setPago_efectivo(rbEfectivo.isSelected());
+                venta.setNumero_tar(tfNumeroTarjeta.getText());
+                venta.setCodigo_seg(tfCodigoSeg.getText());
+                venta.setFecha_ven("20" + tfAnoVenc.getText() + "-" + tfMesVenc.getText() + "-01");
+                venta.setAsientos(asientos);
+                venta.setCostoAsiento(40);
+                venta.setTipoAsiento("Normal");
+                con.inserta(venta);
+                cbClienteVenta.setSelectedIndex(-1);
+                cbCineVenta.setSelectedIndex(-1);
+            }
+        }
+    }//GEN-LAST:event_btnGenerarVentaActionPerformed
     
     private void lbButacaMousePressed(java.awt.event.MouseEvent evt) {   
         if(evt.getSource() instanceof JLabel && !((JLabel)evt.getSource()).isOpaque()) {  
@@ -2774,7 +2872,6 @@ public class Principal extends javax.swing.JFrame {
             else {
                 ((JLabel)evt.getSource()).setEnabled(true);
             }
-            //JOptionPane.showMessageDialog(null, ((JLabel)evt.getSource()).getName());
         }
     }   
 // </editor-fold>   

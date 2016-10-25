@@ -81,15 +81,15 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         }
     }
     
-    public boolean existe(Empleado modelo) {
-        boolean existe = false;       
+    public long existe(Empleado modelo) {
+       int existe = -1;       
         String consulta;
         
         consulta = "SELECT * FROM Persona.empleado where Concat(nombres, ' ', app, ' ', apm) = '" + modelo.getNombres()+ "' AND contraseña = '" + modelo.getContraseña() + "'";
         try {
             ResultSet rs = ejecutaConsulta(consulta);
             if(rs.next()) {
-                existe = true;
+                existe = Integer.parseInt(rs.getString("clave_emp"));
             }
             else {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intente nuevamente", "Inicio de sesión", JOptionPane.ERROR_MESSAGE);

@@ -24,13 +24,13 @@ namespace cinemax
                 "VALUES(0, " + clave_mem + ", " + clave_fun + ", " + clave_emp + ")";
             if (EjecutaSentencia(query))
             {
+                claveVenta = ObtenUltimoID("Venta.venta", "clave_ven");
                 if (!pagoEfectivo)
                 {
                     query = "INSERT INTO Venta.cuenta(clave_ven, numero_tar, codigo_seg, fecha_ven)" +
-                        "VALUES(" + 1 + ", '" + numero_tar + "', '" + codigo_seg + "', '" + fecha_ven.ToShortDateString().Replace("/", "-") + "')";
+                        "VALUES(" + claveVenta.ToString() + ", '" + numero_tar + "', '" + codigo_seg + "', '" + fecha_ven.ToShortDateString().Replace("/", "-") + "')";
                     EjecutaSentencia(query);
                 }
-                claveVenta = ObtenUltimoID("Venta.venta", "clave_ven");
                 foreach (string butaca in butacas)
                 {
                     query = "INSERT INTO Venta.detalle_venta(clave_ven, subtotal, asiento, tipo_asi)" +

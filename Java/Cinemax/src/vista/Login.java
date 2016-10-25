@@ -174,6 +174,7 @@ public class Login extends javax.swing.JFrame {
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
         EmpleadoConexion con;
         Empleado emp;
+        long clave_emp;
         
         con = new EmpleadoConexion();
         emp = new Empleado();
@@ -184,7 +185,9 @@ public class Login extends javax.swing.JFrame {
         }
         emp.setNombres(String.valueOf(cbIdEmpleado.getSelectedItem()));
         emp.setContraseña(psswd);
-        if(con.existe(emp)) {
+        clave_emp = con.existe(emp);
+        if(clave_emp != -1) {
+            formularioPrincipal.setClave_emp(clave_emp);
             formularioPrincipal.setVisible(true);
             dispose();
         }

@@ -7,10 +7,10 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Funcion;
-import vista.Principal;
 
 /**
  *
@@ -162,5 +162,28 @@ public class FuncionConexion extends Conexion<Funcion> {
                 // TODO: ADD DATABASE LOG
             }
         }
+    }
+    
+    public LinkedList<String> obtenAsientosAcupados(String clave_fun) {
+        LinkedList<String> listaAsientos = new LinkedList<>();
+        
+        try {
+            String consulta;
+
+            consulta = "SELECT detalle.asiento FROM Venta.detalle_venta as detalle" +
+                    " INNER JOIN Venta.venta AS venta ON venta.clave_ven = detalle.clave_ven" +
+                    " INNER JOIN Cine.funcion AS funcion ON funcion.clave_fun = venta.clave_fun" +
+                    " WHERE funcion.clave_fun = " + clave_fun;
+            ResultSet rs = ejecutaConsulta(consulta);
+            while(rs.next()) {
+                String asiento = rs.getString("asiento");
+                listaAsientos.add(asiento);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+            
+        return listaAsientos;
     }
 }

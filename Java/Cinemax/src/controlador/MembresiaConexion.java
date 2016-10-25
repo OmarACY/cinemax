@@ -89,7 +89,7 @@ public class MembresiaConexion extends Conexion<Membresia> {
             cb.removeAllItems();
             ResultSet rs = ejecutaConsulta(consulta);
             while(rs.next()) {
-                String nombreComppleto = rs.getString("nombre") + " " + rs.getString("app") + " " + rs.getString("apm");
+                String nombreComppleto = rs.getString("clave_mem") + "-" + rs.getString("nombre") + " " + rs.getString("app") + " " + rs.getString("apm");
                 cb.addItem(nombreComppleto);
             }
         }
