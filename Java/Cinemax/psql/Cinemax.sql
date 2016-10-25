@@ -127,4 +127,20 @@ create table Venta.detalle_venta(
 
 -- Adición de cupo en las funciones. Se utiliza al momento de consultar 
 -- las funciones disponibles en la sección de ventas
+-- APLICADO: OMAR-PC
 ALTER TABLE Cine.funcion ADD cupo int NOT NULL DEFAULT 0;
+
+-- Creación de trigger Inserta_Salas
+-- APLICADO: OMAR-PC
+CREATE OR REPLACE FUNCTION InsertaSalas() RETURNS TRIGGER AS $Inserta_Salas$
+BEGIN
+	WHILE(NEW.num_salas > (SELECT COUNT(*) FROM Cine.sala WHERE clave_cin = New.clave_cin)) LOOP
+		INSERT INTO Cine.sala(clave_cin, cupo) VALUES(NEW.clave_cin, 30); 	
+	END LOOP;
+	
+	RETURN NEW;
+END
+$Inserta_Salas$ LANGUAGE plpgsql;
+
+CREATE TRIGGER Inserta_Salas AFTER INSERT ON Cine.cine
+FOR EACH ROW EXECUTE PROCEDURE InsertaSalas();
