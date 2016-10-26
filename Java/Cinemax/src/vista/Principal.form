@@ -2203,7 +2203,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="lbCodigoSeg">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="C&#xf3;digo de seguridad"/>
+                        <Property name="text" type="java.lang.String" value="C&#xf3;digo de seguridad (SSS)"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="tfCodigoSeg">

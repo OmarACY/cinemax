@@ -1603,7 +1603,7 @@ public class Principal extends javax.swing.JFrame {
 
         lbTarjetaVenta.setText("Número de tarjeta");
 
-        lbCodigoSeg.setText("Código de seguridad");
+        lbCodigoSeg.setText("Código de seguridad (SSS)");
 
         lbFechaVencimiento.setText("Fecha de vencimiento (MM / AA)");
 
@@ -2794,6 +2794,10 @@ public class Principal extends javax.swing.JFrame {
             rbTarjeta.setSelected(false);
             panelAsientos.setVisible(true);
             habilitaAsientos(tfSalaVenta.getText());
+            lbTarjetaVenta.setForeground(Color.black); 
+            lbCodigoSeg.setForeground(Color.black); 
+            lbFechaVencimiento.setForeground(Color.black); 
+            lbFechaVencimiento.setForeground(Color.black); 
         }
         else {
             rbEfectivo.setEnabled(false);
@@ -2825,6 +2829,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVentaActionPerformed
         ArrayList<String> asientos = new ArrayList<>();
+        int codSeg, anoVenc, mesVenc;
         Integer total = 0;
         String msg = "¿Generar venta?\n";
         
@@ -2839,7 +2844,38 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         msg += "Total:\t$" + total.toString() + ".00";
-        if(total == 0) {
+        codSeg = anoVenc = mesVenc = -1;
+        try {
+            codSeg = Integer.parseInt(tfCodigoSeg.getText());
+            anoVenc = Integer.parseInt(tfAnoVenc.getText());
+            mesVenc = Integer.parseInt(tfMesVenc.getText());
+        }
+        catch(Exception ex) {
+        }
+        
+        if(rbTarjeta.isSelected()) {
+            boolean valido = true;
+            if (tfNumeroTarjeta.getText().trim().equals("")) { lbTarjetaVenta.setForeground(Color.red); valido = false;}
+            else lbTarjetaVenta.setForeground(Color.black);
+            if (tfCodigoSeg.getText().trim().equals("")) { lbCodigoSeg.setForeground(Color.red); valido = false;}
+            else lbCodigoSeg.setForeground(Color.black);
+            if (tfMesVenc.getText().trim().equals("")) { lbFechaVencimiento.setForeground(Color.red); valido = false;}
+            else lbFechaVencimiento.setForeground(Color.black);
+            if (tfAnoVenc.getText().trim().equals("")) { lbFechaVencimiento.setForeground(Color.red); valido = false;}
+            else lbFechaVencimiento.setForeground(Color.black);
+            if(!valido)
+                return;
+        }
+        if((codSeg < 100) || (codSeg > 999)){
+            JOptionPane.showMessageDialog(null, "Formato no válido (Código de seguridad)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+        }
+        else if((mesVenc < 1) || (mesVenc > 12)) {
+            JOptionPane.showMessageDialog(null, "Formato no válido (Mes)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+        }
+        else if((anoVenc < 16) || (anoVenc > 99)) {
+            JOptionPane.showMessageDialog(null, "Formato no válido (Año)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(total == 0) {
             JOptionPane.showMessageDialog(null, "Primero debe seleccionar los asientos", "Cinemax", JOptionPane.ERROR_MESSAGE);
         }
         else {
