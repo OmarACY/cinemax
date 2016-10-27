@@ -25,9 +25,9 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         String sentencia;
         int filasAfectadas;
         
-        sentencia = String.format("INSERT INTO Persona.empleado (nombres, app, apm,fecha_nac,colonia,calle,numero,contraseña"+
-                ") VALUES ('%s','%s','%s','%s','%s','%s',%d,'%s')",modelo.getNombres(),modelo.getApp(),modelo.getApm(),
-                modelo.getFecha_nac().toString(),modelo.getColonia(),modelo.getCalle(),modelo.getNumero(),modelo.getContraseña()); 
+        sentencia = String.format("INSERT INTO Persona.empleado (nombres, app, apm,fecha_nac,colonia,calle,numero,contraseña, nombre_rol"+
+                ") VALUES ('%s','%s','%s','%s','%s','%s',%d,'%s', '%s')",modelo.getNombres(),modelo.getApp(),modelo.getApm(),
+                modelo.getFecha_nac().toString(),modelo.getColonia(),modelo.getCalle(),modelo.getNumero(),modelo.getContraseña(), modelo.getNombre_rol()); 
         try {
             filasAfectadas = ejecutaSentencia(sentencia);
         }
@@ -57,8 +57,8 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         String sentencia;
         int filasAfectadas;
         
-        sentencia = String.format("UPDATE Persona.empleado SET nombres = '%s', app = '%s', apm = '%s', fecha_nac = '%s', colonia = '%s', calle = '%s' ,numero = %d ,contraseña = '%s' WHERE clave_emp = %d", 
-                modelo.getNombres(), modelo.getApp(), modelo.getApm(), modelo.getFecha_nac().toString(), modelo.getColonia(), modelo.getCalle(), modelo.getNumero(), modelo.getContraseña(), modelo.getClave_emp()); 
+        sentencia = String.format("UPDATE Persona.empleado SET nombres = '%s', app = '%s', apm = '%s', fecha_nac = '%s', colonia = '%s', calle = '%s' ,numero = %d ,contraseña = '%s', nombre_rol = '%s' WHERE clave_emp = %d", 
+                modelo.getNombres(), modelo.getApp(), modelo.getApm(), modelo.getFecha_nac().toString(), modelo.getColonia(), modelo.getCalle(), modelo.getNumero(), modelo.getContraseña(), modelo.getNombre_rol(), modelo.getClave_emp()); 
         try {
             filasAfectadas = ejecutaSentencia(sentencia);
         }

@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setIcon();
+        inicializaControles();
     }
 
     public void setClave_emp(Long clave_emp) {
@@ -39,7 +40,9 @@ public class Principal extends javax.swing.JFrame {
      */
     private void setIcon() {
         super.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../imagenes/logo_oscuro.png")));
-        
+    }
+    
+    private void inicializaControles() {
         for (Component child : panelAsientos.getComponents()) {
             if (child instanceof JLabel) {
                 JLabel label = (JLabel)child;
@@ -51,6 +54,10 @@ public class Principal extends javax.swing.JFrame {
                 });
             }
         }
+        
+        //tpPrincipal.setEnabledAt(0, false);
+        //tpPrincipal.setSelectedIndex(1);
+        //tpPrincipal.remove(0);
     }
     
     private void habilitaAsientos(String clave_fun) {
@@ -86,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
+        mainPanel = new javax.swing.JPanel();
         tpPrincipal = new javax.swing.JTabbedPane();
         panelAdministracion = new javax.swing.JPanel();
         tpAdministración = new javax.swing.JTabbedPane();
@@ -103,6 +110,8 @@ public class Principal extends javax.swing.JFrame {
         ctApmEmp = new javax.swing.JTextField();
         ctContEmp = new javax.swing.JTextField();
         dcFechaEmp = new com.toedter.calendar.JDateChooser();
+        lbRolEmp = new javax.swing.JLabel();
+        cbRolEmpleado = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         etColoniaEmp = new javax.swing.JLabel();
         etNumeroEmp = new javax.swing.JLabel();
@@ -349,8 +358,8 @@ public class Principal extends javax.swing.JFrame {
         setTitle("Cinemax");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(985, 565));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setPreferredSize(new java.awt.Dimension(985, 565));
 
         tpPrincipal.setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -389,6 +398,11 @@ public class Principal extends javax.swing.JFrame {
 
         ctContEmp.setName("ctContEmp"); // NOI18N
 
+        lbRolEmp.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbRolEmp.setText("Rol");
+
+        cbRolEmpleado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -396,18 +410,6 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ctApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                            .addComponent(dcFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etAppEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
@@ -415,7 +417,25 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ctNombreEmp)
-                            .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(ctAppEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(etContEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lbRolEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ctContEmp)
+                            .addComponent(ctApmEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(dcFechaEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbRolEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -439,7 +459,12 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctContEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etContEmp)))
+                    .addComponent(etContEmp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbRolEmp)
+                    .addComponent(cbRolEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de contacto"));
@@ -490,7 +515,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ctNumeroEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(etNumeroEmp))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btAgregaEmp.setText("Agregar");
@@ -523,48 +548,6 @@ public class Principal extends javax.swing.JFrame {
 
         etMensajeEmp.setText("Mensaje");
 
-        javax.swing.GroupLayout panelInfoEmpLayout = new javax.swing.GroupLayout(panelInfoEmp);
-        panelInfoEmp.setLayout(panelInfoEmpLayout);
-        panelInfoEmpLayout.setHorizontalGroup(
-            panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoEmpLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(19, 19, 19))
-                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(etMensajeEmp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btCancelaEmp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btActualizaEmp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEliminaEmp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAgregaEmp)))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        panelInfoEmpLayout.setVerticalGroup(
-            panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etMensajeEmp)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(panelInfoEmpLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCancelaEmp)
-                    .addComponent(btActualizaEmp)
-                    .addComponent(btEliminaEmp)
-                    .addComponent(btAgregaEmp)))
-        );
-
         tablaEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -583,15 +566,58 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tablaEmpleado);
 
+        javax.swing.GroupLayout panelInfoEmpLayout = new javax.swing.GroupLayout(panelInfoEmp);
+        panelInfoEmp.setLayout(panelInfoEmpLayout);
+        panelInfoEmpLayout.setHorizontalGroup(
+            panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(61, Short.MAX_VALUE))
+                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())
+                    .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                        .addComponent(etMensajeEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCancelaEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btActualizaEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btEliminaEmp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAgregaEmp)
+                        .addGap(42, 42, 42))))
+        );
+        panelInfoEmpLayout.setVerticalGroup(
+            panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoEmpLayout.createSequentialGroup()
+                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelInfoEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etMensajeEmp)
+                    .addComponent(btCancelaEmp)
+                    .addComponent(btActualizaEmp)
+                    .addComponent(btEliminaEmp)
+                    .addComponent(btAgregaEmp))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout panelEmpleadoLayout = new javax.swing.GroupLayout(panelEmpleado);
         panelEmpleado.setLayout(panelEmpleadoLayout);
         panelEmpleadoLayout.setHorizontalGroup(
             panelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelInfoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                .addComponent(panelInfoEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelEmpleadoLayout.setVerticalGroup(
@@ -599,8 +625,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelEmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelInfoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Empleado", panelEmpleado);
@@ -879,7 +904,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Membresía", panelMembresia);
@@ -1076,7 +1101,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Película", panelPelicula);
@@ -1303,7 +1328,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Sucursal", panelSucursal);
@@ -1518,7 +1543,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
         );
 
         tpAdministración.addTab("Función", panelFuncion);
@@ -1704,7 +1729,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(lbSlash))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGenerarVenta)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         panelAsientos.setBackground(new java.awt.Color(255, 255, 255));
@@ -2509,7 +2534,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbButaca73, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                    .addComponent(lbButaca73, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                     .addComponent(lbButaca71, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbButaca72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbButaca74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2547,26 +2572,26 @@ public class Principal extends javax.swing.JFrame {
 
         tpPrincipal.addTab("Ventas", panelVentas);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1008, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         pack();
@@ -2579,6 +2604,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btAgregaEmpActionPerformed
 
     private void panelEmpleadoComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelEmpleadoComponentShown
+        RolConexion con = new RolConexion();
+        
+        con.rellenaComboBox(cbRolEmpleado, null);
         actualizaTablaEmpleados();
         etMensajeEmp.setVisible(false);
         habilitaEdicionEmpleado(false);
@@ -2863,19 +2891,23 @@ public class Principal extends javax.swing.JFrame {
             else lbFechaVencimiento.setForeground(Color.black);
             if (tfAnoVenc.getText().trim().equals("")) { lbFechaVencimiento.setForeground(Color.red); valido = false;}
             else lbFechaVencimiento.setForeground(Color.black);
+            
+            if((codSeg < 100) || (codSeg > 999)){
+                valido = false;
+                JOptionPane.showMessageDialog(null, "Formato no válido (Código de seguridad)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+            }
+            else if((mesVenc < 1) || (mesVenc > 12)) {
+                valido = false;
+                JOptionPane.showMessageDialog(null, "Formato no válido (Mes)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+            }
+            else if((anoVenc < 16) || (anoVenc > 99)) {
+                valido = false;
+                JOptionPane.showMessageDialog(null, "Formato no válido (Año)", "Cinemax", JOptionPane.ERROR_MESSAGE);
+            }
             if(!valido)
                 return;
         }
-        if((codSeg < 100) || (codSeg > 999)){
-            JOptionPane.showMessageDialog(null, "Formato no válido (Código de seguridad)", "Cinemax", JOptionPane.ERROR_MESSAGE);
-        }
-        else if((mesVenc < 1) || (mesVenc > 12)) {
-            JOptionPane.showMessageDialog(null, "Formato no válido (Mes)", "Cinemax", JOptionPane.ERROR_MESSAGE);
-        }
-        else if((anoVenc < 16) || (anoVenc > 99)) {
-            JOptionPane.showMessageDialog(null, "Formato no válido (Año)", "Cinemax", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(total == 0) {
+        if(total == 0) {
             JOptionPane.showMessageDialog(null, "Primero debe seleccionar los asientos", "Cinemax", JOptionPane.ERROR_MESSAGE);
         }
         else {
@@ -2949,6 +2981,7 @@ public class Principal extends javax.swing.JFrame {
             empleado.setCalle(ctCalleEmp.getText());        
             empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));  
             empleado.setContraseña(ctContEmp.getText());
+            empleado.setNombre_rol(String.valueOf(cbRolEmpleado.getSelectedItem()));
 
             if(conEmp.inserta(empleado)) {
                 limpiaCamposEmpleado();
@@ -2982,6 +3015,7 @@ public class Principal extends javax.swing.JFrame {
             empleado.setCalle(ctCalleEmp.getText());        
             empleado.setNumero(Integer.parseInt(ctNumeroEmp.getText()));  
             empleado.setContraseña(ctContEmp.getText());
+            empleado.setNombre_rol(String.valueOf(cbRolEmpleado.getSelectedItem()));
             if(conEmp.actualiza(empleado)) {
                 cambiaTextoMensajeEmp("Se actualizó correctamente!",Color.BLUE);
                 etMensajeEmp.setVisible(true);
@@ -3086,6 +3120,7 @@ public class Principal extends javax.swing.JFrame {
         ctCalleEmp.setText(tablaEmpleado.getValueAt(renglon, 6).toString());        
         ctNumeroEmp.setText(tablaEmpleado.getValueAt(renglon, 7).toString());  
         ctContEmp.setText(tablaEmpleado.getValueAt(renglon, 8).toString());
+        cbRolEmpleado.setSelectedItem(tablaEmpleado.getValueAt(renglon, 9).toString());
         habilitaEdicionEmpleado(true);
     }
     // </editor-fold>    
@@ -3976,6 +4011,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cbHoraVenta;
     private javax.swing.JComboBox<String> cbPeliculaFun;
     private javax.swing.JComboBox cbPeliculaVenta;
+    private javax.swing.JComboBox cbRolEmpleado;
     private javax.swing.JComboBox<String> cbSalaFun;
     private javax.swing.JComboBox<String> cbTipoMem;
     private javax.swing.JTextField ctApmEmp;
@@ -4063,7 +4099,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
@@ -4168,9 +4203,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lbHoraVenta;
     private javax.swing.JLabel lbPagoVenta;
     private javax.swing.JLabel lbPeliculaVenta;
+    private javax.swing.JLabel lbRolEmp;
     private javax.swing.JLabel lbSalaVenta;
     private javax.swing.JLabel lbSlash;
     private javax.swing.JLabel lbTarjetaVenta;
+    private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel panelAdministracion;
     private javax.swing.JPanel panelAsientos;
     private javax.swing.JPanel panelEmpleado;

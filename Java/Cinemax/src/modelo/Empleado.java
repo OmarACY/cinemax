@@ -21,6 +21,7 @@ public class Empleado{
     private String calle;
     private Integer numero;
     private String contraseña;
+    public String nombre_rol;
 
     public long getClave_emp() {
         return clave_emp;
@@ -58,6 +59,10 @@ public class Empleado{
         return contraseña;
     }
 
+    public String getNombre_rol() {
+        return nombre_rol;
+    }
+
     public void setClave_emp(long clave_emp) {
         this.clave_emp = clave_emp;
     }
@@ -92,5 +97,9 @@ public class Empleado{
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public void setNombre_rol(String nombre_rol) {
+        this.nombre_rol = nombre_rol;
     }
 }
