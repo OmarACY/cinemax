@@ -82,7 +82,7 @@ public class EmpleadoConexion extends Conexion<Empleado>{
     }
     
     public long existe(Empleado modelo) {
-       int existe = -1;       
+        int existe = -1;       
         String consulta;
         
         consulta = "SELECT * FROM Persona.empleado where Concat(nombres, ' ', app, ' ', apm) = '" + modelo.getNombres()+ "' AND contraseña = '" + modelo.getContraseña() + "'";
@@ -100,6 +100,25 @@ public class EmpleadoConexion extends Conexion<Empleado>{
         }
         
         return existe;
+    }
+    
+    public String obtenRol(String clave_emp) {
+        String rol;       
+        String consulta;
+        
+        rol = new String();
+        consulta = "SELECT nombre_rol FROM Persona.empleado where clave_emp = '" + clave_emp + "'";
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            if(rs.next()) {
+                rol = rs.getString("nombre_rol");
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+        
+        return rol;
     }
 
     @Override

@@ -8,7 +8,6 @@ package controlador;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import modelo.Empleado;
 
 /**

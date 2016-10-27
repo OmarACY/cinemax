@@ -24,6 +24,7 @@ import modelo.*;
  */
 public class Principal extends javax.swing.JFrame {
     private Long clave_emp;
+    private String rol;
     
     public Principal() {
         initComponents();
@@ -32,7 +33,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     public void setClave_emp(Long clave_emp) {
+        EmpleadoConexion con = new EmpleadoConexion();
+        
         this.clave_emp = clave_emp;
+        rol = con.obtenRol(clave_emp.toString());
+        if("Ventas".equals(rol)) {
+            tpPrincipal.remove(0);
+        }
+        else if("Administración".equals(rol)) {
+            tpPrincipal.remove(1);
+        }
     }
 
     /**
@@ -54,10 +64,6 @@ public class Principal extends javax.swing.JFrame {
                 });
             }
         }
-        
-        //tpPrincipal.setEnabledAt(0, false);
-        //tpPrincipal.setSelectedIndex(1);
-        //tpPrincipal.remove(0);
     }
     
     private void habilitaAsientos(String clave_fun) {

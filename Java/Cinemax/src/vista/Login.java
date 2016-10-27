@@ -8,8 +8,6 @@ package vista;
 import controlador.EmpleadoConexion;
 import controlador.LoginConexion;
 import java.awt.Toolkit;
-import java.util.Arrays;
-import javax.swing.text.BadLocationException;
 import modelo.Empleado;
 
 /**

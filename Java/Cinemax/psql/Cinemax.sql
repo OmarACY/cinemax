@@ -147,11 +147,11 @@ FOR EACH ROW EXECUTE PROCEDURE InsertaSalas();
 
 
 -- Modificación del valor por defecto en el cupo de las funciones
--- APLICADO: BC-PC
+-- APLICADO: BC-PC, MILAN-PC
 ALTER TABLE Cine.funcion ALTER COLUMN cupo SET DEFAULT 80;
 
 -- adición de roles de usuario
--- APLICADO: BC-PC
+-- APLICADO: BC-PC, MILAN-PC
 CREATE TABLE Persona.Rol (
 	nombre_rol varchar(32) NOT NULL,
 	CONSTRAINT PK_ROL PRIMARY KEY (nombre_rol)
