@@ -146,6 +146,8 @@ CREATE TRIGGER Inserta_Salas AFTER INSERT ON Cine.cine
 FOR EACH ROW EXECUTE PROCEDURE InsertaSalas();
 
 
+
+
 -- Modificación del valor por defecto en el cupo de las funciones
 -- APLICADO: BC-PC, MILAN-PC
 ALTER TABLE Cine.funcion ALTER COLUMN cupo SET DEFAULT 80;
@@ -159,3 +161,68 @@ CREATE TABLE Persona.Rol (
 INSERT INTO Persona.Rol VALUES ('Ventas'), ('Administración'), ('Gerencia');
 ALTER TABLE Persona.empleado ADD nombre_rol varchar(32) NOT NULL DEFAULT 'Ventas';
 ALTER TABLE Persona.empleado ADD CONSTRAINT FK_Empleado_Rol FOREIGN KEY(nombre_rol) REFERENCES Persona.Rol(nombre_rol);
+
+
+
+
+-- Disparador mediante el cual se actualiza el total de una venta
+-- APLICADO MILAN-PC
+CREATE OR REPLACE FUNCTION ActualizaTotal() RETURNS TRIGGER AS $Actualiza_Total$
+BEGIN
+	UPDATE Venta.venta SET total = total + NEW.subtotal WHERE clave_ven = NEW.clave_ven;
+	RETURN NEW;
+END
+$Actualiza_Total$ LANGUAGE plpgsql;
+
+CREATE TRIGGER Actualiza_Total AFTER INSERT ON Venta.detalle_venta
+FOR EACH ROW EXECUTE PROCEDURE ActualizaTotal();
+
+
+
+-- Disparador mediante el cual se actualizan los puntos por cliente
+-- APLICADO MILAN-PC
+CREATE OR REPLACE FUNCTION ActualizaPuntosMembresia() RETURNS TRIGGER AS $Actualiza_Puntos_Membresia$
+DECLARE cveMembresia bigint := (Select clave_mem from Venta.venta WHERE clave_ven = NEW.clave_ven);
+DECLARE pts int := CAST(NEW.subtotal * 0.10 as int);
+BEGIN
+	UPDATE persona.membresia SET puntos = puntos + pts WHERE clave_mem = cveMembresia;
+	RETURN NEW;
+END
+$Actualiza_Puntos_Membresia$ LANGUAGE plpgsql;
+
+CREATE TRIGGER Actualiza_Puntos_Membresia AFTER INSERT ON Venta.detalle_venta
+FOR EACH ROW EXECUTE PROCEDURE ActualizaPuntosMembresia();
+
+
+
+-- Disparador mediante el cual se actualiza el cupo de una funcion al ser creada
+-- APLICADO MILAN-PC
+CREATE OR REPLACE FUNCTION ActualizaCupoFuncion() RETURNS TRIGGER AS $Actualiza_Cupo_Funcion$
+DECLARE cveFuncion bigint := NEW.clave_fun;
+DECLARE cveSala bigint := NEW.clave_sal;
+DECLARE cupoSala float := (Select cupo from Cine.sala WHERE clave_sal = cveSala);
+BEGIN
+	UPDATE Cine.funcion SET cupo = cupoSala WHERE clave_fun = cveFuncion;
+	RETURN NEW;
+END
+$Actualiza_Cupo_Funcion$ LANGUAGE plpgsql;
+
+CREATE TRIGGER Actualiza_Cupo_Funcion AFTER INSERT ON Cine.funcion
+FOR EACH ROW EXECUTE PROCEDURE ActualizaCupoFuncion();
+
+
+
+-- Disparador mediante el cual se actualiza el cupo de una funcion tras una venta
+-- APLICADO MILAN-PC
+CREATE OR REPLACE FUNCTION ActualizaCupoTrasVenta() RETURNS TRIGGER AS $Actualiza_Cupo_Tras_Venta$
+DECLARE cveVenta bigint := NEW.clave_ven; 
+DECLARE cveFuncion bigint := (Select clave_fun from Venta.venta WHERE clave_ven = cveVenta);
+DECLARE cupoNuevo integer := (SELECT cupo FROM Cine.funcion WHERE clave_fun = cveFuncion) - 1;
+BEGIN
+	UPDATE Cine.funcion SET cupo = cupoNuevo WHERE clave_fun = cveFuncion;
+	RETURN NEW;
+END
+$Actualiza_Cupo_Tras_Venta$ LANGUAGE plpgsql;
+
+CREATE TRIGGER Actualiza_Cupo_Tras_Venta AFTER INSERT ON Venta.detalle_venta
+FOR EACH ROW EXECUTE PROCEDURE ActualizaCupoTrasVenta();
