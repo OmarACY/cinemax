@@ -1419,10 +1419,10 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
+                        .addGap(177, 177, 177)
                         .addComponent(etCineFun, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
+                        .addGap(120, 120, 120)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                                 .addComponent(etHoraIniFun, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1448,7 +1448,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ctHoraFinFun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(dcFechaFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1484,20 +1484,21 @@ public class Principal extends javax.swing.JFrame {
         panelInfoEmp5Layout.setHorizontalGroup(
             panelInfoEmp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInfoEmp5Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelInfoEmp5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelInfoEmp5Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(20, 20, 20)
                         .addComponent(etMensajeFun)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
                         .addComponent(btCancelaFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btActualizaFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEliminaFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAgregaFun)))
+                        .addComponent(btAgregaFun))
+                    .addGroup(panelInfoEmp5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelInfoEmp5Layout.setVerticalGroup(
@@ -2769,7 +2770,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaFuncionMouseClicked
 
     private void btSalasSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalasSucActionPerformed
-        // TODO add your handling code here:
+        editarCupoSalas();
     }//GEN-LAST:event_btSalasSucActionPerformed
 
     private void panelFuncionComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelFuncionComponentShown
@@ -3705,6 +3706,14 @@ cbHoraVenta.removeAllItems();
             ctTelSuc.setText(tablaSucursal.getValueAt(renglon, 6).toString());
         }
         habilitaEdicionSucursal(true);
+    }
+    
+    private void editarCupoSalas(){
+        //setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);//En el constructor para no cerrar pantalla principal
+        EdicionCupo cupoSalas = new EdicionCupo(this,true,tablaSucursal.getValueAt(tablaSucursal.getSelectedRow(), 0).toString());
+        cupoSalas.setVisible(true);
+        //this.setEnabled(false);
+        
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Metodos de la pestaña Funcion">

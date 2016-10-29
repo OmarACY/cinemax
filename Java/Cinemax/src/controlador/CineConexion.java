@@ -7,9 +7,11 @@ package controlador;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cine;
+import modelo.Sala;
 import vista.Principal;
 
 /**
@@ -120,7 +122,63 @@ public class CineConexion extends Conexion<Cine> {
             return "-1";
         }
     }    
+    
+    public int obtenerCupoSala(String claveSala){
+        String consulta;        
+        consulta = "SELECT cupo from Cine.sala where clave_sal=" + claveSala;
+        int cupo = 0;        
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            rs.next();
+            cupo = Integer.parseInt(rs.getString("cupo"));
+            return cupo;
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            return 0;
+        }
+    }
+    
+    public ArrayList<Sala> obtenerSalas(String claveCine){
+        ArrayList<Sala> listaSala = new ArrayList<Sala>();
+        String consulta;
+        Sala sala;
+        consulta = "SELECT clave_sal, cupo FROM Cine.sala WHERE clave_cin =" + claveCine ;
+        try {
+            ResultSet rs = ejecutaConsulta(consulta);
+            while(rs.next()) {
+                sala = new Sala();
+                sala.setClaveSala(Integer.parseInt(rs.getString("clave_sal")));
+                sala.setCupo(Integer.parseInt(rs.getString("cupo")));
+                listaSala.add(sala);
+            }
+        }
+        catch(ClassNotFoundException | SQLException ex) {
+            // TODO: ADD DATABASE LOG
+        }
+        
+        return listaSala;
+    }
+    
+    public boolean actualizaSalas(ArrayList<Sala> listaSala) {
+        String sentencia;
+        int filasAfectadas = 0;
+        
+        for(Sala sala : listaSala){
+            sentencia = String.format("UPDATE Cine.sala SET cupo = %d WHERE clave_sal = %d", 
+                    sala.getCupo(),sala.getClaveSala());
 
+            try {
+                filasAfectadas = ejecutaSentencia(sentencia);
+
+            }
+            catch(ClassNotFoundException | SQLException ex) {
+                //Mostrar Excepcion
+            }
+        }
+        
+        return (filasAfectadas > 0);
+    }
+    
     @Override
     public void rellenaComboBox(JComboBox cb, String args[]) {
         String consulta;
@@ -137,5 +195,5 @@ public class CineConexion extends Conexion<Cine> {
         catch(ClassNotFoundException | SQLException ex) {
             // TODO: ADD DATABASE LOG
         }
-    }
+    }    
 }
