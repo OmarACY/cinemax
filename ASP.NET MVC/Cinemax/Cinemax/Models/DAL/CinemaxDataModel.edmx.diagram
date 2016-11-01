@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="190b7c28eaf342d79c34e576d3f0a827" Name="Diagram1">
+        <EntityTypeShape EntityType="ModelDAL.AspNetRoles" Width="1.75" PointX="0.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.AspNetUserClaims" Width="2.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.AspNetUserLogins" Width="3.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.AspNetUsers" Width="2.25" PointX="2.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="ModelDAL.FK_UserClaims_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelDAL.FK_UserLogins_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ModelDAL.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
