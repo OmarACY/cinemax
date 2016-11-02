@@ -29,5 +29,16 @@ namespace Cinemax.Models.DAL
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Cine> Cine { get; set; }
+        public virtual DbSet<Cuenta> Cuenta { get; set; }
+        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
+        public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<Funcion> Funcion { get; set; }
+        public virtual DbSet<Membresia> Membresia { get; set; }
+        public virtual DbSet<Pelicula> Pelicula { get; set; }
+        public virtual DbSet<Sala> Sala { get; set; }
+        public virtual DbSet<TelCin> TelCin { get; set; }
+        public virtual DbSet<TelEmp> TelEmp { get; set; }
+        public virtual DbSet<Venta> Venta { get; set; }
     }
 }

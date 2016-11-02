@@ -228,6 +228,9 @@
     <Compile Include="Models\DAL\AspNetUsers.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAL\Cine.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DAL\CinemaxDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +245,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaxDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Cuenta.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\DetalleVenta.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Empleado.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Funcion.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Membresia.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Pelicula.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Sala.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\TelCin.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\TelEmp.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\Venta.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -261,6 +294,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\logo_oscuro.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
