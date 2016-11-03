@@ -51,6 +51,146 @@
     <Property Name="AccessFailedCount" Type="number" Precision="10" Scale="0" Nullable="false" />
     <Property Name="UserName" Type="nvarchar2" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="Cine">
+    <Key>
+      <PropertyRef Name="clave_cin" />
+    </Key>
+    <Property Name="clave_cin" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="num_salas" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="colonia" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="calle" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="numero" Type="number" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+    </Key>
+    <Property Name="clave_venta" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="numero_tarjeta" Type="nvarchar2" MaxLength="16" Nullable="false" />
+    <Property Name="codigo_seg" Type="nvarchar2" MaxLength="4" Nullable="false" />
+    <Property Name="fecha_venta" Type="timestamp" Precision="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+      <PropertyRef Name="asiento" />
+    </Key>
+    <Property Name="clave_venta" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="subtotal" Type="float" Precision="49" Scale="0" Nullable="false" />
+    <Property Name="asiento" Type="nvarchar2" MaxLength="5" Nullable="false" />
+    <Property Name="tipo_asiento" Type="nvarchar2" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="clave_emp" />
+    </Key>
+    <Property Name="clave_emp" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="app" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="apm" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="fecha_nac" Type="timestamp" Precision="6" Nullable="false" />
+    <Property Name="colonia" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="calle" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="numero" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="password" Type="nvarchar2" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Funcion">
+    <Key>
+      <PropertyRef Name="clave_fun" />
+    </Key>
+    <Property Name="clave_fun" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_pel" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_sal" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="hora_ini" Type="timestamp" Precision="6" Nullable="false" />
+    <Property Name="hora_fin" Type="timestamp" Precision="6" Nullable="false" />
+    <Property Name="fecha" Type="timestamp" Precision="6" Nullable="false" />
+    <Property Name="cupo" Type="number" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Membresia">
+    <Key>
+      <PropertyRef Name="clave_mem" />
+    </Key>
+    <Property Name="clave_mem" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="app" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="apm" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="fecha_nac" Type="timestamp" Precision="6" Nullable="false" />
+    <Property Name="colonia" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="calle" Type="nvarchar2" MaxLength="45" Nullable="false" />
+    <Property Name="numero" Type="number" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar2" MaxLength="10" Nullable="false" />
+    <Property Name="puntos" Type="number" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pelicula">
+    <Key>
+      <PropertyRef Name="clave_pel" />
+    </Key>
+    <Property Name="clave_pel" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="director" Type="nvarchar2" MaxLength="30" Nullable="false" />
+    <Property Name="sinopsis" Type="nvarchar2" MaxLength="300" Nullable="false" />
+    <Property Name="clasificacion" Type="nvarchar2" MaxLength="3" Nullable="false" />
+    <Property Name="genero" Type="nvarchar2" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sala">
+    <Key>
+      <PropertyRef Name="clave_sal" />
+    </Key>
+    <Property Name="clave_sal" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_cin" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="cupo" Type="number" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelCin">
+    <Key>
+      <PropertyRef Name="clave_cin" />
+      <PropertyRef Name="telefono" />
+    </Key>
+    <Property Name="clave_cin" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar2" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelEmp">
+    <Key>
+      <PropertyRef Name="clave_emp" />
+      <PropertyRef Name="telefono" />
+    </Key>
+    <Property Name="clave_emp" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar2" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+    </Key>
+    <Property Name="clave_venta" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_mem" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_fun" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="clave_emp" Type="number" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="total" Type="float" Precision="49" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="CUENTA_FK">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+    <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="clave_venta" />
+      </Principal>
+      <Dependent Role="Cuenta">
+        <PropertyRef Name="clave_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLEVENTA_FK">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="clave_venta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="clave_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserClaims_Users">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -107,12 +247,127 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FUNCION_FK">
+    <End Role="Pelicula" Type="Self.Pelicula" Multiplicity="1" />
+    <End Role="Funcion" Type="Self.Funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pelicula">
+        <PropertyRef Name="clave_pel" />
+      </Principal>
+      <Dependent Role="Funcion">
+        <PropertyRef Name="clave_pel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FUNCION_FK2">
+    <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+    <End Role="Funcion" Type="Self.Funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sala">
+        <PropertyRef Name="clave_sal" />
+      </Principal>
+      <Dependent Role="Funcion">
+        <PropertyRef Name="clave_sal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SALA_CINE_FK">
+    <End Role="Cine" Type="Self.Cine" Multiplicity="1" />
+    <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cine">
+        <PropertyRef Name="clave_cin" />
+      </Principal>
+      <Dependent Role="Sala">
+        <PropertyRef Name="clave_cin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEL_CIN_FK">
+    <End Role="Cine" Type="Self.Cine" Multiplicity="1" />
+    <End Role="TelCin" Type="Self.TelCin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cine">
+        <PropertyRef Name="clave_cin" />
+      </Principal>
+      <Dependent Role="TelCin">
+        <PropertyRef Name="clave_cin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TELEMP_FK">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="TelEmp" Type="Self.TelEmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="clave_emp" />
+      </Principal>
+      <Dependent Role="TelEmp">
+        <PropertyRef Name="clave_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK">
+    <End Role="Membresia" Type="Self.Membresia" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membresia">
+        <PropertyRef Name="clave_mem" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_mem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK2">
+    <End Role="Funcion" Type="Self.Funcion" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcion">
+        <PropertyRef Name="clave_fun" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_fun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK3">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="clave_emp" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ModelDALStoreContainer">
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="CINEMAX" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="CINEMAX" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="CINEMAX" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="CINEMAX" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Cine" EntityType="Self.Cine" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Funcion" EntityType="Self.Funcion" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Membresia" EntityType="Self.Membresia" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Pelicula" EntityType="Self.Pelicula" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Sala" EntityType="Self.Sala" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="TelCin" EntityType="Self.TelCin" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="TelEmp" EntityType="Self.TelEmp" Schema="CINEMAX" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="CINEMAX" store:Type="Tables" />
+    <AssociationSet Name="CUENTA_FK" Association="Self.CUENTA_FK">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="Cuenta" EntitySet="Cuenta" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLEVENTA_FK" Association="Self.DETALLEVENTA_FK">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
     <AssociationSet Name="FK_UserClaims_Users" Association="Self.FK_UserClaims_Users">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -128,6 +383,38 @@
     <AssociationSet Name="FK_UserRoles_Users" Association="Self.FK_UserRoles_Users">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FUNCION_FK" Association="Self.FUNCION_FK">
+      <End Role="Pelicula" EntitySet="Pelicula" />
+      <End Role="Funcion" EntitySet="Funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FUNCION_FK2" Association="Self.FUNCION_FK2">
+      <End Role="Sala" EntitySet="Sala" />
+      <End Role="Funcion" EntitySet="Funcion" />
+    </AssociationSet>
+    <AssociationSet Name="SALA_CINE_FK" Association="Self.SALA_CINE_FK">
+      <End Role="Cine" EntitySet="Cine" />
+      <End Role="Sala" EntitySet="Sala" />
+    </AssociationSet>
+    <AssociationSet Name="TEL_CIN_FK" Association="Self.TEL_CIN_FK">
+      <End Role="Cine" EntitySet="Cine" />
+      <End Role="TelCin" EntitySet="TelCin" />
+    </AssociationSet>
+    <AssociationSet Name="TELEMP_FK" Association="Self.TELEMP_FK">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="TelEmp" EntitySet="TelEmp" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK" Association="Self.VENTA_FK">
+      <End Role="Membresia" EntitySet="Membresia" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK2" Association="Self.VENTA_FK2">
+      <End Role="Funcion" EntitySet="Funcion" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK3" Association="Self.VENTA_FK3">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

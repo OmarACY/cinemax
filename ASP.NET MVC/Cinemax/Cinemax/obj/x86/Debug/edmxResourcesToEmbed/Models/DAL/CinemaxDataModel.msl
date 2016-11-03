@@ -54,5 +54,129 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Cine">
+      <EntityTypeMapping TypeName="ModelDAL.Cine">
+        <MappingFragment StoreEntitySet="Cine">
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="num_salas" ColumnName="num_salas" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clave_cin" ColumnName="clave_cin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cuenta">
+      <EntityTypeMapping TypeName="ModelDAL.Cuenta">
+        <MappingFragment StoreEntitySet="Cuenta">
+          <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
+          <ScalarProperty Name="codigo_seg" ColumnName="codigo_seg" />
+          <ScalarProperty Name="numero_tarjeta" ColumnName="numero_tarjeta" />
+          <ScalarProperty Name="clave_venta" ColumnName="clave_venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleVenta">
+      <EntityTypeMapping TypeName="ModelDAL.DetalleVenta">
+        <MappingFragment StoreEntitySet="DetalleVenta">
+          <ScalarProperty Name="tipo_asiento" ColumnName="tipo_asiento" />
+          <ScalarProperty Name="asiento" ColumnName="asiento" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="clave_venta" ColumnName="clave_venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="ModelDAL.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+          <ScalarProperty Name="apm" ColumnName="apm" />
+          <ScalarProperty Name="app" ColumnName="app" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clave_emp" ColumnName="clave_emp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Funcion">
+      <EntityTypeMapping TypeName="ModelDAL.Funcion">
+        <MappingFragment StoreEntitySet="Funcion">
+          <ScalarProperty Name="cupo" ColumnName="cupo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora_fin" ColumnName="hora_fin" />
+          <ScalarProperty Name="hora_ini" ColumnName="hora_ini" />
+          <ScalarProperty Name="clave_sal" ColumnName="clave_sal" />
+          <ScalarProperty Name="clave_pel" ColumnName="clave_pel" />
+          <ScalarProperty Name="clave_fun" ColumnName="clave_fun" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Membresia">
+      <EntityTypeMapping TypeName="ModelDAL.Membresia">
+        <MappingFragment StoreEntitySet="Membresia">
+          <ScalarProperty Name="puntos" ColumnName="puntos" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+          <ScalarProperty Name="apm" ColumnName="apm" />
+          <ScalarProperty Name="app" ColumnName="app" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clave_mem" ColumnName="clave_mem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pelicula">
+      <EntityTypeMapping TypeName="ModelDAL.Pelicula">
+        <MappingFragment StoreEntitySet="Pelicula">
+          <ScalarProperty Name="genero" ColumnName="genero" />
+          <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+          <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="clave_pel" ColumnName="clave_pel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sala">
+      <EntityTypeMapping TypeName="ModelDAL.Sala">
+        <MappingFragment StoreEntitySet="Sala">
+          <ScalarProperty Name="cupo" ColumnName="cupo" />
+          <ScalarProperty Name="clave_cin" ColumnName="clave_cin" />
+          <ScalarProperty Name="clave_sal" ColumnName="clave_sal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelCin">
+      <EntityTypeMapping TypeName="ModelDAL.TelCin">
+        <MappingFragment StoreEntitySet="TelCin">
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="clave_cin" ColumnName="clave_cin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelEmp">
+      <EntityTypeMapping TypeName="ModelDAL.TelEmp">
+        <MappingFragment StoreEntitySet="TelEmp">
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="clave_emp" ColumnName="clave_emp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="ModelDAL.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="clave_emp" ColumnName="clave_emp" />
+          <ScalarProperty Name="clave_fun" ColumnName="clave_fun" />
+          <ScalarProperty Name="clave_mem" ColumnName="clave_mem" />
+          <ScalarProperty Name="clave_venta" ColumnName="clave_venta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

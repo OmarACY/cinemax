@@ -14,17 +14,6 @@ namespace Cinemax.Models
         public bool BrowserRemembered { get; set; }
     }
 
-    public class ManageLoginsViewModel
-    {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
-    }
-
-    public class FactorViewModel
-    {
-        public string Purpose { get; set; }
-    }
-
     public class SetPasswordViewModel
     {
         [Required]
@@ -64,23 +53,5 @@ namespace Cinemax.Models
         [Phone]
         [Display(Name = "Número de teléfono")]
         public string Number { get; set; }
-    }
-
-    public class VerifyPhoneNumberViewModel
-    {
-        [Required]
-        [Display(Name = "Código")]
-        public string Code { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(Name = "Número de teléfono")]
-        public string PhoneNumber { get; set; }
-    }
-
-    public class ConfigureTwoFactorViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
 }

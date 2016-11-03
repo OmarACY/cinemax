@@ -98,5 +98,312 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Cine" EntityType="ModelDAL.Cine" />
+    <EntitySet Name="Cuenta" EntityType="ModelDAL.Cuenta" />
+    <EntitySet Name="DetalleVenta" EntityType="ModelDAL.DetalleVenta" />
+    <EntitySet Name="Empleado" EntityType="ModelDAL.Empleado" />
+    <EntitySet Name="Funcion" EntityType="ModelDAL.Funcion" />
+    <EntitySet Name="Membresia" EntityType="ModelDAL.Membresia" />
+    <EntitySet Name="Pelicula" EntityType="ModelDAL.Pelicula" />
+    <EntitySet Name="Sala" EntityType="ModelDAL.Sala" />
+    <EntitySet Name="TelCin" EntityType="ModelDAL.TelCin" />
+    <EntitySet Name="TelEmp" EntityType="ModelDAL.TelEmp" />
+    <EntitySet Name="Venta" EntityType="ModelDAL.Venta" />
+    <AssociationSet Name="SALA_CINE_FK" Association="ModelDAL.SALA_CINE_FK">
+      <End Role="Cine" EntitySet="Cine" />
+      <End Role="Sala" EntitySet="Sala" />
+    </AssociationSet>
+    <AssociationSet Name="TEL_CIN_FK" Association="ModelDAL.TEL_CIN_FK">
+      <End Role="Cine" EntitySet="Cine" />
+      <End Role="TelCin" EntitySet="TelCin" />
+    </AssociationSet>
+    <AssociationSet Name="CUENTA_FK" Association="ModelDAL.CUENTA_FK">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="Cuenta" EntitySet="Cuenta" />
+    </AssociationSet>
+    <AssociationSet Name="DETALLEVENTA_FK" Association="ModelDAL.DETALLEVENTA_FK">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="TELEMP_FK" Association="ModelDAL.TELEMP_FK">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="TelEmp" EntitySet="TelEmp" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK3" Association="ModelDAL.VENTA_FK3">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FUNCION_FK" Association="ModelDAL.FUNCION_FK">
+      <End Role="Pelicula" EntitySet="Pelicula" />
+      <End Role="Funcion" EntitySet="Funcion" />
+    </AssociationSet>
+    <AssociationSet Name="FUNCION_FK2" Association="ModelDAL.FUNCION_FK2">
+      <End Role="Sala" EntitySet="Sala" />
+      <End Role="Funcion" EntitySet="Funcion" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK2" Association="ModelDAL.VENTA_FK2">
+      <End Role="Funcion" EntitySet="Funcion" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="VENTA_FK" Association="ModelDAL.VENTA_FK">
+      <End Role="Membresia" EntitySet="Membresia" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Cine">
+    <Key>
+      <PropertyRef Name="clave_cin" />
+    </Key>
+    <Property Name="clave_cin" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="num_salas" Type="Int32" Nullable="false" />
+    <Property Name="colonia" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Sala" Relationship="ModelDAL.SALA_CINE_FK" FromRole="Cine" ToRole="Sala" />
+    <NavigationProperty Name="TelCin" Relationship="ModelDAL.TEL_CIN_FK" FromRole="Cine" ToRole="TelCin" />
+  </EntityType>
+  <EntityType Name="Cuenta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+    </Key>
+    <Property Name="clave_venta" Type="Int64" Nullable="false" />
+    <Property Name="numero_tarjeta" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="codigo_seg" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_venta" Type="DateTime" Nullable="false" Precision="6" />
+    <NavigationProperty Name="Venta" Relationship="ModelDAL.CUENTA_FK" FromRole="Cuenta" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+      <PropertyRef Name="asiento" />
+    </Key>
+    <Property Name="clave_venta" Type="Int64" Nullable="false" />
+    <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="15" Scale="0" />
+    <Property Name="asiento" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="tipo_asiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Venta" Relationship="ModelDAL.DETALLEVENTA_FK" FromRole="DetalleVenta" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="clave_emp" />
+    </Key>
+    <Property Name="clave_emp" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="app" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="apm" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="colonia" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TelEmp" Relationship="ModelDAL.TELEMP_FK" FromRole="Empleado" ToRole="TelEmp" />
+    <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK3" FromRole="Empleado" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Funcion">
+    <Key>
+      <PropertyRef Name="clave_fun" />
+    </Key>
+    <Property Name="clave_fun" Type="Int64" Nullable="false" />
+    <Property Name="clave_pel" Type="Int64" Nullable="false" />
+    <Property Name="clave_sal" Type="Int64" Nullable="false" />
+    <Property Name="hora_ini" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="hora_fin" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="cupo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pelicula" Relationship="ModelDAL.FUNCION_FK" FromRole="Funcion" ToRole="Pelicula" />
+    <NavigationProperty Name="Sala" Relationship="ModelDAL.FUNCION_FK2" FromRole="Funcion" ToRole="Sala" />
+    <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK2" FromRole="Funcion" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Membresia">
+    <Key>
+      <PropertyRef Name="clave_mem" />
+    </Key>
+    <Property Name="clave_mem" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="app" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="apm" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="colonia" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="tipo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="puntos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK" FromRole="Membresia" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Pelicula">
+    <Key>
+      <PropertyRef Name="clave_pel" />
+    </Key>
+    <Property Name="clave_pel" Type="Int64" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="director" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="sinopsis" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="clasificacion" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="genero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Funcion" Relationship="ModelDAL.FUNCION_FK" FromRole="Pelicula" ToRole="Funcion" />
+  </EntityType>
+  <EntityType Name="Sala">
+    <Key>
+      <PropertyRef Name="clave_sal" />
+    </Key>
+    <Property Name="clave_sal" Type="Int64" Nullable="false" />
+    <Property Name="clave_cin" Type="Int64" Nullable="false" />
+    <Property Name="cupo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cine" Relationship="ModelDAL.SALA_CINE_FK" FromRole="Sala" ToRole="Cine" />
+    <NavigationProperty Name="Funcion" Relationship="ModelDAL.FUNCION_FK2" FromRole="Sala" ToRole="Funcion" />
+  </EntityType>
+  <EntityType Name="TelCin">
+    <Key>
+      <PropertyRef Name="clave_cin" />
+      <PropertyRef Name="telefono" />
+    </Key>
+    <Property Name="clave_cin" Type="Int64" Nullable="false" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cine" Relationship="ModelDAL.TEL_CIN_FK" FromRole="TelCin" ToRole="Cine" />
+  </EntityType>
+  <EntityType Name="TelEmp">
+    <Key>
+      <PropertyRef Name="clave_emp" />
+      <PropertyRef Name="telefono" />
+    </Key>
+    <Property Name="clave_emp" Type="Int64" Nullable="false" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Empleado" Relationship="ModelDAL.TELEMP_FK" FromRole="TelEmp" ToRole="Empleado" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="clave_venta" />
+    </Key>
+    <Property Name="clave_venta" Type="Int64" Nullable="false" />
+    <Property Name="clave_mem" Type="Int64" Nullable="false" />
+    <Property Name="clave_fun" Type="Int64" Nullable="false" />
+    <Property Name="clave_emp" Type="Int64" Nullable="false" />
+    <Property Name="total" Type="Decimal" Nullable="false" Precision="15" Scale="0" />
+    <NavigationProperty Name="Cuenta" Relationship="ModelDAL.CUENTA_FK" FromRole="Venta" ToRole="Cuenta" />
+    <NavigationProperty Name="DetalleVenta" Relationship="ModelDAL.DETALLEVENTA_FK" FromRole="Venta" ToRole="DetalleVenta" />
+    <NavigationProperty Name="Empleado" Relationship="ModelDAL.VENTA_FK3" FromRole="Venta" ToRole="Empleado" />
+    <NavigationProperty Name="Funcion" Relationship="ModelDAL.VENTA_FK2" FromRole="Venta" ToRole="Funcion" />
+    <NavigationProperty Name="Membresia" Relationship="ModelDAL.VENTA_FK" FromRole="Venta" ToRole="Membresia" />
+  </EntityType>
+  <Association Name="SALA_CINE_FK">
+    <End Type="ModelDAL.Cine" Role="Cine" Multiplicity="1" />
+    <End Type="ModelDAL.Sala" Role="Sala" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cine">
+        <PropertyRef Name="clave_cin" />
+      </Principal>
+      <Dependent Role="Sala">
+        <PropertyRef Name="clave_cin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEL_CIN_FK">
+    <End Type="ModelDAL.Cine" Role="Cine" Multiplicity="1" />
+    <End Type="ModelDAL.TelCin" Role="TelCin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cine">
+        <PropertyRef Name="clave_cin" />
+      </Principal>
+      <Dependent Role="TelCin">
+        <PropertyRef Name="clave_cin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CUENTA_FK">
+    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="1" />
+    <End Type="ModelDAL.Cuenta" Role="Cuenta" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="clave_venta" />
+      </Principal>
+      <Dependent Role="Cuenta">
+        <PropertyRef Name="clave_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DETALLEVENTA_FK">
+    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="1" />
+    <End Type="ModelDAL.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="clave_venta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="clave_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TELEMP_FK">
+    <End Type="ModelDAL.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="ModelDAL.TelEmp" Role="TelEmp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="clave_emp" />
+      </Principal>
+      <Dependent Role="TelEmp">
+        <PropertyRef Name="clave_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK3">
+    <End Type="ModelDAL.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="clave_emp" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_emp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FUNCION_FK">
+    <End Type="ModelDAL.Pelicula" Role="Pelicula" Multiplicity="1" />
+    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pelicula">
+        <PropertyRef Name="clave_pel" />
+      </Principal>
+      <Dependent Role="Funcion">
+        <PropertyRef Name="clave_pel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FUNCION_FK2">
+    <End Type="ModelDAL.Sala" Role="Sala" Multiplicity="1" />
+    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sala">
+        <PropertyRef Name="clave_sal" />
+      </Principal>
+      <Dependent Role="Funcion">
+        <PropertyRef Name="clave_sal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK2">
+    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="1" />
+    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcion">
+        <PropertyRef Name="clave_fun" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_fun" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VENTA_FK">
+    <End Type="ModelDAL.Membresia" Role="Membresia" Multiplicity="1" />
+    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membresia">
+        <PropertyRef Name="clave_mem" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="clave_mem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
