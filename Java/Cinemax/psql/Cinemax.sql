@@ -149,11 +149,11 @@ FOR EACH ROW EXECUTE PROCEDURE InsertaSalas();
 
 
 -- Modificación del valor por defecto en el cupo de las funciones
--- APLICADO: BC-PC, MILAN-PC
+-- APLICADO: BC-PC, MILAN-PC, OMAR-PC
 ALTER TABLE Cine.funcion ALTER COLUMN cupo SET DEFAULT 80;
 
 -- adición de roles de usuario
--- APLICADO: BC-PC, MILAN-PC
+-- APLICADO: BC-PC, MILAN-PC, OMAR-PC
 CREATE TABLE Persona.Rol (
 	nombre_rol varchar(32) NOT NULL,
 	CONSTRAINT PK_ROL PRIMARY KEY (nombre_rol)
@@ -166,7 +166,7 @@ ALTER TABLE Persona.empleado ADD CONSTRAINT FK_Empleado_Rol FOREIGN KEY(nombre_r
 
 
 -- Disparador mediante el cual se actualiza el total de una venta
--- APLICADO MILAN-PC
+-- APLICADO MILAN-PC, OMAR-PC
 CREATE OR REPLACE FUNCTION ActualizaTotal() RETURNS TRIGGER AS $Actualiza_Total$
 BEGIN
 	UPDATE Venta.venta SET total = total + NEW.subtotal WHERE clave_ven = NEW.clave_ven;
@@ -180,7 +180,7 @@ FOR EACH ROW EXECUTE PROCEDURE ActualizaTotal();
 
 
 -- Disparador mediante el cual se actualizan los puntos por cliente
--- APLICADO MILAN-PC
+-- APLICADO MILAN-PC, OMAR-PC
 CREATE OR REPLACE FUNCTION ActualizaPuntosMembresia() RETURNS TRIGGER AS $Actualiza_Puntos_Membresia$
 DECLARE cveMembresia bigint := (Select clave_mem from Venta.venta WHERE clave_ven = NEW.clave_ven);
 DECLARE pts int := CAST(NEW.subtotal * 0.10 as int);
@@ -196,7 +196,7 @@ FOR EACH ROW EXECUTE PROCEDURE ActualizaPuntosMembresia();
 
 
 -- Disparador mediante el cual se actualiza el cupo de una funcion al ser creada
--- APLICADO MILAN-PC
+-- APLICADO MILAN-PC, OMAR-PC
 CREATE OR REPLACE FUNCTION ActualizaCupoFuncion() RETURNS TRIGGER AS $Actualiza_Cupo_Funcion$
 DECLARE cveFuncion bigint := NEW.clave_fun;
 DECLARE cveSala bigint := NEW.clave_sal;
@@ -213,7 +213,7 @@ FOR EACH ROW EXECUTE PROCEDURE ActualizaCupoFuncion();
 
 
 -- Disparador mediante el cual se actualiza el cupo de una funcion tras una venta
--- APLICADO MILAN-PC
+-- APLICADO MILAN-PC, OMAR-PC
 CREATE OR REPLACE FUNCTION ActualizaCupoTrasVenta() RETURNS TRIGGER AS $Actualiza_Cupo_Tras_Venta$
 DECLARE cveVenta bigint := NEW.clave_ven; 
 DECLARE cveFuncion bigint := (Select clave_fun from Venta.venta WHERE clave_ven = cveVenta);
@@ -226,3 +226,12 @@ $Actualiza_Cupo_Tras_Venta$ LANGUAGE plpgsql;
 
 CREATE TRIGGER Actualiza_Cupo_Tras_Venta AFTER INSERT ON Venta.detalle_venta
 FOR EACH ROW EXECUTE PROCEDURE ActualizaCupoTrasVenta();
+
+CREATE USER Ventas WITH PASSWORD 'postgres'
+NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
+
+CREATE USER Administracion WITH PASSWORD 'postgres'
+NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
+
+CREATE USER Gerencia WITH PASSWORD 'postgres'
+NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
