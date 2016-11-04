@@ -19,13 +19,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="@Url.Action("Index", "Home")">
-                    <img src="@Url.Content("~/Content/Images/logo_oscuro.png")" style="height:50px; margin:0px 14px 0px 14px;"/>
+                    <img src="@Url.Content("~/Content/Images/logo_oscuro.png")" style="height:42px; margin:7px 14px 7px 14px;"/>
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
