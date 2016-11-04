@@ -230,8 +230,55 @@ FOR EACH ROW EXECUTE PROCEDURE ActualizaCupoTrasVenta();
 CREATE USER Ventas WITH PASSWORD 'postgres'
 NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
 
+REVOKE ALL ON Persona.empleado from Ventas;
+REVOKE ALL ON Persona.membresia from Ventas;
+REVOKE ALL ON Persona.rol from Ventas;
+REVOKE ALL ON Persona.tel_emp from Ventas;
+REVOKE ALL ON Cine.cine from Ventas;
+REVOKE ALL ON Cine.funcion from Ventas;
+REVOKE ALL ON Cine.pelicula from Ventas;
+REVOKE ALL ON Cine.sala from Ventas;
+
+REVOKE UPDATE ON Venta.venta from Ventas;
+REVOKE UPDATE ON Venta.detalle_venta from Ventas;
+REVOKE UPDATE ON Venta.cuenta from Ventas;
+
+REVOKE DELETE ON Venta.venta from Ventas;
+REVOKE DELETE ON Venta.detalle_venta from Ventas;
+REVOKE DELETE ON Venta.cuenta from Ventas;
+
+GRANT INSERT ON Venta.venta to Ventas;
+GRANT INSERT ON Venta.detalle_venta to Ventas;
+GRANT INSERT ON Venta.cuenta to Ventas;
+ 
+
 CREATE USER Administracion WITH PASSWORD 'postgres'
 NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
 
+REVOKE ALL ON Venta.venta from Administracion;
+REVOKE ALL ON Venta.detalle_venta from Ventas;
+REVOKE ALL ON Venta.cuenta from Ventas;
+
+GRANT ALL ON Persona.empleado to Ventas;
+GRANT ALL ON Persona.membresia to Ventas;
+GRANT ALL ON Persona.rol to Ventas;
+GRANT ALL ON Persona.tel_emp to Ventas;
+GRANT ALL ON Cine.cine to Ventas;
+GRANT ALL ON Cine.funcion to Ventas;
+GRANT ALL ON Cine.pelicula to Ventas;
+GRANT ALL ON Cine.sala to Ventas;
+
 CREATE USER Gerencia WITH PASSWORD 'postgres'
 NOSUPERUSER NOINHERIT NOCREATEDB NOCREATEROLE;
+
+GRANT ALL ON Persona.empleado to Ventas;
+GRANT ALL ON Persona.membresia to Ventas;
+GRANT ALL ON Persona.rol to Ventas;
+GRANT ALL ON Persona.tel_emp to Ventas;
+GRANT ALL ON Cine.cine to Ventas;
+GRANT ALL ON Cine.funcion to Ventas;
+GRANT ALL ON Cine.pelicula to Ventas;
+GRANT ALL ON Cine.sala to Ventas;
+GRANT ALL ON Venta.venta to Administracion;
+GRANT ALL ON Venta.detalle_venta to Ventas;
+GRANT ALL ON Venta.cuenta to Ventas;
