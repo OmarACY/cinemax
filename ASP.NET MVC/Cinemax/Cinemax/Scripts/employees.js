@@ -17,4 +17,14 @@
         format: "MM/DD/YYYY",
         locale: 'es'
     });
+    $('#buttons-container .btn').bind('click', function () {
+        action = $(this).data('action');
+        if (action !== 'Cancel') {
+            $('#Accion').val(action);
+        }
+        else {
+            $("#employees-form").clearValidation();
+            return false;
+        }
+    });
 });

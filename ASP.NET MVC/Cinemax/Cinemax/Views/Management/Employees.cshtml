@@ -7,10 +7,11 @@
 @model Cinemax.Models.EmployeesViewModel
 <div class="panel">
     <div class="panel-body">
-        @using (Html.BeginForm("Employees", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Employees", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id="employees-form" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Accion)
             <div class="col-md-6">
                 <div class="form-group row">
                     @Html.LabelFor(m => m.NombreUsuario, new { @class = "col-md-4 control-label" })
@@ -84,10 +85,10 @@
                 </div>
                 <div class="form-group row">
                     <div id="buttons-container" class="col-md-12 text-right">
-                        <button type="button" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
-                        <button type="button" class="btn btn-danger" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
-                        <button type="button" class="btn btn-primary" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
-                        <button type="button" class="btn btn-warning" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
+                        <button type="submit" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
+                        <button type="submit" class="btn btn-danger" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                        <button type="submit" class="btn btn-primary" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button type="submit" class="btn btn-warning" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
                     </div>
                 </div>
             </div>

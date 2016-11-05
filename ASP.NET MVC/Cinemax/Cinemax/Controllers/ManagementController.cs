@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemax.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,14 @@ namespace Cinemax.Controllers
     {
         // GET: Management/Employees
         public ActionResult Employees()
+        {
+            return View();
+        }
+
+        // POST: Management/Employees
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Employees(EmployeesViewModel model)
         {
             return View();
         }

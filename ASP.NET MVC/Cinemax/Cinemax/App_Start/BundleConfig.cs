@@ -25,6 +25,9 @@ namespace Cinemax
                       "~/Scripts/moment.js",
                       "~/Scripts/moment-with-locales.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                      "~/Scripts/site.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

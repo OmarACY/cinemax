@@ -48,5 +48,9 @@ namespace Cinemax.Models
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
+
+        [Required]
+        [Display(Name = "Acción")]
+        public string Accion { get; set; }
     }
 }
