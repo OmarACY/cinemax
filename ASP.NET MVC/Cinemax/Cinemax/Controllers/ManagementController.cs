@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Cinemax.Controllers
 {
+    [Authorize]
     public class ManagementController : Controller
     {
         // GET: Management/Employees

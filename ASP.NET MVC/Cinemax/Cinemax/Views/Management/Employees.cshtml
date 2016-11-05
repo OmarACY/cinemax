@@ -4,4 +4,136 @@
 }
 
 <h2>@ViewBag.Title</h2>
+@model Cinemax.Models.EmployeesViewModel
+<div class="panel">
+    <div class="panel-body">
+        @using (Html.BeginForm("Employees", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.NombreUsuario, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Nombre, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ApPaterno, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.ApPaterno, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ApPaterno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ApMaterno, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.ApMaterno, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ApMaterno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.FechaNac, new { @class = "col-md-4 control-label " })
+                    <div class="col-md-8">
+                        <div class='input-group date' id='fecha-nacimiento'>
+                            @Html.TextBoxFor(m => m.FechaNac, new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.FechaNac, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Colonia, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Colonia, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Colonia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Calle, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Calle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Calle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Numero, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Numero, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Numero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="buttons-container" class="col-md-12 text-right">
+                        <button type="button" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
+                        <button type="button" class="btn btn-danger" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                        <button type="button" class="btn btn-primary" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button type="button" class="btn btn-warning" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="panel table-responsive">
+    <div class="panel-body">
+        <table id="grid-employees" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="Clave" data-type="numeric">Clave</th>
+                    <th data-column-id="NombreUsuario">Usuario</th>
+                    <th data-column-id="Nombre">Nombre(s)</th>
+                    <th data-column-id="ApPaterno">Apellido paterno</th>
+                    <th data-column-id="ApMaterno">Apellido materno</th>
+                    <th data-column-id="FechaNac">Fecha de nacimiento</th>
+                    <th data-column-id="Colonia">Colonia</th>
+                    <th data-column-id="Calle">Calle</th>
+                    <th data-column-id="Numero">Número</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>23992</td>
+                    <td>milan</td>
+                    <td>Héctor Alessandro</td>
+                    <td>Milán</td>
+                    <td>Ortega</td>
+                    <td>29/06/1993</td>
+                    <td>Colonia</td>
+                    <td>Calle</td>
+                    <td>XXX</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
+@section Styles {
+    @Styles.Render("~/Content/bootgrid")
+    @Styles.Render("~/Content/datetimepicker")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/bootgrid")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/employees.js")"></script>

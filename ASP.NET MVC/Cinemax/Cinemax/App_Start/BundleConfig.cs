@@ -21,11 +21,25 @@ namespace Cinemax
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/moment.js",
+                      "~/Scripts/moment-with-locales.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootgrid").Include(
+                        "~/Scripts/jquery.bootgrid.js"));
+
+            bundles.Add(new StyleBundle("~/Content/bootgrid").Include(
+                        "~/Content/jquery.bootgrid.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datetimepicker").Include(
+                        "~/Scripts/bootstrap-datetimepicker.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datetimepicker").Include(
+                        "~/Content/bootstrap-datetimepicker.css"));
         }
     }
 }
