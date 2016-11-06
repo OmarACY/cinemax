@@ -14,7 +14,7 @@
         sorting: false
     });
     $('#fecha-nacimiento').datetimepicker({
-        format: "MM/DD/YYYY",
+        format: "YYYY/MM/DD",
         locale: 'es'
     });
     $('#buttons-container .btn').bind('click', function () {

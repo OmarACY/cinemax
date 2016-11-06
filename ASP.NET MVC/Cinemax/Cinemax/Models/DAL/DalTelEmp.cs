@@ -12,11 +12,11 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class TelCin
+    public partial class DalTelEmp
     {
-        public long clave_cin { get; set; }
+        public long clave_emp { get; set; }
         public string telefono { get; set; }
     
-        public virtual Cine Cine { get; set; }
+        public virtual DalEmpleado Empleado { get; set; }
     }
 }

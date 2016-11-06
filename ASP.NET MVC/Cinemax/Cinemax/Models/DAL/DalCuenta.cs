@@ -12,13 +12,13 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class DetalleVenta
+    public partial class DalCuenta
     {
         public long clave_venta { get; set; }
-        public decimal subtotal { get; set; }
-        public string asiento { get; set; }
-        public string tipo_asiento { get; set; }
+        public string numero_tarjeta { get; set; }
+        public string codigo_seg { get; set; }
+        public System.DateTime fecha_venta { get; set; }
     
-        public virtual Venta Venta { get; set; }
+        public virtual DalVenta Venta { get; set; }
     }
 }

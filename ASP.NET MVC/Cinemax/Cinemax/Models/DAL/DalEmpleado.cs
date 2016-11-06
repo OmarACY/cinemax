@@ -12,15 +12,16 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Membresia
+    public partial class DalEmpleado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Membresia()
+        public DalEmpleado()
         {
-            this.Venta = new HashSet<Venta>();
+            this.TelEmp = new HashSet<DalTelEmp>();
+            this.Venta = new HashSet<DalVenta>();
         }
     
-        public long clave_mem { get; set; }
+        public long clave_emp { get; set; }
         public string nombre { get; set; }
         public string app { get; set; }
         public string apm { get; set; }
@@ -28,10 +29,11 @@ namespace Cinemax.Models.DAL
         public string colonia { get; set; }
         public string calle { get; set; }
         public int numero { get; set; }
-        public string tipo { get; set; }
-        public int puntos { get; set; }
+        public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta> Venta { get; set; }
+        public virtual ICollection<DalTelEmp> TelEmp { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DalVenta> Venta { get; set; }
     }
 }

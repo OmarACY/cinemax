@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ModelDAL" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="AspNetRoles">
+  <EntityType Name="DalAspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -8,7 +8,7 @@
     <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="AspNetUserClaims">
+  <EntityType Name="DalAspNetUserClaims">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -18,7 +18,7 @@
     <Property Name="ClaimValue" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UserClaims_Users" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="AspNetUserLogins">
+  <EntityType Name="DalAspNetUserLogins">
     <Key>
       <PropertyRef Name="LoginProvider" />
       <PropertyRef Name="ProviderKey" />
@@ -29,7 +29,7 @@
     <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UserLogins_Users" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="AspNetUsers">
+  <EntityType Name="DalAspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -50,10 +50,10 @@
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <Association Name="FK_UserClaims_Users">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+    <End Role="AspNetUsers" Type="ModelDAL.DalAspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <End Role="AspNetUserClaims" Type="ModelDAL.DalAspNetUserClaims" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -64,10 +64,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserLogins_Users">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+    <End Role="AspNetUsers" Type="ModelDAL.DalAspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <End Role="AspNetUserLogins" Type="ModelDAL.DalAspNetUserLogins" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -78,14 +78,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <End Role="AspNetRoles" Type="ModelDAL.DalAspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="ModelDAL.DalAspNetUsers" Multiplicity="*" />
   </Association>
   <EntityContainer Name="CinemaxEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="AspNetRoles" EntityType="ModelDAL.DalAspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="ModelDAL.DalAspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="ModelDAL.DalAspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="ModelDAL.DalAspNetUsers" />
     <AssociationSet Name="FK_UserClaims_Users" Association="Self.FK_UserClaims_Users">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -98,17 +98,17 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
-    <EntitySet Name="Cine" EntityType="ModelDAL.Cine" />
-    <EntitySet Name="Cuenta" EntityType="ModelDAL.Cuenta" />
-    <EntitySet Name="DetalleVenta" EntityType="ModelDAL.DetalleVenta" />
-    <EntitySet Name="Empleado" EntityType="ModelDAL.Empleado" />
-    <EntitySet Name="Funcion" EntityType="ModelDAL.Funcion" />
-    <EntitySet Name="Membresia" EntityType="ModelDAL.Membresia" />
-    <EntitySet Name="Pelicula" EntityType="ModelDAL.Pelicula" />
-    <EntitySet Name="Sala" EntityType="ModelDAL.Sala" />
-    <EntitySet Name="TelCin" EntityType="ModelDAL.TelCin" />
-    <EntitySet Name="TelEmp" EntityType="ModelDAL.TelEmp" />
-    <EntitySet Name="Venta" EntityType="ModelDAL.Venta" />
+    <EntitySet Name="Cine" EntityType="ModelDAL.DalCine" />
+    <EntitySet Name="Cuenta" EntityType="ModelDAL.DalCuenta" />
+    <EntitySet Name="DetalleVenta" EntityType="ModelDAL.DalDetalleVenta" />
+    <EntitySet Name="Empleado" EntityType="ModelDAL.DalEmpleado" />
+    <EntitySet Name="Funcion" EntityType="ModelDAL.DalFuncion" />
+    <EntitySet Name="Membresia" EntityType="ModelDAL.DalMembresia" />
+    <EntitySet Name="Pelicula" EntityType="ModelDAL.DalPelicula" />
+    <EntitySet Name="Sala" EntityType="ModelDAL.DalSala" />
+    <EntitySet Name="TelCin" EntityType="ModelDAL.DalTelCin" />
+    <EntitySet Name="TelEmp" EntityType="ModelDAL.DalTelEmp" />
+    <EntitySet Name="Venta" EntityType="ModelDAL.DalVenta" />
     <AssociationSet Name="SALA_CINE_FK" Association="ModelDAL.SALA_CINE_FK">
       <End Role="Cine" EntitySet="Cine" />
       <End Role="Sala" EntitySet="Sala" />
@@ -150,7 +150,7 @@
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Cine">
+  <EntityType Name="DalCine">
     <Key>
       <PropertyRef Name="clave_cin" />
     </Key>
@@ -163,7 +163,7 @@
     <NavigationProperty Name="Sala" Relationship="ModelDAL.SALA_CINE_FK" FromRole="Cine" ToRole="Sala" />
     <NavigationProperty Name="TelCin" Relationship="ModelDAL.TEL_CIN_FK" FromRole="Cine" ToRole="TelCin" />
   </EntityType>
-  <EntityType Name="Cuenta">
+  <EntityType Name="DalCuenta">
     <Key>
       <PropertyRef Name="clave_venta" />
     </Key>
@@ -173,7 +173,7 @@
     <Property Name="fecha_venta" Type="DateTime" Nullable="false" Precision="6" />
     <NavigationProperty Name="Venta" Relationship="ModelDAL.CUENTA_FK" FromRole="Cuenta" ToRole="Venta" />
   </EntityType>
-  <EntityType Name="DetalleVenta">
+  <EntityType Name="DalDetalleVenta">
     <Key>
       <PropertyRef Name="clave_venta" />
       <PropertyRef Name="asiento" />
@@ -184,7 +184,7 @@
     <Property Name="tipo_asiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Venta" Relationship="ModelDAL.DETALLEVENTA_FK" FromRole="DetalleVenta" ToRole="Venta" />
   </EntityType>
-  <EntityType Name="Empleado">
+  <EntityType Name="DalEmpleado">
     <Key>
       <PropertyRef Name="clave_emp" />
     </Key>
@@ -200,7 +200,7 @@
     <NavigationProperty Name="TelEmp" Relationship="ModelDAL.TELEMP_FK" FromRole="Empleado" ToRole="TelEmp" />
     <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK3" FromRole="Empleado" ToRole="Venta" />
   </EntityType>
-  <EntityType Name="Funcion">
+  <EntityType Name="DalFuncion">
     <Key>
       <PropertyRef Name="clave_fun" />
     </Key>
@@ -215,7 +215,7 @@
     <NavigationProperty Name="Sala" Relationship="ModelDAL.FUNCION_FK2" FromRole="Funcion" ToRole="Sala" />
     <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK2" FromRole="Funcion" ToRole="Venta" />
   </EntityType>
-  <EntityType Name="Membresia">
+  <EntityType Name="DalMembresia">
     <Key>
       <PropertyRef Name="clave_mem" />
     </Key>
@@ -231,7 +231,7 @@
     <Property Name="puntos" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK" FromRole="Membresia" ToRole="Venta" />
   </EntityType>
-  <EntityType Name="Pelicula">
+  <EntityType Name="DalPelicula">
     <Key>
       <PropertyRef Name="clave_pel" />
     </Key>
@@ -243,7 +243,7 @@
     <Property Name="genero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Funcion" Relationship="ModelDAL.FUNCION_FK" FromRole="Pelicula" ToRole="Funcion" />
   </EntityType>
-  <EntityType Name="Sala">
+  <EntityType Name="DalSala">
     <Key>
       <PropertyRef Name="clave_sal" />
     </Key>
@@ -253,7 +253,7 @@
     <NavigationProperty Name="Cine" Relationship="ModelDAL.SALA_CINE_FK" FromRole="Sala" ToRole="Cine" />
     <NavigationProperty Name="Funcion" Relationship="ModelDAL.FUNCION_FK2" FromRole="Sala" ToRole="Funcion" />
   </EntityType>
-  <EntityType Name="TelCin">
+  <EntityType Name="DalTelCin">
     <Key>
       <PropertyRef Name="clave_cin" />
       <PropertyRef Name="telefono" />
@@ -262,7 +262,7 @@
     <Property Name="telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Cine" Relationship="ModelDAL.TEL_CIN_FK" FromRole="TelCin" ToRole="Cine" />
   </EntityType>
-  <EntityType Name="TelEmp">
+  <EntityType Name="DalTelEmp">
     <Key>
       <PropertyRef Name="clave_emp" />
       <PropertyRef Name="telefono" />
@@ -271,7 +271,7 @@
     <Property Name="telefono" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Empleado" Relationship="ModelDAL.TELEMP_FK" FromRole="TelEmp" ToRole="Empleado" />
   </EntityType>
-  <EntityType Name="Venta">
+  <EntityType Name="DalVenta">
     <Key>
       <PropertyRef Name="clave_venta" />
     </Key>
@@ -287,8 +287,8 @@
     <NavigationProperty Name="Membresia" Relationship="ModelDAL.VENTA_FK" FromRole="Venta" ToRole="Membresia" />
   </EntityType>
   <Association Name="SALA_CINE_FK">
-    <End Type="ModelDAL.Cine" Role="Cine" Multiplicity="1" />
-    <End Type="ModelDAL.Sala" Role="Sala" Multiplicity="*" />
+    <End Type="ModelDAL.DalCine" Role="Cine" Multiplicity="1" />
+    <End Type="ModelDAL.DalSala" Role="Sala" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cine">
         <PropertyRef Name="clave_cin" />
@@ -299,8 +299,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="TEL_CIN_FK">
-    <End Type="ModelDAL.Cine" Role="Cine" Multiplicity="1" />
-    <End Type="ModelDAL.TelCin" Role="TelCin" Multiplicity="*" />
+    <End Type="ModelDAL.DalCine" Role="Cine" Multiplicity="1" />
+    <End Type="ModelDAL.DalTelCin" Role="TelCin" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cine">
         <PropertyRef Name="clave_cin" />
@@ -311,8 +311,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CUENTA_FK">
-    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="1" />
-    <End Type="ModelDAL.Cuenta" Role="Cuenta" Multiplicity="0..1" />
+    <End Type="ModelDAL.DalVenta" Role="Venta" Multiplicity="1" />
+    <End Type="ModelDAL.DalCuenta" Role="Cuenta" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Venta">
         <PropertyRef Name="clave_venta" />
@@ -323,8 +323,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="DETALLEVENTA_FK">
-    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="1" />
-    <End Type="ModelDAL.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+    <End Type="ModelDAL.DalVenta" Role="Venta" Multiplicity="1" />
+    <End Type="ModelDAL.DalDetalleVenta" Role="DetalleVenta" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venta">
         <PropertyRef Name="clave_venta" />
@@ -335,8 +335,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="TELEMP_FK">
-    <End Type="ModelDAL.Empleado" Role="Empleado" Multiplicity="1" />
-    <End Type="ModelDAL.TelEmp" Role="TelEmp" Multiplicity="*" />
+    <End Type="ModelDAL.DalEmpleado" Role="Empleado" Multiplicity="1" />
+    <End Type="ModelDAL.DalTelEmp" Role="TelEmp" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
         <PropertyRef Name="clave_emp" />
@@ -347,8 +347,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VENTA_FK3">
-    <End Type="ModelDAL.Empleado" Role="Empleado" Multiplicity="1" />
-    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <End Type="ModelDAL.DalEmpleado" Role="Empleado" Multiplicity="1" />
+    <End Type="ModelDAL.DalVenta" Role="Venta" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
         <PropertyRef Name="clave_emp" />
@@ -359,8 +359,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FUNCION_FK">
-    <End Type="ModelDAL.Pelicula" Role="Pelicula" Multiplicity="1" />
-    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="*" />
+    <End Type="ModelDAL.DalPelicula" Role="Pelicula" Multiplicity="1" />
+    <End Type="ModelDAL.DalFuncion" Role="Funcion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Pelicula">
         <PropertyRef Name="clave_pel" />
@@ -371,8 +371,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FUNCION_FK2">
-    <End Type="ModelDAL.Sala" Role="Sala" Multiplicity="1" />
-    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="*" />
+    <End Type="ModelDAL.DalSala" Role="Sala" Multiplicity="1" />
+    <End Type="ModelDAL.DalFuncion" Role="Funcion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Sala">
         <PropertyRef Name="clave_sal" />
@@ -383,8 +383,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VENTA_FK2">
-    <End Type="ModelDAL.Funcion" Role="Funcion" Multiplicity="1" />
-    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <End Type="ModelDAL.DalFuncion" Role="Funcion" Multiplicity="1" />
+    <End Type="ModelDAL.DalVenta" Role="Venta" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Funcion">
         <PropertyRef Name="clave_fun" />
@@ -395,8 +395,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VENTA_FK">
-    <End Type="ModelDAL.Membresia" Role="Membresia" Multiplicity="1" />
-    <End Type="ModelDAL.Venta" Role="Venta" Multiplicity="*" />
+    <End Type="ModelDAL.DalMembresia" Role="Membresia" Multiplicity="1" />
+    <End Type="ModelDAL.DalVenta" Role="Venta" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Membresia">
         <PropertyRef Name="clave_mem" />

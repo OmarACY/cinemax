@@ -1,7 +1,10 @@
 ﻿using Cinemax.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,18 +13,58 @@ namespace Cinemax.Controllers
     [Authorize]
     public class ManagementController : Controller
     {
-        // GET: Management/Employees
-        public ActionResult Employees()
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
         {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+        // GET: Management/Employees
+        public ActionResult Employees(string message)
+        {
+            ViewBag.StatusMessage = message;
             return View();
         }
 
         // POST: Management/Employees
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Employees(EmployeesViewModel model)
+        public async Task<ActionResult> Employees(EmployeesViewModel model)
         {
-            return View();
+            Empleado emp;
+            bool estatus;
+
+            estatus = false;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.NombreUsuario, Email = "default@cinemax.mx", PhoneNumber = model.Telefono };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    emp = new Empleado();
+                    estatus = emp.AgregaEmpleado(model);
+                }
+                else
+                {
+                    AddErrors(result);
+                }
+            }
+
+            if (!estatus)
+            {
+                ModelState.AddModelError("", "Empleado no agregado!");
+                return View();
+            }
+            else
+                return RedirectToAction("Employees", "Management", new { message = "Empleado agregado!" });
         }
 
         // GET: Management/Clients
@@ -46,6 +89,14 @@ namespace Cinemax.Controllers
         public ActionResult FilmFunctions()
         {
             return View();
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }

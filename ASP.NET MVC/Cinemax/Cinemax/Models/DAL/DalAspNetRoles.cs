@@ -12,13 +12,18 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetUserClaims
+    public partial class DalAspNetRoles
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DalAspNetRoles()
+        {
+            this.AspNetUsers = new HashSet<DalAspNetUsers>();
+        }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DalAspNetUsers> AspNetUsers { get; set; }
     }
 }

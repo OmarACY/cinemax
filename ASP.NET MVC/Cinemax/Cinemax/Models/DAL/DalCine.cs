@@ -12,25 +12,25 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Funcion
+    public partial class DalCine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Funcion()
+        public DalCine()
         {
-            this.Venta = new HashSet<Venta>();
+            this.Sala = new HashSet<DalSala>();
+            this.TelCin = new HashSet<DalTelCin>();
         }
     
-        public long clave_fun { get; set; }
-        public long clave_pel { get; set; }
-        public long clave_sal { get; set; }
-        public System.DateTime hora_ini { get; set; }
-        public System.DateTime hora_fin { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int cupo { get; set; }
+        public long clave_cin { get; set; }
+        public string nombre { get; set; }
+        public int num_salas { get; set; }
+        public string colonia { get; set; }
+        public string calle { get; set; }
+        public int numero { get; set; }
     
-        public virtual Pelicula Pelicula { get; set; }
-        public virtual Sala Sala { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta> Venta { get; set; }
+        public virtual ICollection<DalSala> Sala { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DalTelCin> TelCin { get; set; }
     }
 }

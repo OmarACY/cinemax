@@ -12,11 +12,13 @@ namespace Cinemax.Models.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class TelEmp
+    public partial class DalAspNetUserClaims
     {
-        public long clave_emp { get; set; }
-        public string telefono { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual Empleado Empleado { get; set; }
+        public virtual DalAspNetUsers AspNetUsers { get; set; }
     }
 }

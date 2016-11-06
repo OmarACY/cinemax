@@ -218,21 +218,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DAL\AspNetRoles.cs">
-      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DAL\AspNetUserClaims.cs">
-      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DAL\AspNetUserLogins.cs">
-      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DAL\AspNetUsers.cs">
-      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DAL\Cine.cs">
-      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DAL\CinemaxDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -248,36 +233,52 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CinemaxDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Cuenta.cs">
+    <Compile Include="Models\DAL\DalAspNetRoles.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\DetalleVenta.cs">
+    <Compile Include="Models\DAL\DalAspNetUserClaims.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Empleado.cs">
+    <Compile Include="Models\DAL\DalAspNetUserLogins.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Funcion.cs">
+    <Compile Include="Models\DAL\DalAspNetUsers.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Membresia.cs">
+    <Compile Include="Models\DAL\DalCine.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Pelicula.cs">
+    <Compile Include="Models\DAL\DalCuenta.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Sala.cs">
+    <Compile Include="Models\DAL\DalDetalleVenta.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\TelCin.cs">
+    <Compile Include="Models\DAL\DalEmpleado.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\TelEmp.cs">
+    <Compile Include="Models\DAL\DalFuncion.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\Venta.cs">
+    <Compile Include="Models\DAL\DalMembresia.cs">
       <DependentUpon>CinemaxDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAL\DalPelicula.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\DalSala.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\DalTelCin.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\DalTelEmp.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAL\DalVenta.cs">
+      <DependentUpon>CinemaxDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManagementViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -430,7 +431,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\employees.js" />
+    <Content Include="Scripts\Management\employees.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />

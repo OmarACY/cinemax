@@ -25,20 +25,20 @@ namespace Cinemax.Models.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Cine> Cine { get; set; }
-        public virtual DbSet<Cuenta> Cuenta { get; set; }
-        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
-        public virtual DbSet<Empleado> Empleado { get; set; }
-        public virtual DbSet<Funcion> Funcion { get; set; }
-        public virtual DbSet<Membresia> Membresia { get; set; }
-        public virtual DbSet<Pelicula> Pelicula { get; set; }
-        public virtual DbSet<Sala> Sala { get; set; }
-        public virtual DbSet<TelCin> TelCin { get; set; }
-        public virtual DbSet<TelEmp> TelEmp { get; set; }
-        public virtual DbSet<Venta> Venta { get; set; }
+        public virtual DbSet<DalAspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<DalAspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<DalAspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<DalAspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<DalCine> Cine { get; set; }
+        public virtual DbSet<DalCuenta> Cuenta { get; set; }
+        public virtual DbSet<DalDetalleVenta> DetalleVenta { get; set; }
+        public virtual DbSet<DalEmpleado> Empleado { get; set; }
+        public virtual DbSet<DalFuncion> Funcion { get; set; }
+        public virtual DbSet<DalMembresia> Membresia { get; set; }
+        public virtual DbSet<DalPelicula> Pelicula { get; set; }
+        public virtual DbSet<DalSala> Sala { get; set; }
+        public virtual DbSet<DalTelCin> TelCin { get; set; }
+        public virtual DbSet<DalTelEmp> TelEmp { get; set; }
+        public virtual DbSet<DalVenta> Venta { get; set; }
     }
 }

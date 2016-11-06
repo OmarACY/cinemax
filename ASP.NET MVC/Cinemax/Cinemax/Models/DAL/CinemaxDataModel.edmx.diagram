@@ -5,24 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="190b7c28eaf342d79c34e576d3f0a827" Name="Diagram1">
-        <EntityTypeShape EntityType="ModelDAL.AspNetRoles" Width="1.75" PointX="0.5" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelDAL.AspNetUserClaims" Width="2.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelDAL.AspNetUserLogins" Width="3.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelDAL.AspNetUsers" Width="2.25" PointX="2.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.DalAspNetRoles" Width="1.75" PointX="0.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.DalAspNetUserClaims" Width="2.5" PointX="5.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.DalAspNetUserLogins" Width="3.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ModelDAL.DalAspNetUsers" Width="2.25" PointX="2.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="ModelDAL.FK_UserClaims_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ModelDAL.FK_UserLogins_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ModelDAL.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ModelDAL.Cine" Width="1.5" PointX="0.75" PointY="9.25" />
-        <EntityTypeShape EntityType="ModelDAL.Cuenta" Width="1.5" PointX="9.75" PointY="9.375" />
-        <EntityTypeShape EntityType="ModelDAL.DetalleVenta" Width="1.5" PointX="9.75" PointY="11.875" />
-        <EntityTypeShape EntityType="ModelDAL.Empleado" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="ModelDAL.Funcion" Width="1.5" PointX="5.25" PointY="10.125" />
-        <EntityTypeShape EntityType="ModelDAL.Membresia" Width="1.5" PointX="5.25" PointY="6.375" />
-        <EntityTypeShape EntityType="ModelDAL.Pelicula" Width="1.5" PointX="3" PointY="13.375" />
-        <EntityTypeShape EntityType="ModelDAL.Sala" Width="1.5" PointX="3" PointY="10.625" />
-        <EntityTypeShape EntityType="ModelDAL.TelCin" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="ModelDAL.TelEmp" Width="1.5" PointX="7.5" PointY="14.5" />
-        <EntityTypeShape EntityType="ModelDAL.Venta" Width="1.5" PointX="7.5" PointY="10.125" />
+        <EntityTypeShape EntityType="ModelDAL.DalCine" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="ModelDAL.DalCuenta" Width="1.5" PointX="9.75" PointY="9.375" />
+        <EntityTypeShape EntityType="ModelDAL.DalDetalleVenta" Width="1.5" PointX="9.75" PointY="11.875" />
+        <EntityTypeShape EntityType="ModelDAL.DalEmpleado" Width="1.5" PointX="5.25" PointY="13.875" />
+        <EntityTypeShape EntityType="ModelDAL.DalFuncion" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="ModelDAL.DalMembresia" Width="1.5" PointX="5.25" PointY="6.375" />
+        <EntityTypeShape EntityType="ModelDAL.DalPelicula" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="ModelDAL.DalSala" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="ModelDAL.DalTelCin" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="ModelDAL.DalTelEmp" Width="1.5" PointX="7.5" PointY="14.5" />
+        <EntityTypeShape EntityType="ModelDAL.DalVenta" Width="1.5" PointX="7.5" PointY="10.125" />
         <AssociationConnector Association="ModelDAL.SALA_CINE_FK" />
         <AssociationConnector Association="ModelDAL.TEL_CIN_FK" />
         <AssociationConnector Association="ModelDAL.CUENTA_FK" />

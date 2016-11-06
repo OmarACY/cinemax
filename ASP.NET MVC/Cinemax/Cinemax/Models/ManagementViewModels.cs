@@ -49,6 +49,10 @@ namespace Cinemax.Models
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
+        [Phone]
+        [Display(Name = "Número telefónico")]
+        public string Telefono { get; set; }
+
         [Required]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
