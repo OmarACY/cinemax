@@ -30,6 +30,18 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Fecha de nacimiento")]
         public DateTime FechaNac { get; set; }
+        
+        [Display(Name = "Fecha de nacimiento")]
+        public String FechaNacGrid { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Correo electrónico")]
+        public string Email { get; set; }
+
+        [Phone]
+        [Display(Name = "Número telefónico")]
+        public string Telefono { get; set; }
 
         [Required]
         [Display(Name = "Colonia")]
@@ -49,12 +61,21 @@ namespace Cinemax.Models
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [Phone]
-        [Display(Name = "Número telefónico")]
-        public string Telefono { get; set; }
-
         [Required]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
+    }
+
+    public class GetEmployeesViewModel
+    {
+        public int current { get; set; }
+        public int rowCount { get; set; }
+        public int total { get; set; }
+        public List<EmployeesViewModel> rows;
+
+        public GetEmployeesViewModel()
+        {
+            rows = new List<EmployeesViewModel>();
+        }
     }
 }

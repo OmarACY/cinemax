@@ -39,18 +39,19 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Employees(EmployeesViewModel model)
         {
-            Empleado emp;
             bool estatus;
 
             estatus = false;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.NombreUsuario, Email = "default@cinemax.mx", PhoneNumber = model.Telefono };
+                var user = new ApplicationUser { UserName = model.NombreUsuario, Email = model.Email, PhoneNumber = model.Telefono };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    emp = new Empleado();
-                    estatus = emp.AgregaEmpleado(model);
+                    using (Empleado emp = new Empleado())
+                    {
+                        estatus = emp.AgregaEmpleado(model);
+                    }
                 }
                 else
                 {
@@ -89,6 +90,18 @@ namespace Cinemax.Controllers
         public ActionResult FilmFunctions()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetEmployees(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
+        {
+            using (Empleado emp = new Empleado())
+            {
+                return new JsonResult()
+                {
+                    Data = emp.ObtenEmpleados(current, rowCount, sort, searchPhrase)
+                };
+            }
         }
 
         private void AddErrors(IdentityResult result)
