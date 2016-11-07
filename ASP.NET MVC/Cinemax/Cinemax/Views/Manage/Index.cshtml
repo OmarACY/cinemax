@@ -22,18 +22,5 @@
             }
             ]
         </dd>
-        <dt>Número telefónico:</dt>
-        <dd>
-            [
-            @if (Model.PhoneNumber != null)
-            {
-                @Html.ActionLink("Eliminar número telefónico", "RemovePhoneNumber")
-            }
-            else
-            {
-                @Html.ActionLink("Agregar número telefónico", "AddPhoneNumber")
-            }
-            ]
-        </dd>
     </dl>
 </div>

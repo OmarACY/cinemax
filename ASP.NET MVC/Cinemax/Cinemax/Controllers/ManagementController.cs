@@ -40,32 +40,71 @@ namespace Cinemax.Controllers
         public async Task<ActionResult> Employees(EmployeesViewModel model)
         {
             bool estatus;
-
-            estatus = false;
-            if (ModelState.IsValid)
+            
+            if (!ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.NombreUsuario, Email = model.Email, PhoneNumber = model.Telefono };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
+                return View(model);
+            }
+            estatus = false;
+            switch (model.Accion)
+            {
+                case "Add":
+                    var user = new ApplicationUser { UserName = model.NombreUsuario, Email = model.Email, PhoneNumber = null };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        using (Empleado emp = new Empleado())
+                        {
+                            estatus = emp.AgregaEmpleado(model);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Empleado no agregado!");
+                                return View(model);
+                            }
+                            else
+                                return RedirectToAction("Employees", "Management", new { message = "Empleado agregado!" });
+                        }
+                    }
+                    else
+                    {
+                        AddErrors(result);
+                        return View(model);
+                    }
+                case "Edit":
                     using (Empleado emp = new Empleado())
                     {
-                        estatus = emp.AgregaEmpleado(model);
+                        EmployeesViewModel empleado = emp.ObtenEmpleado(model.Clave, model.NombreUsuario);
+                        string oldPassword = empleado.Password;
+                        estatus = emp.EditaEmpleado(model);
+                        if (!estatus)
+                        {
+                            ModelState.AddModelError("", "Empleado no editado!");
+                            return View(model);
+                        }
+                        else
+                        {
+                            if((empleado != null) && (oldPassword != model.Password))
+                            {
+                                IdentityResult resultPassword = await UserManager.ChangePasswordAsync(empleado.IdUsuarioAspNet, oldPassword, model.Password);
+                            }
+                            return RedirectToAction("Employees", "Management", new { message = "Empleado agregado!" });
+                        }
                     }
-                }
-                else
-                {
-                    AddErrors(result);
-                }
+                case "Remove":
+                    using (Empleado emp = new Empleado())
+                    {
+                        estatus = emp.EliminaEmpleado(model.Clave);
+                        if (!estatus)
+                        {
+                            ModelState.AddModelError("", "Empleado no eliminado!");
+                            return View(model);
+                        }
+                        else
+                            return RedirectToAction("Employees", "Management", new { message = "Empleado agregado!" });
+                    }
+                default:
+                    return View(model);
             }
-
-            if (!estatus)
-            {
-                ModelState.AddModelError("", "Empleado no agregado!");
-                return View();
-            }
-            else
-                return RedirectToAction("Employees", "Management", new { message = "Empleado agregado!" });
         }
 
         // GET: Management/Clients

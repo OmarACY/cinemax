@@ -65,6 +65,8 @@
     $('#buttons-container .btn').bind('click', function () {
         action = $(this).data('action');
         if (action !== 'Cancel') {
+            if (action === 'Add')
+                $("#Clave").val('2016');
             $('#Accion').val(action);
         }
         else {

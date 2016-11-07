@@ -11,6 +11,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.Accion)
+            @Html.HiddenFor(m => m.Clave)
             <div class="col-md-6">
                 <div class="form-group row">
                     @Html.LabelFor(m => m.NombreUsuario, new { @class = "col-md-4 control-label" })
@@ -118,11 +119,12 @@
             <thead>
                 <tr>
                     <th data-column-id="select" data-formatter="select">Seleccionar</th>
-                    <th data-column-id="Clave" data-type="numeric">Clave</th>
                     <th data-column-id="Nombre">Nombre(s)</th>
                     <th data-column-id="ApPaterno">Apellido paterno</th>
                     <th data-column-id="ApMaterno">Apellido materno</th>
                     <th data-column-id="FechaNacGrid">Fecha de nacimiento</th>
+                    <th data-column-id="Email">Correo</th>
+                    <th data-column-id="Telefono">Teléfono</th>
                     <th data-column-id="Colonia">Colonia</th>
                     <th data-column-id="Calle">Calle</th>
                     <th data-column-id="Numero">Número</th>

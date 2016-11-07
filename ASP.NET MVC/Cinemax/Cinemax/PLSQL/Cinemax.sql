@@ -362,3 +362,30 @@ FOREIGN KEY ("clave_venta")
 REFERENCES "Venta" ("clave_venta")
 
 /
+
+alter table "Empleado" add
+("nombre_usuario" NVARCHAR2(256))
+/   
+
+
+alter table "Empleado" add
+("email" NVARCHAR2(256))
+/   
+
+
+
+
+/*Despues de crear la base datos agregar el siguiente registro a la tabla "AspNetUsers"*/
+/* Usuario base del sistema user: admin; password: Admin_1 */
+eaf855b1-e2d9-4125-87a8-e694b82e83b6, 
+admin@cinemax.mx, 
+0, 
+AOpAOBIJ+uzCkZOQyLApGY3xdCSUJw50KiZHim+cB6VomWpX845RBs+e3C6x+vjz9A==, 
+e19199d0-8486-480a-8e02-b44fe658c4e9, 
+NULL, 
+0, 
+0, 
+NULL, 
+1, 
+0, 
+admin

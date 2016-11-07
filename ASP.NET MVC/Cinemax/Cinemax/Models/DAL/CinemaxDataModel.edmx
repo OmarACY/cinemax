@@ -99,6 +99,8 @@
           <Property Name="calle" Type="nvarchar2" MaxLength="45" Nullable="false" />
           <Property Name="numero" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="password" Type="nvarchar2" MaxLength="256" Nullable="false" />
+          <Property Name="nombre_usuario" Type="nvarchar2" MaxLength="256" />
+          <Property Name="email" Type="nvarchar2" MaxLength="256" />
         </EntityType>
         <EntityType Name="Funcion">
           <Key>
@@ -625,6 +627,8 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TelEmp" Relationship="ModelDAL.TELEMP_FK" FromRole="Empleado" ToRole="TelEmp" />
           <NavigationProperty Name="Venta" Relationship="ModelDAL.VENTA_FK3" FromRole="Empleado" ToRole="Venta" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DalFuncion">
           <Key>
@@ -926,6 +930,8 @@
           <EntitySetMapping Name="Empleado">
             <EntityTypeMapping TypeName="ModelDAL.DalEmpleado">
               <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="calle" ColumnName="calle" />

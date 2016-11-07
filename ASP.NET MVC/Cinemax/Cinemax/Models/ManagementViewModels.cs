@@ -8,6 +8,8 @@ namespace Cinemax.Models
 {
     public class EmployeesViewModel
     {
+        public string IdUsuarioAspNet;
+
         [Display(Name = "Clave de empleado")]
         public long Clave { get; set; }
 
