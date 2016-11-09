@@ -107,30 +107,6 @@ namespace Cinemax.Controllers
             }
         }
 
-        // GET: Management/Clients
-        public ActionResult Clients()
-        {
-            return View();
-        }
-
-        // GET: Management/MovieTeathers
-        public ActionResult MovieTeathers()
-        {
-            return View();
-        }
-
-        // GET: Management/Movies
-        public ActionResult Movies()
-        {
-            return View();
-        }
-
-        // GET: Management/FilmFunctions
-        public ActionResult FilmFunctions()
-        {
-            return View();
-        }
-
         [HttpPost]
         public ActionResult GetEmployees(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
         {
@@ -143,6 +119,143 @@ namespace Cinemax.Controllers
             }
         }
 
+        // GET: Management/Clients
+        public ActionResult Clients()
+        {
+            return View();
+        }
+
+        // POST: Management/Clients
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Clients(ClientsViewModel model)
+        {
+            return View(model);
+        }
+        
+        /// <summary>
+        /// Devuelve un conjunto de clientes. Utilizado para cragar datos en el grid de clientes
+        /// </summary>
+        /// <param name="current">Pagina actual del grid</param>
+        /// <param name="rowCount">Numero de elementos por pagina</param>
+        /// <param name="sort">Columnas y tipos de ordenamiento. Utilizado para ordenar el grid</param>
+        /// <param name="searchPhrase">Frase de busqueda. Se utiliza para filtrar elementos en el grid</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetClients(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
+        {
+            using (Membresia cliente = new Membresia())
+            {
+                return new JsonResult()
+                {
+                    Data = cliente.ObtenClientes(current, rowCount, sort, searchPhrase)
+                };
+            }
+        }
+
+        // GET: Management/MovieTeathers
+        public ActionResult MovieTeathers()
+        {
+            return View();
+        }
+
+        // POST: Management/MovieTeathers
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MovieTeathers(MovieTeathersViewModel model)
+        {
+            return View(model);
+        }
+        
+        /// <summary>
+        /// Devuelve un conjunto de cines. Utilizado para cragar datos en el grid de cines
+        /// </summary>
+        /// <param name="current">Pagina actual del grid</param>
+        /// <param name="rowCount">Numero de elementos por pagina</param>
+        /// <param name="sort">Columnas y tipos de ordenamiento. Utilizado para ordenar el grid</param>
+        /// <param name="searchPhrase">Frase de busqueda. Se utiliza para filtrar elementos en el grid</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetMovieTeathers(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
+        {
+            using (Cine cine = new Cine())
+            {
+                return new JsonResult()
+                {
+                    Data = cine.ObtenCines(current, rowCount, sort, searchPhrase)
+                };
+            }
+        }
+
+        // GET: Management/Movies
+        public ActionResult Movies()
+        {
+            return View();
+        }
+
+        // POST: Management/Movies
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Movies(MoviesViewModel model)
+        {
+            return View(model);
+        }
+        
+        /// <summary>
+        /// Devuelve un conjunto de peliculas. Utilizado para cragar datos en el grid de peliculas
+        /// </summary>
+        /// <param name="current">Pagina actual del grid</param>
+        /// <param name="rowCount">Numero de elementos por pagina</param>
+        /// <param name="sort">Columnas y tipos de ordenamiento. Utilizado para ordenar el grid</param>
+        /// <param name="searchPhrase">Frase de busqueda. Se utiliza para filtrar elementos en el grid</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetMovies(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
+        {
+            using (Pelicula pelicula = new Pelicula())
+            {
+                return new JsonResult()
+                {
+                    Data = pelicula.ObtenPeliculas(current, rowCount, sort, searchPhrase)
+                };
+            }
+        }
+
+        // GET: Management/FilmFunctions
+        public ActionResult FilmFunctions()
+        {
+            return View();
+        }
+
+        // POST: Management/FilmFunctions
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FilmFunctions(FilmFunctionsViewModel model)
+        {
+            return View(model);
+        }
+        
+        /// <summary>
+        /// Devuelve un conjunto de funciones. Utilizado para cragar datos en el grid de funciones
+        /// </summary>
+        /// <param name="current">Pagina actual del grid</param>
+        /// <param name="rowCount">Numero de elementos por pagina</param>
+        /// <param name="sort">Columnas y tipos de ordenamiento. Utilizado para ordenar el grid</param>
+        /// <param name="searchPhrase">Frase de busqueda. Se utiliza para filtrar elementos en el grid</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetFilmFunctions(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
+        {
+            using (Funcion funcion = new Funcion())
+            {
+                return new JsonResult()
+                {
+                    Data = funcion.ObtenFunciones(current, rowCount, sort, searchPhrase)
+                };
+            }
+        }
+
+        #region Metodos auxiliares
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -150,5 +263,6 @@ namespace Cinemax.Controllers
                 ModelState.AddModelError("", error);
             }
         }
+        #endregion
     }
 }

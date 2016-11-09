@@ -38,12 +38,14 @@
                     fechaNacimiento = value.FechaNacGrid.split("/");
                     $("#Clave").val(value.Clave);
                     $("#NombreUsuario").val(value.NombreUsuario);
+                    $("#NombreUsuario").prop("disabled", true);
                     $("#Password").val(value.Password);
                     $("#Nombre").val(value.Nombre);
                     $("#ApPaterno").val(value.ApPaterno);
                     $("#ApMaterno").val(value.ApMaterno);
                     $("#FechaNac").val(fechaNacimiento.pop() + '/' + fechaNacimiento.pop() + '/' + fechaNacimiento.pop());
                     $("#Email").val(value.Email);
+                    $("#Email").prop("disabled", true);
                     $("#Telefono").val(value.Telefono);
                     $("#Colonia").val(value.Colonia);
                     $("#Calle").val(value.Calle);
@@ -75,6 +77,8 @@
             $("#remove-employee").addClass("disabled");
             $("#edit-employee").addClass("disabled");
             $("#cancel-action").addClass("disabled");
+            $("#NombreUsuario").prop("disabled", false);
+            $("#Email").prop("disabled", false);
             return false;
         }
     });

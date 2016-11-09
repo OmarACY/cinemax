@@ -164,6 +164,12 @@ namespace Cinemax.Models
             return estatus;
         }
 
+        /// <summary>
+        /// Devuelve un empleado especifico
+        /// </summary>
+        /// <param name="clave">Clave del empleado</param>
+        /// <param name="nombreUsuario">Nombre de usuario</param>
+        /// <returns></returns>
         public EmployeesViewModel ObtenEmpleado(long clave, string nombreUsuario)
         {
             DalEmpleado empleado = (from e in db.Empleado where e.clave_emp == clave select e).FirstOrDefault();
@@ -218,7 +224,7 @@ namespace Cinemax.Models
         }
 
         /// <summary>
-        /// Devuelve todos los empleados existentes en la base datos dentro de un modelo representable en un Bootgrid
+        /// Devuelve todos los empleados existentes en la base datos, dentro de un modelo representable en un Bootgrid
         /// </summary>
         /// <param name="current">Pagina actual del grid</param>
         /// <param name="rowCount">Numero de elementos a mostrar</param>

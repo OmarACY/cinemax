@@ -1,10 +1,9 @@
-﻿
+﻿@model Cinemax.Models.EmployeesViewModel
 @{
     ViewBag.Title = "Empleados";
 }
 
 <h2>@ViewBag.Title</h2>
-@model Cinemax.Models.EmployeesViewModel
 <div class="panel">
     <div class="panel-body">
         @using (Html.BeginForm("Employees", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id="employees-form" }))

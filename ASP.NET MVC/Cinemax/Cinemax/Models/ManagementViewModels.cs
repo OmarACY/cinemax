@@ -32,7 +32,7 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Fecha de nacimiento")]
         public DateTime FechaNac { get; set; }
-        
+
         [Display(Name = "Fecha de nacimiento")]
         public String FechaNacGrid { get; set; }
 
@@ -79,5 +79,37 @@ namespace Cinemax.Models
         {
             rows = new List<EmployeesViewModel>();
         }
+    }
+
+    public class ClientsViewModel
+    {
+    }
+
+    public class GetClientsViewModel
+    {
+    }
+
+    public class FilmFunctionsViewModel
+    {
+    }
+
+    public class GetFilmFunctionsViewModel
+    {
+    }
+
+    public class MoviesViewModel
+    {
+    }
+
+    public class GetMoviesViewModel
+    {
+    }
+
+    public class MovieTeathersViewModel
+    {
+    }
+
+    public class GetMovieTeathersViewModel
+    {
     }
 }
