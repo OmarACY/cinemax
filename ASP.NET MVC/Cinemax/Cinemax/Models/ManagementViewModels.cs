@@ -84,14 +84,14 @@ namespace Cinemax.Models
     public class ClientsViewModel
     {
         [Display(Name = "Clave")]
-        public long clave_mem { get; set; }
+        public long? clave_mem { get; set; }
 
         [Required]
         [Display(Name = "Nombre(s)")]
         public string nombre { get; set; }
 
         [Required]
-        [Display(Name = "Apellido pterno")]
+        [Display(Name = "Apellido paterno")]
         public string app { get; set; }
 
         [Required]
@@ -102,6 +102,8 @@ namespace Cinemax.Models
         [Display(Name = "Fecha de nacimiento")]
         public DateTime fecha_nac { get; set; }
 
+        public string fecha_nacimiento_grid { get; set; }
+
         [Required]
         [Display(Name = "Colonia")]
         public string colonia { get; set; }
@@ -111,11 +113,11 @@ namespace Cinemax.Models
         public string calle { get; set; }
 
         [Required]
-        [Display(Name = "Numero")]
+        [Display(Name = "Número")]
         public int numero { get; set; }
 
         [Required]
-        [Display(Name = "Tipo")]
+        [Display(Name = "Tipo de membresía")]
         public string tipo { get; set; }
 
         [Required]
@@ -220,11 +222,15 @@ namespace Cinemax.Models
     public class MovieTeathersViewModel
     {
         [Display(Name = "Clave")]
-        public long clave_cin { get; set; }
+        public long? clave_cin { get; set; }
 
         [Required]
         [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+            
+        [Display(Name = "Teléfono")]
+        public string telefono { get; set; }
 
         [Required]
         [Display(Name = "Número de salas")]

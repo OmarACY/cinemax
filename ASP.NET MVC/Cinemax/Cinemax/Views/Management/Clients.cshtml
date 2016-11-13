@@ -5,3 +5,131 @@
 
 <h2>@ViewBag.Title</h2>
 
+<div class="panel">
+    <div class="panel-body">
+        @using (Html.BeginForm("Clients", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "clients-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.clave_mem)
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.tipo, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.tipo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.puntos, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.puntos, new { @class = "form-control", @data_val_number = "El campo Puntos debe ser un número" })
+                        @Html.ValidationMessageFor(m => m.puntos, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.nombre, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.app, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.app, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.app, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.apm, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.apm, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.apm, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.fecha_nac, new { @class = "col-md-4 control-label " })
+                    <div class="col-md-8">
+                        <div class='input-group date' id='fecha-nacimiento'>
+                            @Html.TextBoxFor(m => m.fecha_nac, new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.fecha_nac, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.colonia, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.colonia, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.colonia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.calle, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.calle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.calle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.numero, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.numero, new { @class = "form-control", @data_val_number = "El campo Número debe ser un número" })
+                        @Html.ValidationMessageFor(m => m.numero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="buttons-container" class="col-md-12 text-right">
+                        <button id="add-client" type="submit" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
+                        <button id="remove-client" type="submit" class="btn btn-danger disabled" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                        <button id="edit-client" type="submit" class="btn btn-primary disabled" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button id="cancel-action" type="submit" class="btn btn-warning disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        @Html.ValidationMessageFor(m => m.clave_mem, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+</div>
+
+<div class="panel table-responsive">
+    <div class="panel-body">
+        <table id="grid-clients" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="select" data-formatter="select">Seleccionar</th>
+                    <th data-column-id="nombre">Nombre(s)</th>
+                    <th data-column-id="app">Apellido paterno</th>
+                    <th data-column-id="apm">Apellido materno</th>
+                    <th data-column-id="fecha_nacimiento_grid">Fecha de nacimiento</th>
+                    <th data-column-id="colonia">Colonia</th>
+                    <th data-column-id="calle">Calle</th>
+                    <th data-column-id="numero">Número</th>
+                    <th data-column-id="tipo">Tipo de membresía</th>
+                    <th data-column-id="puntos">Puntos</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootgrid")
+    @Styles.Render("~/Content/datetimepicker")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bootgrid")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">urlGetClients = "@Url.Action("GetClients")"</script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Management/clients.js")"></script>
+}

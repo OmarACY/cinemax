@@ -130,7 +130,14 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Clients(ClientsViewModel model)
         {
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Clients", "Management");
+            }
         }
         
         /// <summary>
@@ -164,7 +171,14 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult MovieTeathers(MovieTeathersViewModel model)
         {
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("MovieTeathers", "Management");
+            }
         }
         
         /// <summary>

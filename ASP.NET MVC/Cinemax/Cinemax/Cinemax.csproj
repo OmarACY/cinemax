@@ -435,6 +435,8 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Management\movieTeathers.js" />
+    <Content Include="Scripts\Management\clients.js" />
     <Content Include="Scripts\Management\employees.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

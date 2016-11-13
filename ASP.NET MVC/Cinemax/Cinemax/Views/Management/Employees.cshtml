@@ -71,7 +71,8 @@
                 <div class="form-group row" >
                     @Html.LabelFor(m => m.Telefono, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Telefono, 
+                            new { @class = "form-control", @data_val = "true", @data_val_number = "El campo Número telefónico debe ser un número" })
                         @Html.ValidationMessageFor(m => m.Telefono, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -92,7 +93,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.Numero, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Numero, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Numero, new { @class = "form-control", @data_val_number = "El campo Número debe ser un número" })
                         @Html.ValidationMessageFor(m => m.Numero, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -108,6 +109,7 @@
         }
     </div>
     <div class="panel-footer">
+        @Html.ValidationMessageFor(m => m.Clave, "", new { @class = "text-danger" })
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <p class="text-success">@ViewBag.StatusMessage</p>
     </div>
