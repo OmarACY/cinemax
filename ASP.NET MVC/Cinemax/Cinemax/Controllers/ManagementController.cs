@@ -212,7 +212,14 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Movies(MoviesViewModel model)
         {
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Movies", "Management");
+            }
         }
         
         /// <summary>

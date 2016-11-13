@@ -71,4 +71,6 @@
             return false;
         }
     });
+
+    $('.selectpicker').selectpicker({});
 });

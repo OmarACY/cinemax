@@ -183,7 +183,7 @@ namespace Cinemax.Models
     public class MoviesViewModel
     {
         [Display(Name = "Clave")]
-        public long clave_pel { get; set; }
+        public long? clave_pel { get; set; }
 
         [Required]
         [Display(Name = "Nombre")]
@@ -198,11 +198,11 @@ namespace Cinemax.Models
         public string sinopsis { get; set; }
 
         [Required]
-        [Display(Name = "Clasificacion")]
+        [Display(Name = "Clasificación")]
         public string clasificacion { get; set; }
 
         [Required]
-        [Display(Name = "Genero")]
+        [Display(Name = "Género")]
         public string genero { get; set; }
     }
 

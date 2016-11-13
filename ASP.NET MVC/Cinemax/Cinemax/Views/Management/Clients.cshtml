@@ -15,7 +15,11 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.tipo, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.tipo, new { @class = "form-control" })
+                        <select class="form-control selectpicker" id="tipo" name="tipo">
+                            <option>Estándar</option>
+                            <option>Premium</option>
+                            <option>VIP</option>
+                        </select>
                         @Html.ValidationMessageFor(m => m.tipo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -124,11 +128,13 @@
 @section Styles {
     @Styles.Render("~/Content/bootgrid")
     @Styles.Render("~/Content/datetimepicker")
+    @Styles.Render("~/Content/bootstrap-select")
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/bootgrid")
     @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/bootstrap-select")
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">urlGetClients = "@Url.Action("GetClients")"</script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Management/clients.js")"></script>

@@ -5,3 +5,113 @@
 
 <h2>@ViewBag.Title</h2>
 
+<div class="panel">
+    <div class="panel-body">
+        @using (Html.BeginForm("Movies", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "movies-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.clave_pel)
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.nombre, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.director, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.director, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.director, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.genero, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="genero" name="genero">
+                            <option>Terror</option>
+                            <option>Comedia</option>
+                            <option>Acción</option>
+                            <option>Ciencia</option>
+                            <option>Ficción</option> 
+                            <option>Animación</option> 
+                            <option>Infantil</option> 
+                            <option>Misterio</option> 
+                            <option>Drama</option> 
+                        </select>
+                        @Html.ValidationMessageFor(m => m.genero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clasificacion, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.clasificacion, "A", new { @class = "radio-inline", }) A (Todos)
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.clasificacion, "B", new { @class = "radio-inline" }) B (12+)
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(m => m.clasificacion, "C", new { @class = "radio-inline" }) C (18+)
+                        </label>
+                        <br/>
+                            @Html.ValidationMessageFor(m => m.clasificacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.sinopsis, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(m => m.sinopsis, new { @class = "form-control", @style = "resize:none;", @rows = "5" })
+                        @Html.ValidationMessageFor(m => m.sinopsis, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="buttons-container" class="col-md-12 text-right">
+                        <button id="add-movie" type="submit" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
+                        <button id="remove-movie" type="submit" class="btn btn-danger disabled" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                        <button id="edit-movie" type="submit" class="btn btn-primary disabled" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button id="cancel-action" type="submit" class="btn btn-warning disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        @Html.ValidationMessageFor(m => m.clave_pel, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+</div>
+
+<div class="panel table-responsive">
+    <div class="panel-body">
+        <table id="grid-movies" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="select" data-formatter="select">Seleccionar</th>
+                    <th data-column-id="nombre">Nombre</th>
+                    <th data-column-id="director">Director</th>
+                    <th data-column-id="genero">Género</th>
+                    <th data-column-id="clasificacion">Clasificación</th>
+                    <th data-column-id="sinopsis">Sinopsis</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootgrid")
+    @Styles.Render("~/Content/bootstrap-select")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bootgrid")
+    @Scripts.Render("~/bundles/bootstrap-select")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">urlGetMovies = "@Url.Action("GetMovies")"</script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Management/movies.js")"></script>
+}
