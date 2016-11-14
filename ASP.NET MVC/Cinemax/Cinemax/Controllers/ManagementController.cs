@@ -258,8 +258,9 @@ namespace Cinemax.Controllers
         }
 
         // GET: Management/Movies
-        public ActionResult Movies()
+        public ActionResult Movies(string message)
         {
+            ViewBag.StatusMessage = message;
             return View();
         }
 
@@ -268,13 +269,31 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Movies(MoviesViewModel model)
         {
+            bool estatus;
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            else
+            estatus = false;
+            switch (model.Accion)
             {
-                return RedirectToAction("Movies", "Management");
+                case "Add":
+                    using (Pelicula pel = new Pelicula())
+                    {
+                        estatus = pel.AgregaPelicula(model);
+                        if (!estatus)
+                        {
+                            ModelState.AddModelError("", "Pelicula no agregada!");
+                            return View(model);
+                        }
+                        else
+                            return RedirectToAction("Pelicula", "Management", new { message = "Pelicula agregada!" });
+                    }
+                case "Edit":
+                case "Remove":
+                default:
+                    return View(model);
             }
         }
         

@@ -23,7 +23,35 @@ namespace Cinemax.Models
         public bool AgregaPelicula(MoviesViewModel modelo)
         {
             bool estatus = false;
-            
+            long siguienteClave;
+
+            try
+            {
+                try
+                {
+                    siguienteClave = (long)ObtenUltimo().clave_pel + 1;
+                }
+                catch (Exception)
+                {
+                    siguienteClave = 1;
+                }
+
+                DalPelicula entidad = new DalPelicula()
+                {
+                    clave_pel = siguienteClave,
+                    nombre = modelo.nombre,
+                    director = modelo.director,
+                    genero = modelo.genero,
+                    clasificacion = modelo.clasificacion,
+                    sinopsis = modelo.sinopsis
+                };
+                db.Pelicula.Add(entidad);
+                db.SaveChanges();
+                estatus = true;
+            }
+            catch (Exception) {
+                estatus = false;
+            }            
             return estatus;
         }
 
@@ -67,7 +95,19 @@ namespace Cinemax.Models
         /// <returns></returns>
         public MoviesViewModel ObtenUltimo()
         {
-            return null;
+            DalPelicula pelicula = (from p in db.Pelicula orderby p.clave_pel descending select p).FirstOrDefault();
+            if (pelicula != null)
+                return new MoviesViewModel()
+                {
+                    clave_pel = pelicula.clave_pel,
+                    nombre = pelicula.nombre,
+                    director = pelicula.director,
+                    genero = pelicula.genero,
+                    clasificacion = pelicula.clasificacion,
+                    sinopsis = pelicula.sinopsis
+                };
+            else
+                return null;
         }
 
         /// <summary>
@@ -80,7 +120,38 @@ namespace Cinemax.Models
         /// <returns></returns>
         public GetMoviesViewModel ObtenPeliculas(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
         {
-            return null;
+            GetMoviesViewModel peliculas;
+            List<DalPelicula> peliculasDal;
+            int total;
+
+            // Busqueda de empleados
+            peliculasDal = (from p in db.Pelicula orderby p.clave_pel ascending select p).ToList();
+            total = peliculasDal.Count;
+            peliculas = new GetMoviesViewModel()
+            {
+                current = current,
+                rowCount = rowCount,
+                total = total
+            };
+            // Seleccion de empleados por pagina
+            peliculasDal = peliculasDal.GetRange(
+                (current - 1) * rowCount,
+                (((current - 1) * rowCount) + rowCount) <= total ? rowCount : total - ((current - 1) * rowCount));
+            foreach (DalPelicula pelicula in peliculasDal)
+            {
+                peliculas.rows.Add(new MoviesViewModel()
+                {
+                    clave_pel = pelicula.clave_pel,
+                    nombre = pelicula.nombre,
+                    director = pelicula.director,
+                    genero = pelicula.genero,
+                    clasificacion = pelicula.clasificacion,
+                    sinopsis = pelicula.sinopsis
+
+                });
+            }
+
+            return peliculas;
         }
 
         public void Dispose()
