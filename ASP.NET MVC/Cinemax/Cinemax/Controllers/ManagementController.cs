@@ -182,7 +182,7 @@ namespace Cinemax.Controllers
                                     return View(model);
                                 }
                                 else
-                                    return RedirectToAction("Clients", "Management", new { message = "Cliente eliminado!" });
+                                    return RedirectToAction("Cliente", "Management", new { message = "Cliente eliminado!" });
                             }
                         else
                         {
@@ -291,7 +291,41 @@ namespace Cinemax.Controllers
                             return RedirectToAction("Pelicula", "Management", new { message = "Pelicula agregada!" });
                     }
                 case "Edit":
+                    if (model.clave_pel != null)
+                        using (Pelicula pel = new Pelicula())
+                        {
+                            estatus = pel.EditaPelicula(model);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Pelicula no editada!");
+                                return View(model);
+                            }
+                            else
+                                return RedirectToAction("Pelicula", "Management", new { message = "Pelicula editada!" });
+                        }
+                    else
+                    {
+                        ModelState.AddModelError("", "Pelicula no editado!");
+                        return View(model);
+                    }
                 case "Remove":
+                    if (model.clave_pel != null)
+                        using (Pelicula pel = new Pelicula())
+                        {
+                            estatus = pel.EliminaPelicula(model.clave_pel.Value);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Pelicula no eliminada!");
+                                return View(model);
+                            }
+                            else
+                                return RedirectToAction("Pelicula", "Management", new { message = "Pelicula eliminada!" });
+                        }
+                    else
+                    {
+                        ModelState.AddModelError("", "Pelicula no eliminada!");
+                        return View(model);
+                    }
                 default:
                     return View(model);
             }

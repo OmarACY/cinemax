@@ -62,8 +62,29 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EditaPelicula(MoviesViewModel modelo)
         {
-            bool estatus = false;
-            
+            bool estatus;
+            DalPelicula entidad;
+
+            try
+            {
+                estatus = false;
+                entidad = db.Pelicula.FirstOrDefault(p => p.clave_pel == modelo.clave_pel);
+                if (entidad != null)
+                {
+                    entidad.nombre = modelo.nombre;
+                    entidad.director = modelo.director;
+                    entidad.genero = modelo.genero;
+                    entidad.clasificacion = modelo.clasificacion;
+                    entidad.sinopsis = modelo.sinopsis;
+                    
+                    db.SaveChanges();
+                    estatus = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                estatus = false;
+            }
             return estatus;
         }
         
@@ -74,8 +95,26 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EliminaPelicula(long clave)
         {
-            bool estatus = false;
-            
+            bool estatus;
+            DalPelicula entidad;
+
+            try
+            {
+                entidad = db.Pelicula.FirstOrDefault(p => p.clave_pel == clave);
+                if (entidad != null)
+                {
+                    db.Pelicula.Remove(entidad);
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
 
@@ -86,7 +125,19 @@ namespace Cinemax.Models
         /// <returns></returns>
         public MoviesViewModel ObtenPelicula(long clave)
         {
-            return null;
+            DalPelicula entidad = (from p in db.Pelicula where p.clave_pel == clave select p).FirstOrDefault();
+            if (entidad != null)
+                return new MoviesViewModel()
+                {
+                    clave_pel = entidad.clave_pel,
+                    nombre = entidad.nombre,
+                    director = entidad.director,
+                    genero = entidad.genero,
+                    clasificacion = entidad.clasificacion,
+                    sinopsis = entidad.sinopsis
+                };
+            else
+                return null;
         }
 
         /// <summary>
