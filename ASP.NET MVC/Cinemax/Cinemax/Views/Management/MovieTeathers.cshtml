@@ -10,6 +10,7 @@
         @using (Html.BeginForm("MovieTeathers", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "teathers-form" }))
         {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Accion)
             @Html.HiddenFor(m => m.clave_cin)
             <div class="col-md-6">
                 <div class="form-group row">

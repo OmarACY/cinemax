@@ -120,8 +120,9 @@ namespace Cinemax.Controllers
         }
 
         // GET: Management/Clients
-        public ActionResult Clients()
+        public ActionResult Clients(string message)
         {
+            ViewBag.StatusMessage = message;
             return View();
         }
 
@@ -130,13 +131,68 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Clients(ClientsViewModel model)
         {
+            bool estatus;
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             else
             {
-                return RedirectToAction("Clients", "Management");
+                switch (model.Accion)
+                {
+                    case "Add":
+                        using (Membresia mem = new Membresia())
+                        {
+                            estatus = mem.AgregaCliente(model);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Cliente no agregado!");
+                                return View(model);
+                            }
+                            else
+                                return RedirectToAction("Clients", "Management", new { message = "Cliente agregado!" });
+                        }
+                    case "Edit":
+                        if (model.clave_mem != null)
+                            using (Membresia mem = new Membresia())
+                            {
+                                estatus = mem.EditaCliente(model);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Cliente no editado!");
+                                    return View(model);
+                                }
+                                else
+                                    return RedirectToAction("Clients", "Management", new { message = "Cliente editado!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Cliente no editado!");
+                            return View(model);
+                        }
+                    case "Remove":
+                        if (model.clave_mem != null)
+                            using (Membresia mem = new Membresia())
+                            {
+                                estatus = mem.EliminaCliente(model.clave_mem.Value);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Cliente no eliminado!");
+                                    return View(model);
+                                }
+                                else
+                                    return RedirectToAction("Clients", "Management", new { message = "Cliente eliminado!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Cliente no eliminado!");
+                            return View(model);
+                        }
+                    default:
+                        return View(model);
+                }
+                
             }
         }
         

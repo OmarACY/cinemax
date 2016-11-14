@@ -63,7 +63,7 @@ namespace Cinemax.Models
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Acción requerida")]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
     }
@@ -123,6 +123,10 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Puntos")]
         public int puntos { get; set; }
+
+        [Required(ErrorMessage = "Acción requerida")]
+        [Display(Name = "Acción")]
+        public string Accion { get; set; }
     }
 
     public class GetClientsViewModel
@@ -165,6 +169,10 @@ namespace Cinemax.Models
         
         [Display(Name = "Cupo")]
         public int cupo { get; set; }
+
+        [Required(ErrorMessage = "Acción requerida")]
+        [Display(Name = "Acción")]
+        public string Accion { get; set; }
     }
 
     public class GetFilmFunctionsViewModel
@@ -204,6 +212,10 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Género")]
         public string genero { get; set; }
+
+        [Required(ErrorMessage = "Acción requerida")]
+        [Display(Name = "Acción")]
+        public string Accion { get; set; }
     }
 
     public class GetMoviesViewModel
@@ -247,6 +259,10 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Número")]
         public int numero { get; set; }
+
+        [Required(ErrorMessage = "Acción requerida")]
+        [Display(Name = "Acción")]
+        public string Accion { get; set; }
     }
 
     public class GetMovieTeathersViewModel

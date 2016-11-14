@@ -22,8 +22,32 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool AgregaCliente(ClientsViewModel modelo)
         {
-            bool estatus = false;
-            
+            bool estatus;
+
+            try
+            {
+                DalMembresia entidad = new DalMembresia()
+                {
+                    clave_mem = ObtenUltimo().clave_mem.Value + 1,
+                    nombre = modelo.nombre,
+                    app = modelo.app,
+                    apm = modelo.apm,
+                    fecha_nac = modelo.fecha_nac,
+                    colonia = modelo.colonia,
+                    calle = modelo.calle,
+                    numero = modelo.numero,
+                    tipo = modelo.tipo,
+                    puntos = modelo.puntos
+                };
+                db.Membresia.Add(entidad);
+                db.SaveChanges();
+                estatus = true;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
 
@@ -34,8 +58,34 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EditaCliente(ClientsViewModel modelo)
         {
-            bool estatus = false;
-            
+            bool estatus;
+            DalMembresia entidad;
+
+            try
+            {
+                entidad = db.Membresia.FirstOrDefault(e => e.clave_mem == modelo.clave_mem);
+                if (entidad != null)
+                {
+                    entidad.nombre = modelo.nombre;
+                    entidad.app = modelo.app;
+                    entidad.apm = modelo.apm;
+                    entidad.fecha_nac = modelo.fecha_nac;
+                    entidad.colonia = modelo.colonia;
+                    entidad.calle = modelo.calle;
+                    entidad.numero = modelo.numero;
+                    entidad.tipo = modelo.tipo;
+                    entidad.puntos = modelo.puntos;
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
         
@@ -46,8 +96,26 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EliminaCliente(long clave)
         {
-            bool estatus = false;
-            
+            bool estatus;
+            DalMembresia entidad;
+
+            try
+            {
+                entidad = db.Membresia.FirstOrDefault(e => e.clave_mem == clave);
+                if (entidad != null)
+                {
+                    db.Membresia.Remove(entidad);
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
 
@@ -58,7 +126,24 @@ namespace Cinemax.Models
         /// <returns></returns>
         public ClientsViewModel ObtenCliente(long clave)
         {
-            return null;
+            DalMembresia entidad = (from e in db.Membresia where e.clave_mem == clave select e).FirstOrDefault();
+            if (entidad != null)
+                return new ClientsViewModel()
+                {
+                    clave_mem = entidad.clave_mem,
+                    nombre = entidad.nombre,
+                    app = entidad.app,
+                    apm = entidad.apm,
+                    fecha_nac = entidad.fecha_nac,
+                    fecha_nacimiento_grid = entidad.fecha_nac.ToShortDateString(),
+                    colonia = entidad.colonia,
+                    calle = entidad.calle,
+                    numero = entidad.numero,
+                    tipo = entidad.tipo,
+                    puntos = entidad.puntos
+                };
+            else
+                return null;
         }
 
         /// <summary>
@@ -67,7 +152,24 @@ namespace Cinemax.Models
         /// <returns></returns>
         public ClientsViewModel ObtenUltimo()
         {
-            return null;
+            DalMembresia entidad = (from e in db.Membresia orderby e.clave_mem descending select e).FirstOrDefault();
+            if (entidad != null)
+                return new ClientsViewModel()
+                {
+                    clave_mem = entidad.clave_mem,
+                    nombre = entidad.nombre,
+                    app = entidad.app,
+                    apm = entidad.apm,
+                    fecha_nac = entidad.fecha_nac,
+                    fecha_nacimiento_grid = entidad.fecha_nac.ToShortDateString(),
+                    colonia = entidad.colonia,
+                    calle = entidad.calle,
+                    numero = entidad.numero,
+                    tipo = entidad.tipo,
+                    puntos = entidad.puntos
+                };
+            else
+                return null;
         }
 
         /// <summary>
@@ -80,7 +182,42 @@ namespace Cinemax.Models
         /// <returns></returns>
         public GetClientsViewModel ObtenClientes(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
         {
-            return null;
+            GetClientsViewModel clientes;
+            List<DalMembresia> clientesDal;
+            int total;
+
+            // Busqueda de empleados
+            clientesDal = (from e in db.Membresia orderby e.clave_mem ascending select e).ToList();
+            total = clientesDal.Count;
+            clientes = new GetClientsViewModel()
+            {
+                current = current,
+                rowCount = rowCount,
+                total = total
+            };
+            // Seleccion de empleados por pagina
+            clientesDal = clientesDal.GetRange(
+                (current - 1) * rowCount,
+                (((current - 1) * rowCount) + rowCount) <= total ? rowCount : total - ((current - 1) * rowCount));
+            foreach (DalMembresia cliente in clientesDal)
+            {
+                clientes.rows.Add(new ClientsViewModel()
+                {
+                    clave_mem = cliente.clave_mem,
+                    nombre = cliente.nombre,
+                    app = cliente.app,
+                    apm = cliente.apm,
+                    fecha_nac = cliente.fecha_nac,
+                    fecha_nacimiento_grid = cliente.fecha_nac.ToShortDateString(),
+                    colonia = cliente.colonia,
+                    calle = cliente.calle,
+                    numero = cliente.numero,
+                    tipo = cliente.tipo,
+                    puntos = cliente.puntos
+                });
+            }
+
+            return clientes;
         }
 
         public void Dispose()

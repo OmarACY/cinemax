@@ -34,7 +34,7 @@
                 if (value.clave_mem == id) {
                     fechaNacimiento = value.fecha_nacimiento_grid.split("/");
                     $("#clave_mem").val(value.clave_mem);
-                    $("#tipo").val(value.tipo);
+                    $('.selectpicker').selectpicker('val', value.tipo);
                     $("#puntos").val(value.puntos);
                     $("#nombre").val(value.nombre);
                     $("#app").val(value.app);
