@@ -32,6 +32,7 @@
             rows = $("#grid-teathers").bootgrid().data('.rs.jquery.bootgrid').currentRows;
             $.each(rows, function (key, value) {
                 if (value.clave_cin == id) {
+                    $("#teathers-form").clearValidation();
                     $("#clave_cin").val(value.clave_cin);
                     $("#nombre").val(value.nombre);
                     $("#telefono").val(value.telefono);

@@ -35,6 +35,7 @@
             });*/
             $.each(rows, function (key, value) {
                 if (value.Clave == id) {
+                    $("#employees-form").clearValidation();
                     fechaNacimiento = value.FechaNacGrid.split("/");
                     $("#Clave").val(value.Clave);
                     $("#NombreUsuario").val(value.NombreUsuario);

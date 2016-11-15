@@ -288,7 +288,7 @@ namespace Cinemax.Controllers
                             return View(model);
                         }
                         else
-                            return RedirectToAction("Pelicula", "Management", new { message = "Pelicula agregada!" });
+                            return RedirectToAction("Movies", "Management", new { message = "Pelicula agregada!" });
                     }
                 case "Edit":
                     if (model.clave_pel != null)
@@ -301,7 +301,7 @@ namespace Cinemax.Controllers
                                 return View(model);
                             }
                             else
-                                return RedirectToAction("Pelicula", "Management", new { message = "Pelicula editada!" });
+                                return RedirectToAction("Movies", "Management", new { message = "Pelicula editada!" });
                         }
                     else
                     {
@@ -319,7 +319,7 @@ namespace Cinemax.Controllers
                                 return View(model);
                             }
                             else
-                                return RedirectToAction("Pelicula", "Management", new { message = "Pelicula eliminada!" });
+                                return RedirectToAction("Movies", "Management", new { message = "Pelicula eliminada!" });
                         }
                     else
                     {

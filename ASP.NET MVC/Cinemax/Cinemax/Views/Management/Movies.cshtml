@@ -47,13 +47,13 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.clasificacion, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        <label class="radio-inline">
+                        <label class="radio-inline clasif-A">
                             @Html.RadioButtonFor(m => m.clasificacion, "A", new { @class = "radio-inline", }) A (Todos)
                         </label>
-                        <label class="radio-inline">
+                        <label class="radio-inline clasif-B">
                             @Html.RadioButtonFor(m => m.clasificacion, "B", new { @class = "radio-inline" }) B (12+)
                         </label>
-                        <label class="radio-inline">
+                        <label class="radio-inline clasif-C">
                             @Html.RadioButtonFor(m => m.clasificacion, "C", new { @class = "radio-inline" }) C (18+)
                         </label>
                         <br/>

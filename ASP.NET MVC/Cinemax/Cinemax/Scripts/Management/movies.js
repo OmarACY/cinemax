@@ -32,11 +32,13 @@
             rows = $("#grid-movies").bootgrid().data('.rs.jquery.bootgrid').currentRows;
             $.each(rows, function (key, value) {
                 if (value.clave_pel == id) {
+                    $("#movies-form").clearValidation();
                     $("#clave_pel").val(value.clave_pel);
                     $("#nombre").val(value.nombre);
                     $("#director").val(value.director);
                     $("#genero").val(value.genero);
-                    $("#clasificacion").val(value.clasificacion);
+                    $('input:radio[name="clasificacion"]').attr('checked', false);
+                    $('input:radio[name="clasificacion"]').filter('[value="' + value.clasificacion + '"]').attr('checked', true);
                     $("#sinopsis").val(value.sinopsis);
                     $("#add-movie").addClass("disabled");
                     $("#remove-movie").removeClass("disabled");

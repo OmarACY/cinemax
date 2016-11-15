@@ -32,6 +32,7 @@
             rows = $("#grid-clients").bootgrid().data('.rs.jquery.bootgrid').currentRows;
             $.each(rows, function (key, value) {
                 if (value.clave_mem == id) {
+                    $("#clients-form").clearValidation();
                     fechaNacimiento = value.fecha_nacimiento_grid.split("/");
                     $("#clave_mem").val(value.clave_mem);
                     $('.selectpicker').selectpicker('val', value.tipo);
