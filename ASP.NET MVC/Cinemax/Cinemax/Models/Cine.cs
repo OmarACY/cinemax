@@ -22,8 +22,33 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool AgregaCine(MovieTeathersViewModel modelo)
         {
-            bool estatus = false;
-            
+            bool estatus;
+
+            try
+            {
+                MovieTeathersViewModel ultimo = ObtenUltimo();
+                DalCine entidad = new DalCine()
+                {
+                    clave_cin = ultimo != null ? ultimo.clave_cin.Value + 1 : 1,
+                    nombre = modelo.nombre,
+                    colonia = modelo.colonia,
+                    calle = modelo.calle,
+                    numero = modelo.numero,
+                    num_salas = modelo.num_salas
+                };
+                db.Cine.Add(entidad);
+                if(modelo.telefono != null)
+                {
+                    db.TelCin.Add(new DalTelCin() { clave_cin = entidad.clave_cin, telefono = modelo.telefono });
+                }
+                db.SaveChanges();
+                estatus = true;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
 
@@ -34,8 +59,42 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EditaCine(MovieTeathersViewModel modelo)
         {
-            bool estatus = false;
-            
+            bool estatus;
+
+            try
+            {
+                DalCine entidad = (from e in db.Cine where e.clave_cin == modelo.clave_cin select e).FirstOrDefault();
+                DalTelCin tel = (from e in db.TelCin where e.clave_cin == modelo.clave_cin select e).FirstOrDefault();
+                if (entidad != null)
+                {
+                    entidad.nombre = modelo.nombre;
+                    entidad.colonia = modelo.colonia;
+                    entidad.calle = modelo.calle;
+                    entidad.numero = modelo.numero;
+                    entidad.num_salas = modelo.num_salas;
+                    if (modelo.telefono != null)
+                    {
+                        if (tel != null)
+                            tel.telefono = modelo.telefono;
+                        else
+                            db.TelCin.Add(new DalTelCin() { clave_cin = entidad.clave_cin, telefono = modelo.telefono });
+                    }
+                    else
+                    {
+                        if (tel != null)
+                            db.TelCin.Remove(tel);
+                    }
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
         
@@ -46,8 +105,28 @@ namespace Cinemax.Models
         /// <returns></returns>
         public bool EliminaCine(long clave)
         {
-            bool estatus = false;
-            
+            bool estatus;
+
+            try
+            {
+                DalCine entidad = (from e in db.Cine where e.clave_cin == clave select e).FirstOrDefault();
+                DalTelCin tel = (from e in db.TelCin where e.clave_cin == clave select e).FirstOrDefault();
+                if (entidad != null)
+                {
+                    if (tel != null)
+                        db.TelCin.Remove(tel);
+                    db.Cine.Remove(entidad);
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
+            }
+            catch (Exception)
+            {
+                estatus = false;
+            }
+
             return estatus;
         }
 
@@ -58,7 +137,20 @@ namespace Cinemax.Models
         /// <returns></returns>
         public MovieTeathersViewModel ObtenCine(long clave)
         {
-            return null;
+            DalCine entidad = (from e in db.Cine where e.clave_cin == clave select e).FirstOrDefault();
+            if (entidad != null)
+                return new MovieTeathersViewModel()
+                {
+                    clave_cin = entidad.clave_cin,
+                    nombre = entidad.nombre,
+                    colonia = entidad.colonia,
+                    calle = entidad.calle,
+                    numero = entidad.numero,
+                    num_salas = entidad.num_salas,
+                    telefono = entidad.TelCin.Count > 0 ? entidad.TelCin.First().telefono : null
+                };
+            else
+                return null;
         }
 
         /// <summary>
@@ -67,7 +159,20 @@ namespace Cinemax.Models
         /// <returns></returns>
         public MovieTeathersViewModel ObtenUltimo()
         {
-            return null;
+            DalCine entidad = (from e in db.Cine orderby e.clave_cin descending select e).FirstOrDefault();
+            if (entidad != null)
+                return new MovieTeathersViewModel()
+                {
+                    clave_cin = entidad.clave_cin,
+                    nombre = entidad.nombre,
+                    colonia = entidad.colonia,
+                    calle = entidad.calle,
+                    numero = entidad.numero,
+                    num_salas = entidad.num_salas,
+                    telefono = entidad.TelCin.Count > 0 ? entidad.TelCin.First().telefono : null
+                };
+            else
+                return null;
         }
 
         /// <summary>
@@ -80,7 +185,38 @@ namespace Cinemax.Models
         /// <returns></returns>
         public GetMovieTeathersViewModel ObtenCines(int current, int rowCount, Dictionary<object, string> sort, string searchPhrase)
         {
-            return null;
+            GetMovieTeathersViewModel cines;
+            List<DalCine> cinesDal;
+            int total;
+
+            // Busqueda de empleados
+            cinesDal = (from e in db.Cine orderby e.clave_cin ascending select e).ToList();
+            total = cinesDal.Count;
+            cines = new GetMovieTeathersViewModel()
+            {
+                current = current,
+                rowCount = rowCount,
+                total = total
+            };
+            // Seleccion de empleados por pagina
+            cinesDal = cinesDal.GetRange(
+                (current - 1) * rowCount,
+                (((current - 1) * rowCount) + rowCount) <= total ? rowCount : total - ((current - 1) * rowCount));
+            foreach (DalCine cine in cinesDal)
+            {
+                cines.rows.Add(new MovieTeathersViewModel()
+                {
+                    clave_cin = cine.clave_cin,
+                    nombre = cine.nombre,
+                    colonia = cine.colonia,
+                    calle = cine.calle,
+                    numero = cine.numero,
+                    num_salas = cine.num_salas,
+                    telefono = cine.TelCin.Count > 0 ? cine.TelCin.First().telefono : null
+                });
+            }
+
+            return cines;
         }
 
         public void Dispose()

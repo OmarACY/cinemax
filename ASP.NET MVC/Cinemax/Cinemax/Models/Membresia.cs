@@ -26,9 +26,10 @@ namespace Cinemax.Models
 
             try
             {
+                ClientsViewModel ultimo = ObtenUltimo();
                 DalMembresia entidad = new DalMembresia()
                 {
-                    clave_mem = ObtenUltimo().clave_mem.Value + 1,
+                    clave_mem = ultimo != null ? ultimo.clave_mem.Value + 1 : 1,
                     nombre = modelo.nombre,
                     app = modelo.app,
                     apm = modelo.apm,

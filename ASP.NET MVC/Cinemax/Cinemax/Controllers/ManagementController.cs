@@ -182,7 +182,7 @@ namespace Cinemax.Controllers
                                     return View(model);
                                 }
                                 else
-                                    return RedirectToAction("Cliente", "Management", new { message = "Cliente eliminado!" });
+                                    return RedirectToAction("Clients", "Management", new { message = "Cliente eliminado!" });
                             }
                         else
                         {
@@ -227,13 +227,68 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult MovieTeathers(MovieTeathersViewModel model)
         {
+            bool estatus;
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             else
             {
-                return RedirectToAction("MovieTeathers", "Management");
+                switch (model.Accion)
+                {
+                    case "Add":
+                        using (Cine cine = new Cine())
+                        {
+                            estatus = cine.AgregaCine(model);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Sucursal no agregada!");
+                                return View(model);
+                            }
+                            else
+                                return RedirectToAction("MovieTeathers", "Management", new { message = "Sucursal agregada!" });
+                        }
+                    case "Edit":
+                        if (model.clave_cin != null)
+                            using (Cine cine = new Cine())
+                            {
+                                estatus = cine.EditaCine(model);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Sucursal no editada!");
+                                    return View(model);
+                                }
+                                else
+                                    return RedirectToAction("MovieTeathers", "Management", new { message = "Sucursal editada!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Sucursal no editada!");
+                            return View(model);
+                        }
+                    case "Remove":
+                        if (model.clave_cin != null)
+                            using (Cine cine = new Cine())
+                            {
+                                estatus = cine.EliminaCine(model.clave_cin.Value);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Sucursal no eliminada!");
+                                    return View(model);
+                                }
+                                else
+                                    return RedirectToAction("MovieTeathers", "Management", new { message = "Sucursal eliminada!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Sucursal no eliminada!");
+                            return View(model);
+                        }
+                    default:
+                        return View(model);
+                }
+
             }
         }
         
