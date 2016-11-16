@@ -219,6 +219,30 @@ namespace Cinemax.Models
             return cines;
         }
 
+        /// <summary>
+        /// Devuelve una lista con los cines existentes
+        /// </summary>
+        /// <returns></returns>
+        public List<SelectMovieTeather> ObtenCines()
+        {
+            List<SelectMovieTeather> cines;
+            List<DalCine> cinesDal;
+
+            // Busqueda de empleados
+            cinesDal = (from e in db.Cine orderby e.clave_cin ascending select e).ToList();
+            cines = new List<SelectMovieTeather>();
+            foreach (DalCine cine in cinesDal)
+            {
+                cines.Add(new SelectMovieTeather()
+                {
+                    clave_cin = cine.clave_cin,
+                    nombre = cine.nombre
+                });
+            }
+
+            return cines;
+        }
+
         public void Dispose()
         {
             db.Dispose();

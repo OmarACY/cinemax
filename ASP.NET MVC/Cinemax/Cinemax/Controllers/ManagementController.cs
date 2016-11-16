@@ -409,7 +409,12 @@ namespace Cinemax.Controllers
         // GET: Management/FilmFunctions
         public ActionResult FilmFunctions()
         {
-            return View();
+            using(Cine cine = new Cine())
+            {
+                FilmFunctionsViewModel function = new FilmFunctionsViewModel();
+                function.cines = cine.ObtenCines();
+                return View(function);
+            }
         }
 
         // POST: Management/FilmFunctions

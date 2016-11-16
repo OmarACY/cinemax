@@ -1,7 +1,132 @@
-﻿@model Cinemax.Models.FilmFunctionsViewModel
+﻿@using Cinemax.Models
+@model Cinemax.Models.FilmFunctionsViewModel
 @{
     ViewBag.Title = "Funciones";
 }
 
 <h2>@ViewBag.Title</h2>
+
+<div class="panel">
+    <div class="panel-body">
+        @using (Html.BeginForm("FilmFunctions", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "functions-form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Accion)
+            @Html.HiddenFor(m => m.clave_fun)
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_cin, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="clave_cin" name="clave_cin">
+                            @foreach (SelectMovieTeather cine in Model.cines)
+                            {
+                                <option data-content="@cine.nombre">@cine.clave_cin</option>
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(m => m.clave_cin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_pel, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.clave_pel, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.clave_pel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_sal, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.clave_sal, new { @class = "form-control", @data_val_number = "El campo Número de salas debe ser un número" })
+                        @Html.ValidationMessageFor(m => m.clave_sal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.fecha, new { @class = "col-md-4 control-label " })
+                    <div class="col-md-8">
+                        <div class='input-group date' id='fecha'>
+                            @Html.TextBoxFor(m => m.fecha, new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.fecha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.hora_ini, new { @class = "col-md-4 control-label " })
+                    <div class="col-md-8">
+                        <div class='input-group date' id='hora-ini'>
+                            @Html.TextBoxFor(m => m.hora_ini, new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.hora_ini, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.hora_fin, new { @class = "col-md-4 control-label " })
+                    <div class="col-md-8">
+                        <div class='input-group date' id='hora-fin'>
+                            @Html.TextBoxFor(m => m.hora_fin, new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-time"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.hora_fin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="buttons-container" class="col-md-12 text-right">
+                        <button id="add-function" type="submit" class="btn btn-success" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
+                        <button id="remove-function" type="submit" class="btn btn-danger disabled" data-action="Remove"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+                        <button id="edit-function" type="submit" class="btn btn-primary disabled" data-action="Edit"><span class="glyphicon glyphicon-pencil"></span> Editar</button>
+                        <button id="cancel-action" type="submit" class="btn btn-warning disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Canelar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        @Html.ValidationMessageFor(m => m.clave_cin, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+</div>
+
+<div class="panel table-responsive">
+    <div class="panel-body">
+        <table id="grid-functions" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="select" data-formatter="select">Seleccionar</th>
+                    <th data-column-id="cine">Cine</th>
+                    <th data-column-id="pelicula">Película</th>
+                    <th data-column-id="clave_sal">Sala</th>
+                    <th data-column-id="fecha_grid">Fecha</th>
+                    <th data-column-id="hora_ini">Inicio</th>
+                    <th data-column-id="hora_fin">Fin</th>
+                    <th data-column-id="cupo">Cupo</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootgrid")
+    @Styles.Render("~/Content/datetimepicker")
+    @Styles.Render("~/Content/bootstrap-select")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bootgrid")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/bootstrap-select")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">urlGetFunctions = "@Url.Action("GetFilmFunctions")"</script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Management/filmFunctions.js")"></script>
+}
 

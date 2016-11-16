@@ -501,6 +501,7 @@
     <Content Include="Scripts\i18n\defaults-zh_CN.min.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.js" />
     <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\Management\filmFunctions.js" />
     <Content Include="Scripts\Management\movies.js" />
     <Content Include="Scripts\Management\movieTeathers.js" />
     <Content Include="Scripts\Management\clients.js" />

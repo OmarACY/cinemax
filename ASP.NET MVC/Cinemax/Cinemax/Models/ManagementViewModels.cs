@@ -145,34 +145,46 @@ namespace Cinemax.Models
     public class FilmFunctionsViewModel
     {
         [Display(Name = "Clave")]
-        public long clave_fun { get; set; }
+        public long? clave_fun { get; set; }
 
         [Required]
         [Display(Name = "Pelicula")]
-        public long clave_pel { get; set; }
+        public long? clave_pel { get; set; }
+
+        [Required]
+        [Display(Name = "Cine")]
+        public long? clave_cin { get; set; }
 
         [Required]
         [Display(Name = "Sala")]
-        public long clave_sal { get; set; }
+        public long? clave_sal { get; set; }
 
         [Required]
         [Display(Name = "Hora inicio")]
-        public DateTime hora_ini { get; set; }
+        public string hora_ini { get; set; }
 
         [Required]
         [Display(Name = "Hora fin")]
-        public DateTime hora_fin { get; set; }
+        public string hora_fin { get; set; }
 
         [Required]
         [Display(Name = "Fecha")]
         public DateTime fecha { get; set; }
-        
+
         [Display(Name = "Cupo")]
         public int cupo { get; set; }
 
         [Required(ErrorMessage = "Acción requerida")]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
+
+        public List<SelectMovieTeather> cines;
+    }
+
+    public class SelectMovieTeather
+    {
+        public long clave_cin;
+        public string nombre;
     }
 
     public class GetFilmFunctionsViewModel
