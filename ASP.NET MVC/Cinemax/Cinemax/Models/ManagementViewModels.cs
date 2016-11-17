@@ -179,12 +179,26 @@ namespace Cinemax.Models
         public string Accion { get; set; }
 
         public List<SelectMovieTeather> cines;
+        public List<SelectMovie> peliculas;
+        public List<SelectLounge> salas;
     }
 
     public class SelectMovieTeather
     {
         public long clave_cin;
         public string nombre;
+    }
+
+    public class SelectMovie
+    {
+        public long clave_pel;
+        public string nombre;
+    }
+
+    public class SelectLounge
+    {
+        public long clave_cin;
+        public long clave_sal;
     }
 
     public class GetFilmFunctionsViewModel

@@ -409,10 +409,13 @@ namespace Cinemax.Controllers
         // GET: Management/FilmFunctions
         public ActionResult FilmFunctions()
         {
-            using(Cine cine = new Cine())
+            using (Pelicula pelicula = new Pelicula())
+            using (Cine cine = new Cine())
             {
                 FilmFunctionsViewModel function = new FilmFunctionsViewModel();
                 function.cines = cine.ObtenCines();
+                function.peliculas = pelicula.ObtenPeliculas();
+                function.salas = cine.ObtenSalas();
                 return View(function);
             }
         }
@@ -422,7 +425,14 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FilmFunctions(FilmFunctionsViewModel model)
         {
-            return View(model);
+            using (Pelicula pelicula = new Pelicula())
+            using (Cine cine = new Cine())
+            {
+                model.cines = cine.ObtenCines();
+                model.peliculas = pelicula.ObtenPeliculas();
+                model.salas = cine.ObtenSalas();
+                return View(model);
+            }
         }
         
         /// <summary>

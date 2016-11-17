@@ -205,6 +205,26 @@ namespace Cinemax.Models
             return peliculas;
         }
 
+        public List<SelectMovie> ObtenPeliculas()
+        {
+            List<SelectMovie> peliculas;
+            List<DalPelicula> peliculasDal;
+
+            // Busqueda de empleados
+            peliculasDal = (from e in db.Pelicula orderby e.clave_pel ascending select e).ToList();
+            peliculas = new List<SelectMovie>();
+            foreach (DalPelicula pelicula in peliculasDal)
+            {
+                peliculas.Add(new SelectMovie()
+                {
+                    clave_pel = pelicula.clave_pel,
+                    nombre = pelicula.nombre
+                });
+            }
+
+            return peliculas;
+        }
+
         public void Dispose()
         {
             db.Dispose();

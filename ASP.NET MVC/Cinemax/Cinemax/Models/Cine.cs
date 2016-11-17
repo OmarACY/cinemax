@@ -243,6 +243,26 @@ namespace Cinemax.Models
             return cines;
         }
 
+        public List<SelectLounge> ObtenSalas()
+        {
+            List<SelectLounge> salas;
+            List<DalSala> salasDal;
+
+            // Busqueda de empleados
+            salasDal = (from e in db.Sala orderby e.clave_cin ascending, e.clave_sal ascending select e).ToList();
+            salas = new List<SelectLounge>();
+            foreach (DalSala sala in salasDal)
+            {
+                salas.Add(new SelectLounge()
+                {
+                    clave_cin = sala.clave_cin,
+                    clave_sal = sala.clave_sal
+                });
+            }
+
+            return salas;
+        }
+
         public void Dispose()
         {
             db.Dispose();

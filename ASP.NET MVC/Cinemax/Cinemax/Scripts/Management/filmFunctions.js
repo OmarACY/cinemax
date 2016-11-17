@@ -75,4 +75,15 @@
     });
 
     $('.selectpicker').selectpicker({});
+
+    $('#clave_cin').change(function () {
+        var selectedText = $(this).find("option:selected").text();
+        var cinema = '.cine-' + selectedText;
+        $('#clave_sal').find('option').hide();
+        $('#clave_sal').find(cinema.toString()).show();
+        $('#clave_sal').selectpicker('refresh');
+        $('#clave_sal').selectpicker('val', $('#clave_sal').find(cinema.toString())[0].text);
+    });
+
+    $('.selectpicker').selectpicker('val', null);
 });
