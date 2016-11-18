@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using System;
 
 namespace Cinemax.Models
-{
+{ 
     public class EmployeesViewModel
     {
         public string IdUsuarioAspNet;

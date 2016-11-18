@@ -1,7 +1,134 @@
-﻿
+﻿@model Cinemax.Models.SalesViewModel
 @{
     ViewBag.Title = "Ventas";
 }
 
 <h2>Ventas</h2>
+
+<div class="panel">
+    <div class="panel-body">
+        <div class="col-md-5" style="border-right: 1px solid #adadad;">
+            @using (Html.BeginForm("Clients", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "clients-form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Accion)
+                @Html.HiddenFor(m => m.clave_venta)
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_mem, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="clave_mem" name="clave_mem">
+                            <option>Estándar</option>
+                            <option>Premium</option>
+                            <option>VIP</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.clave_mem, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_cin, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="clave_cin" name="clave_cin">
+                            <option>Estándar</option>
+                            <option>Premium</option>
+                            <option>VIP</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.clave_cin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_pel, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="clave_pel" name="clave_pel">
+                            <option>Estándar</option>
+                            <option>Premium</option>
+                            <option>VIP</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.clave_pel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.hora, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker" id="hora" name="clave_pel">
+                            <option>Estándar</option>
+                            <option>Premium</option>
+                            <option>VIP</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.hora, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.clave_sal, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.clave_sal, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.clave_sal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.tipo_pago, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <label class="radio-inline pago-Efectivo">
+                            @Html.RadioButtonFor(m => m.tipo_pago, "Efectivo", new { @class = "radio-inline", }) Efectivo
+                        </label>
+                        <label class="radio-inline pago-Tarjeta">
+                            @Html.RadioButtonFor(m => m.tipo_pago, "Tarjeta", new { @class = "radio-inline" }) Tarjeta
+                        </label>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.tipo_pago, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.num_tarjeta, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.num_tarjeta, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.num_tarjeta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.cod_seguridad, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.cod_seguridad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.cod_seguridad, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.Label("Fecha de vencimiento", new { @class = "col-md-4 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.mes_ven, new { @class = "form-control", @placeholder = "Mes" })
+                        @Html.ValidationMessageFor(m => m.mes_ven, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.anio_ven, new { @class = "form-control", @placeholder = "Año" })
+                        @Html.ValidationMessageFor(m => m.anio_ven, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="buttons-container" class="col-md-offset-4 col-md-8 text-right">
+                        <button id="add-sale" type="button" class="btn btn-primary" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Generar</button>
+                        <button id="cancel-action" type="button" class="btn btn-default disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-7">
+
+        </div>
+    </div>
+    <div class="panel-footer">
+        @Html.ValidationMessageFor(m => m.clave_venta, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.Accion, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/bootstrap-select")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bootstrap-select")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Sales/index.js")"></script>
+}
 
