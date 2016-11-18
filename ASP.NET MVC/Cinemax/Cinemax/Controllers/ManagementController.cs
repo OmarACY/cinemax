@@ -407,8 +407,9 @@ namespace Cinemax.Controllers
         }
 
         // GET: Management/FilmFunctions
-        public ActionResult FilmFunctions()
+        public ActionResult FilmFunctions(string message)
         {
+            ViewBag.StatusMessage = message;
             using (Pelicula pelicula = new Pelicula())
             using (Cine cine = new Cine())
             {
@@ -425,13 +426,79 @@ namespace Cinemax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FilmFunctions(FilmFunctionsViewModel model)
         {
-            using (Pelicula pelicula = new Pelicula())
-            using (Cine cine = new Cine())
+            bool estatus;
+
+            if (!ModelState.IsValid)
             {
-                model.cines = cine.ObtenCines();
-                model.peliculas = pelicula.ObtenPeliculas();
-                model.salas = cine.ObtenSalas();
-                return View(model);
+
+                using (Pelicula pelicula = new Pelicula())
+                using (Cine cine = new Cine())
+                {
+                    model.cines = cine.ObtenCines();
+                    model.peliculas = pelicula.ObtenPeliculas();
+                    model.salas = cine.ObtenSalas();
+                    return View(model);
+                }
+            }
+            else
+            {
+                switch (model.Accion)
+                {
+                    case "Add":
+                        using (Funcion funcion = new Funcion())
+                        {
+                            estatus = funcion.AgregaFuncion(model);
+                            if (!estatus)
+                            {
+                                ModelState.AddModelError("", "Función no agregada!");
+                            }
+                            else
+                                return RedirectToAction("FilmFunctions", "Management", new { message = "Función agregada!" });
+                        }
+                        break;
+                    case "Edit":
+                        if (model.clave_fun != null)
+                            using (Funcion funcion = new Funcion())
+                            {
+                                estatus = funcion.EditaFuncion(model);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Función no editada!");
+                                }
+                                else
+                                    return RedirectToAction("FilmFunctions", "Management", new { message = "Función editada!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Función no editada!");
+                        }
+                        break;
+                    case "Remove":
+                        if (model.clave_cin != null)
+                            using (Funcion funcion = new Funcion())
+                            {
+                                estatus = funcion.EliminaFuncion(model.clave_fun.Value);
+                                if (!estatus)
+                                {
+                                    ModelState.AddModelError("", "Función no eliminada!");
+                                }
+                                else
+                                    return RedirectToAction("FilmFunctions", "Management", new { message = "Función eliminada!" });
+                            }
+                        else
+                        {
+                            ModelState.AddModelError("", "Función no eliminada!");
+                        }
+                        break;
+                }
+                using (Pelicula pelicula = new Pelicula())
+                using (Cine cine = new Cine())
+                {
+                    model.cines = cine.ObtenCines();
+                    model.peliculas = pelicula.ObtenPeliculas();
+                    model.salas = cine.ObtenSalas();
+                    return View(model);
+                }
             }
         }
         

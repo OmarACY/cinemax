@@ -181,6 +181,9 @@ namespace Cinemax.Models
         public List<SelectMovieTeather> cines;
         public List<SelectMovie> peliculas;
         public List<SelectLounge> salas;
+        public string pelicula;
+        public string cine;
+        public string fecha_grid;
     }
 
     public class SelectMovieTeather

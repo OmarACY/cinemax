@@ -1,4 +1,22 @@
-﻿$(function () {
+﻿function updateLounges(selection) {
+    if (selection !== undefined) {
+        var cinema = '.cine-' + selection;
+        $('#clave_sal').find('option').hide();
+        $('#clave_sal').find(cinema.toString()).show();
+        $('#clave_sal').selectpicker('refresh');
+        $('#clave_sal').selectpicker('val', $('#clave_sal').find(cinema.toString())[0].text);
+    }
+    else {
+        var selectedText = $('#clave_cin').find("option:selected").text();
+        var cinema = '.cine-' + selectedText;
+        $('#clave_sal').find('option').hide();
+        $('#clave_sal').find(cinema.toString()).show();
+        $('#clave_sal').selectpicker('refresh');
+        $('#clave_sal').selectpicker('val', $('#clave_sal').find(cinema.toString())[0].text);
+    }
+}
+
+$(function () {
     $("#grid-functions").bootgrid({
         ajax: true,
         post: function () {
@@ -8,7 +26,7 @@
         url: urlGetFunctions,
         formatters: {
             "select": function (column, row) {
-                components = '<div title="Seleccionar función"><button class="btn btn-primary" data-id=" ' + row.clave_cin + '">' +
+                components = '<div title="Seleccionar función"><button class="btn btn-primary" data-id=" ' + row.clave_fun + '">' +
                             '<span class="glyphicon glyphicon-check" aria-hidden="true"></span></button></div>';
                 return components;
             }
@@ -31,10 +49,17 @@
             var id = $(this).data("id");
             rows = $("#grid-functions").bootgrid().data('.rs.jquery.bootgrid').currentRows;
             $.each(rows, function (key, value) {
-                if (value.clave_cin == id) {
+                if (value.clave_fun == id) {
                     $("#functions-form").clearValidation();
-                    fechaNacimiento = value.FechaNacGrid.split("/");
-                    $("#clave_cin").val(value.clave_cin);
+                    $("#clave_fun").val(value.clave_fun);
+                    fecha = value.fecha_grid.split("/");
+                    $('#clave_pel').selectpicker('val', value.clave_pel);
+                    $('#clave_cin').selectpicker('val', value.clave_cin);
+                    updateLounges(value.clave_cin);
+                    $('#clave_sal').selectpicker('val', value.clave_sal);
+                    $("#fecha").val(fecha.pop() + '/' + fecha.pop() + '/' + fecha.pop());
+                    $("#hora_ini").val(value.hora_ini);
+                    $("#hora_fin").val(value.hora_fin);
                     $("#add-function").addClass("disabled");
                     $("#remove-function").removeClass("disabled");
                     $("#edit-function").removeClass("disabled");
@@ -44,18 +69,18 @@
         });
     });
 
-    $('#fecha').datetimepicker({
+    $('#fecha-funcion').datetimepicker({
         format: "YYYY/MM/DD",
         locale: 'es'
     });
 
     $('#hora-ini').datetimepicker({
-        format: "LT",
+        format: "hh:mm a",
         locale: 'es'
     });
 
     $('#hora-fin').datetimepicker({
-        format: "LT",
+        format: "hh:mm a",
         locale: 'es'
     });
 
@@ -76,13 +101,8 @@
 
     $('.selectpicker').selectpicker({});
 
-    $('#clave_cin').change(function () {
-        var selectedText = $(this).find("option:selected").text();
-        var cinema = '.cine-' + selectedText;
-        $('#clave_sal').find('option').hide();
-        $('#clave_sal').find(cinema.toString()).show();
-        $('#clave_sal').selectpicker('refresh');
-        $('#clave_sal').selectpicker('val', $('#clave_sal').find(cinema.toString())[0].text);
+    $('#clave_cin').on('changed.bs.select', function (e) {
+        updateLounges();
     });
 
     $('.selectpicker').selectpicker('val', null);
