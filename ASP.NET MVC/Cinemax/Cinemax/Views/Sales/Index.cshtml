@@ -102,6 +102,7 @@
                         @Html.ValidationMessageFor(m => m.anio_ven, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <br/><br/>
                 <div class="form-group row">
                     <div id="buttons-container" class="col-md-offset-4 col-md-8 text-right">
                         <button id="add-sale" type="button" class="btn btn-primary" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Generar</button>
@@ -111,7 +112,35 @@
             }
         </div>
         <div class="col-md-7">
-
+            <div class="panel table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                        <tr>
+                            @for (int j = 0; j < 8; j++)
+                            {
+                            <td>
+                                <img src="@Url.Content("~/Content/Images/butaca.png")" style="height:32px; margin: 5px 5px 5px 5px; cursor: pointer;" />
+                            </td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="panel-footer">
