@@ -373,7 +373,66 @@ alter table "Empleado" add
 /   
 
 
+CREATE OR REPLACE TRIGGER "SALAS_CINE"
+  AFTER INSERT ON "Cine"
+  FOR EACH ROW
+BEGIN
+FOR i IN 1..:NEW."num_salas"
+LOOP
+    INSERT INTO "Sala"("clave_cin", "cupo") VALUES(:NEW."clave_cin",30);
+END LOOP;
+END;
 
+
+CREATE OR REPLACE TRIGGER "ACTUALIZA_TOTAL"
+  AFTER INSERT ON "DetalleVenta"
+  FOR EACH ROW
+BEGIN
+  UPDATE "Venta" SET "total" = "total" + :NEW."subtotal" WHERE "clave_venta" = :NEW."clave_venta";
+END;  
+
+
+CREATE OR REPLACE TRIGGER "ACTUALIZA_PUNTOS_MEMBRESIA"
+  AFTER INSERT ON "DetalleVenta"
+  FOR EACH ROW
+DECLARE
+  cveMembresia NUMBER;
+  pts  NUMBER;
+BEGIN
+  SELECT "clave_mem" INTO cveMembresia FROM "Venta" WHERE "clave_venta" = :NEW."clave_venta";
+  pts := CAST(:NEW."subtotal" * 0.10 AS NUMBER);
+  UPDATE "Membresia" SET "puntos" = "puntos" + pts WHERE "clave_mem" = cveMembresia;
+END;
+
+
+CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_FUNCION"
+  AFTER INSERT ON "Funcion"
+  FOR EACH ROW
+DECLARE
+  cveFuncion NUMBER;
+  cveSala NUMBER;
+  cupoSala NUMBER;
+BEGIN
+  cveFuncion := :NEW."clave_fun";
+  cveSala := :NEW."clave_sal";
+  SELECT "cupo" INTO cupoSala FROM "Sala" WHERE "clave_sal" = cveSala;
+  UPDATE "Funcion" SET "cupo" = cupoSala WHERE "clave_fun" = cveFuncion;
+END;
+
+CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_TRASVENTA"
+  AFTER INSERT ON "DetalleVenta"
+  FOR EACH ROW
+DECLARE
+  cveVenta NUMBER;
+  cveFuncion NUMBER;
+  cupoNuevo NUMBER;
+BEGIN
+  cveVenta := :NEW."clave_venta";
+  SELECT "clave_fun" INTO cveFuncion FROM "Venta" WHERE "clave_venta" = cveVenta;
+  SELECT "cupo" INTO cupoNuevo FROM "Funcion" WHERE "clave_fun" = cveFuncion;
+  cupoNuevo := cupoNuevo -1;
+  UPDATE "Funcion" SET "cupo" = cupoNuevo WHERE "clave_fun" = cveFuncion;
+END;
 
 /*Despues de crear la base datos agregar el siguiente registro a la tabla "AspNetUsers"*/
 /* Usuario base del sistema user: admin; password: Admin_1 */
