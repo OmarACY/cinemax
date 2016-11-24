@@ -1,4 +1,5 @@
-﻿@model Cinemax.Models.SalesViewModel
+﻿@using Cinemax.Models
+@model Cinemax.Models.SalesViewModel
 @{
     ViewBag.Title = "Ventas";
 }
@@ -17,9 +18,10 @@
                     @Html.LabelFor(m => m.clave_mem, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <select class="form-control selectpicker" id="clave_mem" name="clave_mem">
-                            <option>Estándar</option>
-                            <option>Premium</option>
-                            <option>VIP</option>
+                            @foreach (SelectClient cliente in Model.clientes)
+                            {
+                                <option data-content="@cliente.nombre">@cliente.clave_mem</option>
+                            }
                         </select>
                         @Html.ValidationMessageFor(m => m.clave_mem, "", new { @class = "text-danger" })
                     </div>
@@ -28,9 +30,10 @@
                     @Html.LabelFor(m => m.clave_cin, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <select class="form-control selectpicker" id="clave_cin" name="clave_cin">
-                            <option>Estándar</option>
-                            <option>Premium</option>
-                            <option>VIP</option>
+                            @foreach (SelectMovieTeather cine in Model.cines)
+                            {
+                                <option data-content="@cine.nombre">@cine.clave_cin</option>
+                            }
                         </select>
                         @Html.ValidationMessageFor(m => m.clave_cin, "", new { @class = "text-danger" })
                     </div>
@@ -39,9 +42,10 @@
                     @Html.LabelFor(m => m.clave_pel, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <select class="form-control selectpicker" id="clave_pel" name="clave_pel">
-                            <option>Estándar</option>
-                            <option>Premium</option>
-                            <option>VIP</option>
+                            @foreach (SelectMovie pelicula in Model.peliculas)
+                            {
+                                <option data-content="@pelicula.nombre">@pelicula.clave_pel</option>
+                            }
                         </select>
                         @Html.ValidationMessageFor(m => m.clave_pel, "", new { @class = "text-danger" })
                     </div>
@@ -50,9 +54,10 @@
                     @Html.LabelFor(m => m.hora, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <select class="form-control selectpicker" id="hora" name="clave_pel">
-                            <option>Estándar</option>
-                            <option>Premium</option>
-                            <option>VIP</option>
+                            @foreach (SelectFunction funcion in Model.funciones)
+                            {
+                                <option data-content="@funcion.hora" data-sala="@funcion.clave_sal">@funcion.clave_fun</option>
+                            }
                         </select>
                         @Html.ValidationMessageFor(m => m.hora, "", new { @class = "text-danger" })
                     </div>

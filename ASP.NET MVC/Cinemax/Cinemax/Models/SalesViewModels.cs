@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cinemax.Models
 {
@@ -63,5 +64,33 @@ namespace Cinemax.Models
         [Required]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
+
+
+        [Display(Name = "Sucursal")]
+        public List<SelectMovieTeather> cines;
+
+        [Display(Name = "Cliente")]
+        public List<SelectClient> clientes;
+
+        [Display(Name = "Pelicula")]
+        public List<SelectMovie> peliculas;
+
+        [Display(Name = "Funcion")]
+        public List<SelectFunction> funciones;
+    }
+
+    public class SelectClient
+    {
+        public long clave_mem;
+        public string nombre;
+    }
+
+    public class SelectFunction
+    { 
+        public long clave_cin;
+        public long clave_sal;
+        public long clave_fun;
+        public long clave_pel;
+        public string hora;
     }
 }

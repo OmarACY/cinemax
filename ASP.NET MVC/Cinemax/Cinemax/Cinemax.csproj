@@ -218,6 +218,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Venta.cs" />
     <Compile Include="Models\Funcion.cs" />
     <Compile Include="Models\Pelicula.cs" />
     <Compile Include="Models\DAL\CinemaxDataModel.Context.cs">

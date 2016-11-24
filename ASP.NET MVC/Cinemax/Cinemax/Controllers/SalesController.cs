@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemax.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,18 @@ namespace Cinemax.Controllers
         // GET: Sales
         public ActionResult Index()
         {
-            return View();
+            using (Funcion funcion = new Funcion())
+            using (Pelicula pelicula = new Pelicula())
+            using (Membresia cliente = new Membresia())
+            using (Cine cine = new Cine())
+            {
+                SalesViewModel sale = new SalesViewModel();
+                sale.cines = cine.ObtenCines();
+                sale.clientes = cliente.ObtenClientes();
+                sale.peliculas = pelicula.ObtenPeliculas();
+                sale.funciones = funcion.ObtenFunciones();
+                return View(sale);
+            }
         }
     }
 }

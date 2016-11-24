@@ -221,6 +221,30 @@ namespace Cinemax.Models
             return clientes;
         }
 
+        /// <summary>
+        /// Devuelve una lista con los clientes existentes
+        /// </summary>
+        /// <returns></returns>
+        public List<SelectClient> ObtenClientes()
+        {
+            List<SelectClient> clientes;
+            List<DalMembresia> clientesDal;
+
+            // Busqueda de clientes
+            clientesDal = (from e in db.Membresia orderby e.clave_mem ascending select e).ToList();
+            clientes = new List<SelectClient>();
+            foreach (DalMembresia cliente in clientesDal)
+            {
+                clientes.Add(new SelectClient()
+                {
+                    clave_mem = cliente.clave_mem,
+                    nombre = cliente.nombre
+                });
+            }
+
+            return clientes;
+        }
+
         public void Dispose()
         {
             db.Dispose();

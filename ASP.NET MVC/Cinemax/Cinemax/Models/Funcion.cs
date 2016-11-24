@@ -229,6 +229,33 @@ namespace Cinemax.Models
             return funciones;
         }
 
+        /// <summary>
+        /// Devuelve una lista con todas las funciones disponibles
+        /// </summary>
+        /// <returns></returns>
+        public List<SelectFunction> ObtenFunciones()
+        {
+            List<SelectFunction> funciones;
+            List<DalFuncion> funcionesDal;
+
+            // Busqueda de funciones
+            funcionesDal = (from e in db.Funcion orderby e.clave_fun ascending select e).ToList();
+            funciones = new List<SelectFunction>();
+            foreach (DalFuncion funcion in funcionesDal)
+            {
+                funciones.Add(new SelectFunction()
+                {
+                    clave_fun = funcion.clave_fun,
+                    clave_pel = funcion.clave_pel,
+                    clave_cin = funcion.Sala.clave_cin,
+                    clave_sal = funcion.clave_sal,
+                    hora = funcion.hora_fin.ToShortTimeString()
+                });
+            }
+
+            return funciones;
+        }
+
         public void Dispose()
         {
             db.Dispose();
