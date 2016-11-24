@@ -434,6 +434,29 @@ BEGIN
   UPDATE "Funcion" SET "cupo" = cupoNuevo WHERE "clave_fun" = cveFuncion;
 END;
 
+ALTER TABLE "Membresia"
+ADD CONSTRAINT TIPO_MEMBRESIA
+CHECK ("tipo" IN ('Standar', 'Premium', 'Vip'));
+
+ALTER TABLE "Cine"
+ADD CONSTRAINT NOMBRE_CINE UNIQUE ("nombre");
+
+create or replace procedure "CALCULA_PUNTOS_MEMBRESIA"
+(clave_venta IN NUMBER,
+subtotal IN FLOAT)
+is  
+cveMembresia Membresia.clave_mem%TYPE;
+pts Membresia.puntos%TYPE;
+begin
+
+SELECT "clave_mem" INTO cveMembresia FROM "Venta" WHERE "clave_venta" = clave_venta;
+
+pts := CAST(subtotal * 0.10 AS NUMBER);
+
+UPDATE "Membresia" SET "puntos" = "puntos" + pts WHERE "clave_mem" = cveMembresia;
+ 
+end;
+
 /*Despues de crear la base datos agregar el siguiente registro a la tabla "AspNetUsers"*/
 /* Usuario base del sistema user: admin; password: Admin_1 */
 eaf855b1-e2d9-4125-87a8-e694b82e83b6, 
