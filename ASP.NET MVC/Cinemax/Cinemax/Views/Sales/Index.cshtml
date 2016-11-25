@@ -9,7 +9,7 @@
 <div class="panel">
     <div class="panel-body">
         <div class="col-md-5" style="border-right: 1px solid #adadad;">
-            @using (Html.BeginForm("Clients", "Management", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "clients-form" }))
+            @using (Html.BeginForm("Index", "Sales", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "sales-form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.Accion)
@@ -53,10 +53,10 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.hora, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        <select class="form-control selectpicker" id="hora" name="clave_pel">
+                        <select class="form-control selectpicker" id="clave_fun" name="clave_fun">
                             @foreach (SelectFunction funcion in Model.funciones)
                             {
-                                <option data-content="@funcion.hora" data-sala="@funcion.clave_sal">@funcion.clave_fun</option>
+                                <option class="cinema-@funcion.clave_cin movie-@funcion.clave_pel" data-content="@funcion.hora" data-sala="@funcion.clave_sal">@funcion.clave_fun</option>
                             }
                         </select>
                         @Html.ValidationMessageFor(m => m.hora, "", new { @class = "text-danger" })
@@ -65,7 +65,8 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.clave_sal, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.clave_sal, new { @class = "form-control" })
+                        <input class="form-control" data-val="true" data-val-number="El campo Sala debe ser un número." 
+                        data-val-required="El campo Sala es obligatorio." readonly id="clave_sal" name="clave_sal" type="text">
                         @Html.ValidationMessageFor(m => m.clave_sal, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -73,10 +74,10 @@
                     @Html.LabelFor(m => m.tipo_pago, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <label class="radio-inline pago-Efectivo">
-                            @Html.RadioButtonFor(m => m.tipo_pago, "Efectivo", new { @class = "radio-inline", }) Efectivo
+                            @Html.RadioButtonFor(m => m.tipo_pago, "Efectivo", new { @class = "radio-inline efectivo", @checked = "" }) Efectivo
                         </label>
                         <label class="radio-inline pago-Tarjeta">
-                            @Html.RadioButtonFor(m => m.tipo_pago, "Tarjeta", new { @class = "radio-inline" }) Tarjeta
+                            @Html.RadioButtonFor(m => m.tipo_pago, "Tarjeta", new { @class = "radio-inline tarjeta" }) Tarjeta
                         </label>
                         <br />
                         @Html.ValidationMessageFor(m => m.tipo_pago, "", new { @class = "text-danger" })
@@ -85,32 +86,32 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.num_tarjeta, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.num_tarjeta, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.num_tarjeta, new { @class = "form-control", @disabled = "" })
                         @Html.ValidationMessageFor(m => m.num_tarjeta, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     @Html.LabelFor(m => m.cod_seguridad, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.cod_seguridad, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.cod_seguridad, new { @class = "form-control", @disabled = "" })
                         @Html.ValidationMessageFor(m => m.cod_seguridad, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     @Html.Label("Fecha de vencimiento", new { @class = "col-md-4 control-label" })
                     <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.mes_ven, new { @class = "form-control", @placeholder = "Mes" })
+                        @Html.TextBoxFor(m => m.mes_ven, new { @class = "form-control", @placeholder = "Mes", @disabled = "" })
                         @Html.ValidationMessageFor(m => m.mes_ven, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.anio_ven, new { @class = "form-control", @placeholder = "Año" })
+                        @Html.TextBoxFor(m => m.anio_ven, new { @class = "form-control", @placeholder = "Año", @disabled = "" })
                         @Html.ValidationMessageFor(m => m.anio_ven, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <br/><br/>
                 <div class="form-group row">
                     <div id="buttons-container" class="col-md-offset-4 col-md-8 text-right">
-                        <button id="add-sale" type="button" class="btn btn-primary" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Generar</button>
+                        <button id="add-sale" type="submit" class="btn btn-primary" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Generar</button>
                         <button id="cancel-action" type="button" class="btn btn-default disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
                     </div>
                 </div>
@@ -138,7 +139,7 @@
                             @for (int j = 0; j < 8; j++)
                             {
                             <td>
-                                <img src="@Url.Content("~/Content/Images/butaca.png")" style="height:32px; margin: 5px 5px 5px 5px; cursor: pointer;" />
+                                <img src="@Url.Content("~/Content/Images/butaca.png")" class="available-place" />
                             </td>
                             }
                         </tr>
