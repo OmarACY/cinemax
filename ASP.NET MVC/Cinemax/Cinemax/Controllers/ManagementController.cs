@@ -219,7 +219,15 @@ namespace Cinemax.Controllers
         // GET: Management/MovieTeathers
         public ActionResult MovieTeathers()
         {
-            return View();
+            //Agregado
+            using (Cine cine = new Cine())
+            {
+                MovieTeathersViewModel function = new MovieTeathersViewModel();
+                function.salas = cine.ObtenSalas();
+                return View(function);
+            }//Agregado
+
+            //return View();
         }
 
         // POST: Management/MovieTeathers
@@ -327,7 +335,7 @@ namespace Cinemax.Controllers
             bool estatus;
 
             if (!ModelState.IsValid)
-            {
+            {               
                 return View(model);
             }
             estatus = false;

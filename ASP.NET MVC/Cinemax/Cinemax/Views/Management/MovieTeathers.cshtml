@@ -1,4 +1,5 @@
-﻿@model Cinemax.Models.MovieTeathersViewModel
+﻿@using Cinemax.Models
+@model Cinemax.Models.MovieTeathersViewModel
 @{
     ViewBag.Title = "Sucursales";
 }
@@ -98,6 +99,46 @@
         </table>
     </div>
 </div>
+
+<div class="modal fade bs-example-modal-sm" id="cupoSalas" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Salas</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sala</th>
+                            <th>Cupo</th>
+                        </tr>
+                    </thead>
+                    <tbody>                        
+                        <tr>
+                            <td width="50%">
+                                <select class="form-control selectpicker" id="sala" name="sala">
+                                   @foreach (SelectLounge sala in Model.salas)
+                                   {
+                                    <option class="cine-@sala.clave_cin">@sala.clave_sal</option>
+                                   }                               
+                                </select>
+                            </td>
+                            <td width="50%">
+                                <input class="form-control" id="cupo" name="cupo" type="number" min="30" max="80" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 @section Styles {
     @Styles.Render("~/Content/bootgrid")

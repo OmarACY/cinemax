@@ -290,6 +290,8 @@ namespace Cinemax.Models
         [Required(ErrorMessage = "Acción requerida")]
         [Display(Name = "Acción")]
         public string Accion { get; set; }
+        
+        public List<SelectLounge> salas;
     }
 
     public class GetMovieTeathersViewModel
