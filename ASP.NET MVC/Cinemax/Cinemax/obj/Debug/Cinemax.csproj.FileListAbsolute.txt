@@ -203,6 +203,5 @@ C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\bin\es\Micro
 C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\obj\Debug\Cinemax.csprojResolveAssemblyReference.cache
 C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\obj\Debug\Cinemax.dll
 C:\Users\milan\Documents\GitHub\cinemax\ASP.NET MVC\Cinemax\Cinemax\obj\Debug\Cinemax.pdb
