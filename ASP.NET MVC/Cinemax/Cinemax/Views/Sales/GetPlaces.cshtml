@@ -1,0 +1,50 @@
+﻿@using Cinemax.Models
+@model Cinemax.Models.GetPlacesViewModel
+
+
+<div class="panel table-responsive">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 10; i++)
+            {
+                <tr>
+                    @for (int j = 0; j < 8; j++)
+                    {
+                        string name = ((char)(65 + i)) + (j.ToString());
+                        if (Model.asientos.Exists(a => a.Name == name))
+                        {
+                            <td>
+                                <img src="@Url.Content("~/Content/Images/butaca.png")" class="occupied-place" data-number="@name" title="@name" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <img src="@Url.Content("~/Content/Images/butaca.png")" class="available-place" data-number="@name" title="@name" />
+                            </td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $('.available-place').bind('click', function () {
+        $(this).toggleClass('selected-place');
+    });
+</script>
+

@@ -256,6 +256,20 @@ namespace Cinemax.Models
             return funciones;
         }
 
+        public List<Place> ObtenAsientosOcupados(long idFuncion)
+        {
+            List<Place> asientos;
+            List<DalDetalleVenta> asientosDal;
+
+            asientosDal = (from e in db.DetalleVenta where e.Venta.clave_fun == idFuncion select e).ToList();
+            asientos = new List<Place>();
+            foreach (DalDetalleVenta detalle in asientosDal)
+            {
+                asientos.Add(new Place() { Name = detalle.asiento });
+            }
+            return asientos;
+        }
+
         public void Dispose()
         {
             db.Dispose();

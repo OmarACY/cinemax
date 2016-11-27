@@ -196,6 +196,32 @@ namespace Cinemax.Models
                 return null;
         }
 
+        public EmployeesViewModel ObtenEmpleado(string nombreUsuario)
+        {
+            DalEmpleado empleado = (from e in db.Empleado where e.nombre_usuario == nombreUsuario select e).FirstOrDefault();
+            DalAspNetUsers usuario = (from u in db.AspNetUsers where u.UserName == nombreUsuario select u).FirstOrDefault();
+
+            if ((empleado != null) && (usuario != null))
+                return new EmployeesViewModel()
+                {
+                    IdUsuarioAspNet = usuario.Id,
+                    Clave = empleado.clave_emp,
+                    NombreUsuario = empleado.nombre_usuario,
+                    Password = empleado.password,
+                    Nombre = empleado.nombre,
+                    ApPaterno = empleado.app,
+                    ApMaterno = empleado.apm,
+                    FechaNac = empleado.fecha_nac,
+                    Email = empleado.email,
+                    Telefono = empleado.TelEmp.Count > 0 ? empleado.TelEmp.First().telefono : null,
+                    Colonia = empleado.colonia,
+                    Calle = empleado.calle,
+                    Numero = empleado.numero
+                };
+            else
+                return null;
+        }
+
         /// <summary>
         /// Devuelve el ultimo empleado agregado a la base de datos
         /// </summary>

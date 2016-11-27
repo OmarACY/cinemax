@@ -7,12 +7,16 @@
 <h2>Ventas</h2>
 
 <div class="panel">
+    <div class="panel-heading">
+        @Html.ValidationMessageFor(m => m.clave_venta, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
     <div class="panel-body">
         <div class="col-md-5" style="border-right: 1px solid #adadad;">
             @using (Html.BeginForm("Index", "Sales", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "sales-form" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.Accion)
                 @Html.HiddenFor(m => m.clave_venta)
                 <div class="form-group row">
                     @Html.LabelFor(m => m.clave_mem, new { @class = "col-md-4 control-label" })
@@ -51,7 +55,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.hora, new { @class = "col-md-4 control-label" })
+                    @Html.LabelFor(m => m.clave_fun, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
                         <select class="form-control selectpicker" id="clave_fun" name="clave_fun">
                             @foreach (SelectFunction funcion in Model.funciones)
@@ -59,7 +63,7 @@
                                 <option class="cinema-@funcion.clave_cin movie-@funcion.clave_pel" data-content="@funcion.hora" data-sala="@funcion.clave_sal">@funcion.clave_fun</option>
                             }
                         </select>
-                        @Html.ValidationMessageFor(m => m.hora, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.clave_fun, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
@@ -86,74 +90,37 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.num_tarjeta, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.num_tarjeta, new { @class = "form-control", @disabled = "" })
+                        <input class="form-control" data-val="true" data-val-required="El campo Número de tarjeta es obligatorio." disabled="" id="num_tarjeta" name="num_tarjeta" value="" type="text">
                         @Html.ValidationMessageFor(m => m.num_tarjeta, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     @Html.LabelFor(m => m.cod_seguridad, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.cod_seguridad, new { @class = "form-control", @disabled = "" })
+                        <input class="form-control" data-val="true" data-val-required="El campo Código de seguridad es obligatorio." disabled="" id="cod_seguridad" name="cod_seguridad" value="" type="text">
                         @Html.ValidationMessageFor(m => m.cod_seguridad, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     @Html.Label("Fecha de vencimiento", new { @class = "col-md-4 control-label" })
                     <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.mes_ven, new { @class = "form-control", @placeholder = "Mes", @disabled = "" })
+                        <input class="form-control" data-val="true" data-val-required="El campo Mes de vencimiento es obligatorio." disabled="" id="mes_ven" name="mes_ven" placeholder="Mes" value="" type="text">
                         @Html.ValidationMessageFor(m => m.mes_ven, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.anio_ven, new { @class = "form-control", @placeholder = "Año", @disabled = "" })
+                        <input class="form-control" data-val="true" data-val-required="El campo Mes de vencimiento es obligatorio." disabled="" id="anio_ven" name="anio_ven" placeholder="Año" value="" type="text">
                         @Html.ValidationMessageFor(m => m.anio_ven, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <br/><br/>
                 <div class="form-group row">
                     <div id="buttons-container" class="col-md-offset-4 col-md-8 text-right">
-                        <button id="add-sale" type="submit" class="btn btn-primary" data-action="Add"><span class="glyphicon glyphicon-ok"></span> Generar</button>
-                        <button id="cancel-action" type="button" class="btn btn-default disabled" data-action="Cancel"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</button>
+                        <button id="add-sale" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Generar</button>
                     </div>
                 </div>
             }
         </div>
-        <div class="col-md-7">
-            <div class="panel table-responsive">
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < 10; i++)
-                        {
-                        <tr>
-                            @for (int j = 0; j < 8; j++)
-                            {
-                            <td>
-                                <img src="@Url.Content("~/Content/Images/butaca.png")" class="available-place" />
-                            </td>
-                            }
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="panel-footer">
-        @Html.ValidationMessageFor(m => m.clave_venta, "", new { @class = "text-danger" })
-        @Html.ValidationMessageFor(m => m.Accion, "", new { @class = "text-danger" })
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <p class="text-success">@ViewBag.StatusMessage</p>
+        <div class="col-md-7" id="seating"></div>
     </div>
 </div>
 
@@ -164,6 +131,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/bootstrap-select")
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">urlPlaces = "@Url.Action("GetPlaces")";</script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/Sales/index.js")"></script>
 }
 

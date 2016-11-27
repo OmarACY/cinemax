@@ -565,6 +565,7 @@
     <Content Include="Views\Management\Movies.cshtml" />
     <Content Include="Views\Management\FilmFunctions.cshtml" />
     <Content Include="Views\Sales\Index.cshtml" />
+    <Content Include="Views\Sales\GetPlaces.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

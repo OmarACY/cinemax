@@ -10,6 +10,7 @@ function updateCinema(selection) {
     $('#clave_pel').selectpicker('val', null);
     $('#clave_fun').selectpicker('val', null);
     $('#clave_sal').val('');
+    $('#seating').empty();
 }
 
 function updateMovie(selection) {
@@ -28,12 +29,14 @@ function updateInitHour(selection) {
     $('#clave_fun').selectpicker('refresh');
     $('#clave_fun').selectpicker('val', null);
     $('#clave_sal').val('');
+    $('#seating').empty();
 }
 
 function updateLounge() {
     var lounge = $('#clave_fun').find("option:selected").data('sala');
-    console.log(lounge);
+    var func = $('#clave_fun').find("option:selected").text();
     $('#clave_sal').val(lounge);
+    $('#seating').load(urlPlaces, { id: func });
 }
 
 $(function () {
@@ -68,8 +71,26 @@ $(function () {
         $('#anio_ven').prop('disabled', false);
     });
 
-    $('.available-place').bind('click', function () {
-        $(this).toggleClass('selected-place');
+    $('#add-sale').bind('click', function () {
+        $('#sales-form').validate();
+        if ($('#sales-form').valid()) {
+            var asientos = $('.selected-place');
+            var i = 0;
+            if (asientos.length > 0) {
+                asientos.each(function () {
+                    var asiento = $('<input name="asientos[' + (i++).toString() + '][Name]" value="' + $(this).data('number') + '" type="text">');
+                    $('#sales-form').append(asiento);
+                });
+                return true;
+            }
+            else {
+                alert("Seleccione al menos un asiento por favor");
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     });
 
     $('.efectivo').prop('checked', true);
