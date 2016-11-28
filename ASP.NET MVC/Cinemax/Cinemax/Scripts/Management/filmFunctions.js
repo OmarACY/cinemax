@@ -107,4 +107,10 @@ $(function () {
     });
 
     $('.selectpicker').selectpicker('val', null);
+
+    $("#hora-ini").on("dp.change", function (e) {
+        console.log(e.date._d);
+        var hours = (e.date._d.getHours() + 1) % 24;
+        $('#hora_fin').val((hours == 0 ? "12" : hours > 12 ? hours - 12 : hours) + ":" + e.date._d.getMinutes() + (hours == 0 ? " am" : hours > 12 ? " pm" : " am"));
+    });
 });
