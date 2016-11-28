@@ -44,7 +44,7 @@ namespace Cinemax.Models
                 db.SaveChanges();
                 estatus = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 estatus = false;
             }

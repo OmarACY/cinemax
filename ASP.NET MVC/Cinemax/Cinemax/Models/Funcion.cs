@@ -47,13 +47,13 @@ namespace Cinemax.Models
                     fecha = modelo.fecha,
                     hora_ini = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, initHour, initMinute, 0),
                     hora_fin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0),
-                    cupo = 0
+                    cupo = (from e in db.Sala where e.clave_sal == modelo.clave_sal select e.cupo).FirstOrDefault()
                 };
                 db.Funcion.Add(entidad);
                 db.SaveChanges();
                 estatus = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 estatus = false;
             }
@@ -239,7 +239,7 @@ namespace Cinemax.Models
             List<DalFuncion> funcionesDal;
 
             // Busqueda de funciones
-            funcionesDal = (from e in db.Funcion orderby e.clave_fun ascending select e).ToList();
+            funcionesDal = (from e in db.Funcion where e.cupo > 0 orderby e.clave_fun ascending select e).ToList();
             funciones = new List<SelectFunction>();
             foreach (DalFuncion funcion in funcionesDal)
             {

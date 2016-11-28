@@ -379,7 +379,7 @@ CREATE OR REPLACE TRIGGER "SALAS_CINE"
 BEGIN
 FOR i IN 1..:NEW."num_salas"
 LOOP
-    INSERT INTO "Sala"("clave_cin", "cupo") VALUES(:NEW."clave_cin",30);
+    INSERT INTO "Sala"("clave_cin", "cupo") VALUES(:NEW."clave_cin",80);
 END LOOP;
 END;
 
@@ -404,7 +404,7 @@ BEGIN
   UPDATE "Membresia" SET "puntos" = "puntos" + pts WHERE "clave_mem" = cveMembresia;
 END;
 
-
+-- ELIMINAR NO VALIDO DEBIDO A PROBLEMAS DE MUTACION DE TABLAS
 CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_FUNCION"
   AFTER INSERT ON "Funcion"
   FOR EACH ROW
@@ -418,6 +418,7 @@ BEGIN
   SELECT "cupo" INTO cupoSala FROM "Sala" WHERE "clave_sal" = cveSala;
   UPDATE "Funcion" SET "cupo" = cupoSala WHERE "clave_fun" = cveFuncion;
 END;
+-- ELIMINAR
 
 CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_TRASVENTA"
   AFTER INSERT ON "DetalleVenta"

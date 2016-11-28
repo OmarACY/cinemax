@@ -219,15 +219,12 @@ namespace Cinemax.Controllers
         // GET: Management/MovieTeathers
         public ActionResult MovieTeathers()
         {
-            //Agregado
             using (Cine cine = new Cine())
             {
                 MovieTeathersViewModel function = new MovieTeathersViewModel();
                 function.salas = cine.ObtenSalas();
                 return View(function);
-            }//Agregado
-
-            //return View();
+            }
         }
 
         // POST: Management/MovieTeathers
@@ -252,6 +249,7 @@ namespace Cinemax.Controllers
                             if (!estatus)
                             {
                                 ModelState.AddModelError("", "Sucursal no agregada!");
+                                model.salas = cine.ObtenSalas();
                                 return View(model);
                             }
                             else
@@ -265,6 +263,7 @@ namespace Cinemax.Controllers
                                 if (!estatus)
                                 {
                                     ModelState.AddModelError("", "Sucursal no editada!");
+                                    model.salas = cine.ObtenSalas();
                                     return View(model);
                                 }
                                 else
@@ -273,6 +272,8 @@ namespace Cinemax.Controllers
                         else
                         {
                             ModelState.AddModelError("", "Sucursal no editada!");
+                            using (Cine cine = new Cine())
+                                model.salas = cine.ObtenSalas();
                             return View(model);
                         }
                     case "Remove":
@@ -283,6 +284,7 @@ namespace Cinemax.Controllers
                                 if (!estatus)
                                 {
                                     ModelState.AddModelError("", "Sucursal no eliminada!");
+                                    model.salas = cine.ObtenSalas();
                                     return View(model);
                                 }
                                 else
@@ -291,9 +293,13 @@ namespace Cinemax.Controllers
                         else
                         {
                             ModelState.AddModelError("", "Sucursal no eliminada!");
+                            using (Cine cine = new Cine())
+                                model.salas = cine.ObtenSalas();
                             return View(model);
                         }
                     default:
+                        using (Cine cine = new Cine())
+                            model.salas = cine.ObtenSalas();
                         return View(model);
                 }
 
