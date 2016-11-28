@@ -1,12 +1,4 @@
-﻿function seleccionaSalas(clave_cin) {
-        var cinema = '.cine-' + clave_cin;
-        $('#sala').find('option').hide();
-        $('#sala').find(cinema.toString()).show();
-        $('#sala').selectpicker('refresh');
-        $('#sala').selectpicker('val', $('#sala').find(cinema.toString())[0].text);
-    
-}
-
+﻿
 $(function () {
     $("#grid-teathers").bootgrid({
         ajax: true,
@@ -41,7 +33,6 @@ $(function () {
             rows = $("#grid-teathers").bootgrid().data('.rs.jquery.bootgrid').currentRows;
             $.each(rows, function (key, value) {
                 if (value.clave_cin == id) {
-                    seleccionaSalas(value.clave_cin);
                     $("#teathers-form").clearValidation();
                     $("#clave_cin").val(value.clave_cin);
                     $("#nombre").val(value.nombre);
@@ -50,8 +41,8 @@ $(function () {
                     $("#colonia").val(value.colonia);
                     $("#calle").val(value.calle);
                     $("#numero").val(value.numero);
+                    $("#num_salas").prop("disabled", true);
                     $("#add-teather").addClass("disabled");
-                    $("#edit-lounges").removeClass("disabled");
                     $("#remove-teather").removeClass("disabled");
                     $("#edit-teather").removeClass("disabled");
                     $("#cancel-action").removeClass("disabled");
@@ -72,12 +63,9 @@ $(function () {
             $("#remove-teather").addClass("disabled");
             $("#edit-teather").addClass("disabled");
             $("#cancel-action").addClass("disabled");
+            $("#num_salas").prop("disabled", false);
             return false;
         }
-    });
-
-    $('#edit-lounges').click(function () {
-        $('#cupoSalas').modal("show");
     });
 
     $('.selectpicker').selectpicker({});

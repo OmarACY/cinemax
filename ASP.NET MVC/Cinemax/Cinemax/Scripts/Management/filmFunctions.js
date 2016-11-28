@@ -95,6 +95,7 @@ $(function () {
             $("#remove-function").addClass("disabled");
             $("#edit-function").addClass("disabled");
             $("#cancel-action").addClass("disabled");
+            $('.selectpicker').selectpicker('val', null);
             return false;
         }
     });
