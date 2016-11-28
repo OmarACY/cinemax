@@ -39,6 +39,7 @@ namespace Cinemax.Models
                 db.SaveChanges();
                 foreach (Place asiento in modelo.asientos)
                 {
+                    string procedimiento = string.Format("BEGIN CALCULA_PUNTOS_MEMBRESIA({0}, {1}); END; ", entidad.clave_venta, "35.0");
                     db.DetalleVenta.Add(new DalDetalleVenta()
                     {
                         asiento = asiento.Name,
@@ -46,6 +47,7 @@ namespace Cinemax.Models
                         subtotal = 35,
                         tipo_asiento = "Sencillo"
                     });
+                    db.Database.ExecuteSqlCommand(procedimiento);
                 }
                 if (modelo.tipo_pago == "Tarjeta")
                 {

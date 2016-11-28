@@ -391,35 +391,6 @@ BEGIN
   UPDATE "Venta" SET "total" = "total" + :NEW."subtotal" WHERE "clave_venta" = :NEW."clave_venta";
 END;  
 
-
-CREATE OR REPLACE TRIGGER "ACTUALIZA_PUNTOS_MEMBRESIA"
-  AFTER INSERT ON "DetalleVenta"
-  FOR EACH ROW
-DECLARE
-  cveMembresia NUMBER;
-  pts  NUMBER;
-BEGIN
-  SELECT "clave_mem" INTO cveMembresia FROM "Venta" WHERE "clave_venta" = :NEW."clave_venta";
-  pts := CAST(:NEW."subtotal" * 0.10 AS NUMBER);
-  UPDATE "Membresia" SET "puntos" = "puntos" + pts WHERE "clave_mem" = cveMembresia;
-END;
-
--- ELIMINAR NO VALIDO DEBIDO A PROBLEMAS DE MUTACION DE TABLAS
-CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_FUNCION"
-  AFTER INSERT ON "Funcion"
-  FOR EACH ROW
-DECLARE
-  cveFuncion NUMBER;
-  cveSala NUMBER;
-  cupoSala NUMBER;
-BEGIN
-  cveFuncion := :NEW."clave_fun";
-  cveSala := :NEW."clave_sal";
-  SELECT "cupo" INTO cupoSala FROM "Sala" WHERE "clave_sal" = cveSala;
-  UPDATE "Funcion" SET "cupo" = cupoSala WHERE "clave_fun" = cveFuncion;
-END;
--- ELIMINAR
-
 CREATE OR REPLACE TRIGGER "ACTUALIZA_CUPO_TRASVENTA"
   AFTER INSERT ON "DetalleVenta"
   FOR EACH ROW
@@ -446,13 +417,11 @@ create or replace procedure "CALCULA_PUNTOS_MEMBRESIA"
 (clave_venta IN NUMBER,
 subtotal IN FLOAT)
 is  
-cveMembresia Membresia.clave_mem%TYPE;
-pts Membresia.puntos%TYPE;
+cveMembresia NUMBER;
+pts NUMBER := (subtotal * 0.10);
 begin
 
 SELECT "clave_mem" INTO cveMembresia FROM "Venta" WHERE "clave_venta" = clave_venta;
-
-pts := CAST(subtotal * 0.10 AS NUMBER);
 
 UPDATE "Membresia" SET "puntos" = "puntos" + pts WHERE "clave_mem" = cveMembresia;
  

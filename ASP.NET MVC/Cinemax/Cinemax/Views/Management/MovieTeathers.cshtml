@@ -32,7 +32,8 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.num_salas, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.num_salas, new { @class = "form-control", @data_val_number = "El campo Número de salas debe ser un número" })
+                        <input class="form-control valid" data-val="true" data-val-number="El campo Número de salas debe ser un número" data-val-required="El campo Número de salas es obligatorio." 
+                               id="num_salas" name="num_salas" aria-required="true" aria-describedby="num_salas-error" aria-invalid="false" type="text">
                         @Html.ValidationMessageFor(m => m.num_salas, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -55,7 +56,8 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.numero, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.numero, new { @class = "form-control", @data_val_number = "El campo Número debe ser un número" })
+                        <input class="form-control valid" data-val="true" data-val-number="El campo Número debe ser un número" data-val-required="El campo Número es obligatorio." 
+                               id="numero" name="numero" aria-required="true" aria-describedby="numero-error" aria-invalid="false" type="text">
                         @Html.ValidationMessageFor(m => m.numero, "", new { @class = "text-danger" })
                     </div>
                 </div>

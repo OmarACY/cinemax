@@ -42,7 +42,7 @@ namespace Cinemax.Controllers
                     if (venta.AgregaVenta(model))
                         return RedirectToAction("Index", new { message = "Venta realizada exitosamente!" });
                     else
-                        ModelState.AddModelError("", "Venta no realizada!");
+                        ModelState.AddModelError("", "Venta no realizada, por favor verifique que los campos sean correctos!");
                 }
             }
             using (Funcion funcion = new Funcion())

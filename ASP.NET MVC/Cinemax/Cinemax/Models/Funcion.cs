@@ -49,9 +49,14 @@ namespace Cinemax.Models
                     hora_fin = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, endHour, endMinute, 0),
                     cupo = (from e in db.Sala where e.clave_sal == modelo.clave_sal select e.cupo).FirstOrDefault()
                 };
-                db.Funcion.Add(entidad);
-                db.SaveChanges();
-                estatus = true;
+                if (EsDisponible(entidad.clave_sal, entidad.hora_ini, entidad.hora_fin))
+                {
+                    db.Funcion.Add(entidad);
+                    db.SaveChanges();
+                    estatus = true;
+                }
+                else
+                    estatus = false;
             }
             catch (Exception e)
             {
@@ -268,6 +273,17 @@ namespace Cinemax.Models
                 asientos.Add(new Place() { Name = detalle.asiento });
             }
             return asientos;
+        }
+
+        public bool EsDisponible(long clave_sal, DateTime hora_ini, DateTime hora_fin)
+        {
+            int cont = (from e in db.Funcion where 
+                        e.clave_sal == clave_sal && 
+                        (hora_ini.Hour >= e.hora_ini.Hour && hora_ini.Hour <= e.hora_fin.Hour) ||
+                        (hora_fin.Hour >= e.hora_ini.Hour && hora_fin.Hour <= e.hora_fin.Hour)
+                        select e).Count();
+
+            return cont == 0 ? true : false;
         }
 
         public void Dispose()
