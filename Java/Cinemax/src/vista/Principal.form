@@ -1309,7 +1309,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="panelInfoEmp4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane5" pref="242" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" pref="245" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1381,10 +1381,15 @@
                               <Properties>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                    <TitledBorder title="Datos personales"/>
+                                    <TitledBorder title="Datos generales"/>
                                   </Border>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Datos generales"/>
                               </Properties>
+                              <AccessibilityProperties>
+                                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Datos generales"/>
+                                <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+                              </AccessibilityProperties>
 
                               <Layout>
                                 <DimensionLayout dim="0">
@@ -1395,14 +1400,9 @@
                                               <Component id="etTelSuc" alignment="0" pref="96" max="32767" attributes="0"/>
                                               <Component id="etNombreSuc" alignment="0" max="32767" attributes="0"/>
                                               <Component id="etSalasSuc" max="32767" attributes="0"/>
-                                              <Component id="etSalasEditarSuc" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="btSalasSuc" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
                                               <Component id="spSalasSuc" pref="313" max="32767" attributes="0"/>
                                               <Component id="ctNombreSuc" alignment="1" max="32767" attributes="0"/>
                                               <Component id="ctTelSuc" alignment="1" max="32767" attributes="0"/>
@@ -1428,12 +1428,7 @@
                                               <Component id="etSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="spSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="btSalasSuc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="etSalasEditarSuc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace pref="35" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1462,20 +1457,6 @@
                                 <Component class="javax.swing.JTextField" name="ctTelSuc">
                                 </Component>
                                 <Component class="javax.swing.JSpinner" name="spSalasSuc">
-                                </Component>
-                                <Component class="javax.swing.JButton" name="btSalasSuc">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="Editar"/>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalasSucActionPerformed"/>
-                                  </Events>
-                                </Component>
-                                <Component class="javax.swing.JLabel" name="etSalasEditarSuc">
-                                  <Properties>
-                                    <Property name="horizontalAlignment" type="int" value="4"/>
-                                    <Property name="text" type="java.lang.String" value="Salas"/>
-                                  </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>

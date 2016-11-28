@@ -126,7 +126,8 @@ public class FuncionConexion extends Conexion<Funcion> {
             ResultSet rs = ejecutaConsulta(consulta);
             
             if(rs.next()){
-                disp = false;
+                if(!String.valueOf(modelo.getClave_fun()).equals(rs.getString("clave_fun")))                    
+                    disp = false;
             }
         }
         catch(ClassNotFoundException | SQLException ex) {

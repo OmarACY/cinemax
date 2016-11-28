@@ -194,8 +194,6 @@ public class Principal extends javax.swing.JFrame {
         ctNombreSuc = new javax.swing.JTextField();
         ctTelSuc = new javax.swing.JTextField();
         spSalasSuc = new javax.swing.JSpinner();
-        btSalasSuc = new javax.swing.JButton();
-        etSalasEditarSuc = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         etColoniaSuc = new javax.swing.JLabel();
         etNumeroSuc = new javax.swing.JLabel();
@@ -1118,7 +1116,8 @@ public class Principal extends javax.swing.JFrame {
 
         panelInfoEmp4.setBorder(javax.swing.BorderFactory.createTitledBorder("Información"));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos personales"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
+        jPanel9.setToolTipText("Datos generales");
 
         etNombreSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etNombreSuc.setText("Nombre");
@@ -1129,16 +1128,6 @@ public class Principal extends javax.swing.JFrame {
         etSalasSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etSalasSuc.setText("Numero de salas");
 
-        btSalasSuc.setText("Editar");
-        btSalasSuc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalasSucActionPerformed(evt);
-            }
-        });
-
-        etSalasEditarSuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etSalasEditarSuc.setText("Salas");
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1148,13 +1137,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(etTelSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                     .addComponent(etNombreSuc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(etSalasSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(etSalasEditarSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(etSalasSuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(btSalasSuc)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(spSalasSuc, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                     .addComponent(ctNombreSuc, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ctTelSuc, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -1174,11 +1159,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etSalasSuc)
                     .addComponent(spSalasSuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSalasSuc)
-                    .addComponent(etSalasEditarSuc))
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de contacto"));
@@ -1297,6 +1278,9 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btAgregaSuc))))
         );
 
+        jPanel9.getAccessibleContext().setAccessibleName("Datos generales");
+        jPanel9.getAccessibleContext().setAccessibleDescription("");
+
         tablaSucursal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -1332,7 +1316,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelInfoEmp4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2769,10 +2753,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaFuncionMouseClicked
 
-    private void btSalasSucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalasSucActionPerformed
-        editarCupoSalas();
-    }//GEN-LAST:event_btSalasSucActionPerformed
-
     private void panelFuncionComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelFuncionComponentShown
         rellenaComboPeliculas();
         rellenaComboSucursales();
@@ -3541,8 +3521,8 @@ cbHoraVenta.removeAllItems();
             btCancelaSuc.setVisible(true);
             btAgregaSuc.setVisible(false);
             spSalasSuc.setEnabled(false);
-            btSalasSuc.setVisible(true);
-            etSalasEditarSuc.setVisible(true);
+            //btSalasSuc.setVisible(true);
+           // etSalasEditarSuc.setVisible(true);
         }
         else {
             limpiaFormularioSucursal();
@@ -3552,8 +3532,8 @@ cbHoraVenta.removeAllItems();
             btCancelaSuc.setVisible(false);
             btAgregaSuc.setVisible(true);
             spSalasSuc.setEnabled(true);
-            btSalasSuc.setVisible(false);
-            etSalasEditarSuc.setVisible(false);
+            //btSalasSuc.setVisible(false);
+            //etSalasEditarSuc.setVisible(false);
         }
         //etMensajeMem.setVisible(false);
         }
@@ -3801,8 +3781,10 @@ cbHoraVenta.removeAllItems();
         Funcion funcion;
         limpiaFormularioFuncion();
         
-        if(validaDatosFuncion()){
-            if(validaHorasFuncion()){
+        if(validaDatosFuncion())
+        {
+            if(validaHorasFuncion())
+            {
                 conFun = new FuncionConexion();
                 funcion = new Funcion();
                 funcion.setClave_fun(Long.parseLong(tablaFuncion.getValueAt(tablaFuncion.getSelectedRow(), 0).toString()));
@@ -3857,7 +3839,7 @@ cbHoraVenta.removeAllItems();
     }  
     
     private void limpiaFormularioFuncion() {
-        etPeliculaFun.setText("Nombre");
+        etPeliculaFun.setText("Pelicula");
         etCineFun.setText("Cine");
         etSalaFun.setText("Sala");
         etFechaFun.setText("Fecha");
@@ -4035,7 +4017,6 @@ cbHoraVenta.removeAllItems();
     private javax.swing.JButton btEliminaMem;
     private javax.swing.JButton btEliminaPel;
     private javax.swing.JButton btEliminaSuc;
-    private javax.swing.JButton btSalasSuc;
     private javax.swing.JButton btnGenerarVenta;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbCineFun;
@@ -4110,7 +4091,6 @@ cbHoraVenta.removeAllItems();
     private javax.swing.JLabel etPeliculaFun;
     private javax.swing.JLabel etPuntosMem;
     private javax.swing.JLabel etSalaFun;
-    private javax.swing.JLabel etSalasEditarSuc;
     private javax.swing.JLabel etSalasSuc;
     private javax.swing.JLabel etSinopsisPel;
     private javax.swing.JLabel etTelSuc;
